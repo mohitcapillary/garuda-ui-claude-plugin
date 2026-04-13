@@ -1,0 +1,1427 @@
+{
+  "version": "1.0.0",
+  "entries": [
+    {
+      "figmaVariable": "primary/base",
+      "figmaValuePattern": "#47af46",
+      "blazeCSSVar": "$cap-primary-base",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "primary/hover",
+      "figmaValuePattern": "#1f9a1d",
+      "blazeCSSVar": "$cap-primary-hover",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "primary/disabled",
+      "figmaValuePattern": "#a1d8a0",
+      "blazeCSSVar": "$cap-primary-disabled",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "secondary/base",
+      "figmaValuePattern": "#2466ea",
+      "blazeCSSVar": "$cap-secondary-base",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "secondary/light",
+      "figmaValuePattern": "rgba(36,102,234,0.1)",
+      "blazeCSSVar": "$cap-secondary-light",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "color/orange",
+      "figmaValuePattern": "#f87d23",
+      "blazeCSSVar": "$cap-orange",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "color/orange01",
+      "figmaValuePattern": "#ffe5d2",
+      "blazeCSSVar": "$cap-orange01",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "color/orange02",
+      "figmaValuePattern": "#fa7d02",
+      "blazeCSSVar": "$cap-orange02",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "color/yellow",
+      "figmaValuePattern": "#fec52e",
+      "blazeCSSVar": "$cap-yellow",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "color/yellow01",
+      "figmaValuePattern": "#e8bc25",
+      "blazeCSSVar": "$cap-yellow01",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "color/yellow02",
+      "figmaValuePattern": "#f9d438",
+      "blazeCSSVar": "$cap-yellow02",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "color/blue",
+      "figmaValuePattern": "#23cccc",
+      "blazeCSSVar": "$cap-blue",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "color/purple",
+      "figmaValuePattern": "#8517e5",
+      "blazeCSSVar": "$cap-purple",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "color/pink",
+      "figmaValuePattern": "#e51fa3",
+      "blazeCSSVar": "$cap-pink",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "color/red",
+      "figmaValuePattern": "#ea213a",
+      "blazeCSSVar": "$cap-red",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "color/icon",
+      "figmaValuePattern": "#7a869a",
+      "blazeCSSVar": "$cap-icon",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "color/pale-grey",
+      "figmaValuePattern": "#e9f0fe",
+      "blazeCSSVar": "$cap-pale-grey",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "color/blue01",
+      "figmaValuePattern": "#2466eb",
+      "blazeCSSVar": "$cap-blue01",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "color/blue02",
+      "figmaValuePattern": "#1d61ee",
+      "blazeCSSVar": "$cap-blue02",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "color/red01",
+      "figmaValuePattern": "#e51fa3",
+      "blazeCSSVar": "$cap-red01",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "color/red02",
+      "figmaValuePattern": "#f5222d",
+      "blazeCSSVar": "$cap-red02",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "color/red03",
+      "figmaValuePattern": "#ed1b34",
+      "blazeCSSVar": "$cap-red03",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "color/purple01",
+      "figmaValuePattern": "#6563ff",
+      "blazeCSSVar": "$cap-purple01",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "color/purple02",
+      "figmaValuePattern": "#a451ff",
+      "blazeCSSVar": "$cap-purple02",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "color/purple03",
+      "figmaValuePattern": "#f2e7fe",
+      "blazeCSSVar": "$cap-purple03",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "color/purple04",
+      "figmaValuePattern": "#d4e1fc",
+      "blazeCSSVar": "$cap-purple04",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "color/green01",
+      "figmaValuePattern": "#6bb56b",
+      "blazeCSSVar": "$cap-green01",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "color/green02",
+      "figmaValuePattern": "#ecf7ec",
+      "blazeCSSVar": "$cap-green02",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "grey/g01",
+      "figmaValuePattern": "#091e42",
+      "blazeCSSVar": "$cap-g01",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "grey/g02",
+      "figmaValuePattern": "#253858",
+      "blazeCSSVar": "$cap-g02",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "grey/g03",
+      "figmaValuePattern": "#42526e",
+      "blazeCSSVar": "$cap-g03",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "grey/g04",
+      "figmaValuePattern": "#5e6c84",
+      "blazeCSSVar": "$cap-g04",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "grey/g05",
+      "figmaValuePattern": "#97a0af",
+      "blazeCSSVar": "$cap-g05",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "grey/g06",
+      "figmaValuePattern": "#b3bac5",
+      "blazeCSSVar": "$cap-g06",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "grey/g07",
+      "figmaValuePattern": "#dfe2e7",
+      "blazeCSSVar": "$cap-g07",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "grey/g08",
+      "figmaValuePattern": "#ebecf0",
+      "blazeCSSVar": "$cap-g08",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "grey/g09",
+      "figmaValuePattern": "#f4f5f7",
+      "blazeCSSVar": "$cap-g09",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "grey/g10",
+      "figmaValuePattern": "#fafbfc",
+      "blazeCSSVar": "$cap-g10",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "grey/g11",
+      "figmaValuePattern": "#7a869a",
+      "blazeCSSVar": "$cap-g11",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "grey/g12",
+      "figmaValuePattern": "#e8e8e8",
+      "blazeCSSVar": "$cap-g12",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "grey/g13",
+      "figmaValuePattern": "#ecece7",
+      "blazeCSSVar": "$cap-g13",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "grey/g14",
+      "figmaValuePattern": "#e9f0fd",
+      "blazeCSSVar": "$cap-g14",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "grey/g15",
+      "figmaValuePattern": "#efefef",
+      "blazeCSSVar": "$cap-g15",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "grey/g16",
+      "figmaValuePattern": "#2a2a2a",
+      "blazeCSSVar": "$cap-g16",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "grey/g17",
+      "figmaValuePattern": "#5d6b85",
+      "blazeCSSVar": "$cap-g17",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "grey/g18",
+      "figmaValuePattern": "#dcdee2",
+      "blazeCSSVar": "$cap-g18",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "grey/g19",
+      "figmaValuePattern": "#8a9ab2",
+      "blazeCSSVar": "$cap-g19",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "grey/g20",
+      "figmaValuePattern": "#c2c2c2",
+      "blazeCSSVar": "$cap-g20",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "grey/g21",
+      "figmaValuePattern": "#676e7c",
+      "blazeCSSVar": "$cap-g21",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "white",
+      "figmaValuePattern": "#ffffff",
+      "blazeCSSVar": "$cap-white",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "black",
+      "figmaValuePattern": "#000000",
+      "blazeCSSVar": "$cap-black",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "semantic/error",
+      "figmaValuePattern": "#ff4d4f",
+      "blazeCSSVar": "$color-error",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "semantic/success",
+      "figmaValuePattern": "#52c41a",
+      "blazeCSSVar": "$color-success",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "semantic/warning",
+      "figmaValuePattern": "#faad14",
+      "blazeCSSVar": "$color-warning",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "semantic/info",
+      "figmaValuePattern": "#1890ff",
+      "blazeCSSVar": "$color-info",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "cap-color/01",
+      "figmaValuePattern": "#dbefda",
+      "blazeCSSVar": "$cap-color-01",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "cap-color/02",
+      "figmaValuePattern": "#fee5d3",
+      "blazeCSSVar": "$cap-color-02",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "cap-color/03",
+      "figmaValuePattern": "#e83135",
+      "blazeCSSVar": "$cap-color-03",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "cap-color/04",
+      "figmaValuePattern": "#fff4d6",
+      "blazeCSSVar": "$cap-color-04",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "cap-color/05",
+      "figmaValuePattern": "#fbd3d8",
+      "blazeCSSVar": "$cap-color-05",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "cap-color/06",
+      "figmaValuePattern": "#42b040",
+      "blazeCSSVar": "$cap-color-06",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "cap-color/07",
+      "figmaValuePattern": "#e9f0fc",
+      "blazeCSSVar": "$cap-color-07",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "cap-color/08",
+      "figmaValuePattern": "#faf9f4",
+      "blazeCSSVar": "$cap-color-08",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "cap-color/09",
+      "figmaValuePattern": "#7765d5",
+      "blazeCSSVar": "$cap-color-09",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "cap-color/10",
+      "figmaValuePattern": "#f79600",
+      "blazeCSSVar": "$cap-color-10",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "cap-color/11",
+      "figmaValuePattern": "#2388de",
+      "blazeCSSVar": "$cap-color-11",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "cap-color/12",
+      "figmaValuePattern": "#efba00",
+      "blazeCSSVar": "$cap-color-12",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "cap-color/13",
+      "figmaValuePattern": "#bcd0fa",
+      "blazeCSSVar": "$cap-color-13",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "cap-color/14",
+      "figmaValuePattern": "#9bc79a",
+      "blazeCSSVar": "$cap-color-14",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "cap-color/15",
+      "figmaValuePattern": "#f6ba8e",
+      "blazeCSSVar": "$cap-color-15",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "cap-color/16",
+      "figmaValuePattern": "#d9d9d9",
+      "blazeCSSVar": "$cap-color-16",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "cap-color/17",
+      "figmaValuePattern": "#1d61ee",
+      "blazeCSSVar": "$cap-color-17",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "cap-color/18",
+      "figmaValuePattern": "#d0d7ff",
+      "blazeCSSVar": "$cap-color-18",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "cap-color/19",
+      "figmaValuePattern": "#44ddff",
+      "blazeCSSVar": "$cap-color-19",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "cap-color/20",
+      "figmaValuePattern": "#4a67ff",
+      "blazeCSSVar": "$cap-color-20",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "cap-color/21",
+      "figmaValuePattern": "#ace0ff",
+      "blazeCSSVar": "$cap-color-21",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "cap-color/22",
+      "figmaValuePattern": "#dbb7f9",
+      "blazeCSSVar": "$cap-color-22",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "cap-color/23",
+      "figmaValuePattern": "#f8bae4",
+      "blazeCSSVar": "$cap-color-23",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "cap-color/24",
+      "figmaValuePattern": "#bcd0fa",
+      "blazeCSSVar": "$cap-color-24",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "cap-color/25",
+      "figmaValuePattern": "#ace1f1",
+      "blazeCSSVar": "$cap-color-25",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "cap-color/26",
+      "figmaValuePattern": "#ffe9ad",
+      "blazeCSSVar": "$cap-color-26",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "cap-color/27",
+      "figmaValuePattern": "#f4f7fe",
+      "blazeCSSVar": "$cap-color-27",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "background/bg01",
+      "figmaValuePattern": "#faf9f4",
+      "blazeCSSVar": "$bg-01",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "background/bg02",
+      "figmaValuePattern": "#fefcf0",
+      "blazeCSSVar": "$bg-02",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "background/bg03",
+      "figmaValuePattern": "#ebf8ff",
+      "blazeCSSVar": "$bg-03",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "background/bg08",
+      "figmaValuePattern": "#ecf7ec",
+      "blazeCSSVar": "$bg-08",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "background/bg09",
+      "figmaValuePattern": "#fffbe6",
+      "blazeCSSVar": "$bg-09",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "font-color/01",
+      "figmaValuePattern": "#091e42",
+      "blazeCSSVar": "$font-color-01",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "font-color/02",
+      "figmaValuePattern": "#5e6c84",
+      "blazeCSSVar": "$font-color-02",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "font-color/03",
+      "figmaValuePattern": "#97a0af",
+      "blazeCSSVar": "$font-color-03",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "font-color/04",
+      "figmaValuePattern": "#b3bac5",
+      "blazeCSSVar": "$font-color-04",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "font-color/05",
+      "figmaValuePattern": "#2466ea",
+      "blazeCSSVar": "$font-color-05",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "font-color/06",
+      "figmaValuePattern": "#ffffff",
+      "blazeCSSVar": "$font-color-06",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "typography/font-size-vl",
+      "figmaValuePattern": "24",
+      "blazeCSSVar": "$font-size-vl",
+      "tokenType": "TYPOGRAPHY"
+    },
+    {
+      "figmaVariable": "typography/font-size-l",
+      "figmaValuePattern": "16",
+      "blazeCSSVar": "$font-size-l",
+      "tokenType": "TYPOGRAPHY"
+    },
+    {
+      "figmaVariable": "typography/font-size-m",
+      "figmaValuePattern": "14",
+      "blazeCSSVar": "$font-size-m",
+      "tokenType": "TYPOGRAPHY"
+    },
+    {
+      "figmaVariable": "typography/font-size-s",
+      "figmaValuePattern": "12",
+      "blazeCSSVar": "$font-size-s",
+      "tokenType": "TYPOGRAPHY"
+    },
+    {
+      "figmaVariable": "typography/font-size-vs",
+      "figmaValuePattern": "10",
+      "blazeCSSVar": "$font-size-vs",
+      "tokenType": "TYPOGRAPHY"
+    },
+    {
+      "figmaVariable": "typography/font-weight-regular",
+      "figmaValuePattern": "400",
+      "blazeCSSVar": "$font-weight-regular",
+      "tokenType": "TYPOGRAPHY"
+    },
+    {
+      "figmaVariable": "typography/font-weight-medium",
+      "figmaValuePattern": "500",
+      "blazeCSSVar": "$font-weight-medium",
+      "tokenType": "TYPOGRAPHY"
+    },
+    {
+      "figmaVariable": "typography/font-family",
+      "figmaValuePattern": "Roboto",
+      "blazeCSSVar": "$font-family",
+      "tokenType": "TYPOGRAPHY"
+    },
+    {
+      "figmaVariable": "spacing/space-00",
+      "figmaValuePattern": "0",
+      "blazeCSSVar": "$cap-space-00",
+      "tokenType": "SPACING"
+    },
+    {
+      "figmaVariable": "spacing/space-01",
+      "figmaValuePattern": "1",
+      "blazeCSSVar": "$cap-space-01",
+      "tokenType": "SPACING"
+    },
+    {
+      "figmaVariable": "spacing/space-02",
+      "figmaValuePattern": "2",
+      "blazeCSSVar": "$cap-space-02",
+      "tokenType": "SPACING"
+    },
+    {
+      "figmaVariable": "spacing/space-03",
+      "figmaValuePattern": "3",
+      "blazeCSSVar": "$cap-space-03",
+      "tokenType": "SPACING"
+    },
+    {
+      "figmaVariable": "spacing/space-04",
+      "figmaValuePattern": "4",
+      "blazeCSSVar": "$cap-space-04",
+      "tokenType": "SPACING"
+    },
+    {
+      "figmaVariable": "spacing/space-06",
+      "figmaValuePattern": "6",
+      "blazeCSSVar": "$cap-space-06",
+      "tokenType": "SPACING"
+    },
+    {
+      "figmaVariable": "spacing/space-08",
+      "figmaValuePattern": "8",
+      "blazeCSSVar": "$cap-space-08",
+      "tokenType": "SPACING"
+    },
+    {
+      "figmaVariable": "spacing/space-12",
+      "figmaValuePattern": "12",
+      "blazeCSSVar": "$cap-space-12",
+      "tokenType": "SPACING"
+    },
+    {
+      "figmaVariable": "spacing/space-16",
+      "figmaValuePattern": "16",
+      "blazeCSSVar": "$cap-space-16",
+      "tokenType": "SPACING"
+    },
+    {
+      "figmaVariable": "spacing/space-18",
+      "figmaValuePattern": "18",
+      "blazeCSSVar": "$cap-space-18",
+      "tokenType": "SPACING"
+    },
+    {
+      "figmaVariable": "spacing/space-19",
+      "figmaValuePattern": "18.2",
+      "blazeCSSVar": "$cap-space-19",
+      "tokenType": "SPACING"
+    },
+    {
+      "figmaVariable": "spacing/space-20",
+      "figmaValuePattern": "20",
+      "blazeCSSVar": "$cap-space-20",
+      "tokenType": "SPACING"
+    },
+    {
+      "figmaVariable": "spacing/space-23",
+      "figmaValuePattern": "22.6",
+      "blazeCSSVar": "$cap-space-23",
+      "tokenType": "SPACING"
+    },
+    {
+      "figmaVariable": "spacing/space-24",
+      "figmaValuePattern": "24",
+      "blazeCSSVar": "$cap-space-24",
+      "tokenType": "SPACING"
+    },
+    {
+      "figmaVariable": "spacing/space-28",
+      "figmaValuePattern": "28",
+      "blazeCSSVar": "$cap-space-28",
+      "tokenType": "SPACING"
+    },
+    {
+      "figmaVariable": "spacing/space-32",
+      "figmaValuePattern": "32",
+      "blazeCSSVar": "$cap-space-32",
+      "tokenType": "SPACING"
+    },
+    {
+      "figmaVariable": "spacing/space-36",
+      "figmaValuePattern": "36",
+      "blazeCSSVar": "$cap-space-36",
+      "tokenType": "SPACING"
+    },
+    {
+      "figmaVariable": "spacing/space-40",
+      "figmaValuePattern": "40",
+      "blazeCSSVar": "$cap-space-40",
+      "tokenType": "SPACING"
+    },
+    {
+      "figmaVariable": "spacing/space-42",
+      "figmaValuePattern": "42",
+      "blazeCSSVar": "$cap-space-42",
+      "tokenType": "SPACING"
+    },
+    {
+      "figmaVariable": "spacing/space-44",
+      "figmaValuePattern": "44",
+      "blazeCSSVar": "$cap-space-44",
+      "tokenType": "SPACING"
+    },
+    {
+      "figmaVariable": "spacing/space-48",
+      "figmaValuePattern": "48",
+      "blazeCSSVar": "$cap-space-48",
+      "tokenType": "SPACING"
+    },
+    {
+      "figmaVariable": "spacing/space-52",
+      "figmaValuePattern": "52",
+      "blazeCSSVar": "$cap-space-52",
+      "tokenType": "SPACING"
+    },
+    {
+      "figmaVariable": "spacing/space-56",
+      "figmaValuePattern": "56",
+      "blazeCSSVar": "$cap-space-56",
+      "tokenType": "SPACING"
+    },
+    {
+      "figmaVariable": "spacing/space-60",
+      "figmaValuePattern": "60",
+      "blazeCSSVar": "$cap-space-60",
+      "tokenType": "SPACING"
+    },
+    {
+      "figmaVariable": "spacing/space-64",
+      "figmaValuePattern": "64",
+      "blazeCSSVar": "$cap-space-64",
+      "tokenType": "SPACING"
+    },
+    {
+      "figmaVariable": "spacing/space-72",
+      "figmaValuePattern": "72",
+      "blazeCSSVar": "$cap-space-72",
+      "tokenType": "SPACING"
+    },
+    {
+      "figmaVariable": "spacing/space-80",
+      "figmaValuePattern": "80",
+      "blazeCSSVar": "$cap-space-80",
+      "tokenType": "SPACING"
+    },
+    {
+      "figmaVariable": "radius/04",
+      "figmaValuePattern": "4",
+      "blazeCSSVar": "$radius-04",
+      "tokenType": "RADIUS"
+    },
+    {
+      "figmaVariable": "radius/08",
+      "figmaValuePattern": "8",
+      "blazeCSSVar": "$radius-08",
+      "tokenType": "RADIUS"
+    },
+    {
+      "figmaVariable": "border/width-1",
+      "figmaValuePattern": "1",
+      "blazeCSSVar": "$border-width-1",
+      "tokenType": "BORDER"
+    },
+    {
+      "figmaVariable": "border/width-2",
+      "figmaValuePattern": "2",
+      "blazeCSSVar": "$border-width-2",
+      "tokenType": "BORDER"
+    },
+    {
+      "figmaVariable": "Character/Primary",
+      "figmaValuePattern": "#091e42",
+      "blazeCSSVar": "--character/primary",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Character/inverted",
+      "figmaValuePattern": "#ffffff",
+      "blazeCSSVar": "--character/inverted",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Black & White/White",
+      "figmaValuePattern": "#ffffff",
+      "blazeCSSVar": "--black-and-white/white",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Black & White/Black",
+      "figmaValuePattern": "#000000",
+      "blazeCSSVar": "--black-and-white/black",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Neutral/1",
+      "figmaValuePattern": "#fafbfc",
+      "blazeCSSVar": "--neutral/1",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Neutral/2",
+      "figmaValuePattern": "#f4f5f7",
+      "blazeCSSVar": "--neutral/2",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Neutral/3",
+      "figmaValuePattern": "#ebecf0",
+      "blazeCSSVar": "--neutral/3",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Neutral/4",
+      "figmaValuePattern": "#dfe2e7",
+      "blazeCSSVar": "--neutral/4",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Neutral/5",
+      "figmaValuePattern": "#b3bac5",
+      "blazeCSSVar": "--neutral/5",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Neutral/6",
+      "figmaValuePattern": "#97a0af",
+      "blazeCSSVar": "--neutral/6",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Neutral/7",
+      "figmaValuePattern": "#7a869a",
+      "blazeCSSVar": "--neutral/7",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Neutral/8",
+      "figmaValuePattern": "#5e6c84",
+      "blazeCSSVar": "--neutral/8",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Neutral/9",
+      "figmaValuePattern": "#42526e",
+      "blazeCSSVar": "--neutral/9",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Neutral/10",
+      "figmaValuePattern": "#253858",
+      "blazeCSSVar": "--neutral/10",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Neutral/11",
+      "figmaValuePattern": "#091e42",
+      "blazeCSSVar": "--neutral/11",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Cap Green/1",
+      "figmaValuePattern": "#ecf7ec",
+      "blazeCSSVar": "--cap-green/1",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Cap Green/2",
+      "figmaValuePattern": "#dbefda",
+      "blazeCSSVar": "--cap-green/2",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Cap Green/3",
+      "figmaValuePattern": "#b6dfb5",
+      "blazeCSSVar": "--cap-green/3",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Cap Green/4",
+      "figmaValuePattern": "#a1d8a0",
+      "blazeCSSVar": "--cap-green/4",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Cap Green/5",
+      "figmaValuePattern": "#8fd08e",
+      "blazeCSSVar": "--cap-green/5",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Cap Green/6",
+      "figmaValuePattern": "#7cc87a",
+      "blazeCSSVar": "--cap-green/6",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Cap Green/7",
+      "figmaValuePattern": "#42b040",
+      "blazeCSSVar": "--cap-green/7",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Cap Green/8",
+      "figmaValuePattern": "#1f9a1d",
+      "blazeCSSVar": "--cap-green/8",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Cap Green/9",
+      "figmaValuePattern": "#007800",
+      "blazeCSSVar": "--cap-green/9",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Cap Green/10",
+      "figmaValuePattern": "#005900",
+      "blazeCSSVar": "--cap-green/10",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Blue/1",
+      "figmaValuePattern": "#e9f0fe",
+      "blazeCSSVar": "--blue/1",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Blue/2",
+      "figmaValuePattern": "#d4e1fc",
+      "blazeCSSVar": "--blue/2",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Blue/3",
+      "figmaValuePattern": "#bcd0fa",
+      "blazeCSSVar": "--blue/3",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Blue/4",
+      "figmaValuePattern": "#d8edff",
+      "blazeCSSVar": "--blue/4",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Blue/5",
+      "figmaValuePattern": "#bed9ef",
+      "blazeCSSVar": "--blue/5",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Blue/6",
+      "figmaValuePattern": "#90c4f0",
+      "blazeCSSVar": "--blue/6",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Blue/7",
+      "figmaValuePattern": "#63a7e1",
+      "blazeCSSVar": "--blue/7",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Blue/8",
+      "figmaValuePattern": "#2388de",
+      "blazeCSSVar": "--blue/8",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Blue/9",
+      "figmaValuePattern": "#2466ea",
+      "blazeCSSVar": "--blue/9",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Blue/10",
+      "figmaValuePattern": "#13419e",
+      "blazeCSSVar": "--blue/10",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Red/1",
+      "figmaValuePattern": "#ffebee",
+      "blazeCSSVar": "--red/1",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Red/2",
+      "figmaValuePattern": "#fbd3d8",
+      "blazeCSSVar": "--red/2",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Red/3",
+      "figmaValuePattern": "#f1989a",
+      "blazeCSSVar": "--red/3",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Red/4",
+      "figmaValuePattern": "#e77073",
+      "blazeCSSVar": "--red/4",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Red/5",
+      "figmaValuePattern": "#f24e4f",
+      "blazeCSSVar": "--red/5",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Red/6",
+      "figmaValuePattern": "#e83135",
+      "blazeCSSVar": "--red/6",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Red/7",
+      "figmaValuePattern": "#c91e27",
+      "blazeCSSVar": "--red/7",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Red/8",
+      "figmaValuePattern": "#b31f23",
+      "blazeCSSVar": "--red/8",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Red/9",
+      "figmaValuePattern": "#9d1f20",
+      "blazeCSSVar": "--red/9",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Red/10",
+      "figmaValuePattern": "#891f1d",
+      "blazeCSSVar": "--red/10",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Polar Green/1",
+      "figmaValuePattern": "#daebca",
+      "blazeCSSVar": "--polar-green/1",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Polar Green/2",
+      "figmaValuePattern": "#bce497",
+      "blazeCSSVar": "--polar-green/2",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Polar Green/3",
+      "figmaValuePattern": "#9dd767",
+      "blazeCSSVar": "--polar-green/3",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Polar Green/4",
+      "figmaValuePattern": "#7cbc41",
+      "blazeCSSVar": "--polar-green/4",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Violet/1",
+      "figmaValuePattern": "#d0cbe6",
+      "blazeCSSVar": "--violet/1",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Violet/2",
+      "figmaValuePattern": "#afa6d6",
+      "blazeCSSVar": "--violet/2",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Violet/3",
+      "figmaValuePattern": "#9787d8",
+      "blazeCSSVar": "--violet/3",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Violet/4",
+      "figmaValuePattern": "#7765d5",
+      "blazeCSSVar": "--violet/4",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Sky Blue/1",
+      "figmaValuePattern": "#d8edff",
+      "blazeCSSVar": "--sky-blue/1",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Sky Blue/2",
+      "figmaValuePattern": "#b9dbfa",
+      "blazeCSSVar": "--sky-blue/2",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Sky Blue/3",
+      "figmaValuePattern": "#92caff",
+      "blazeCSSVar": "--sky-blue/3",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Sky Blue/4",
+      "figmaValuePattern": "#6fb4f6",
+      "blazeCSSVar": "--sky-blue/4",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Orange/1",
+      "figmaValuePattern": "#fef2e0",
+      "blazeCSSVar": "--orange/1",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Orange/2",
+      "figmaValuePattern": "#fde5bb",
+      "blazeCSSVar": "--orange/2",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Orange/3",
+      "figmaValuePattern": "#ffcf87",
+      "blazeCSSVar": "--orange/3",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Orange/4",
+      "figmaValuePattern": "#feb84d",
+      "blazeCSSVar": "--orange/4",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Orange/5",
+      "figmaValuePattern": "#f79600",
+      "blazeCSSVar": "--orange/5",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Orange/6",
+      "figmaValuePattern": "#f38900",
+      "blazeCSSVar": "--orange/6",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Orange/7",
+      "figmaValuePattern": "#f87d23",
+      "blazeCSSVar": "--orange/7",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Orange/9",
+      "figmaValuePattern": "#bd4507",
+      "blazeCSSVar": "--orange/9",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Orange/10",
+      "figmaValuePattern": "#9c3b0b",
+      "blazeCSSVar": "--orange/10",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Yellow/1",
+      "figmaValuePattern": "#fff4d6",
+      "blazeCSSVar": "--yellow/1",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Yellow/2",
+      "figmaValuePattern": "#f9e9b3",
+      "blazeCSSVar": "--yellow/2",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Yellow/3",
+      "figmaValuePattern": "#ffdc68",
+      "blazeCSSVar": "--yellow/3",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Yellow/4",
+      "figmaValuePattern": "#f5d218",
+      "blazeCSSVar": "--yellow/4",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Yellow/5",
+      "figmaValuePattern": "#efba00",
+      "blazeCSSVar": "--yellow/5",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Rust/1",
+      "figmaValuePattern": "#f8d8c9",
+      "blazeCSSVar": "--rust/1",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Rust/2",
+      "figmaValuePattern": "#f4b394",
+      "blazeCSSVar": "--rust/2",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Rust/3",
+      "figmaValuePattern": "#e37d4c",
+      "blazeCSSVar": "--rust/3",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Rust/4",
+      "figmaValuePattern": "#b9511f",
+      "blazeCSSVar": "--rust/4",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Grey/1",
+      "figmaValuePattern": "#dae1eb",
+      "blazeCSSVar": "--grey/1",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Grey/2",
+      "figmaValuePattern": "#b8c5d8",
+      "blazeCSSVar": "--grey/2",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Grey/3",
+      "figmaValuePattern": "#8a9ab2",
+      "blazeCSSVar": "--grey/3",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Grey/4",
+      "figmaValuePattern": "#505d70",
+      "blazeCSSVar": "--grey/4",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Cyan/1",
+      "figmaValuePattern": "#c2e7e4",
+      "blazeCSSVar": "--cyan/1",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Cyan/2",
+      "figmaValuePattern": "#92dcd9",
+      "blazeCSSVar": "--cyan/2",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Cyan/3",
+      "figmaValuePattern": "#64d4d0",
+      "blazeCSSVar": "--cyan/3",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Cyan/4",
+      "figmaValuePattern": "#29c3be",
+      "blazeCSSVar": "--cyan/4",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Teal/1",
+      "figmaValuePattern": "#cde2df",
+      "blazeCSSVar": "--teal/1",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Teal/2",
+      "figmaValuePattern": "#8bcac1",
+      "blazeCSSVar": "--teal/2",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Teal/3",
+      "figmaValuePattern": "#58b9ac",
+      "blazeCSSVar": "--teal/3",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Teal/4",
+      "figmaValuePattern": "#3e8278",
+      "blazeCSSVar": "--teal/4",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Extra/cream",
+      "figmaValuePattern": "#faf9f4",
+      "blazeCSSVar": "--extra/cream",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Extra/filter",
+      "figmaValuePattern": "#ecece7",
+      "blazeCSSVar": "--extra/filter",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "Space/x0",
+      "figmaValuePattern": "0",
+      "blazeCSSVar": "--space/x0",
+      "tokenType": "SPACING"
+    },
+    {
+      "figmaVariable": "Space/x1",
+      "figmaValuePattern": "4",
+      "blazeCSSVar": "--space/x1",
+      "tokenType": "SPACING"
+    },
+    {
+      "figmaVariable": "Space/x2",
+      "figmaValuePattern": "8",
+      "blazeCSSVar": "--space/x2",
+      "tokenType": "SPACING"
+    },
+    {
+      "figmaVariable": "Space/x3",
+      "figmaValuePattern": "12",
+      "blazeCSSVar": "--space/x3",
+      "tokenType": "SPACING"
+    },
+    {
+      "figmaVariable": "Space/x4",
+      "figmaValuePattern": "16",
+      "blazeCSSVar": "--space/x4",
+      "tokenType": "SPACING"
+    },
+    {
+      "figmaVariable": "Space/x6",
+      "figmaValuePattern": "24",
+      "blazeCSSVar": "--space/x6",
+      "tokenType": "SPACING"
+    },
+    {
+      "figmaVariable": "Space/x8",
+      "figmaValuePattern": "32",
+      "blazeCSSVar": "--space/x8",
+      "tokenType": "SPACING"
+    },
+    {
+      "figmaVariable": "Space/x10",
+      "figmaValuePattern": "40",
+      "blazeCSSVar": "--space/x10",
+      "tokenType": "SPACING"
+    },
+    {
+      "figmaVariable": "Space/x12",
+      "figmaValuePattern": "48",
+      "blazeCSSVar": "--space/x12",
+      "tokenType": "SPACING"
+    },
+    {
+      "figmaVariable": "Radius/small",
+      "figmaValuePattern": "4",
+      "blazeCSSVar": "--radius/small",
+      "tokenType": "RADIUS"
+    },
+    {
+      "figmaVariable": "Radius/medium",
+      "figmaValuePattern": "8",
+      "blazeCSSVar": "--radius/medium",
+      "tokenType": "RADIUS"
+    },
+    {
+      "figmaVariable": "Radius/large",
+      "figmaValuePattern": "12",
+      "blazeCSSVar": "--radius/large",
+      "tokenType": "RADIUS"
+    },
+    {
+      "figmaVariable": "Radius/xlarge",
+      "figmaValuePattern": "24",
+      "blazeCSSVar": "--radius/xlarge",
+      "tokenType": "RADIUS"
+    },
+    {
+      "figmaVariable": "Radius/round",
+      "figmaValuePattern": "120",
+      "blazeCSSVar": "--radius/round",
+      "tokenType": "RADIUS"
+    },
+    {
+      "figmaVariable": "Shadow/Drop shadow_dark",
+      "figmaValuePattern": "1px 4px 8px -2px rgba(9,30,66,0.25)",
+      "blazeCSSVar": "--shadow/drop-shadow-dark",
+      "tokenType": "SHADOW"
+    },
+    {
+      "figmaVariable": "Shadow/Drop shadow_light",
+      "figmaValuePattern": "0px 2px 16px 0px rgba(9,30,66,0.16)",
+      "blazeCSSVar": "--shadow/drop-shadow-light",
+      "tokenType": "SHADOW"
+    }
+  ]
+}

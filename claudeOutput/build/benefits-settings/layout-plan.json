@@ -1,0 +1,301 @@
+{
+  "feature": "benefits-settings",
+  "extractedFrom": "claudeOutput/figma-capui-mapping/24-2729/design-context.jsx",
+  "extractedAt": "2026-04-13",
+  "tokenMappings": {
+    "colours": {
+      "#091e42": "CAP_G01",
+      "#253858": "CAP_G02",
+      "#42526e": "CAP_G03",
+      "#5e6c84": "CAP_G04",
+      "#97a0af": "CAP_G05",
+      "#b3bac5": "CAP_G06",
+      "#dfe2e7": "CAP_G07",
+      "#ebecf0": "CAP_G08",
+      "#f4f5f7": "CAP_G09",
+      "#fafbfc": "CAP_G10",
+      "#ffffff": "CAP_WHITE",
+      "#42b040": "CAP_PRIMARY.base",
+      "#2466ea": "CAP_SECONDARY.base",
+      "#e9f0fe": "CAP_PALE_GREY"
+    },
+    "spacing": {
+      "4px": "CAP_SPACE_04",
+      "8px": "CAP_SPACE_08",
+      "12px": "CAP_SPACE_12",
+      "16px": "CAP_SPACE_16",
+      "20px": "CAP_SPACE_20",
+      "24px": "CAP_SPACE_24",
+      "26px": "CAP_SPACE_26 (not in tokens — use 1.857rem directly or closest CAP_SPACE_24/CAP_SPACE_28)",
+      "28px": "CAP_SPACE_28",
+      "38px": "CAP_SPACE_36 (approx — sidebar internal gap)",
+      "40px": "CAP_SPACE_40",
+      "48px": "CAP_SPACE_48"
+    }
+  },
+  "screens": {
+    "BenefitsSettings": {
+      "rootNode": "24:2729",
+      "viewport": {
+        "width": 1440,
+        "height": 1182,
+        "background": "CAP_WHITE"
+      },
+      "shellNote": "Route /settings/benefits — Cap shell provides CapSideBar (240px left). Page component renders only main panel (left: 240px).",
+      "layout": [
+        {
+          "nodeId": "24:2730",
+          "role": "sidebar",
+          "cap": "CapSideBar",
+          "owner": "SHELL",
+          "width": 240,
+          "position": "absolute-left",
+          "padding": ["CAP_SPACE_20", 0],
+          "note": "Shell-owned. Not emitted in page JSX."
+        },
+        {
+          "nodeId": "24:2775",
+          "role": "main-panel",
+          "owner": "PAGE",
+          "width": 1200,
+          "height": 1182,
+          "position": "left-240px",
+          "background": "CAP_WHITE",
+          "overflow": "clip"
+        },
+        {
+          "nodeId": "24:2776",
+          "role": "inner-container",
+          "owner": "PAGE",
+          "width": 1104,
+          "position": "absolute left-48 top-28",
+          "paddingLeft": "CAP_SPACE_48",
+          "paddingTop": "CAP_SPACE_28",
+          "gap": "26px",
+          "note": "gap-26 = 1.857rem (between page title and sections stack)"
+        },
+        {
+          "nodeId": "24:2777",
+          "role": "page-title",
+          "cap": "CapHeading",
+          "capType": "h2",
+          "fontSize": 24,
+          "fontWeight": "medium",
+          "lineHeight": "32px",
+          "color": "CAP_G01",
+          "text": "Benefits",
+          "figmaClass": "font-medium text-[24px] leading-[32px] text-[#091e42]",
+          "reviewerOverride": "CapHeading (was CapLabel)"
+        },
+        {
+          "nodeId": "24:2778",
+          "role": "sections-stack",
+          "owner": "PAGE",
+          "display": "flex-col",
+          "gap": "CAP_SPACE_40",
+          "width": "100%"
+        },
+        {
+          "nodeId": "24:2779",
+          "role": "custom-fields-section-container",
+          "cap": "CapColumn",
+          "display": "flex-col",
+          "gap": "CAP_SPACE_16",
+          "width": "100%"
+        },
+        {
+          "nodeId": "24:2780",
+          "role": "custom-fields-header-row",
+          "cap": "CapRow",
+          "display": "flex",
+          "alignItems": "center",
+          "justifyContent": "space-between",
+          "width": "100%"
+        },
+        {
+          "nodeId": "24:2781",
+          "role": "custom-fields-title-group",
+          "cap": "CapColumn",
+          "display": "flex-col",
+          "gap": "CAP_SPACE_04"
+        },
+        {
+          "nodeId": "24:2782",
+          "role": "custom-fields-section-title",
+          "cap": "CapHeading",
+          "capType": "h4",
+          "fontSize": 16,
+          "fontWeight": "medium",
+          "lineHeight": "24px",
+          "color": "CAP_G01",
+          "text": "Custom fields",
+          "figmaClass": "font-medium text-[16px] leading-[24px] text-[#091e42]"
+        },
+        {
+          "nodeId": "24:2783",
+          "role": "custom-fields-section-subtitle",
+          "cap": "CapLabel",
+          "capType": "label3",
+          "fontSize": 12,
+          "fontWeight": "regular",
+          "lineHeight": "16px",
+          "color": "CAP_G05",
+          "width": 421,
+          "text": "Add metadata fields for your benefits",
+          "figmaClass": "font-normal text-[12px] leading-[16px] text-[#97a0af] w-[421px]"
+        },
+        {
+          "nodeId": "24:2784",
+          "role": "new-custom-field-cta",
+          "cap": "CapButton",
+          "capType": "primary",
+          "background": "CAP_PRIMARY.base",
+          "paddingX": "CAP_SPACE_24",
+          "paddingY": "10px",
+          "borderRadius": "CAP_SPACE_04",
+          "text": "New custom field",
+          "figmaClass": "bg-[#42b040] px-[24px] py-[10px] rounded-[4px]"
+        },
+        {
+          "nodeId": "24:2785",
+          "role": "custom-fields-table",
+          "cap": "CapTable",
+          "background": "CAP_WHITE",
+          "border": "CAP_G07",
+          "borderRadius": "CAP_SPACE_04",
+          "width": 1104,
+          "columns": [
+            {
+              "key": "name",
+              "title": "Name",
+              "headerBg": "CAP_G10",
+              "headerPadding": "pl-24 pr-12 py-12",
+              "fontSize": 12,
+              "color": "CAP_G01"
+            },
+            {
+              "key": "dataType",
+              "title": "Data type",
+              "headerBg": "CAP_G10",
+              "headerPadding": "p-12",
+              "fontSize": 12,
+              "color": "CAP_G01"
+            },
+            {
+              "key": "updatedOn",
+              "title": "Last updated on",
+              "subTitle": "Updated by",
+              "sortable": true,
+              "sortIcon": "carrot",
+              "headerBg": "CAP_G10",
+              "headerPadding": "p-12",
+              "fontSize": 12,
+              "color": "CAP_G01",
+              "subTitleColor": "CAP_G04"
+            }
+          ]
+        },
+        {
+          "nodeId": "24:2940",
+          "role": "categories-section-container",
+          "cap": "CapColumn",
+          "display": "flex-col",
+          "gap": "CAP_SPACE_16",
+          "width": "100%"
+        },
+        {
+          "nodeId": "24:2941",
+          "role": "categories-header-row",
+          "cap": "CapRow",
+          "display": "flex",
+          "alignItems": "center",
+          "justifyContent": "space-between",
+          "width": "100%"
+        },
+        {
+          "nodeId": "24:2942",
+          "role": "categories-title-group",
+          "cap": "CapColumn",
+          "display": "flex-col",
+          "gap": "CAP_SPACE_04"
+        },
+        {
+          "nodeId": "24:2943",
+          "role": "categories-section-title",
+          "cap": "CapHeading",
+          "capType": "h4",
+          "fontSize": 16,
+          "fontWeight": "medium",
+          "lineHeight": "24px",
+          "color": "CAP_G01",
+          "text": "Categories",
+          "figmaClass": "font-medium text-[16px] leading-[24px] text-[#091e42]"
+        },
+        {
+          "nodeId": "24:2944",
+          "role": "categories-section-subtitle",
+          "cap": "CapLabel",
+          "capType": "label3",
+          "fontSize": 12,
+          "fontWeight": "regular",
+          "lineHeight": "16px",
+          "color": "CAP_G05",
+          "width": 421,
+          "text": "Manage categories for your benefits from here",
+          "figmaClass": "font-normal text-[12px] leading-[16px] text-[#97a0af] w-[421px]"
+        },
+        {
+          "nodeId": "24:2945",
+          "role": "new-category-cta",
+          "cap": "CapButton",
+          "capType": "primary",
+          "background": "CAP_PRIMARY.base",
+          "paddingX": "CAP_SPACE_24",
+          "paddingY": "10px",
+          "borderRadius": "CAP_SPACE_04",
+          "text": "New category",
+          "figmaClass": "bg-[#42b040] px-[24px] py-[10px] rounded-[4px]"
+        },
+        {
+          "nodeId": "24:2946",
+          "role": "categories-table",
+          "cap": "CapTable",
+          "background": "CAP_WHITE",
+          "border": "CAP_G07",
+          "borderRadius": "CAP_SPACE_04",
+          "width": 1104,
+          "columns": [
+            {
+              "key": "name",
+              "title": "Name",
+              "width": 368,
+              "headerBg": "CAP_G10",
+              "headerPadding": "pl-24 pr-12 py-12",
+              "fontSize": 12,
+              "color": "CAP_G01"
+            },
+            {
+              "key": "updatedOn",
+              "title": "Last updated on",
+              "subTitle": "Updated by",
+              "sortable": true,
+              "sortIcon": "carrot",
+              "headerBg": "CAP_G10",
+              "headerPadding": "p-12",
+              "fontSize": 12,
+              "color": "CAP_G01",
+              "subTitleColor": "CAP_G04"
+            }
+          ]
+        },
+        {
+          "nodeId": "24:3089",
+          "role": "create-category-modal",
+          "cap": "CapModal",
+          "note": "Figma shows CapPopover; mapped to CapModal per recipe RESOLVED-UNMAPPED. 334px wide.",
+          "width": 334
+        }
+      ]
+    }
+  }
+}

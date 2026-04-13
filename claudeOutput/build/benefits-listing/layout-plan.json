@@ -1,0 +1,180 @@
+{
+  "derivedFrom": "claudeOutput/figma-capui-mapping/3:1022/design-context.jsx + 3-1022/metadata.xml + Figma screenshot",
+  "tokenSource": "node_modules/@capillarytech/cap-ui-library/styled/variables.js",
+  "notes": [
+    "design-context.jsx for node 3:1022 is sparse (structural summary only — Figma response was too large for full fetch).",
+    "All layout dimensions extracted from metadata.xml (authoritative pixel geometry from Figma).",
+    "Typography tokens derived from Figma screenshot visual analysis + §5.3 typography lookup table.",
+    "Colour tokens derived from the cap-ui token registry (variables.js).",
+    "Layout mirrors PromotionList reference (padding/gap patterns validated against styles.js)."
+  ],
+  "screens": {
+    "Benefits Listing Page": {
+      "rootNode": "3:1022",
+      "viewport": { "width": 1280, "height": 492, "background": "CAP_WHITE" },
+      "layout": [
+        {
+          "nodeId": "3:1023",
+          "role": "page-column-wrapper",
+          "cap": "CapColumn",
+          "width": 1162,
+          "position": "centered (x=54 from parent)",
+          "padding": ["CAP_SPACE_20", "CAP_SPACE_72", 0, "CAP_SPACE_72"]
+        },
+        {
+          "nodeId": "3:1024",
+          "role": "toolbar-row",
+          "cap": "CapRow",
+          "width": 1162,
+          "height": 40,
+          "layout": "flex horizontal align=middle justify=space-between"
+        },
+        {
+          "nodeId": "3:1025",
+          "role": "page-title-group",
+          "width": 89,
+          "height": 32
+        },
+        {
+          "nodeId": "3:1026",
+          "role": "page-title-wrapper",
+          "width": 89,
+          "height": 32
+        },
+        {
+          "nodeId": "3:1027",
+          "role": "page-title",
+          "cap": "CapHeading",
+          "capProps": { "type": "h1" },
+          "text": "Benefits",
+          "fontSize": 24,
+          "fontWeight": "medium",
+          "color": "CAP_G01",
+          "typographyNote": "Screenshot shows bold 'Benefits' label, ~24px equivalent. Size 24 weight medium → CapHeading h2 per §5.3. However HLD says h1 for page heading. Using h1 per HLD architectural intent."
+        },
+        {
+          "nodeId": "3:1028",
+          "role": "search-and-actions-row",
+          "cap": "CapRow",
+          "width": 1033,
+          "height": 40,
+          "gutter": 478,
+          "recipeStatus": "EXACT (layout-inferred CapRow from recipe.json 3:1028)"
+        },
+        {
+          "nodeId": "3:1029",
+          "role": "search-filter-group",
+          "cap": "CapRow",
+          "width": 413,
+          "height": 40,
+          "layout": "flex align=middle gap=CAP_SPACE_08"
+        },
+        {
+          "nodeId": "3:1035",
+          "role": "search-input",
+          "cap": "CapInput",
+          "width": 360,
+          "height": 40,
+          "props": { "allowClear": true, "prefix": "CapIcon[search]" },
+          "borderColor": "CAP_G08",
+          "borderColorHover": "CAP_G07",
+          "borderColorFocus": "CAP_G01"
+        },
+        {
+          "nodeId": "3:1038",
+          "role": "search-icon-prefix",
+          "cap": "CapIcon",
+          "props": { "type": "search" },
+          "width": 16,
+          "height": 16,
+          "color": "CAP_G05"
+        },
+        {
+          "nodeId": "3:1044",
+          "role": "divider-filter-group",
+          "width": 41,
+          "height": 32,
+          "layout": "flex align=center gap=CAP_SPACE_08"
+        },
+        {
+          "nodeId": "3:1046",
+          "role": "toolbar-divider",
+          "cap": "CapDivider",
+          "props": { "type": "vertical" },
+          "width": 1,
+          "height": 20
+        },
+        {
+          "nodeId": "3:1047",
+          "role": "filter-icon-button",
+          "cap": "CapIcon",
+          "props": { "type": "filter" },
+          "width": 32,
+          "height": 32,
+          "color": "CAP_G01",
+          "cursor": "pointer",
+          "interaction": "onClick → setIsFilterPanelOpen(true)"
+        },
+        {
+          "nodeId": "8:2902",
+          "role": "OMITTED",
+          "cap": "CapButton",
+          "omitReason": "FIGMA-VS-SPEC conflict: button present in Figma (EXACT recipe) but omitted per PM decision (Section 15 Q1). Conflict logged.",
+          "width": 138,
+          "height": 40
+        },
+        {
+          "nodeId": "5:2877",
+          "role": "benefits-data-table",
+          "cap": "CapTable",
+          "width": 1202,
+          "position": "y=60 from column wrapper",
+          "props": {
+            "rowKey": "id",
+            "pagination": false,
+            "scroll": { "x": "max-content" }
+          },
+          "columns": [
+            { "key": "name", "title": "Name", "width": "auto", "sortable": false, "renderer": "NameCell (two-line: title + description + IDs)" },
+            { "key": "status", "title": "Status", "width": "auto", "sortable": false, "renderer": "BenefitStatusTag atom" },
+            { "key": "duration", "title": "Duration", "width": "auto", "sortable": true, "renderer": "DurationCell (start + end datetime + updater name)" },
+            { "key": "program_name", "title": "Program name", "width": "auto", "sortable": false, "renderer": "plain text" },
+            { "key": "category_name", "title": "Category", "width": "auto", "sortable": false, "renderer": "plain text" },
+            { "key": "last_updated_at", "title": "Updated at", "width": "auto", "sortable": true, "renderer": "UpdatedAtCell (datetime + updater name in grey)" }
+          ]
+        }
+      ],
+      "typography": {
+        "pageTitle": { "nodeId": "3:1027", "cap": "CapHeading", "type": "h1", "fontSize": 24, "color": "CAP_G01", "weight": "medium" },
+        "tableHeader": { "fontSize": 12, "color": "CAP_G05", "cap": "CapLabel", "type": "label1" },
+        "namePrimary": { "fontSize": 14, "color": "CAP_G01", "cap": "CapLabel", "type": "label4", "weight": "medium" },
+        "nameSecondary": { "fontSize": 12, "color": "CAP_G05", "cap": "CapLabel", "type": "label1" },
+        "statusLabel": { "fontSize": 14, "color": "CAP_G01", "cap": "CapLabel", "type": "label4" },
+        "statusSubText": { "fontSize": 12, "color": "CAP_G05", "cap": "CapLabel", "type": "label1" },
+        "dateTime": { "fontSize": 14, "color": "CAP_G01", "cap": "CapLabel", "type": "label4" },
+        "updaterName": { "fontSize": 12, "color": "CAP_G05", "cap": "CapLabel", "type": "label1" }
+      },
+      "spacing": {
+        "pageHorizontalPadding": "CAP_SPACE_72",
+        "pageTopPadding": "CAP_SPACE_20",
+        "searchWidth": "360px (from metadata 3:1035)",
+        "toolbarHeight": "40px (from metadata 3:1024 height=40)",
+        "tableTopMargin": "CAP_SPACE_24",
+        "skeletonPadding": "CAP_SPACE_32",
+        "filterIconContainerPadding": "CAP_SPACE_12"
+      },
+      "colours": {
+        "background": "CAP_WHITE",
+        "pageTitle": "CAP_G01",
+        "searchBorder": "CAP_G08",
+        "searchBorderHover": "CAP_G07",
+        "searchBorderFocus": "CAP_G01",
+        "filterIcon": "CAP_G01",
+        "dividerColor": "CAP_G09",
+        "tableHeaderText": "CAP_G05",
+        "primaryText": "CAP_G01",
+        "secondaryText": "CAP_G05"
+      }
+    }
+  }
+}

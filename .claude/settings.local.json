@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(wc -l /Users/mohitgupta/Documents/capillary/revert/garuda-ui/.claude/output/guidelines/*.md)"
+    ]
+  }
+}

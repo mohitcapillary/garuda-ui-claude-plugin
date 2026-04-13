@@ -1,0 +1,142 @@
+{
+  "apis": [
+    {
+      "name": "getBenefits",
+      "status": "confirmed",
+      "endpoint": "/incentives/api/v1/benefits",
+      "method": "GET",
+      "baseUrlKey": "endpoints.incentives_endpoint",
+      "auth": "getAryaAPICallObject",
+      "requestQueryParams": {
+        "page": "integer (1-based)",
+        "size": "integer (default 20)",
+        "sort": "updated_at | start_date | end_date",
+        "order": "asc | desc",
+        "search": "string",
+        "status[]": "active | upcoming | ended | draft | awaiting_approval | rejected",
+        "category_id[]": "integer multi-value",
+        "program_id[]": "integer multi-value",
+        "start_date": "ISO8601",
+        "end_date": "ISO8601",
+        "updated_by[]": "integer multi-value user IDs",
+        "updated_at": "today | yesterday | last_7d | last_30d | last_90d",
+        "tier_event[]": "upgrade | downgrade | renew"
+      },
+      "responsePayload": {
+        "data": [
+          {
+            "id": 101,
+            "external_id": "EXT-101",
+            "name": "Birthday Bonus",
+            "description": "Bonus points on birthday",
+            "status": "active",
+            "start_date": "2025-01-01T00:00:00Z",
+            "end_date": "2025-12-31T23:59:59Z",
+            "program_id": 1,
+            "program_name": "Loyalty Program 2025",
+            "category_id": 3,
+            "category_name": "Milestone Rewards",
+            "last_updated_at": "2025-03-15T10:30:00Z",
+            "last_updated_by": { "id": 42, "name": "Alice Smith" },
+            "tier_event": "upgrade"
+          }
+        ],
+        "pagination": {
+          "page": 1,
+          "size": 20,
+          "total": 87
+        }
+      },
+      "mockResponse": {
+        "data": [
+          {
+            "id": 101,
+            "external_id": "EXT-101",
+            "name": "Birthday Bonus",
+            "description": "Bonus points on birthday",
+            "status": "active",
+            "start_date": "2025-01-01T00:00:00Z",
+            "end_date": "2025-12-31T23:59:59Z",
+            "program_id": 1,
+            "program_name": "Loyalty Program 2025",
+            "category_id": 3,
+            "category_name": "Milestone Rewards",
+            "last_updated_at": "2025-03-15T10:30:00Z",
+            "last_updated_by": { "id": 42, "name": "Alice Smith" },
+            "tier_event": "upgrade"
+          },
+          {
+            "id": 102,
+            "external_id": "EXT-102",
+            "name": "Complete 10 txns and get a badge",
+            "description": "Empower athletes with rewards",
+            "status": "awaiting_approval",
+            "start_date": "2025-01-21T12:30:00Z",
+            "end_date": "2025-01-21T12:30:00Z",
+            "program_id": 1,
+            "program_name": "Loyalty Program 2025",
+            "category_id": 4,
+            "category_name": "Streak Rewards",
+            "last_updated_at": "2025-12-08T03:27:00Z",
+            "last_updated_by": { "id": 10, "name": "Dev Patel" },
+            "tier_event": null
+          },
+          {
+            "id": 103,
+            "external_id": "EXT-103",
+            "name": "Complete 10 txns and get a badge",
+            "description": "Empower athletes with rewards",
+            "status": "draft",
+            "start_date": "2025-01-21T12:30:00Z",
+            "end_date": "2025-01-21T12:30:00Z",
+            "program_id": 2,
+            "program_name": "Loyalty Program 2026",
+            "category_id": 3,
+            "category_name": "Milestone Rewards",
+            "last_updated_at": "2025-12-08T03:27:00Z",
+            "last_updated_by": { "id": 11, "name": "Aashish Saha" },
+            "tier_event": null
+          },
+          {
+            "id": 104,
+            "external_id": "EXT-104",
+            "name": "Complete 10 txns and get a badge",
+            "description": "Empower athletes with rewards",
+            "status": "upcoming",
+            "start_date": "2025-01-21T12:30:00Z",
+            "end_date": "2025-01-21T12:30:00Z",
+            "program_id": 3,
+            "program_name": "Rewards Plus 2025",
+            "category_id": 3,
+            "category_name": "Milestone Rewards",
+            "last_updated_at": "2025-12-08T03:27:00Z",
+            "last_updated_by": { "id": 12, "name": "Suryakumar" },
+            "tier_event": "upgrade"
+          }
+        ],
+        "pagination": {
+          "page": 1,
+          "size": 20,
+          "total": 4
+        }
+      },
+      "errors": [
+        { "code": 400, "name": "BadRequest" },
+        { "code": 401, "name": "Unauthorized" },
+        { "code": 403, "name": "Forbidden" },
+        { "code": 404, "name": "NotFound" },
+        { "code": 500, "name": "InternalServerError" }
+      ]
+    },
+    {
+      "name": "getBenefitsCategories",
+      "status": "confirmed",
+      "endpoint": "/incentives/api/v1/benefits/categories",
+      "method": "GET",
+      "notes": "Already exists in api.js (export const getBenefitsCategories). Reused directly for filter panel Category options. Shares USE_MOCK_BENEFITS_SETTINGS flag."
+    }
+  ],
+  "mockFlag": "USE_MOCK_BENEFITS_LIST",
+  "mockFlagDefault": true,
+  "mockFlagNote": "Separate from USE_MOCK_BENEFITS_SETTINGS. Flip to false when /incentives/api/v1/benefits backend is ready."
+}

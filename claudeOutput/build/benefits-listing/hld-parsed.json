@@ -1,0 +1,178 @@
+{
+  "feature": "benefits-listing",
+  "featureName": "Benefits Listing",
+  "prdSource": "claudeOutput/filteredPrd/benefits-listing-spec.md",
+  "inScope": [
+    "Flat benefits list with search (by name, description, ID, external ID), filter panel, and sortable columns",
+    "Infinite scroll (page size 20, IntersectionObserver)",
+    "6-column table: Name, Status, Duration, Program name, Category, Updated at",
+    "Status badge (6 values) with computed client-side secondary status text",
+    "Filter panel (Status, Category, Program, Duration, Last updated by, Last updated at, Tier event)",
+    "Row click navigates to /benefits/:benefitId",
+    "Loading (skeleton), empty (no results), empty (filtered), and error states",
+    "Independent /benefits route, sibling to BenefitsSettings"
+  ],
+  "outOfScope": [
+    "Summary count cards",
+    "Benefit creation flow",
+    "Grouped-by-category listing view",
+    "CSV / config download / export",
+    "RBAC / permission gating",
+    "Tier-event grouped view",
+    "Tier/Subscription as a table column"
+  ],
+  "newComponents": [
+    { "name": "BenefitsList", "tier": "page", "location": "app/components/pages/BenefitsList/", "purpose": "Root container; Redux-connected, injects reducer + saga, renders toolbar + table" },
+    { "name": "BenefitsListTable", "tier": "molecule", "location": "app/components/molecules/BenefitsListTable/", "purpose": "CapTable wrapper; renders 6-column benefit rows with status badges, sort icons, and row-click navigation" },
+    { "name": "BenefitsListFilterPanel", "tier": "molecule", "location": "app/components/molecules/BenefitsListFilterPanel/", "purpose": "Slide-out filter panel; 7 filter controls" },
+    { "name": "BenefitStatusTag", "tier": "atom", "location": "app/components/atoms/BenefitStatusTag/", "purpose": "Status badge (coloured dot + label) + secondary status text computed from date fields" }
+  ],
+  "modifiedComponents": [
+    { "name": "app/components/pages/App/routes.js", "location": "app/components/pages/App/routes.js", "change": "Add /benefits route entry pointing to BenefitsList Loadable" }
+  ],
+  "newReduxDomains": [
+    { "domain": "benefits-list", "injectKey": "${CURRENT_APP_NAME}-benefits-list", "reducer": "BenefitsList/reducer.js", "saga": "BenefitsList/saga.js", "purpose": "Stores benefits list data, loading/error status, and pagination totals for the listing page" }
+  ],
+  "newRoutes": [
+    { "path": "/benefits", "component": "BenefitsList (Loadable)", "auth": true, "description": "Benefits listing page" },
+    { "path": "/benefits/:benefitId", "component": "Placeholder / NotFoundPage", "auth": true, "description": "Benefit detail view — out of scope; route reserved" }
+  ],
+  "sharedUtilities": [
+    { "name": "computeSecondaryStatus", "location": "app/components/atoms/BenefitStatusTag/utils.js", "status": "new" },
+    { "name": "getBenefits", "location": "app/services/api.js", "status": "new" },
+    { "name": "getBenefitsCategories", "location": "app/services/api.js", "status": "existing-reuse" }
+  ],
+  "screens": [
+    {
+      "name": "Benefits Listing Page",
+      "route": "/benefits",
+      "prototypeUrl": "https://www.figma.com/design/Q3rZlYt8ZY6g0TuVg1TZzm/Mohit-list?node-id=3-1022",
+      "figmaNodeId": "3:1022",
+      "recipeTable": [
+        { "section": "Page Wrapper", "capComponent": "CapColumn", "recipeStatus": "EXACT", "reviewerOverride": "", "resolvedTarget": "CapColumn", "nodeId": "3:1023" },
+        { "section": "Toolbar Row", "capComponent": "CapRow", "recipeStatus": "RESOLVED-UNMAPPED", "reviewerOverride": "", "resolvedTarget": "CapRow", "nodeId": "3:1024" },
+        { "section": "Page Heading 'Benefits'", "capComponent": "CapHeading", "recipeStatus": "RESOLVED-UNMAPPED", "reviewerOverride": "CapHeading h1 (per memory rule: page headings use CapHeading hN, not CapLabel)", "resolvedTarget": "CapHeading", "nodeId": "3:1026/3:1027" },
+        { "section": "Search + Filter Group", "capComponent": "CapRow", "recipeStatus": "RESOLVED-UNMAPPED", "reviewerOverride": "", "resolvedTarget": "CapRow", "nodeId": "3:1029" },
+        { "section": "Search Input", "capComponent": "CapInput", "recipeStatus": "RESOLVED-UNMAPPED", "reviewerOverride": "", "resolvedTarget": "CapInput", "nodeId": "3:1031/3:1035" },
+        { "section": "Search Icon (prefix)", "capComponent": "CapIcon", "recipeStatus": "PARTIAL", "reviewerOverride": "", "resolvedTarget": "CapIcon", "nodeId": "3:1038/3:1039" },
+        { "section": "Toolbar Divider", "capComponent": "CapDivider", "recipeStatus": "PARTIAL", "reviewerOverride": "", "resolvedTarget": "CapDivider", "nodeId": "3:1046" },
+        { "section": "Filter Icon Button", "capComponent": "CapIcon", "recipeStatus": "RESOLVED-UNMAPPED", "reviewerOverride": "", "resolvedTarget": "CapIcon", "nodeId": "3:1047" },
+        { "section": "Create Benefit Button", "capComponent": "CapButton", "recipeStatus": "EXACT", "reviewerOverride": "[FIGMA-VS-SPEC: Omit — PM resolved Q1: no Create Benefit button]", "resolvedTarget": "OMITTED", "nodeId": "8:2902" },
+        { "section": "Benefits Data Table", "capComponent": "CapTable", "recipeStatus": "RESOLVED-UNMAPPED", "reviewerOverride": "CapTable (overridden from registry erroneous CapTab match)", "resolvedTarget": "CapTable", "nodeId": "5:2877" },
+        { "section": "Loading Skeleton Rows", "capComponent": "CapSkeleton", "recipeStatus": "ASSUMED", "reviewerOverride": "", "resolvedTarget": "CapSkeleton", "nodeId": null },
+        { "section": "Status Badge", "capComponent": "CapLabel (styled)", "recipeStatus": "ASSUMED", "reviewerOverride": "", "resolvedTarget": "CapLabel", "nodeId": null }
+      ],
+      "interactions": [
+        { "action": "Page mount", "component": "BenefitsList", "dispatchedAction": "GET_BENEFITS_LIST_REQUEST", "saga": "getBenefitsListSaga" },
+        { "action": "Type in search bar (debounced 300ms)", "component": "BenefitsList", "dispatchedAction": "GET_BENEFITS_LIST_REQUEST (pagination reset)", "saga": "getBenefitsListSaga" },
+        { "action": "Click filter icon", "component": "BenefitsList", "dispatchedAction": "setIsFilterPanelOpen=true (local state)", "saga": "" },
+        { "action": "Apply filters", "component": "BenefitsListFilterPanel -> BenefitsList", "dispatchedAction": "GET_BENEFITS_LIST_REQUEST (with filter params, pagination reset)", "saga": "getBenefitsListSaga" },
+        { "action": "Click column sort arrow", "component": "BenefitsListTable -> BenefitsList", "dispatchedAction": "GET_BENEFITS_LIST_REQUEST (updated sortBy/sortOrder)", "saga": "getBenefitsListSaga" },
+        { "action": "Scroll to sentinel (IntersectionObserver)", "component": "BenefitsList", "dispatchedAction": "GET_BENEFITS_LIST_REQUEST (page+1)", "saga": "getBenefitsListSaga" },
+        { "action": "Click table row", "component": "BenefitsListTable", "dispatchedAction": "navigation to /benefits/:benefitId", "saga": "" },
+        { "action": "Click 'Clear filters' in empty state", "component": "BenefitsList", "dispatchedAction": "GET_BENEFITS_LIST_REQUEST (cleared filters)", "saga": "getBenefitsListSaga" },
+        { "action": "Page unmount (clearDataOnUnmount HOC)", "component": "BenefitsList", "dispatchedAction": "CLEAR_BENEFITS_LIST_DATA", "saga": "" }
+      ]
+    }
+  ],
+  "apis": [
+    {
+      "name": "getBenefits",
+      "status": "confirmed",
+      "endpoint": "/incentives/api/v1/benefits",
+      "method": "GET",
+      "baseUrlKey": "endpoints.incentives_endpoint",
+      "requestPayload": {
+        "page": "integer (1-based)",
+        "size": "integer (default 20)",
+        "sort": "string: updated_at|start_date|end_date",
+        "order": "string: asc|desc",
+        "search": "string",
+        "status[]": "string multi-value: active|upcoming|ended|draft|awaiting_approval|rejected",
+        "category_id[]": "integer multi-value",
+        "program_id[]": "integer multi-value",
+        "start_date": "ISO8601",
+        "end_date": "ISO8601",
+        "updated_by[]": "integer multi-value user IDs",
+        "updated_at": "string preset: today|yesterday|last_7d|last_30d|last_90d",
+        "tier_event[]": "string multi-value: upgrade|downgrade|renew"
+      },
+      "responsePayload": {
+        "data": [
+          {
+            "id": "integer",
+            "external_id": "string",
+            "name": "string",
+            "description": "string",
+            "status": "string",
+            "start_date": "ISO8601",
+            "end_date": "ISO8601",
+            "program_id": "integer",
+            "program_name": "string",
+            "category_id": "integer",
+            "category_name": "string",
+            "last_updated_at": "ISO8601",
+            "last_updated_by": { "id": "integer", "name": "string" },
+            "tier_event": "string"
+          }
+        ],
+        "pagination": {
+          "page": "integer",
+          "size": "integer",
+          "total": "integer"
+        }
+      },
+      "errors": [
+        { "code": 400, "name": "BadRequest" },
+        { "code": 401, "name": "Unauthorized" },
+        { "code": 403, "name": "Forbidden" },
+        { "code": 404, "name": "NotFound" },
+        { "code": 500, "name": "InternalServerError" }
+      ]
+    },
+    {
+      "name": "getBenefitsCategories",
+      "status": "confirmed",
+      "endpoint": "/incentives/api/v1/benefits/categories",
+      "method": "GET",
+      "notes": "Already exists in api.js — reused for filter panel Category options"
+    },
+    {
+      "name": "getPrograms",
+      "status": "confirmed",
+      "notes": "makeSelectPrograms() from Cap slice — no new API call needed"
+    }
+  ],
+  "redux": {
+    "injectKey": "${CURRENT_APP_NAME}-benefits-list",
+    "storeShape": "fromJS({ benefits: [], benefitsStatus: INITIAL, error: null, totalElements: 0, totalPages: 0 })",
+    "actions": [
+      { "type": "GET_BENEFITS_LIST_REQUEST", "creator": "getBenefitsList(searchTerm, filters, pagination, sortBy, sortOrder)" },
+      { "type": "GET_BENEFITS_LIST_SUCCESS", "creator": "getBenefitsListSuccess(data, pagination)" },
+      { "type": "GET_BENEFITS_LIST_FAILURE", "creator": "getBenefitsListFailure(error)" },
+      { "type": "SET_BENEFITS_STATUS", "creator": "setBenefitsStatus(status)" },
+      { "type": "CLEAR_BENEFITS_LIST_DATA", "creator": "clearBenefitsListData()" }
+    ],
+    "selectors": [
+      { "name": "makeSelectBenefits()", "path": "benefits", "returns": "Array<BenefitRecord>" },
+      { "name": "makeSelectBenefitsStatus()", "path": "benefitsStatus", "returns": "string" },
+      { "name": "makeSelectBenefitsError()", "path": "error", "returns": "object|null" },
+      { "name": "makeSelectBenefitsTotalElements()", "path": "totalElements", "returns": "number" },
+      { "name": "makeSelectBenefitsTotalPages()", "path": "totalPages", "returns": "number" }
+    ],
+    "sagas": [
+      { "name": "getBenefitsListSaga", "trigger": "GET_BENEFITS_LIST_REQUEST", "concurrency": "takeLatest" },
+      { "name": "watchForGetBenefitsListSaga", "trigger": "root watcher", "concurrency": "takeLatest" }
+    ]
+  },
+  "openQuestions": [
+    { "num": 1, "question": "Figma-vs-Spec Conflict: Create Benefit CapButton (EXACT 8:2902) in Figma, omitted by PM", "impact": "Button omitted from implementation", "owner": "PM", "status": "resolved", "comment": "Per PM decision in spec: omit CapButton. Figma conflict logged. Button present in Figma (EXACT recipe 8:2902) but excluded from implementation." },
+    { "num": 2, "question": "Feature flag gating: should /benefits be gated behind a feature flag?", "impact": "Determines Loadable.js HOC wrapping", "owner": "Tech Lead + PM", "status": "open", "comment": "PRD does not mention a flag. Default assumption: no flag gating. Loadable uses withCustomAuthAndTranslations only." },
+    { "num": 3, "question": "Sidebar/navbar entry for /benefits route", "impact": "BenefitsList page accessible but won't appear in nav without this", "owner": "Designer + PM", "status": "open", "comment": "Out of scope for codegen — route registration only" },
+    { "num": 4, "question": "updaters list in API response for 'Last updated by' filter", "impact": "Filter panel user name display", "owner": "BE Lead", "status": "resolved", "comment": "Default: render names from last_updated_by.name on each row; aggregate unique values client-side as fallback" },
+    { "num": 5, "question": "Tier event filter options source: hardcoded vs API", "impact": "Whether a new API call is needed", "owner": "BE Lead + PM", "status": "resolved", "comment": "Hardcode 3 values: Upgrade, Downgrade, Renew per Q8 default" },
+    { "num": 6, "question": "Category filter mock flag: shared USE_MOCK_BENEFITS_SETTINGS or new USE_MOCK_BENEFITS_LIST?", "impact": "Filter panel Category options in lower environments", "owner": "BE Lead", "status": "resolved", "comment": "Add USE_MOCK_BENEFITS_LIST for the listing endpoint; categories share existing USE_MOCK_BENEFITS_SETTINGS flag" },
+    { "num": 7, "question": "CapButton Create Benefit in Figma: future state or designer draft?", "impact": "Scoping clarity", "owner": "Designer", "status": "resolved", "comment": "Omitted per PM decision (same as Q1)" },
+    { "num": 8, "question": "Benefit view page placeholder route /benefits/:benefitId: what to render?", "impact": "UX for early release", "owner": "PM", "status": "resolved", "comment": "Render NotFoundPage as placeholder — simplest, already in codebase" }
+  ]
+}

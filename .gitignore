@@ -1,0 +1,7 @@
+# Dependencies — the only thing we exclude
+tools/mapping-agent/node_modules/
+
+# OS artifacts
+.DS_Store
+*.log
+Thumbs.db

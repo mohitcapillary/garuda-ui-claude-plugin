@@ -1,0 +1,881 @@
+{
+  "_readme": "Component name in Figma = exact Cap* name (CapButton, CapSelect etc). These properties describe state/appearance of each instance. Property names are EXACT — case-sensitive. figmaType=Boolean means add as a Figma boolean property, others are variant/string.",
+
+  "CapButton": {
+    "properties": [
+      { "name": "Type",     "values": ["Primary", "Secondary", "Flat", "Link", "Outlined", "Danger", "Default"] },
+      { "name": "Size",     "values": ["Large", "Default", "Small"] },
+      { "name": "Disabled", "values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "Loading",  "values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "Block",    "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapInput": {
+    "properties": [
+      { "name": "State",     "values": ["Default", "Focused", "Disabled", "Error"] },
+      { "name": "Size",      "values": ["Large", "Default", "Small"] },
+      { "name": "Disabled",  "values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "AllowClear","values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapInput.Search": {
+    "properties": [
+      { "name": "State",   "values": ["Default", "Focused", "Disabled"] },
+      { "name": "Loading", "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapInput.TextArea": {
+    "properties": [
+      { "name": "State",     "values": ["Default", "Focused", "Disabled", "Error"] },
+      { "name": "AllowClear","values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "AutoSize",  "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapSelect": {
+    "properties": [
+      { "name": "State",      "values": ["Default", "Focused", "Filled", "Disabled", "Error"] },
+      { "name": "Size",       "values": ["Large", "Default", "Small"] },
+      { "name": "Disabled",   "values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "ShowSearch", "values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "AllowClear", "values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "Loading",    "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapMultiSelect": {
+    "properties": [
+      { "name": "State",         "values": ["Default", "Focused", "Filled", "Disabled"] },
+      { "name": "Disabled",      "values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "ShowSelectAll", "values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "ShowFooter",    "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapMultiSelectWithTree": {
+    "properties": [
+      { "name": "State",         "values": ["Default", "Focused", "Filled", "Disabled"] },
+      { "name": "Disabled",      "values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "ShowSelectAll", "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapTreeSelect": {
+    "properties": [
+      { "name": "State",      "values": ["Default", "Focused", "Filled", "Disabled", "Error"] },
+      { "name": "Disabled",   "values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "Multiple",   "values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "ShowSearch", "values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "ExpandAll",  "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapCheckbox": {
+    "properties": [
+      { "name": "State",    "values": ["Unchecked", "Checked", "Indeterminate", "Disabled"] },
+      { "name": "Disabled", "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapCheckbox.Group": {
+    "properties": [
+      { "name": "Disabled", "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapRadio": {
+    "properties": [
+      { "name": "State",    "values": ["Unselected", "Selected", "Disabled"] },
+      { "name": "Disabled", "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapRadio.Group": {
+    "properties": [
+      { "name": "Disabled",     "values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "ButtonStyle",  "values": ["Outline", "Solid"] },
+      { "name": "Size",         "values": ["Large", "Default", "Small"] }
+    ]
+  },
+
+  "CapRadioButton": {
+    "properties": [
+      { "name": "State",    "values": ["Unselected", "Selected", "Disabled"] },
+      { "name": "Disabled", "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapRadioCard": {
+    "properties": [
+      { "name": "State",    "values": ["Unselected", "Selected", "Disabled"] },
+      { "name": "Disabled", "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapSwitch": {
+    "properties": [
+      { "name": "State",    "values": ["On", "Off", "Disabled"] },
+      { "name": "Size",     "values": ["Default", "Small"] },
+      { "name": "Disabled", "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapDatePicker": {
+    "properties": [
+      { "name": "State",     "values": ["Default", "Focused", "Filled", "Disabled", "Error"] },
+      { "name": "Size",      "values": ["Large", "Default", "Small"] },
+      { "name": "Disabled",  "values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "ShowTime",  "values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "AllowClear","values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapDateRangePicker": {
+    "properties": [
+      { "name": "State",    "values": ["Default", "Focused", "Filled", "Disabled"] },
+      { "name": "Size",     "values": ["Large", "Default", "Small"] },
+      { "name": "Disabled", "values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "ShowTime", "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapTimePicker": {
+    "properties": [
+      { "name": "State",    "values": ["Default", "Focused", "Filled", "Disabled"] },
+      { "name": "Size",     "values": ["Large", "Default", "Small"] },
+      { "name": "Disabled", "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapModal": {
+    "properties": [
+      { "name": "Width",          "values": ["Small", "Medium", "Large", "FullScreen"] },
+      { "name": "Closable",       "values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "Centered",       "values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "MaskClosable",   "values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "ConfirmLoading", "values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "HasFooter",      "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapDrawer": {
+    "properties": [
+      { "name": "Placement",    "values": ["Right", "Left", "Top", "Bottom"] },
+      { "name": "Width",        "values": ["Small", "Medium", "Large"] },
+      { "name": "Closable",     "values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "MaskClosable", "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapSlideBox": {
+    "properties": [
+      { "name": "Placement", "values": ["Right", "Left"] },
+      { "name": "Size",      "values": ["Small", "Medium", "Large"] },
+      { "name": "HasFooter", "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapTable": {
+    "properties": [
+      { "name": "Size",            "values": ["Default", "Middle", "Small"] },
+      { "name": "Bordered",        "values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "Loading",         "values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "HasRowSelection", "values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "HasPagination",   "values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "InfiniteScroll",  "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapTab": {
+    "properties": [
+      { "name": "Type",     "values": ["Line", "Card", "EditableCard"] },
+      { "name": "Size",     "values": ["Large", "Default", "Small"] },
+      { "name": "Position", "values": ["Top", "Right", "Bottom", "Left"] }
+    ]
+  },
+
+  "CapAlert": {
+    "properties": [
+      { "name": "Type",           "values": ["Success", "Info", "Warning", "Error"] },
+      { "name": "ShowIcon",       "values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "Closable",       "values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "Banner",         "values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "HasDescription", "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapInfoNote": {
+    "properties": [
+      { "name": "Type", "values": ["Note", "Success", "Pending", "Caution", "Stopped", "Recommendation"] }
+    ]
+  },
+
+  "CapSnackBar": {
+    "properties": [
+      { "name": "Type",          "values": ["Success", "Error", "Info", "Warning"] },
+      { "name": "ShowCloseIcon", "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapTooltip": {
+    "properties": [
+      { "name": "Placement", "values": ["Top", "Bottom", "Left", "Right", "TopLeft", "TopRight", "BottomLeft", "BottomRight"] },
+      { "name": "Trigger",   "values": ["Hover", "Click", "Focus"] }
+    ]
+  },
+
+  "CapPopover": {
+    "properties": [
+      { "name": "Placement", "values": ["Top", "Bottom", "Left", "Right", "TopLeft", "TopRight", "BottomLeft", "BottomRight"] },
+      { "name": "Trigger",   "values": ["Hover", "Click"] }
+    ]
+  },
+
+  "CapTag": {
+    "properties": [
+      { "name": "Color",    "values": ["Default", "Red", "Green", "Blue", "Orange", "Purple", "Cyan"] },
+      { "name": "Closable", "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapColoredTag": {
+    "properties": [
+      { "name": "Color", "values": ["Default", "Red", "Green", "Blue", "Orange", "Purple", "Cyan"] }
+    ]
+  },
+
+  "CapSteps": {
+    "properties": [
+      { "name": "Direction", "values": ["Horizontal", "Vertical"] },
+      { "name": "Type",      "values": ["Default", "Navigation", "Dot"] },
+      { "name": "Size",      "values": ["Default", "Small"] }
+    ]
+  },
+
+  "CapStepsAccordian": {
+    "properties": [
+      { "name": "ShowNumberSteps", "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapProgress": {
+    "properties": [
+      { "name": "Type",     "values": ["Line", "Circle", "Dashboard"] },
+      { "name": "Status",   "values": ["Normal", "Success", "Error", "Active"] },
+      { "name": "ShowInfo", "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapSlider": {
+    "properties": [
+      { "name": "Disabled", "values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "Range",    "values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "Vertical", "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapUploader": {
+    "properties": [
+      { "name": "ListType", "values": ["Text", "Picture", "PictureCard"] },
+      { "name": "Multiple", "values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "Disabled", "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapCarousel": {
+    "properties": [
+      { "name": "Effect",          "values": ["ScrollX", "Fade"] },
+      { "name": "ShowDots",        "values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "ShowTopSwitcher", "values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "AutoPlay",        "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapStatus": {
+    "properties": [
+      { "name": "Type", "values": ["Active", "Inactive", "Pending", "Success", "Error", "Warning", "Draft"] }
+    ]
+  },
+
+  "CapDivider": {
+    "properties": [
+      { "name": "Orientation", "values": ["Horizontal", "Vertical"] }
+    ]
+  },
+
+  "CapIcon": {
+    "properties": [
+      { "name": "Size",     "values": ["XSmall", "Small", "Medium", "Large"] },
+      { "name": "Disabled", "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapLabel": {
+    "properties": [
+      { "name": "Type", "values": ["h1", "h2", "h3", "h4", "label1", "label2", "label3"] }
+    ]
+  },
+
+  "CapHeading": {
+    "properties": [
+      { "name": "Type", "values": ["h1", "h2", "h3", "h4", "h5"] }
+    ]
+  },
+
+  "CapLink": {
+    "properties": [
+      { "name": "Disabled", "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapRow": {
+    "_note": "Layout only — no visual props needed. Children define content.",
+    "properties": []
+  },
+
+  "CapColumn": {
+    "_note": "Layout only — no visual props needed. Children define content.",
+    "properties": []
+  },
+
+  "CapCard": {
+    "properties": [
+      { "name": "State",    "values": ["Default", "Hovered", "Selected", "Disabled"] },
+      { "name": "Disabled", "values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "Loading",  "values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "Bordered", "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapCardBox": {
+    "properties": [
+      { "name": "HasAvatar",  "values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "HasTopIcon", "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapColorPicker": {
+    "properties": [
+      { "name": "HasHexInput", "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapSkeleton": {
+    "properties": [
+      { "name": "Loading",  "values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "Active",   "values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "HasAvatar","values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "HasImage", "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapSpin": {
+    "properties": [
+      { "name": "Size",    "values": ["Small", "Default", "Large"] },
+      { "name": "Spinning","values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapForm": {
+    "properties": [
+      { "name": "Layout", "values": ["Horizontal", "Vertical", "Inline"] }
+    ]
+  },
+
+  "CapFormItem": {
+    "properties": [
+      { "name": "Required",    "values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "HasError",    "values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "HasHelpText", "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapMenu": {
+    "properties": [
+      { "name": "Mode", "values": ["Horizontal", "Vertical", "Inline"] },
+      { "name": "Theme","values": ["Light", "Dark"] }
+    ]
+  },
+
+  "CapDropdown": {
+    "properties": [
+      { "name": "Trigger",   "values": ["Click", "Hover", "ContextMenu"] },
+      { "name": "Placement", "values": ["BottomLeft", "BottomCenter", "BottomRight", "TopLeft", "TopCenter", "TopRight"] },
+      { "name": "Disabled",  "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapList": {
+    "properties": [
+      { "name": "Size",    "values": ["Default", "Small", "Large"] },
+      { "name": "Loading", "values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "Bordered","values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapListLayout": {
+    "properties": [
+      { "name": "Loading", "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapTimeline": {
+    "properties": [
+      { "name": "Mode",    "values": ["Left", "Right", "Alternate"] },
+      { "name": "Reverse", "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapTimelineNested": {
+    "properties": [
+      { "name": "Mode", "values": ["Left", "Right", "Alternate"] }
+    ]
+  },
+
+  "CapTree": {
+    "properties": [
+      { "name": "Checkable",   "values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "Multiple",    "values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "Disabled",    "values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "ShowLine",    "values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "ShowIcon",    "values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "ExpandAll",   "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapNotification": {
+    "properties": [
+      { "name": "Type",     "values": ["Success", "Info", "Warning", "Error"] },
+      { "name": "Placement","values": ["TopLeft", "TopRight", "BottomLeft", "BottomRight"] }
+    ]
+  },
+
+  "CapNotificationDropdown": {
+    "properties": [
+      { "name": "HasUnread", "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapTooltipWithInfo": {
+    "properties": [
+      { "name": "Placement", "values": ["Top", "Bottom", "Left", "Right"] },
+      { "name": "Trigger",   "values": ["Hover", "Click"] }
+    ]
+  },
+
+  "CapPopoverTree": {
+    "properties": [
+      { "name": "Placement",   "values": ["Top", "Bottom", "Left", "Right", "BottomLeft", "BottomRight"] },
+      { "name": "Trigger",     "values": ["Click", "Hover"] },
+      { "name": "Disabled",    "values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "ShowSearch",  "values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "ExpandAll",   "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapTagDropdown": {
+    "properties": [
+      { "name": "Disabled",  "values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "Placement", "values": ["BottomLeft", "BottomRight", "TopLeft", "TopRight"] }
+    ]
+  },
+
+  "CapSelectFilter": {
+    "properties": [
+      { "name": "Placement", "values": ["BottomLeft", "BottomRight", "TopLeft", "TopRight"] }
+    ]
+  },
+
+  "CapVirtualSelect": {
+    "properties": [
+      { "name": "Disabled",    "values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "IsSearchable","values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "State",       "values": ["Default", "Focused", "Filled", "Disabled"] }
+    ]
+  },
+
+  "CapVirtualMultiSelect": {
+    "properties": [
+      { "name": "Disabled",      "values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "ShowFooter",    "values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "ShowSelectAll", "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapVirtualList": {
+    "_note": "Passes all props through to Virtuoso. No fixed variant properties.",
+    "properties": [
+      { "name": "Loading", "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapMultiSelectDatePicker": {
+    "properties": [
+      { "name": "ShowLastDay", "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapDateTimePicker": {
+    "properties": [
+      { "name": "State",     "values": ["Default", "Focused", "Filled", "Disabled", "Error"] },
+      { "name": "Size",      "values": ["Large", "Default", "Small"] },
+      { "name": "Disabled",  "values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "AllowClear","values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapDateTimeRangePicker": {
+    "properties": [
+      { "name": "State",    "values": ["Default", "Focused", "Filled", "Disabled"] },
+      { "name": "Size",     "values": ["Large", "Default", "Small"] },
+      { "name": "Disabled", "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapCalendarDatePicker": {
+    "properties": [
+      { "name": "Disabled", "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapMobileDatePicker": {
+    "properties": [
+      { "name": "Disabled", "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapMobileDateRangePicker": {
+    "properties": [
+      { "name": "Type",     "values": ["DateRange", "Calendar"] },
+      { "name": "Disabled", "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapTabV3": {
+    "properties": [
+      { "name": "Type", "values": ["Line", "Card"] }
+    ]
+  },
+
+  "CapStatisticCard": {
+    "properties": [
+      { "name": "Type",       "values": ["Default", "Compact"] },
+      { "name": "ShowHeader", "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapBanner": {
+    "properties": [
+      { "name": "HasIcon",   "values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "HasAction", "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapImage": {
+    "properties": [
+      { "name": "HasFallback", "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapIllustration": {
+    "properties": [
+      { "name": "Disabled", "values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "HasButton","values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapError": {
+    "properties": [
+      { "name": "Type", "values": ["404", "403", "500", "Default"] }
+    ]
+  },
+
+  "CapErrorBoundary": {
+    "properties": [
+      { "name": "UseSlideBox",          "values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "ShowIllustrationImage","values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapErrorStateIllustration": {
+    "properties": [
+      { "name": "ShowImage",        "values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "IsRefreshExpired", "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapSomethingWentWrong": {
+    "_note": "Full-page error screen. No interactive variants.",
+    "properties": []
+  },
+
+  "CapAppNotEnabled": {
+    "_note": "Full-page app-disabled screen. No interactive variants.",
+    "properties": []
+  },
+
+  "CapTruncateList": {
+    "properties": [
+      { "name": "ShowTooltip", "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapCustomSelect": {
+    "properties": [
+      { "name": "State",     "values": ["Default", "Focused", "Disabled"] },
+      { "name": "Disabled",  "values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "ShowSearch","values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "Placement", "values": ["Bottom", "Top"] }
+    ]
+  },
+
+  "CapCustomList": {
+    "properties": [
+      { "name": "Type",    "values": ["Default", "Compact"] },
+      { "name": "Loading", "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapCustomCheckboxList": {
+    "properties": [
+      { "name": "Disabled", "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapDragAndDrop": {
+    "properties": [
+      { "name": "Multiple", "values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "Disabled", "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapSKUUploader": {
+    "properties": [
+      { "name": "State", "values": ["Default", "Uploading", "Valid", "Invalid"] }
+    ]
+  },
+
+  "CapCSVFileUploader": {
+    "properties": [
+      { "name": "State", "values": ["Default", "Uploading", "Valid", "Invalid"] }
+    ]
+  },
+
+  "CapBlock": {
+    "properties": [
+      { "name": "IsDeleteEnabled",   "values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "IsCollapseEnabled", "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapSideBar": {
+    "properties": [
+      { "name": "ShowSearchbar", "values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "Collapsed",     "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapCollapsibleNavbar": {
+    "properties": [
+      { "name": "Expanded",       "values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "ShowSyncBanner", "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapCollapsibleLeftNavigation": {
+    "properties": [
+      { "name": "Expanded", "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapNavigation": {
+    "properties": [
+      { "name": "ShowSecondaryTopBar", "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapTopBar": {
+    "_note": "App-level top bar. No interactive state variants.",
+    "properties": []
+  },
+
+  "CapSecondaryTopBar": {
+    "_note": "Secondary navigation bar. No interactive state variants.",
+    "properties": []
+  },
+
+  "CapHamburgerMenu": {
+    "properties": [
+      { "name": "Placement", "values": ["Left", "Right"] }
+    ]
+  },
+
+  "CapHeader": {
+    "_note": "App header shell. No interactive variants.",
+    "properties": []
+  },
+
+  "CapUserProfile": {
+    "properties": [
+      { "name": "Visible", "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapMediaPreview": {
+    "properties": [
+      { "name": "Type",    "values": ["Image", "Video", "PDF"] },
+      { "name": "Visible", "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapStaticTemplates": {
+    "properties": [
+      { "name": "ShowBlankTemplate", "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapRoadMap": {
+    "_note": "Visual roadmap/timeline. No interactive state variants.",
+    "properties": []
+  },
+
+  "CapGraph": {
+    "properties": [
+      { "name": "Type", "values": ["Line", "Bar", "Pie", "Area", "Column"] }
+    ]
+  },
+
+  "CapDnDGraph": {
+    "properties": [
+      { "name": "TestMode",   "values": ["true", "false"], "figmaType": "Boolean" },
+      { "name": "ReportMode", "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapAdvancedIcon": {
+    "properties": [
+      { "name": "Type",    "values": ["Default", "WithAction", "WithLabel"] },
+      { "name": "Preview", "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapEmojiPicker": {
+    "_note": "Emoji picker panel. No state variants needed.",
+    "properties": []
+  },
+
+  "CapBorderedBox": {
+    "_note": "Simple bordered container. No state variants.",
+    "properties": []
+  },
+
+  "CapEmptyDivWithBorder": {
+    "_note": "Empty placeholder box. No state variants.",
+    "properties": []
+  },
+
+  "CapShape": {
+    "_note": "Decorative shape. No state variants.",
+    "properties": []
+  },
+
+  "CapLogin": {
+    "_note": "Full login form. No variant properties needed.",
+    "properties": []
+  },
+
+  "CapAskAira": {
+    "_note": "AI assistant panel. No variant properties needed.",
+    "properties": []
+  },
+
+  "CapLanguageProvider": {
+    "_note": "Provider wrapper — not a visual component. Skip in Figma.",
+    "properties": []
+  },
+
+  "CapImportMFEComponent": {
+    "_note": "Technical MFE loader — not a visual component. Skip in Figma.",
+    "properties": []
+  },
+
+  "CapSupportVideosWrapper": {
+    "_note": "Support video panel. No variant properties needed.",
+    "properties": []
+  },
+
+  "CapSplit": {
+    "properties": [
+      { "name": "ShowSlideBox", "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapReorderComponent": {
+    "_note": "Drag-to-reorder list. No visual state variants.",
+    "properties": []
+  },
+
+  "CapDragReorder": {
+    "_note": "Drag-to-reorder primitive. No visual state variants.",
+    "properties": []
+  },
+
+  "CapDndGraphSidebar": {
+    "properties": [
+      { "name": "ViewMode", "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapHierarchyComponent": {
+    "_note": "Dynamic hierarchy renderer. No fixed visual variants.",
+    "properties": []
+  },
+
+  "CapLevelGraphRenderer": {
+    "_note": "Custom graph renderer. No fixed visual variants.",
+    "properties": []
+  },
+
+  "CapCondition": {
+    "_note": "Complex condition builder. No fixed visual variants.",
+    "properties": []
+  },
+
+  "CapConditionPreview": {
+    "properties": [
+      { "name": "Type",       "values": ["Include", "Exclude"] },
+      { "name": "IsExcluded", "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapExpressionEditor": {
+    "_note": "Code/expression editor. No visual state variants.",
+    "properties": []
+  },
+
+  "CapEventCalendar": {
+    "_note": "Full calendar component. No variant properties needed.",
+    "properties": []
+  },
+
+  "CapCustomCard": {
+    "properties": [
+      { "name": "State",    "values": ["Default", "Hovered", "Selected", "Disabled"] },
+      { "name": "Disabled", "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapCustomCarousel": {
+    "properties": [
+      { "name": "AutoPlay", "values": ["true", "false"], "figmaType": "Boolean" }
+    ]
+  },
+
+  "CapVerticalGroupTable": {
+    "_note": "Specialized table variant. No extra visual state variants.",
+    "properties": []
+  }
+}

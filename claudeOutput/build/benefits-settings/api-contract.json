@@ -1,0 +1,289 @@
+{
+  "feature": "benefits-settings",
+  "mockFlag": "USE_MOCK_BENEFITS_SETTINGS",
+  "mockFlagDefault": true,
+  "apis": [
+    {
+      "name": "getBenefitsCustomFields",
+      "status": "ASSUMED",
+      "endpoint": "/incentives/api/v1/benefits/custom-fields",
+      "method": "GET",
+      "requestPayload": {
+        "programId": "string (required)",
+        "sortBy": "updatedOn",
+        "sortOrder": "ASC | DESC",
+        "status": "ACTIVE"
+      },
+      "responsePayload": {
+        "status": "success",
+        "code": 200,
+        "data": {
+          "customFields": [
+            {
+              "id": "string",
+              "name": "string",
+              "dataType": "STRING | DATE | NUMBER",
+              "programId": "string",
+              "updatedBy": "string (display name)",
+              "updatedOn": "ISO8601 date string",
+              "status": "ACTIVE"
+            }
+          ],
+          "totalCount": "number"
+        }
+      },
+      "mockResponse": {
+        "status": "success",
+        "code": 200,
+        "data": {
+          "customFields": [
+            { "id": "cf-001", "name": "Disclaimer", "dataType": "STRING", "programId": "123", "updatedBy": "Dev Patel", "updatedOn": "2024-06-12T00:00:00Z", "status": "ACTIVE" },
+            { "id": "cf-002", "name": "Expiry Date", "dataType": "DATE", "programId": "123", "updatedBy": "Jane Smith", "updatedOn": "2024-05-20T00:00:00Z", "status": "ACTIVE" },
+            { "id": "cf-003", "name": "Max Redemptions", "dataType": "NUMBER", "programId": "123", "updatedBy": "Dev Patel", "updatedOn": "2024-04-10T00:00:00Z", "status": "ACTIVE" }
+          ],
+          "totalCount": 3
+        }
+      },
+      "validation": "programId required; sortOrder must be ASC or DESC if provided",
+      "errors": [400, 401, 403, 404, 500]
+    },
+    {
+      "name": "createBenefitCustomField",
+      "status": "ASSUMED",
+      "endpoint": "/incentives/api/v1/benefits/custom-fields",
+      "method": "POST",
+      "requestPayload": {
+        "programId": "string",
+        "name": "string (max 255 chars)",
+        "dataType": "STRING | DATE | NUMBER"
+      },
+      "responsePayload": {
+        "status": "success",
+        "code": 200,
+        "data": {
+          "id": "string",
+          "name": "string",
+          "dataType": "STRING | DATE | NUMBER",
+          "programId": "string",
+          "updatedBy": "string",
+          "updatedOn": "ISO8601 date string",
+          "status": "ACTIVE"
+        }
+      },
+      "mockResponse": {
+        "status": "success",
+        "code": 200,
+        "data": {
+          "id": "cf-004",
+          "name": "New Field",
+          "dataType": "STRING",
+          "programId": "123",
+          "updatedBy": "Current User",
+          "updatedOn": "2026-04-13T00:00:00Z",
+          "status": "ACTIVE"
+        }
+      },
+      "validation": "name required max 255; dataType one of STRING/DATE/NUMBER; name unique per programId",
+      "errors": [400, 401, 403, 500]
+    },
+    {
+      "name": "updateBenefitCustomField",
+      "status": "ASSUMED",
+      "endpoint": "/incentives/api/v1/benefits/custom-fields/{id}",
+      "method": "PUT",
+      "requestPayload": {
+        "programId": "string",
+        "name": "string (max 255 chars)"
+      },
+      "responsePayload": {
+        "status": "success",
+        "code": 200,
+        "data": {
+          "id": "string",
+          "name": "string",
+          "dataType": "STRING | DATE | NUMBER",
+          "programId": "string",
+          "updatedBy": "string",
+          "updatedOn": "ISO8601 date string"
+        }
+      },
+      "mockResponse": {
+        "status": "success",
+        "code": 200,
+        "data": {
+          "id": "cf-001",
+          "name": "Updated Field Name",
+          "dataType": "STRING",
+          "programId": "123",
+          "updatedBy": "Current User",
+          "updatedOn": "2026-04-13T00:00:00Z"
+        }
+      },
+      "validation": "name required max 255; dataType NOT accepted (immutable); name unique per programId",
+      "errors": [400, 401, 403, 404, 500]
+    },
+    {
+      "name": "deleteBenefitCustomField",
+      "status": "ASSUMED",
+      "endpoint": "/incentives/api/v1/benefits/custom-fields/{id}",
+      "method": "DELETE",
+      "requestPayload": null,
+      "responsePayload": {
+        "status": "success",
+        "code": 200,
+        "data": {
+          "id": "string",
+          "status": "DELETED"
+        }
+      },
+      "mockResponse": {
+        "status": "success",
+        "code": 200,
+        "data": {
+          "id": "cf-001",
+          "status": "DELETED"
+        }
+      },
+      "validation": "id in URL path",
+      "errors": [401, 403, 404, 500]
+    },
+    {
+      "name": "getBenefitsCategories",
+      "status": "ASSUMED",
+      "endpoint": "/incentives/api/v1/benefits/categories",
+      "method": "GET",
+      "requestPayload": {
+        "programId": "string (required)",
+        "sortBy": "updatedOn",
+        "sortOrder": "ASC | DESC",
+        "status": "ACTIVE"
+      },
+      "responsePayload": {
+        "status": "success",
+        "code": 200,
+        "data": {
+          "categories": [
+            {
+              "id": "string",
+              "name": "string",
+              "programId": "string",
+              "updatedBy": "string (display name)",
+              "updatedOn": "ISO8601 date string",
+              "status": "ACTIVE"
+            }
+          ],
+          "totalCount": "number"
+        }
+      },
+      "mockResponse": {
+        "status": "success",
+        "code": 200,
+        "data": {
+          "categories": [
+            { "id": "cat-001", "name": "Health & Wellness", "programId": "123", "updatedBy": "Dev Patel", "updatedOn": "2024-06-12T00:00:00Z", "status": "ACTIVE" },
+            { "id": "cat-002", "name": "Travel", "programId": "123", "updatedBy": "Jane Smith", "updatedOn": "2024-05-01T00:00:00Z", "status": "ACTIVE" },
+            { "id": "cat-003", "name": "Food & Dining", "programId": "123", "updatedBy": "Dev Patel", "updatedOn": "2024-03-15T00:00:00Z", "status": "ACTIVE" }
+          ],
+          "totalCount": 3
+        }
+      },
+      "validation": "programId required",
+      "errors": [400, 401, 403, 500]
+    },
+    {
+      "name": "createBenefitCategory",
+      "status": "ASSUMED",
+      "endpoint": "/incentives/api/v1/benefits/categories",
+      "method": "POST",
+      "requestPayload": {
+        "programId": "string",
+        "name": "string (max 255 chars)"
+      },
+      "responsePayload": {
+        "status": "success",
+        "code": 200,
+        "data": {
+          "id": "string",
+          "name": "string",
+          "programId": "string",
+          "updatedBy": "string",
+          "updatedOn": "ISO8601 date string",
+          "status": "ACTIVE"
+        }
+      },
+      "mockResponse": {
+        "status": "success",
+        "code": 200,
+        "data": {
+          "id": "cat-004",
+          "name": "New Category",
+          "programId": "123",
+          "updatedBy": "Current User",
+          "updatedOn": "2026-04-13T00:00:00Z",
+          "status": "ACTIVE"
+        }
+      },
+      "validation": "name required max 255; name unique per programId",
+      "errors": [400, 401, 403, 500]
+    },
+    {
+      "name": "updateBenefitCategory",
+      "status": "ASSUMED",
+      "endpoint": "/incentives/api/v1/benefits/categories/{id}",
+      "method": "PUT",
+      "requestPayload": {
+        "programId": "string",
+        "name": "string (max 255 chars)"
+      },
+      "responsePayload": {
+        "status": "success",
+        "code": 200,
+        "data": {
+          "id": "string",
+          "name": "string",
+          "programId": "string",
+          "updatedBy": "string",
+          "updatedOn": "ISO8601 date string"
+        }
+      },
+      "mockResponse": {
+        "status": "success",
+        "code": 200,
+        "data": {
+          "id": "cat-001",
+          "name": "Updated Category Name",
+          "programId": "123",
+          "updatedBy": "Current User",
+          "updatedOn": "2026-04-13T00:00:00Z"
+        }
+      },
+      "validation": "name required max 255; name unique per programId",
+      "errors": [400, 401, 403, 404, 500]
+    },
+    {
+      "name": "deleteBenefitCategory",
+      "status": "ASSUMED",
+      "endpoint": "/incentives/api/v1/benefits/categories/{id}",
+      "method": "DELETE",
+      "requestPayload": null,
+      "responsePayload": {
+        "status": "success",
+        "code": 200,
+        "data": {
+          "id": "string",
+          "status": "DELETED"
+        }
+      },
+      "mockResponse": {
+        "status": "success",
+        "code": 200,
+        "data": {
+          "id": "cat-001",
+          "status": "DELETED"
+        }
+      },
+      "validation": "id in URL path",
+      "errors": [401, 403, 404, 500]
+    }
+  ]
+}

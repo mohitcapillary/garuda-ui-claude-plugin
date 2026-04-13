@@ -1,0 +1,6208 @@
+{
+  "version": "1.0.0",
+  "entries": [
+    {
+      "figmaIdentifier": "cap-button-primary",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE"
+      ],
+      "componentNames": [
+        "CapButton*",
+        "Button*",
+        "Btn*",
+        "CTA*"
+      ],
+      "variantPatterns": {
+        "Type": "Primary"
+      },
+      "targetComponent": "CapButton",
+      "importPath": "@capillarytech/cap-ui-library/CapButton",
+      "propMappings": {
+        "State": {
+          "map": {
+            "Default": {
+              "type": "primary"
+            },
+            "Hover": {
+              "type": "primary"
+            },
+            "Disabled": {
+              "type": "primary",
+              "disabled": true
+            }
+          }
+        },
+        "Size": {
+          "map": {
+            "Large": {
+              "size": "large"
+            },
+            "Medium": {
+              "size": "small"
+            },
+            "Small": {
+              "size": "small"
+            }
+          }
+        },
+        "Disabled": {
+          "prop": "disabled",
+          "transform": "boolean"
+        }
+      },
+      "slotMappings": {
+        "Icon Left": {
+          "slot": "prefix"
+        },
+        "Left Icon": {
+          "slot": "prefix"
+        },
+        "Icon Right": {
+          "slot": "suffix"
+        },
+        "Right Icon": {
+          "slot": "suffix"
+        },
+        "Label": {
+          "slot": "children"
+        },
+        "Text": {
+          "slot": "children"
+        }
+      },
+      "cssVariableMappings": {
+        "fills[0]": "$cap-primary-base"
+      },
+      "fallback": null,
+      "confidence": "HIGH",
+      "defaultProps": {
+        "type": "primary",
+        "size": "large"
+      }
+    },
+    {
+      "figmaIdentifier": "cap-button-secondary",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE"
+      ],
+      "componentNames": [
+        "CapButton*",
+        "Button*",
+        "Btn*"
+      ],
+      "variantPatterns": {
+        "Type": "Secondary"
+      },
+      "targetComponent": "CapButton",
+      "importPath": "@capillarytech/cap-ui-library/CapButton",
+      "propMappings": {
+        "State": {
+          "map": {
+            "Default": {
+              "type": "secondary"
+            },
+            "Hover": {
+              "type": "secondary"
+            },
+            "Disabled": {
+              "type": "secondary",
+              "disabled": true
+            }
+          }
+        },
+        "Size": {
+          "map": {
+            "Large": {
+              "size": "large"
+            },
+            "Medium": {
+              "size": "small"
+            },
+            "Small": {
+              "size": "small"
+            }
+          }
+        },
+        "Disabled": {
+          "prop": "disabled",
+          "transform": "boolean"
+        }
+      },
+      "slotMappings": {
+        "Icon Left": {
+          "slot": "prefix"
+        },
+        "Left Icon": {
+          "slot": "prefix"
+        },
+        "Icon Right": {
+          "slot": "suffix"
+        },
+        "Right Icon": {
+          "slot": "suffix"
+        },
+        "Label": {
+          "slot": "children"
+        },
+        "Text": {
+          "slot": "children"
+        }
+      },
+      "cssVariableMappings": {
+        "fills[0]": "$cap-secondary-base"
+      },
+      "fallback": null,
+      "confidence": "HIGH",
+      "defaultProps": {
+        "type": "secondary",
+        "size": "large"
+      }
+    },
+    {
+      "figmaIdentifier": "cap-button-tertiary",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE"
+      ],
+      "componentNames": [
+        "CapButton*",
+        "Button*",
+        "Btn*"
+      ],
+      "variantPatterns": {
+        "Type": "Tertiary"
+      },
+      "targetComponent": "CapButton",
+      "importPath": "@capillarytech/cap-ui-library/CapButton",
+      "propMappings": {
+        "State": {
+          "map": {
+            "Default": {
+              "type": "flat"
+            },
+            "Hover": {
+              "type": "flat"
+            },
+            "Disabled": {
+              "type": "flat",
+              "disabled": true
+            }
+          }
+        },
+        "Size": {
+          "map": {
+            "Large": {
+              "size": "large"
+            },
+            "Medium": {
+              "size": "small"
+            },
+            "Small": {
+              "size": "small"
+            }
+          }
+        },
+        "Disabled": {
+          "prop": "disabled",
+          "transform": "boolean"
+        }
+      },
+      "slotMappings": {
+        "Icon Left": {
+          "slot": "prefix"
+        },
+        "Left Icon": {
+          "slot": "prefix"
+        },
+        "Icon Right": {
+          "slot": "suffix"
+        },
+        "Right Icon": {
+          "slot": "suffix"
+        },
+        "Label": {
+          "slot": "children"
+        },
+        "Text": {
+          "slot": "children"
+        }
+      },
+      "fallback": null,
+      "confidence": "HIGH",
+      "defaultProps": {
+        "type": "flat",
+        "size": "large"
+      }
+    },
+    {
+      "figmaIdentifier": "cap-button-link",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE"
+      ],
+      "componentNames": [
+        "CapButton*",
+        "Button*",
+        "Btn*"
+      ],
+      "variantPatterns": {
+        "Type": "Link"
+      },
+      "targetComponent": "CapButton",
+      "importPath": "@capillarytech/cap-ui-library/CapButton",
+      "propMappings": {
+        "State": {
+          "map": {
+            "Default": {
+              "type": "link"
+            },
+            "Hover": {
+              "type": "link"
+            },
+            "Disabled": {
+              "type": "link",
+              "disabled": true
+            }
+          }
+        },
+        "Size": {
+          "map": {
+            "Large": {
+              "size": "large"
+            },
+            "Medium": {
+              "size": "small"
+            },
+            "Small": {
+              "size": "small"
+            }
+          }
+        },
+        "Disabled": {
+          "prop": "disabled",
+          "transform": "boolean"
+        }
+      },
+      "slotMappings": {
+        "Icon Left": {
+          "slot": "prefix"
+        },
+        "Left Icon": {
+          "slot": "prefix"
+        },
+        "Icon Right": {
+          "slot": "suffix"
+        },
+        "Right Icon": {
+          "slot": "suffix"
+        },
+        "Label": {
+          "slot": "children"
+        },
+        "Text": {
+          "slot": "children"
+        }
+      },
+      "fallback": null,
+      "confidence": "HIGH",
+      "defaultProps": {
+        "type": "link",
+        "size": "large"
+      }
+    },
+    {
+      "figmaIdentifier": "cap-button-outlined",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE"
+      ],
+      "componentNames": [
+        "CapButton*",
+        "Button*",
+        "Btn*"
+      ],
+      "variantPatterns": {
+        "Type": "Outlined"
+      },
+      "targetComponent": "CapButton",
+      "importPath": "@capillarytech/cap-ui-library/CapButton",
+      "propMappings": {
+        "State": {
+          "map": {
+            "Default": {
+              "type": "primary",
+              "ghost": true
+            },
+            "Hover": {
+              "type": "primary",
+              "ghost": true
+            },
+            "Disabled": {
+              "type": "primary",
+              "ghost": true,
+              "disabled": true
+            }
+          }
+        },
+        "Size": {
+          "map": {
+            "Large": {
+              "size": "large"
+            },
+            "Medium": {
+              "size": "small"
+            },
+            "Small": {
+              "size": "small"
+            }
+          }
+        },
+        "Disabled": {
+          "prop": "disabled",
+          "transform": "boolean"
+        }
+      },
+      "slotMappings": {
+        "Icon Left": {
+          "slot": "prefix"
+        },
+        "Left Icon": {
+          "slot": "prefix"
+        },
+        "Icon Right": {
+          "slot": "suffix"
+        },
+        "Right Icon": {
+          "slot": "suffix"
+        },
+        "Label": {
+          "slot": "children"
+        },
+        "Text": {
+          "slot": "children"
+        }
+      },
+      "fallback": null,
+      "confidence": "HIGH",
+      "defaultProps": {
+        "type": "primary",
+        "ghost": true,
+        "size": "large"
+      }
+    },
+    {
+      "figmaIdentifier": "cap-button-error",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE"
+      ],
+      "componentNames": [
+        "CapButton*",
+        "Button*",
+        "Btn*"
+      ],
+      "variantPatterns": {
+        "Type": "Error"
+      },
+      "targetComponent": "CapButton",
+      "importPath": "@capillarytech/cap-ui-library/CapButton",
+      "propMappings": {
+        "State": {
+          "map": {
+            "Default": {
+              "type": "primary",
+              "danger": true
+            },
+            "Hover": {
+              "type": "primary",
+              "danger": true
+            },
+            "Disabled": {
+              "type": "primary",
+              "danger": true,
+              "disabled": true
+            }
+          }
+        },
+        "Size": {
+          "map": {
+            "Large": {
+              "size": "large"
+            },
+            "Medium": {
+              "size": "small"
+            },
+            "Small": {
+              "size": "small"
+            }
+          }
+        },
+        "Disabled": {
+          "prop": "disabled",
+          "transform": "boolean"
+        }
+      },
+      "slotMappings": {
+        "Icon Left": {
+          "slot": "prefix"
+        },
+        "Left Icon": {
+          "slot": "prefix"
+        },
+        "Icon Right": {
+          "slot": "suffix"
+        },
+        "Right Icon": {
+          "slot": "suffix"
+        },
+        "Label": {
+          "slot": "children"
+        },
+        "Text": {
+          "slot": "children"
+        }
+      },
+      "fallback": null,
+      "confidence": "HIGH",
+      "defaultProps": {
+        "type": "primary",
+        "danger": true,
+        "size": "large"
+      }
+    },
+    {
+      "figmaIdentifier": "cap-button-flat",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE"
+      ],
+      "componentNames": [
+        "CapButton*",
+        "Button*",
+        "Btn*"
+      ],
+      "variantPatterns": {
+        "Type": "Flat"
+      },
+      "targetComponent": "CapButton",
+      "importPath": "@capillarytech/cap-ui-library/CapButton",
+      "propMappings": {
+        "State": {
+          "map": {
+            "Default": {
+              "type": "flat"
+            },
+            "Disabled": {
+              "type": "flat",
+              "disabled": true
+            }
+          }
+        }
+      },
+      "slotMappings": {
+        "Icon Left": {
+          "slot": "prefix"
+        },
+        "Icon Right": {
+          "slot": "suffix"
+        },
+        "Label": {
+          "slot": "children"
+        }
+      },
+      "fallback": null,
+      "confidence": "HIGH",
+      "defaultProps": {
+        "type": "flat"
+      }
+    },
+    {
+      "figmaIdentifier": "cap-button-oval",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE"
+      ],
+      "componentNames": [
+        "CapButton*",
+        "Button*",
+        "Btn*"
+      ],
+      "variantPatterns": {
+        "Type": "Oval"
+      },
+      "targetComponent": "CapButton",
+      "importPath": "@capillarytech/cap-ui-library/CapButton",
+      "propMappings": {
+        "State": {
+          "map": {
+            "Default": {
+              "type": "oval"
+            }
+          }
+        }
+      },
+      "slotMappings": {
+        "Label": {
+          "slot": "children"
+        }
+      },
+      "fallback": null,
+      "confidence": "HIGH",
+      "defaultProps": {
+        "type": "oval"
+      }
+    },
+    {
+      "figmaIdentifier": "cap-button-default",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE"
+      ],
+      "componentNames": [
+        "CapButton*",
+        "Button*",
+        "Btn*"
+      ],
+      "variantPatterns": {
+        "Type": "Default"
+      },
+      "targetComponent": "CapButton",
+      "importPath": "@capillarytech/cap-ui-library/CapButton",
+      "propMappings": {
+        "State": {
+          "map": {
+            "Default": {
+              "type": "default"
+            }
+          }
+        }
+      },
+      "slotMappings": {
+        "Label": {
+          "slot": "children"
+        }
+      },
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "defaultProps": {
+        "type": "default"
+      }
+    },
+    {
+      "figmaIdentifier": "cap-alert-success",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapAlert*",
+        "Alert*",
+        "AlertNotification*",
+        "Banner*",
+        "Notification*",
+        "Toast*"
+      ],
+      "variantPatterns": {
+        "type": "Success"
+      },
+      "targetComponent": "CapAlert",
+      "importPath": "@capillarytech/cap-ui-library/CapAlert",
+      "propMappings": {
+        "type": {
+          "map": {
+            "Success": {
+              "type": "success",
+              "showIcon": true
+            },
+            "Error": {
+              "type": "error",
+              "showIcon": true
+            },
+            "Notification": {
+              "type": "info",
+              "showIcon": true
+            }
+          }
+        },
+        "hasIcon": {
+          "prop": "showIcon",
+          "transform": "boolean"
+        },
+        "hasButton": {
+          "prop": "action",
+          "transform": "boolean"
+        }
+      },
+      "slotMappings": {
+        "Header": {
+          "slot": "message"
+        },
+        "Message": {
+          "slot": "message"
+        },
+        "Subheading": {
+          "slot": "description"
+        },
+        "Description": {
+          "slot": "description"
+        },
+        "Button group": {
+          "slot": "action"
+        }
+      },
+      "fallback": null,
+      "confidence": "HIGH",
+      "defaultProps": {
+        "type": "success",
+        "showIcon": true
+      },
+      "notes": "Figma AlertNotification has 3 types: Success (green left border #42b040), Error (red left border #c91e27), Notification (no border, circle icon, plain). hasHeading=true \u2192 message slot, hasSubheading=true \u2192 description slot, hasButton=true \u2192 action slot (render CapButton with type='link'). Figma Notification type = info (closest color match). CapAlert spreads ...rest so all Ant Design Alert props (afterClose, banner, closable, closeIcon) pass through.",
+      "alternatives": [
+        {
+          "targetComponent": "CapSnackBar",
+          "importPath": "@capillarytech/cap-ui-library/CapSnackBar",
+          "confidence": "LOW",
+          "note": "Use only for transient/auto-dismiss toast messages, not persistent inline alerts"
+        }
+      ]
+    },
+    {
+      "figmaIdentifier": "cap-alert-info",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapAlert*",
+        "Alert*",
+        "Banner*",
+        "Notification*"
+      ],
+      "variantPatterns": {
+        "Type": "Info"
+      },
+      "targetComponent": "CapAlert",
+      "importPath": "@capillarytech/cap-ui-library/CapAlert",
+      "propMappings": {
+        "Type": {
+          "map": {
+            "Info": {
+              "type": "info"
+            }
+          }
+        }
+      },
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "HIGH",
+      "defaultProps": {
+        "type": "info"
+      }
+    },
+    {
+      "figmaIdentifier": "cap-alert-warning",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapAlert*",
+        "Alert*",
+        "Banner*"
+      ],
+      "variantPatterns": {
+        "Type": "Warning"
+      },
+      "targetComponent": "CapAlert",
+      "importPath": "@capillarytech/cap-ui-library/CapAlert",
+      "propMappings": {},
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "HIGH",
+      "defaultProps": {
+        "type": "warning"
+      }
+    },
+    {
+      "figmaIdentifier": "cap-alert-error",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapAlert*",
+        "Alert*",
+        "Error*",
+        "Banner*"
+      ],
+      "variantPatterns": {
+        "Type": "Error"
+      },
+      "targetComponent": "CapAlert",
+      "importPath": "@capillarytech/cap-ui-library/CapAlert",
+      "propMappings": {},
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "HIGH",
+      "defaultProps": {
+        "type": "error"
+      }
+    },
+    {
+      "figmaIdentifier": "cap-input-base",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE"
+      ],
+      "componentNames": [
+        "CapInput*",
+        "Input*",
+        "InputBase*",
+        "Input field*",
+        "InputField*",
+        "TextField*",
+        "TextInput*",
+        "Field*",
+        "_Input_base*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapInput",
+      "importPath": "@capillarytech/cap-ui-library/CapInput",
+      "propMappings": {
+        "State": {
+          "map": {
+            "Default": {},
+            "Hover": {},
+            "Focused": {
+              "alwaysShowFocus": true
+            },
+            "Active": {},
+            "Disabled": {
+              "disabled": true
+            },
+            "Error": {
+              "status": "error"
+            }
+          }
+        },
+        "leftIcon": {
+          "prop": "prefix",
+          "transform": "boolean"
+        },
+        "rightIcon": {
+          "prop": "suffix",
+          "transform": "boolean"
+        },
+        "Disabled": {
+          "prop": "disabled",
+          "transform": "boolean"
+        }
+      },
+      "slotMappings": {
+        "Placeholder": {
+          "slot": "placeholder"
+        },
+        "Label": {
+          "slot": "addonBefore"
+        },
+        "Icon Left": {
+          "slot": "prefix"
+        },
+        "Icon Right": {
+          "slot": "suffix"
+        }
+      },
+      "fallback": null,
+      "confidence": "HIGH",
+      "defaultProps": {
+        "size": "large"
+      },
+      "notes": "helpText/byline is not a direct CapInput prop \u2014 wrap with CapFormItem for label+byline+helpText layout. Avoid using Side label type (deprecated per Figma design docs).",
+      "alternatives": [
+        {
+          "targetComponent": "CapInput.Search",
+          "importPath": "@capillarytech/cap-ui-library/CapInput",
+          "confidence": "HIGH",
+          "note": "Use for search input variants with search icon prefix"
+        },
+        {
+          "targetComponent": "CapInput.TextArea",
+          "importPath": "@capillarytech/cap-ui-library/CapInput",
+          "confidence": "HIGH",
+          "note": "Use for multi-line text input"
+        }
+      ]
+    },
+    {
+      "figmaIdentifier": "cap-input-search",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE"
+      ],
+      "componentNames": [
+        "CapInput*",
+        "Search*",
+        "SearchInput*",
+        "SearchBar*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapInput.Search",
+      "importPath": "@capillarytech/cap-ui-library/CapInput",
+      "propMappings": {},
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "HIGH"
+    },
+    {
+      "figmaIdentifier": "cap-input-textarea",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE"
+      ],
+      "componentNames": [
+        "CapInput*",
+        "TextArea*",
+        "Textarea*",
+        "MultilineInput*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapInput.TextArea",
+      "importPath": "@capillarytech/cap-ui-library/CapInput",
+      "propMappings": {},
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "HIGH"
+    },
+    {
+      "figmaIdentifier": "cap-icon",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "VECTOR",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapIcon*",
+        "Icon*",
+        "*Icon",
+        "Ico*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapIcon",
+      "importPath": "@capillarytech/cap-ui-library/CapIcon",
+      "propMappings": {
+        "Size": {
+          "map": {
+            "XSmall": {
+              "size": "xs"
+            },
+            "Small": {
+              "size": "s"
+            },
+            "Medium": {
+              "size": "m"
+            },
+            "Large": {
+              "size": "l"
+            }
+          }
+        },
+        "Disabled": {
+          "prop": "disabled",
+          "transform": "boolean"
+        }
+      },
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "HIGH"
+    },
+    {
+      "figmaIdentifier": "cap-checkbox",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE"
+      ],
+      "componentNames": [
+        "CapCheckbox*",
+        "Checkbox*",
+        "Check*",
+        "ListLabel*"
+      ],
+      "variantPatterns": {
+        "type": "Checkbox"
+      },
+      "targetComponent": "CapCheckbox",
+      "importPath": "@capillarytech/cap-ui-library/CapCheckbox",
+      "propMappings": {
+        "selected": {
+          "map": {
+            "Yes": {
+              "checked": true
+            },
+            "No": {
+              "checked": false
+            }
+          }
+        },
+        "State": {
+          "map": {
+            "Checked": {
+              "checked": true
+            },
+            "Unchecked": {
+              "checked": false
+            },
+            "Indeterminate": {
+              "indeterminate": true
+            },
+            "Active": {},
+            "Disabled": {
+              "disabled": true
+            }
+          }
+        },
+        "Disabled": {
+          "prop": "disabled",
+          "transform": "boolean"
+        }
+      },
+      "slotMappings": {
+        "Label": {
+          "slot": "children"
+        }
+      },
+      "fallback": null,
+      "confidence": "HIGH",
+      "notes": "Figma ListLabel type=Checkbox: checkbox (24px) + label text (14px medium) + optional suffix. Props: byline=true \u2192 pass as inductiveText prop (renders below the label in smaller secondary text). optional=true \u2192 append '(optional)' text as suffix prop. showTag=true \u2192 pass CapTag as suffix prop. errorMessage \u2192 adds error styling (pass className containing 'error'). CapCheckbox.Group \u2192 use for groups of checkboxes with onChange handler.",
+      "alternatives": [
+        {
+          "targetComponent": "CapCheckbox.Group",
+          "importPath": "@capillarytech/cap-ui-library/CapCheckbox",
+          "confidence": "HIGH",
+          "note": "Use CapCheckbox.Group when Figma shows a list of checkboxes with a shared onChange (Ant Design Checkbox.Group)"
+        }
+      ]
+    },
+    {
+      "figmaIdentifier": "cap-radio",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE"
+      ],
+      "componentNames": [
+        "CapRadio*",
+        "Radio*",
+        "RadioButton*",
+        "ListLabel*"
+      ],
+      "variantPatterns": {
+        "type": "Radio"
+      },
+      "targetComponent": "CapRadio",
+      "importPath": "@capillarytech/cap-ui-library/CapRadio",
+      "propMappings": {
+        "selected": {
+          "map": {
+            "Yes": {
+              "checked": true
+            },
+            "No": {
+              "checked": false
+            }
+          }
+        },
+        "State": {
+          "map": {
+            "Selected": {
+              "checked": true
+            },
+            "Unselected": {
+              "checked": false
+            },
+            "Active": {},
+            "Hover": {},
+            "Disabled": {
+              "disabled": true
+            }
+          }
+        },
+        "Disabled": {
+          "prop": "disabled",
+          "transform": "boolean"
+        }
+      },
+      "slotMappings": {
+        "Label": {
+          "slot": "children"
+        }
+      },
+      "fallback": null,
+      "confidence": "HIGH",
+      "notes": "Figma ListLabel type=Radio: radio button (24px) + label (14px medium) + optional suffix. Props: byline=true \u2192 inductiveText prop (secondary text below label). optional=true \u2192 '(optional)' as suffix. showTag=true \u2192 CapTag as suffix. CapRadio extends Ant Design RadioProps and adds inductiveText, errorMessage, suffix. CapRadio.Group = Radio.Group for grouped radios. CapRadio.Button = Radio.Button for button-style radio groups.",
+      "alternatives": [
+        {
+          "targetComponent": "CapRadio.Group",
+          "importPath": "@capillarytech/cap-ui-library/CapRadio",
+          "confidence": "HIGH",
+          "note": "Use CapRadio.Group (= Ant Design Radio.Group) when Figma shows a list of radio options with shared onChange. Pass options array or CapRadio children."
+        },
+        {
+          "targetComponent": "CapRadio.Button",
+          "importPath": "@capillarytech/cap-ui-library/CapRadio",
+          "confidence": "MEDIUM",
+          "note": "Use CapRadio.Button inside CapRadio.Group for button-style (pill/tab) radio groups"
+        }
+      ]
+    },
+    {
+      "figmaIdentifier": "cap-switch",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE"
+      ],
+      "componentNames": [
+        "CapSwitch*",
+        "Switch*",
+        "Toggle*",
+        "ToggleSwitch*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapSwitch",
+      "importPath": "@capillarytech/cap-ui-library/CapSwitch",
+      "propMappings": {
+        "State": {
+          "map": {
+            "On": {
+              "checked": true
+            },
+            "Off": {
+              "checked": false
+            }
+          }
+        },
+        "Disabled": {
+          "prop": "disabled",
+          "transform": "boolean"
+        },
+        "Size": {
+          "map": {
+            "Small": {
+              "size": "small"
+            },
+            "Default": {
+              "size": "default"
+            }
+          }
+        }
+      },
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "HIGH"
+    },
+    {
+      "figmaIdentifier": "cap-divider",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "RECTANGLE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapDivider*",
+        "Divider*",
+        "Separator*",
+        "Rule*",
+        "Hr*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapDivider",
+      "importPath": "@capillarytech/cap-ui-library/CapDivider",
+      "propMappings": {
+        "Orientation": {
+          "map": {
+            "Horizontal": {
+              "type": "horizontal"
+            },
+            "Vertical": {
+              "type": "vertical"
+            }
+          }
+        }
+      },
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "HIGH"
+    },
+    {
+      "figmaIdentifier": "cap-card",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapCard*",
+        "Card*",
+        "Cards*",
+        "Panel*",
+        "Container*",
+        "_Card*"
+      ],
+      "variantPatterns": {
+        "type": "Small"
+      },
+      "targetComponent": "CapCard",
+      "importPath": "@capillarytech/cap-ui-library/CapCard",
+      "propMappings": {
+        "state": {
+          "map": {
+            "Default": {},
+            "Hovered": {},
+            "Selected": {
+              "className": "selected"
+            },
+            "Disabled": {
+              "className": "disabled"
+            }
+          }
+        },
+        "Disabled": {
+          "prop": "disabled",
+          "transform": "boolean"
+        }
+      },
+      "slotMappings": {
+        "Label": {
+          "slot": "children"
+        },
+        "Description": {
+          "slot": "children"
+        },
+        "Content": {
+          "slot": "children"
+        },
+        "Footer": {
+          "slot": "children"
+        }
+      },
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "notes": "Figma Cards type=Small (468px wide): avatar icon (48px) + label (14px medium) + description (12px secondary) + optional channels row. Border: #b3bac5, border-radius: 8px. hasIcon=true \u2192 Avatar slot (CapIcon or img 48px). hasChannels=true \u2192 row of icon+text labels (SMS, WeChat etc.) at bottom. hasTag=true \u2192 absolute positioned orange pill badge (top:-10px, left:16px). All content goes into CapCard children as layout. CapCard wraps Ant Design Card and spreads ...rest for any additional Ant Design Card props.",
+      "alternatives": [
+        {
+          "targetComponent": "CapCard",
+          "importPath": "@capillarytech/cap-ui-library/CapCard",
+          "confidence": "MEDIUM",
+          "note": "type=Creative (276px): compact card with label+view/more icon buttons in header, description below, hover reveals a green CTA button overlay. No RadioCard or CustomCard in blaze-ui \u2014 implement as styled CapCard."
+        }
+      ],
+      "isComposite": true
+    },
+    {
+      "figmaIdentifier": "cap-row",
+      "nodeTypes": [
+        "FRAME",
+        "GROUP"
+      ],
+      "componentNames": [
+        "CapRow*",
+        "Row*",
+        "HStack*",
+        "HGroup*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapRow",
+      "importPath": "@capillarytech/cap-ui-library/CapRow",
+      "propMappings": {
+        "Align": {
+          "map": {
+            "Center": {
+              "align": "middle"
+            },
+            "Top": {
+              "align": "top"
+            },
+            "Bottom": {
+              "align": "bottom"
+            }
+          }
+        },
+        "Justify": {
+          "map": {
+            "SpaceBetween": {
+              "justify": "space-between"
+            },
+            "Center": {
+              "justify": "center"
+            },
+            "Start": {
+              "justify": "start"
+            },
+            "End": {
+              "justify": "end"
+            }
+          }
+        }
+      },
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "HIGH"
+    },
+    {
+      "figmaIdentifier": "cap-column",
+      "nodeTypes": [
+        "FRAME",
+        "GROUP"
+      ],
+      "componentNames": [
+        "CapColumn*",
+        "Column*",
+        "Col*",
+        "VStack*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapColumn",
+      "importPath": "@capillarytech/cap-ui-library/CapColumn",
+      "propMappings": {},
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "HIGH"
+    },
+    {
+      "figmaIdentifier": "cap-unified-select",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE"
+      ],
+      "componentNames": [
+        "CapUnifiedSelect*"
+      ],
+      "variantPatterns": {
+        "Type": "Dropdown"
+      },
+      "targetComponent": "CapUnifiedSelect",
+      "importPath": "blaze-ui/components/CapUnifiedSelect",
+      "propMappings": {
+        "Type": {
+          "map": {
+            "Dropdown": {
+              "type": "select"
+            },
+            "Multi input": {
+              "type": "multiSelect"
+            },
+            "Filter": {
+              "type": "multiSelect"
+            }
+          }
+        },
+        "state": {
+          "map": {
+            "Default": {},
+            "Hovered": {},
+            "Focused": {},
+            "Filled": {},
+            "Disabled": {
+              "disabled": true
+            },
+            "Error": {
+              "isError": true
+            }
+          }
+        },
+        "Disabled": {
+          "prop": "disabled",
+          "transform": "boolean"
+        },
+        "hasInfoIcon": {
+          "prop": "tooltip",
+          "transform": "boolean"
+        },
+        "isSearchable": {
+          "prop": "showSearch",
+          "transform": "boolean"
+        },
+        "hasScrollbar": {
+          "prop": "listHeight",
+          "transform": "number"
+        }
+      },
+      "slotMappings": {
+        "Label": {
+          "slot": "headerLabel"
+        },
+        "Byline": {
+          "slot": "bylineText"
+        },
+        "HelpText": {
+          "slot": "bylineText"
+        },
+        "Placeholder": {
+          "slot": "placeholder"
+        }
+      },
+      "fallback": null,
+      "confidence": "HIGH",
+      "defaultProps": {
+        "type": "select"
+      },
+      "notes": "Figma Dropdown wrapper has: label\u2192headerLabel, byline\u2192bylineText, optional (no direct prop \u2014 append '(optional)' to headerLabel text), infoIcon\u2192tooltip (pass string), hasHelpText\u2192bylineText or wrap with CapFormItem. Expanded state (isSearchable=true) maps to showSearch=true.",
+      "alternatives": [
+        {
+          "targetComponent": "CapUnifiedSelect",
+          "importPath": "@capillarytech/cap-ui-library/CapUnifiedSelect",
+          "confidence": "HIGH",
+          "note": "Use type='multiSelect' for Figma type=Multi input or Filter variants"
+        },
+        {
+          "targetComponent": "CapUnifiedSelect",
+          "importPath": "@capillarytech/cap-ui-library/CapUnifiedSelect",
+          "confidence": "MEDIUM",
+          "note": "Use type='treeSelect' or type='multiTreeSelect' for hierarchical data"
+        }
+      ],
+      "_disabled": true
+    },
+    {
+      "figmaIdentifier": "cap-unified-select-multi",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE"
+      ],
+      "componentNames": [
+        "CapUnifiedSelect*"
+      ],
+      "variantPatterns": {
+        "Type": "Multi input"
+      },
+      "targetComponent": "CapUnifiedSelect",
+      "importPath": "blaze-ui/components/CapUnifiedSelect",
+      "propMappings": {
+        "state": {
+          "map": {
+            "Default": {
+              "type": "multiSelect"
+            },
+            "Disabled": {
+              "type": "multiSelect",
+              "disabled": true
+            },
+            "Error": {
+              "type": "multiSelect",
+              "isError": true
+            }
+          }
+        },
+        "Disabled": {
+          "prop": "disabled",
+          "transform": "boolean"
+        }
+      },
+      "slotMappings": {
+        "Label": {
+          "slot": "headerLabel"
+        },
+        "Placeholder": {
+          "slot": "placeholder"
+        }
+      },
+      "fallback": null,
+      "confidence": "HIGH",
+      "defaultProps": {
+        "type": "multiSelect"
+      },
+      "_disabled": true
+    },
+    {
+      "figmaIdentifier": "cap-select-sidepane",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE"
+      ],
+      "componentNames": [
+        "CapDrawer*",
+        "Select*",
+        "Sidepane*",
+        "SidePane*",
+        "OpenSidepane*"
+      ],
+      "variantPatterns": {
+        "Type": "Sidepane"
+      },
+      "targetComponent": "CapDrawer",
+      "importPath": "@capillarytech/cap-ui-library/CapDrawer",
+      "propMappings": {
+        "state": {
+          "map": {
+            "Default": {
+              "open": false
+            },
+            "Disabled": {
+              "open": false,
+              "disabled": true
+            }
+          }
+        },
+        "Disabled": {
+          "prop": "disabled",
+          "transform": "boolean"
+        }
+      },
+      "slotMappings": {
+        "Label": {
+          "slot": "title"
+        },
+        "Content": {
+          "slot": "children"
+        }
+      },
+      "fallback": null,
+      "confidence": "HIGH",
+      "defaultProps": {
+        "placement": "right",
+        "open": false
+      },
+      "notes": "Figma Type=Sidepane is a select trigger that opens a CapDrawer on click. The trigger input (chevron-right icon) is the field; the drawer content is the children. Wire the trigger's onClick to set open=true."
+    },
+    {
+      "figmaIdentifier": "cap-unified-select-filter",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE"
+      ],
+      "componentNames": [
+        "CapUnifiedSelect*"
+      ],
+      "variantPatterns": {
+        "Type": "Filter"
+      },
+      "targetComponent": "CapUnifiedSelect",
+      "importPath": "blaze-ui/components/CapUnifiedSelect",
+      "propMappings": {
+        "state": {
+          "map": {
+            "Default": {
+              "type": "multiSelect"
+            },
+            "Disabled": {
+              "type": "multiSelect",
+              "disabled": true
+            },
+            "Error": {
+              "type": "multiSelect",
+              "isError": true
+            }
+          }
+        },
+        "Disabled": {
+          "prop": "disabled",
+          "transform": "boolean"
+        }
+      },
+      "slotMappings": {
+        "Label": {
+          "slot": "headerLabel"
+        },
+        "Placeholder": {
+          "slot": "placeholder"
+        }
+      },
+      "fallback": null,
+      "confidence": "HIGH",
+      "defaultProps": {
+        "type": "multiSelect"
+      },
+      "notes": "Filter type in Figma maps to multiSelect with showSearch and allowClear typically enabled",
+      "_disabled": true
+    },
+    {
+      "figmaIdentifier": "cap-tab",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapTab*",
+        "Tab*",
+        "Tabs*",
+        "TabGroup*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapTab",
+      "importPath": "@capillarytech/cap-ui-library/CapTab",
+      "propMappings": {
+        "Type": {
+          "map": {
+            "Line": {
+              "type": "line"
+            },
+            "Card": {
+              "type": "card"
+            },
+            "EditableCard": {
+              "type": "editable-card"
+            }
+          }
+        }
+      },
+      "slotMappings": {},
+      "compositeChildren": [
+        {
+          "figmaLayerName": "Tab*",
+          "targetSlot": "panes"
+        }
+      ],
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "isComposite": true
+    },
+    {
+      "figmaIdentifier": "cap-table",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapTable*",
+        "Table*",
+        "DataGrid*",
+        "DataTable*",
+        "Grid*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapTable",
+      "importPath": "@capillarytech/cap-ui-library/CapTable",
+      "propMappings": {
+        "infiniteScroll": {
+          "prop": "infiniteScroll",
+          "transform": "boolean"
+        },
+        "showLoader": {
+          "prop": "showLoader",
+          "transform": "boolean"
+        }
+      },
+      "slotMappings": {
+        "Header": {
+          "slot": "columns"
+        },
+        "Row": {
+          "slot": "dataSource"
+        }
+      },
+      "fallback": null,
+      "confidence": "HIGH",
+      "notes": "CapTable wraps Ant Design Table v5. Required prop: id (string). Key props: dataSource (array), columns (array of {title, dataIndex, key, sorter?, render?}), infiniteScroll (boolean \u2192 enables virtual scroll + auto-load on threshold), showLoader (boolean \u2192 shows loading overlay), setPagination (callback for infinite scroll next page), offset_limit ({offset, limit}), scroll ({x?, y?} \u2014 y defaults to 400px). Figma table has: checkbox column (rowSelection={{ type: 'checkbox' }}), sortable headers (column.sorter=true), row action group (TableActionGroup = icon buttons \u2192 render via column.render). Pagination is always disabled (false) when infiniteScroll=true.",
+      "alternatives": [],
+      "isComposite": true
+    },
+    {
+      "figmaIdentifier": "cap-dropdown",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE"
+      ],
+      "componentNames": [
+        "CapDropdown*",
+        "Dropdown*",
+        "ContextMenu*",
+        "ActionMenu*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapDropdown",
+      "importPath": "@capillarytech/cap-ui-library/CapDropdown",
+      "propMappings": {
+        "Trigger": {
+          "map": {
+            "Click": {
+              "trigger": [
+                "click"
+              ]
+            },
+            "Hover": {
+              "trigger": [
+                "hover"
+              ]
+            }
+          }
+        }
+      },
+      "slotMappings": {
+        "Trigger": {
+          "slot": "children"
+        },
+        "Menu": {
+          "slot": "overlay"
+        }
+      },
+      "fallback": null,
+      "confidence": "MEDIUM"
+    },
+    {
+      "figmaIdentifier": "cap-dropdown-button",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE"
+      ],
+      "componentNames": [
+        "CapDropdown*",
+        "DropdownButton*",
+        "Dropdown Button*",
+        "IconDropdown*",
+        "ActionDropdown*",
+        "MoreActions*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapDropdown",
+      "importPath": "@capillarytech/cap-ui-library/CapDropdown",
+      "propMappings": {
+        "size": {
+          "map": {
+            "Small": {
+              "trigger": [
+                "click"
+              ]
+            },
+            "Medium": {
+              "trigger": [
+                "click"
+              ]
+            },
+            "Large": {
+              "trigger": [
+                "click"
+              ]
+            }
+          }
+        },
+        "alignment": {
+          "map": {
+            "Left": {
+              "placement": "bottomLeft"
+            },
+            "Right": {
+              "placement": "bottomRight"
+            },
+            "Ignore": {
+              "placement": "bottomLeft"
+            }
+          }
+        }
+      },
+      "slotMappings": {
+        "Menu": {
+          "slot": "menu"
+        },
+        "Icon": {
+          "slot": "children"
+        }
+      },
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "defaultProps": {
+        "trigger": [
+          "click"
+        ],
+        "placement": "bottomLeft"
+      },
+      "notes": "Figma DropdownButton is a small icon button (three dots '...') that opens a contextual dropdown menu. Use CapDropdown wrapping a CapButton with type='flat' and an ellipsis icon as children. Size (Small=24px/Medium=32px/Large=40px) maps to CapButton size. Pass CapMenu items via the menu prop. This is NOT the same as CapUnifiedSelect \u2014 it's a contextual action menu trigger.",
+      "alternatives": [
+        {
+          "targetComponent": "CapDropdown.Button",
+          "importPath": "@capillarytech/cap-ui-library/CapDropdown",
+          "confidence": "HIGH",
+          "note": "CapDropdown.Button is the Ant Design Dropdown.Button which renders a split button with a primary action and a dropdown arrow \u2014 use when the Figma design shows a primary label+dropdown-arrow pattern"
+        }
+      ]
+    },
+    {
+      "figmaIdentifier": "cap-menu",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapMenu*",
+        "Menu*",
+        "Nav*",
+        "Navigation*",
+        "NavMenu*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapMenu",
+      "importPath": "@capillarytech/cap-ui-library/CapMenu",
+      "propMappings": {
+        "Mode": {
+          "map": {
+            "Horizontal": {
+              "mode": "horizontal"
+            },
+            "Vertical": {
+              "mode": "vertical"
+            },
+            "Inline": {
+              "mode": "inline"
+            }
+          }
+        }
+      },
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "isComposite": true
+    },
+    {
+      "figmaIdentifier": "cap-tooltip",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE"
+      ],
+      "componentNames": [
+        "CapTooltip*",
+        "Tool-tip*",
+        "Tooltip*",
+        "ToolTip*",
+        "Hint*"
+      ],
+      "variantPatterns": {
+        "type": "Tool-tip"
+      },
+      "targetComponent": "CapTooltip",
+      "importPath": "@capillarytech/cap-ui-library/CapTooltip",
+      "propMappings": {
+        "arrow": {
+          "map": {
+            "Left": {
+              "placement": "right"
+            },
+            "Right": {
+              "placement": "left"
+            },
+            "Up": {
+              "placement": "bottom"
+            },
+            "Down": {
+              "placement": "top"
+            },
+            "-": {
+              "placement": "top"
+            }
+          }
+        },
+        "Placement": {
+          "map": {
+            "Top": {
+              "placement": "top"
+            },
+            "Bottom": {
+              "placement": "bottom"
+            },
+            "Left": {
+              "placement": "left"
+            },
+            "Right": {
+              "placement": "right"
+            }
+          }
+        }
+      },
+      "slotMappings": {
+        "Label": {
+          "slot": "title"
+        },
+        "Content": {
+          "slot": "title"
+        },
+        "Trigger": {
+          "slot": "children"
+        }
+      },
+      "fallback": null,
+      "confidence": "HIGH",
+      "defaultProps": {
+        "placement": "top",
+        "trigger": "hover"
+      },
+      "notes": "Figma Tool-tip uses dark navy background (#091e42) with white text \u2014 this matches CapTooltip's default dark style. `arrow` prop in Figma indicates which side the arrow points FROM (Left=arrow on left \u2192 tooltip is to the right of trigger \u2192 placement='right'). `hasKeyValue` and `hasDescription` \u2192 pass as rich JSX to title prop. `hasButton` \u2192 include CapButton type='link' in title content."
+    },
+    {
+      "figmaIdentifier": "cap-tooltip-with-info",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE"
+      ],
+      "componentNames": [
+        "CapTooltipWithInfo*",
+        "TooltipInfo*",
+        "InfoTooltip*",
+        "HelpTooltip*",
+        "InfoIcon*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapTooltipWithInfo",
+      "importPath": "@capillarytech/cap-ui-library/CapTooltipWithInfo",
+      "propMappings": {
+        "Placement": {
+          "map": {
+            "Top": {
+              "placement": "top"
+            },
+            "Bottom": {
+              "placement": "bottom"
+            },
+            "Left": {
+              "placement": "left"
+            },
+            "Right": {
+              "placement": "right"
+            }
+          }
+        }
+      },
+      "slotMappings": {
+        "Content": {
+          "slot": "title"
+        },
+        "Label": {
+          "slot": "title"
+        }
+      },
+      "fallback": null,
+      "confidence": "HIGH",
+      "defaultProps": {
+        "iconType": "info-circle",
+        "iconSize": "s",
+        "placement": "top"
+      },
+      "notes": "CapTooltipWithInfo renders a CapIcon (info-circle by default) wrapped in CapTooltip. Use when Figma shows an info (i) icon that shows a tooltip on hover. Props: title (tooltip content), iconType (default 'info-circle'), iconSize ('xs'|'s'|'m'|'l'), placement, trigger, tooltipProps (extra CapTooltip props), iconProps (extra CapIcon props)."
+    },
+    {
+      "figmaIdentifier": "cap-form",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapForm*",
+        "Form*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapForm",
+      "importPath": "@capillarytech/cap-ui-library/CapForm",
+      "propMappings": {
+        "Layout": {
+          "map": {
+            "Horizontal": {
+              "layout": "horizontal"
+            },
+            "Vertical": {
+              "layout": "vertical"
+            },
+            "Inline": {
+              "layout": "inline"
+            }
+          }
+        }
+      },
+      "slotMappings": {},
+      "compositeChildren": [
+        {
+          "figmaLayerName": "Field*",
+          "targetSlot": "children"
+        },
+        {
+          "figmaLayerName": "FormItem*",
+          "targetSlot": "children"
+        }
+      ],
+      "fallback": null,
+      "confidence": "MEDIUM"
+    },
+    {
+      "figmaIdentifier": "cap-form-item",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapFormItem*",
+        "FormItem*",
+        "FormField*",
+        "Field*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapFormItem",
+      "importPath": "@capillarytech/cap-ui-library/CapFormItem",
+      "propMappings": {
+        "Required": {
+          "prop": "required",
+          "transform": "boolean"
+        }
+      },
+      "slotMappings": {
+        "Label": {
+          "slot": "label"
+        },
+        "Input": {
+          "slot": "children"
+        }
+      },
+      "fallback": null,
+      "confidence": "MEDIUM"
+    },
+    {
+      "figmaIdentifier": "cap-skeleton",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapSkeleton*",
+        "Skeleton*",
+        "Loading*",
+        "Placeholder*",
+        "Ghost*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapSkeleton",
+      "importPath": "@capillarytech/cap-ui-library/CapSkeleton",
+      "propMappings": {},
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "MEDIUM"
+    },
+    {
+      "figmaIdentifier": "cap-spin",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE"
+      ],
+      "componentNames": [
+        "CapSpin*",
+        "Spinner*",
+        "Loader*",
+        "Spin*",
+        "Loading*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapSpin",
+      "importPath": "@capillarytech/cap-ui-library/CapSpin",
+      "propMappings": {
+        "Size": {
+          "map": {
+            "Small": {
+              "size": "small"
+            },
+            "Default": {
+              "size": "default"
+            },
+            "Large": {
+              "size": "large"
+            }
+          }
+        }
+      },
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "MEDIUM"
+    },
+    {
+      "figmaIdentifier": "cap-modal",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapModal*",
+        "Modal*",
+        "Dialog*",
+        "Overlay*",
+        "Popup*",
+        "ModalDialog*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapModal",
+      "importPath": "@capillarytech/cap-ui-library/CapModal",
+      "propMappings": {
+        "Width": {
+          "prop": "width",
+          "transform": "number"
+        },
+        "Closable": {
+          "prop": "closable",
+          "transform": "boolean"
+        },
+        "Centered": {
+          "prop": "centered",
+          "transform": "boolean"
+        }
+      },
+      "slotMappings": {
+        "Title": {
+          "slot": "title"
+        },
+        "Header": {
+          "slot": "title"
+        },
+        "_Modal_content": {
+          "slot": "children"
+        },
+        "Footer": {
+          "slot": "footer"
+        },
+        "Content": {
+          "slot": "children"
+        },
+        "Body": {
+          "slot": "children"
+        },
+        "No of button=2": {
+          "slot": "footer"
+        }
+      },
+      "fallback": null,
+      "confidence": "HIGH",
+      "defaultProps": {
+        "width": 468,
+        "closable": true
+      },
+      "notes": "Figma Modal structure (468px default width): white card, border-radius 4px, drop shadow. Internal _Modal_content layer has: (1) header row = Avatar (48px) + Label (14px medium) + Description (12px secondary) + close X button \u2192 render as Modal title prop containing CapRow with avatar/text/close. (2) content area = LayoutBlocks swap block \u2192 pass as children. (3) footer = No of button=2 row \u2192 Save (CapButton type=primary) + Cancel (CapButton type=secondary) \u2192 pass as footer prop. The close X icon button maps to closable=true (Ant Design handles it). Larger modal variant (798:422790, full-page) has same structure at larger width."
+    },
+    {
+      "figmaIdentifier": "cap-date-picker",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE"
+      ],
+      "componentNames": [
+        "CapDatePicker*",
+        "DatePicker*",
+        "Date Picker*",
+        "Date Input*",
+        "CalendarInput*",
+        "Select*"
+      ],
+      "variantPatterns": {
+        "Type": "Date picker"
+      },
+      "targetComponent": "CapDatePicker",
+      "importPath": "@capillarytech/cap-ui-library/CapDatePicker",
+      "propMappings": {
+        "state": {
+          "map": {
+            "Default": {},
+            "Hovered": {},
+            "Focused": {},
+            "Filled": {},
+            "Disabled": {
+              "disabled": true
+            },
+            "Error": {
+              "status": "error"
+            }
+          }
+        },
+        "Disabled": {
+          "prop": "disabled",
+          "transform": "boolean"
+        },
+        "Size": {
+          "map": {
+            "Small": {
+              "size": "small"
+            },
+            "Default": {
+              "size": "default"
+            },
+            "Large": {
+              "size": "large"
+            }
+          }
+        },
+        "hasInfoIcon": {
+          "prop": "suffixIcon",
+          "transform": "boolean"
+        }
+      },
+      "slotMappings": {
+        "Placeholder": {
+          "slot": "placeholder"
+        },
+        "Label": {
+          "slot": "placeholder"
+        }
+      },
+      "fallback": null,
+      "confidence": "HIGH",
+      "notes": "Figma DatePicker (type=Single) wrapper has: label (render above as CapLabel or CapFormItem label), hasByline/byline\u2192no direct prop (wrap with CapFormItem), hasHelpText\u2192no direct prop (wrap with CapFormItem for helper text), hasInfoIcon\u2192use a CapTooltipWithInfo next to the label, isOptional\u2192append '(Optional)' to label text. State border colors: Default=#dfe2e7, Hover=#7a869a, Focused=#091e42, Error=#c91e27, Disabled bg=#dfe2e7. Focused state opens calendar popup (_Calender base).",
+      "alternatives": [
+        {
+          "targetComponent": "CapDateRangePicker",
+          "importPath": "@capillarytech/cap-ui-library/CapDateRangePicker",
+          "confidence": "HIGH",
+          "note": "Use when Figma shows Start Date \u2192 End Date range picker (two date fields)"
+        }
+      ]
+    },
+    {
+      "figmaIdentifier": "cap-date-range-picker",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE"
+      ],
+      "componentNames": [
+        "CapDateRangePicker*",
+        "DateRange*",
+        "Date Range*",
+        "DateRangePicker*",
+        "Range Picker*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapDateRangePicker",
+      "importPath": "@capillarytech/cap-ui-library/CapDateRangePicker",
+      "propMappings": {
+        "Disabled": {
+          "prop": "disabled",
+          "transform": "boolean"
+        }
+      },
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "HIGH"
+    },
+    {
+      "figmaIdentifier": "cap-time-picker",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE"
+      ],
+      "componentNames": [
+        "CapTimePicker*",
+        "TimePicker*",
+        "Time Picker*",
+        "TimeInput*",
+        "Time Input*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapTimePicker",
+      "importPath": "@capillarytech/cap-ui-library/CapTimePicker",
+      "propMappings": {
+        "Disabled": {
+          "prop": "disabled",
+          "transform": "boolean"
+        },
+        "Format": {
+          "prop": "format",
+          "transform": "string"
+        }
+      },
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "MEDIUM"
+    },
+    {
+      "figmaIdentifier": "cap-tag",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE"
+      ],
+      "componentNames": [
+        "CapTag*",
+        "Tag*",
+        "Chip*",
+        "Pill*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapTag",
+      "importPath": "@capillarytech/cap-ui-library/CapTag",
+      "propMappings": {
+        "Closable": {
+          "prop": "closable",
+          "transform": "boolean"
+        },
+        "Color": {
+          "prop": "color",
+          "transform": "string"
+        }
+      },
+      "slotMappings": {
+        "Label": {
+          "slot": "children"
+        },
+        "Text": {
+          "slot": "children"
+        }
+      },
+      "fallback": null,
+      "confidence": "HIGH"
+    },
+    {
+      "figmaIdentifier": "cap-colored-tag",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE"
+      ],
+      "componentNames": [
+        "CapColoredTag*",
+        "ColoredTag*",
+        "StatusTag*",
+        "ColorTag*",
+        "StatusBadge*",
+        "Colored Tag*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapColoredTag",
+      "importPath": "@capillarytech/cap-ui-library/CapColoredTag",
+      "propMappings": {
+        "Color": {
+          "prop": "color",
+          "transform": "string"
+        }
+      },
+      "slotMappings": {
+        "Label": {
+          "slot": "children"
+        }
+      },
+      "fallback": null,
+      "confidence": "MEDIUM"
+    },
+    {
+      "figmaIdentifier": "cap-steps",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapSteps*",
+        "Steps*",
+        "Stepper*",
+        "Wizard*",
+        "StepFlow*",
+        "Step Flow*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapSteps",
+      "importPath": "@capillarytech/cap-ui-library/CapSteps",
+      "propMappings": {
+        "Direction": {
+          "map": {
+            "Horizontal": {
+              "direction": "horizontal"
+            },
+            "Vertical": {
+              "direction": "vertical"
+            }
+          }
+        },
+        "Type": {
+          "map": {
+            "Default": {
+              "type": "default"
+            },
+            "Navigation": {
+              "type": "navigation"
+            },
+            "Dot": {
+              "type": "dot"
+            }
+          }
+        }
+      },
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "isComposite": true
+    },
+    {
+      "figmaIdentifier": "cap-page-header",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapRow*",
+        "TitleHeader*",
+        "Title header*",
+        "PageHeader*",
+        "Header*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapRow",
+      "importPath": "@capillarytech/cap-ui-library/CapRow",
+      "propMappings": {},
+      "slotMappings": {
+        "Icon": {
+          "slot": "children"
+        },
+        "Avatar": {
+          "slot": "children"
+        },
+        "Label": {
+          "slot": "children"
+        },
+        "Wrapper": {
+          "slot": "children"
+        }
+      },
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "notes": "Figma TitleHeader (max-width 1140px, px-48px, py-16px, white bg): composed as CapRow with: (1) back button (CapButton type='flat' with back arrow icon), (2) Avatar (48px circle with icon), (3) title+subheading wrapper (CapColumn: CapLabel type='h2' for title, CapRow for subheading with key-value pairs + Edit button), (4) right actions (CapRow: rightIconButton=close X, primaryCtaRight=primary button). Props: avatar=true \u2192 show 48px avatar, backButton=true \u2192 show back arrow, demoButton=true \u2192 show Demo link button, editSubhead=true \u2192 show Edit link in subheading row, labelIconButton=true \u2192 show icon button next to title. No dedicated blaze-ui CapPageHeader \u2014 compose from CapRow+CapColumn+CapLabel."
+    },
+    {
+      "figmaIdentifier": "cap-label",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "TEXT"
+      ],
+      "componentNames": [
+        "Label*",
+        "CapLabel*",
+        "Text*",
+        "Heading*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapLabel",
+      "importPath": "@capillarytech/cap-ui-library/CapLabel",
+      "propMappings": {
+        "type": {
+          "map": {
+            "H1": {
+              "type": "h1"
+            },
+            "H2": {
+              "type": "h2"
+            },
+            "H3": {
+              "type": "h3"
+            },
+            "H4": {
+              "type": "h4"
+            },
+            "Label1": {
+              "type": "label1"
+            },
+            "Label2": {
+              "type": "label2"
+            },
+            "Label3": {
+              "type": "label3"
+            },
+            "Body": {
+              "type": "label1"
+            }
+          }
+        }
+      },
+      "slotMappings": {
+        "Text": {
+          "slot": "children"
+        }
+      },
+      "fallback": null,
+      "confidence": "HIGH",
+      "defaultProps": {
+        "type": "label1"
+      },
+      "notes": "CapLabel type values from blaze-ui: 'label1' (default, 14px regular), 'label2', 'label3' (12px secondary), 'h1'\u2013'h4' (heading sizes \u2014 h4 used in radio/checkbox label). fontWeight and lineHeight can override via props. CapLabel.CapLabelInline for inline (span) text. Figma 14px Medium \u2192 type='h4', 14px Regular \u2192 type='label1', 12px Secondary \u2192 type='label3', 24px Medium \u2192 type='h2'."
+    },
+    {
+      "figmaIdentifier": "cap-drawer",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapDrawer*",
+        "Drawer*",
+        "SidePanel*",
+        "Side Panel*",
+        "Flyout*",
+        "SlideOver*",
+        "SlidePanel*",
+        "Sidepane*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapDrawer",
+      "importPath": "@capillarytech/cap-ui-library/CapDrawer",
+      "propMappings": {
+        "Placement": {
+          "map": {
+            "Right": {
+              "placement": "right"
+            },
+            "Left": {
+              "placement": "left"
+            },
+            "Top": {
+              "placement": "top"
+            },
+            "Bottom": {
+              "placement": "bottom"
+            }
+          }
+        },
+        "Width": {
+          "prop": "width",
+          "transform": "number"
+        }
+      },
+      "slotMappings": {
+        "Title": {
+          "slot": "title"
+        },
+        "Content": {
+          "slot": "children"
+        },
+        "Body": {
+          "slot": "children"
+        },
+        "Footer": {
+          "slot": "footer"
+        }
+      },
+      "fallback": null,
+      "confidence": "HIGH"
+    },
+    {
+      "figmaIdentifier": "cap-progress",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapProgress*",
+        "Progress*",
+        "ProgressBar*",
+        "Progress Bar*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapProgress",
+      "importPath": "@capillarytech/cap-ui-library/CapProgress",
+      "propMappings": {
+        "Type": {
+          "map": {
+            "Line": {
+              "type": "line"
+            },
+            "Circle": {
+              "type": "circle"
+            },
+            "Dashboard": {
+              "type": "dashboard"
+            }
+          }
+        },
+        "Status": {
+          "map": {
+            "Success": {
+              "status": "success"
+            },
+            "Error": {
+              "status": "exception"
+            },
+            "Active": {
+              "status": "active"
+            }
+          }
+        }
+      },
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "MEDIUM"
+    },
+    {
+      "figmaIdentifier": "cap-slider",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE"
+      ],
+      "componentNames": [
+        "CapSlider*",
+        "Slider*",
+        "RangeSlider*",
+        "Range Slider*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapSlider",
+      "importPath": "@capillarytech/cap-ui-library/CapSlider",
+      "propMappings": {
+        "Disabled": {
+          "prop": "disabled",
+          "transform": "boolean"
+        },
+        "Range": {
+          "prop": "range",
+          "transform": "boolean"
+        },
+        "Vertical": {
+          "prop": "vertical",
+          "transform": "boolean"
+        }
+      },
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "MEDIUM"
+    },
+    {
+      "figmaIdentifier": "cap-timeline",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapTimeline*",
+        "Timeline*",
+        "ActivityFeed*",
+        "Activity Feed*",
+        "HistoryFeed*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapTimeline",
+      "importPath": "@capillarytech/cap-ui-library/CapTimeline",
+      "propMappings": {
+        "Mode": {
+          "map": {
+            "Left": {
+              "mode": "left"
+            },
+            "Right": {
+              "mode": "right"
+            },
+            "Alternate": {
+              "mode": "alternate"
+            }
+          }
+        }
+      },
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "isComposite": true
+    },
+    {
+      "figmaIdentifier": "cap-uploader",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapUploader*",
+        "Upload*",
+        "Uploader*",
+        "FileUpload*",
+        "File Upload*",
+        "DropZone*",
+        "Drop Zone*",
+        "FileDropper*",
+        "SKUUploader*",
+        "DragAndDrop*",
+        "Drag*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapUploader",
+      "importPath": "@capillarytech/cap-ui-library/CapUploader",
+      "propMappings": {
+        "flow": {
+          "map": {
+            "Horizontal": {},
+            "Vertical": {},
+            "Image": {
+              "accept": "image/*"
+            }
+          }
+        },
+        "Multiple": {
+          "prop": "multiple",
+          "transform": "boolean"
+        },
+        "Disabled": {
+          "prop": "disabled",
+          "transform": "boolean"
+        },
+        "header": {
+          "prop": "showHeader",
+          "transform": "boolean"
+        },
+        "uploadInstruction": {
+          "prop": "showInstructions",
+          "transform": "boolean"
+        }
+      },
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "alternatives": [
+        {
+          "targetComponent": "CapSkuUploader",
+          "importPath": "@capillarytech/cap-ui-library/CapSkuUploader",
+          "confidence": "MEDIUM",
+          "note": "Use for CSV/SKU file upload with download sample + upload history pattern (Figma flow=Horizontal/Vertical)"
+        },
+        {
+          "targetComponent": "CapDragAndDrop",
+          "importPath": "@capillarytech/cap-ui-library/CapDragAndDrop",
+          "confidence": "MEDIUM",
+          "note": "Use for drag-and-drop only upload without the CSV-specific instructions panel"
+        }
+      ]
+    },
+    {
+      "figmaIdentifier": "cap-link",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE"
+      ],
+      "componentNames": [
+        "CapLink*",
+        "Link*",
+        "Anchor*",
+        "Hyperlink*",
+        "TextLink*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapLink",
+      "importPath": "@capillarytech/cap-ui-library/CapLink",
+      "propMappings": {
+        "Disabled": {
+          "prop": "disabled",
+          "transform": "boolean"
+        },
+        "Type": {
+          "map": {
+            "Primary": {
+              "type": "primary"
+            },
+            "Secondary": {
+              "type": "secondary"
+            }
+          }
+        }
+      },
+      "slotMappings": {
+        "Label": {
+          "slot": "children"
+        },
+        "Text": {
+          "slot": "children"
+        }
+      },
+      "fallback": null,
+      "confidence": "HIGH"
+    },
+    {
+      "figmaIdentifier": "cap-snackbar",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapSnackBar*",
+        "Snackbar*",
+        "SnackBar*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapSnackBar",
+      "importPath": "@capillarytech/cap-ui-library/CapSnackBar",
+      "propMappings": {
+        "Type": {
+          "map": {
+            "Success": {
+              "type": "success"
+            },
+            "Error": {
+              "type": "error"
+            },
+            "Info": {
+              "type": "info"
+            },
+            "Warning": {
+              "type": "warning"
+            }
+          }
+        }
+      },
+      "slotMappings": {
+        "Message": {
+          "slot": "message"
+        }
+      },
+      "fallback": null,
+      "confidence": "MEDIUM"
+    },
+    {
+      "figmaIdentifier": "cap-info-note",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapAlert*",
+        "Note*",
+        "InfoNote*",
+        "InlineNote*",
+        "_Note*"
+      ],
+      "variantPatterns": {
+        "property1": "Note"
+      },
+      "targetComponent": "CapAlert",
+      "importPath": "@capillarytech/cap-ui-library/CapAlert",
+      "propMappings": {
+        "property1": {
+          "map": {
+            "Note": {
+              "type": "warning",
+              "showIcon": true
+            },
+            "Success": {
+              "type": "success",
+              "showIcon": true
+            },
+            "Pending": {
+              "type": "warning",
+              "showIcon": true
+            },
+            "Caution": {
+              "type": "error",
+              "showIcon": true
+            },
+            "Stopped": {
+              "type": "info",
+              "showIcon": true
+            },
+            "Recommendation": {
+              "type": "info",
+              "showIcon": true
+            }
+          }
+        }
+      },
+      "slotMappings": {
+        "Message": {
+          "slot": "message"
+        },
+        "Text": {
+          "slot": "message"
+        },
+        "Description": {
+          "slot": "description"
+        }
+      },
+      "fallback": null,
+      "confidence": "HIGH",
+      "defaultProps": {
+        "type": "warning",
+        "showIcon": true
+      },
+      "notes": "Figma Note variants map to CapAlert: Note\u2192warning(yellow), Success\u2192success(green), Pending\u2192warning(orange, closest), Caution\u2192error(red), Stopped\u2192info(gray, closest), Recommendation\u2192info(blue). Exact colors differ slightly from Figma \u2014 override with className if needed.",
+      "alternatives": [
+        {
+          "targetComponent": "CapSnackBar",
+          "importPath": "@capillarytech/cap-ui-library/CapSnackBar",
+          "confidence": "LOW",
+          "note": "Use only for transient/dismissible notifications, not inline info notes"
+        }
+      ]
+    },
+    {
+      "figmaIdentifier": "cap-info-note-success",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapAlert*",
+        "Note*",
+        "InfoNote*"
+      ],
+      "variantPatterns": {
+        "property1": "Success"
+      },
+      "targetComponent": "CapAlert",
+      "importPath": "@capillarytech/cap-ui-library/CapAlert",
+      "propMappings": {},
+      "slotMappings": {
+        "Message": {
+          "slot": "message"
+        },
+        "Text": {
+          "slot": "message"
+        }
+      },
+      "fallback": null,
+      "confidence": "HIGH",
+      "defaultProps": {
+        "type": "success",
+        "showIcon": true
+      }
+    },
+    {
+      "figmaIdentifier": "cap-info-note-caution",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapAlert*",
+        "Note*",
+        "InfoNote*"
+      ],
+      "variantPatterns": {
+        "property1": "Caution"
+      },
+      "targetComponent": "CapAlert",
+      "importPath": "@capillarytech/cap-ui-library/CapAlert",
+      "propMappings": {},
+      "slotMappings": {
+        "Message": {
+          "slot": "message"
+        },
+        "Text": {
+          "slot": "message"
+        }
+      },
+      "fallback": null,
+      "confidence": "HIGH",
+      "defaultProps": {
+        "type": "error",
+        "showIcon": true
+      }
+    },
+    {
+      "figmaIdentifier": "cap-info-note-pending",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapAlert*",
+        "Note*",
+        "InfoNote*"
+      ],
+      "variantPatterns": {
+        "property1": "Pending"
+      },
+      "targetComponent": "CapAlert",
+      "importPath": "@capillarytech/cap-ui-library/CapAlert",
+      "propMappings": {},
+      "slotMappings": {
+        "Message": {
+          "slot": "message"
+        },
+        "Text": {
+          "slot": "message"
+        }
+      },
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "defaultProps": {
+        "type": "warning",
+        "showIcon": true
+      },
+      "notes": "Figma uses orange background for Pending. CapAlert warning is yellow \u2014 closest match but not exact."
+    },
+    {
+      "figmaIdentifier": "cap-info-note-recommendation",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapAlert*",
+        "Note*",
+        "InfoNote*"
+      ],
+      "variantPatterns": {
+        "property1": "Recommendation"
+      },
+      "targetComponent": "CapAlert",
+      "importPath": "@capillarytech/cap-ui-library/CapAlert",
+      "propMappings": {},
+      "slotMappings": {
+        "Message": {
+          "slot": "message"
+        },
+        "Text": {
+          "slot": "message"
+        }
+      },
+      "fallback": null,
+      "confidence": "HIGH",
+      "defaultProps": {
+        "type": "info",
+        "showIcon": true
+      }
+    },
+    {
+      "figmaIdentifier": "cap-popover",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE"
+      ],
+      "componentNames": [
+        "CapPopover*",
+        "Popover*",
+        "InfoPopover*",
+        "ContextPopover*",
+        "Tool-tip*",
+        "ToolTip*"
+      ],
+      "variantPatterns": {
+        "type": "Popover"
+      },
+      "targetComponent": "CapPopover",
+      "importPath": "@capillarytech/cap-ui-library/CapPopover",
+      "propMappings": {
+        "arrow": {
+          "map": {
+            "Left": {
+              "placement": "right"
+            },
+            "Right": {
+              "placement": "left"
+            },
+            "Up": {
+              "placement": "bottom"
+            },
+            "Down": {
+              "placement": "top"
+            },
+            "-": {
+              "placement": "top"
+            }
+          }
+        },
+        "Placement": {
+          "map": {
+            "Top": {
+              "placement": "top"
+            },
+            "Bottom": {
+              "placement": "bottom"
+            },
+            "Left": {
+              "placement": "left"
+            },
+            "Right": {
+              "placement": "right"
+            }
+          }
+        },
+        "Trigger": {
+          "map": {
+            "Click": {
+              "trigger": [
+                "click"
+              ]
+            },
+            "Hover": {
+              "trigger": [
+                "hover"
+              ]
+            }
+          }
+        }
+      },
+      "slotMappings": {
+        "Label": {
+          "slot": "title"
+        },
+        "Content": {
+          "slot": "content"
+        },
+        "Help Text": {
+          "slot": "content"
+        },
+        "Key Pair": {
+          "slot": "content"
+        },
+        "Trigger": {
+          "slot": "children"
+        },
+        "Button": {
+          "slot": "content"
+        }
+      },
+      "fallback": null,
+      "confidence": "HIGH",
+      "defaultProps": {
+        "placement": "top",
+        "trigger": [
+          "hover"
+        ]
+      },
+      "notes": "Figma type=Popover uses same dark navy (#091e42) background as Tool-tip. The Popover variant is richer: hasKeyValue=true \u2192 key-value pair rows in content (render as <dl> or CapRow pairs), hasDescription=true \u2192 description text below, hasButton=true \u2192 action button in content, isCustomisable=true \u2192 swappable content slot. `arrow` Figma prop = which side the arrow pointer is on (Left means arrow is on left side \u2192 placement='right' in CapPopover). Pass rich JSX as content prop."
+    },
+    {
+      "figmaIdentifier": "cap-status",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE"
+      ],
+      "componentNames": [
+        "CapStatus*",
+        "Status*",
+        "StatusIndicator*",
+        "Indicator*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapStatus",
+      "importPath": "@capillarytech/cap-ui-library/CapStatus",
+      "propMappings": {
+        "Type": {
+          "map": {
+            "Active": {
+              "status": "active"
+            },
+            "Inactive": {
+              "status": "inactive"
+            },
+            "Pending": {
+              "status": "pending"
+            },
+            "Success": {
+              "status": "success"
+            },
+            "Error": {
+              "status": "error"
+            },
+            "Warning": {
+              "status": "warning"
+            }
+          }
+        }
+      },
+      "slotMappings": {
+        "Label": {
+          "slot": "children"
+        }
+      },
+      "fallback": null,
+      "confidence": "MEDIUM"
+    },
+    {
+      "figmaIdentifier": "cap-list",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapList*",
+        "List*",
+        "ListView*",
+        "ItemList*",
+        "Item List*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapList",
+      "importPath": "@capillarytech/cap-ui-library/CapList",
+      "propMappings": {
+        "Size": {
+          "map": {
+            "Small": {
+              "size": "small"
+            },
+            "Default": {
+              "size": "default"
+            },
+            "Large": {
+              "size": "large"
+            }
+          }
+        }
+      },
+      "slotMappings": {
+        "Header": {
+          "slot": "header"
+        },
+        "Footer": {
+          "slot": "footer"
+        }
+      },
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "isComposite": true
+    },
+    {
+      "figmaIdentifier": "cap-tree-select",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE"
+      ],
+      "componentNames": [
+        "CapTreeSelect*",
+        "TreeSelect*",
+        "Tree Select*",
+        "HierarchySelect*",
+        "Dropdown*"
+      ],
+      "variantPatterns": {
+        "level": "Single"
+      },
+      "targetComponent": "CapTreeSelect",
+      "importPath": "@capillarytech/cap-ui-library/CapTreeSelect",
+      "propMappings": {
+        "state": {
+          "map": {
+            "Default": {},
+            "Hover": {},
+            "Focused": {},
+            "Filled": {},
+            "Disabled": {
+              "disabled": true
+            },
+            "Error": {
+              "status": "error"
+            }
+          }
+        },
+        "Disabled": {
+          "prop": "disabled",
+          "transform": "boolean"
+        },
+        "Multiple": {
+          "prop": "multiple",
+          "transform": "boolean"
+        }
+      },
+      "slotMappings": {
+        "Label": {
+          "slot": "placeholder"
+        },
+        "Placeholder": {
+          "slot": "placeholder"
+        }
+      },
+      "fallback": null,
+      "confidence": "HIGH",
+      "defaultProps": {
+        "showSearch": true,
+        "treeDefaultExpandAll": false
+      },
+      "notes": "Figma 'Single' tree dropdown (Frame 157:118547) maps to CapTreeSelect. Architecture: wraps antd TreeSelect directly. Dropdown shows tree hierarchy: parent items have caret-down (expanded) or caret-right (collapsed, opacity 40%) icons; child items indented pl-36px. Selected item: bg=#e9f0fe (--bg/sf/primary-focused) + 2px blue left border (#2466ea, --border/blue). Same trigger visual as CapSelect (40px, same border states). Key props: treeData (required), className, headerTitle, headerDescription, treeSelectSideLabel, disabledTooltip, infoNote, noteText, infoNoteWidth (default '60%'). All antd TreeSelect props pass through ...rest (treeCheckable, multiple, value, onChange, onSearch, showSearch, treeDefaultExpandAll, filterTreeNode, loadData for async).",
+      "alternatives": [
+        {
+          "targetComponent": "CapUnifiedSelect",
+          "importPath": "blaze-ui/components/CapUnifiedSelect",
+          "confidence": "MEDIUM",
+          "note": "Use CapUnifiedSelect type='treeSelect' for the blaze-ui v5 unified approach"
+        }
+      ]
+    },
+    {
+      "figmaIdentifier": "cap-tree",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapTree*",
+        "TreeView*",
+        "Tree View*",
+        "Hierarchy*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapTree",
+      "importPath": "@capillarytech/cap-ui-library/CapTree",
+      "propMappings": {
+        "Checkable": {
+          "prop": "checkable",
+          "transform": "boolean"
+        },
+        "Multiple": {
+          "prop": "multiple",
+          "transform": "boolean"
+        }
+      },
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "MEDIUM"
+    },
+    {
+      "figmaIdentifier": "cap-statistic-card",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapStatisticCard*",
+        "StatCard*",
+        "KPICard*",
+        "MetricCard*",
+        "StatisticCard*",
+        "KPI Card*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapStatisticCard",
+      "importPath": "@capillarytech/cap-ui-library/CapStatisticCard",
+      "propMappings": {},
+      "slotMappings": {
+        "Title": {
+          "slot": "title"
+        },
+        "Value": {
+          "slot": "value"
+        }
+      },
+      "fallback": null,
+      "confidence": "LOW"
+    },
+    {
+      "figmaIdentifier": "cap-notification",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapNotification*",
+        "Notification*",
+        "NotificationItem*",
+        "NotificationCard*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapNotification",
+      "importPath": "@capillarytech/cap-ui-library/CapNotification",
+      "propMappings": {
+        "Type": {
+          "map": {
+            "Success": {
+              "type": "success"
+            },
+            "Error": {
+              "type": "error"
+            },
+            "Info": {
+              "type": "info"
+            },
+            "Warning": {
+              "type": "warning"
+            }
+          }
+        }
+      },
+      "slotMappings": {
+        "Message": {
+          "slot": "message"
+        },
+        "Description": {
+          "slot": "description"
+        }
+      },
+      "fallback": null,
+      "confidence": "MEDIUM"
+    },
+    {
+      "figmaIdentifier": "cap-color-picker",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE"
+      ],
+      "componentNames": [
+        "CapColorPicker*",
+        "ColorPicker*",
+        "Color Picker*",
+        "ColorSelector*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapColorPicker",
+      "importPath": "@capillarytech/cap-ui-library/CapColorPicker",
+      "propMappings": {
+        "Disabled": {
+          "prop": "disabled",
+          "transform": "boolean"
+        }
+      },
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "HIGH"
+    },
+    {
+      "figmaIdentifier": "cap-select",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE"
+      ],
+      "componentNames": [
+        "Dropdown*",
+        "Select*",
+        "CapSelect*",
+        "_Select*"
+      ],
+      "variantPatterns": {
+        "Type": "Dropdown"
+      },
+      "targetComponent": "CapSelect",
+      "importPath": "@capillarytech/cap-ui-library/CapSelect",
+      "propMappings": {
+        "state": {
+          "map": {
+            "Default": {},
+            "Hover": {},
+            "Focused": {},
+            "Filled": {},
+            "Expanded": {
+              "open": true
+            },
+            "Disabled": {
+              "disabled": true
+            },
+            "Error": {
+              "status": "error"
+            }
+          }
+        },
+        "Disabled": {
+          "prop": "disabled",
+          "transform": "boolean"
+        },
+        "isSearchable": {
+          "prop": "showSearch",
+          "transform": "boolean"
+        },
+        "hasScrollbar": {
+          "prop": "listHeight",
+          "transform": "number"
+        }
+      },
+      "slotMappings": {
+        "Label": {
+          "slot": "label"
+        },
+        "Placeholder": {
+          "slot": "placeholder"
+        },
+        "Byline": {
+          "slot": "inductiveText"
+        },
+        "HelpText": {
+          "slot": "inductiveText"
+        }
+      },
+      "cssVariableMappings": {
+        "fills[0]": "--neutral/4"
+      },
+      "fallback": null,
+      "confidence": "HIGH",
+      "defaultProps": {
+        "size": "large",
+        "showSearch": true
+      },
+      "notes": "Figma 'Dropdown' type=Dropdown maps to CapSelect (antd Select wrapper). Trigger: 40px h, border-radius 4px. Border states: Default=#b3bac5, Hover=#7a869a, Focused=#091e42, Error=#c91e27, Disabled bg=#f4f5f7. Label above: 14px Medium (#091e42), optional adds '(Optional)' 12px. Byline: 12px Regular (#7a869a). infoIcon \u2192 wrap label with CapTooltipWithInfo. hasHelpText \u2192 inductiveText prop or wrap in CapFormItem. Dropdown list: max-h 408px, search bar pinned top, scroll, items 40px each. Long option text truncates. CapSelect wraps antd Select and adds ComponentWithLabelHOC for label/error/inductiveText. Pass options as [{label, value}] array.",
+      "alternatives": [
+        {
+          "targetComponent": "CapSelect.CapCustomSelect",
+          "importPath": "@capillarytech/cap-ui-library/CapSelect",
+          "confidence": "MEDIUM",
+          "note": "Use CapCustomSelect when options need custom rendering via getMenuOptionsProps"
+        }
+      ]
+    },
+    {
+      "figmaIdentifier": "cap-multi-select",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE"
+      ],
+      "componentNames": [
+        "CapMultiSelect*",
+        "MultiSelect*",
+        "Multi Select*",
+        "Multi-Select*",
+        "CheckboxSelect*",
+        "Dropdown*"
+      ],
+      "variantPatterns": {
+        "isMultiInput": "true"
+      },
+      "targetComponent": "CapMultiSelect",
+      "importPath": "@capillarytech/cap-ui-library/CapMultiSelect",
+      "propMappings": {
+        "state": {
+          "map": {
+            "Default": {},
+            "Hover": {},
+            "Focused": {},
+            "Filled": {},
+            "Disabled": {
+              "disabled": true
+            },
+            "Error": {}
+          }
+        },
+        "Disabled": {
+          "prop": "disabled",
+          "transform": "boolean"
+        }
+      },
+      "slotMappings": {
+        "Label": {
+          "slot": "placeholder"
+        },
+        "Placeholder": {
+          "slot": "placeholder"
+        }
+      },
+      "fallback": null,
+      "confidence": "HIGH",
+      "defaultProps": {
+        "width": "100%"
+      },
+      "notes": "Figma Dropdown with isMultiInput=true maps to CapMultiSelect. Architecture: Tree + Popover (NOT antd Select mode=multiple). Trigger shows selected values as tag pills (bg=#dfe2e7, 12px text, x close icon). Key props: treeData (required, {key, title, children}), appliedKeys (selected keys array), onSelect (callback), placeholder, searchPlaceholder, disabled, width, disableSelectAll, maxValuesToSelect, enableVirtualizedRendering (boolean for Virtuoso), moreText ('+N more' label), noResultsFoundText, closeText, selectText, selectAllText. Figma shows: selected tags in trigger with x buttons (tag bg=#dfe2e7 #091e42 text 12px), dropdown with search bar + flat checkbox list, Select All at top. collapseOnSelect closes dropdown on single select. showFooter toggles footer close/select buttons.",
+      "alternatives": [
+        {
+          "targetComponent": "CapUnifiedSelect",
+          "importPath": "blaze-ui/components/CapUnifiedSelect",
+          "confidence": "MEDIUM",
+          "note": "Use CapUnifiedSelect type='multiSelect' for the blaze-ui v5 unified approach"
+        }
+      ]
+    },
+    {
+      "figmaIdentifier": "cap-multi-select-with-tree",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE"
+      ],
+      "componentNames": [
+        "CapMultiSelectWithTree*",
+        "MultiSelectWithTree*",
+        "Multi Select With Tree*",
+        "HierarchyMultiSelect*",
+        "Dropdown*"
+      ],
+      "variantPatterns": {
+        "level": "Mixed"
+      },
+      "targetComponent": "CapMultiSelectWithTree",
+      "importPath": "@capillarytech/cap-ui-library/CapMultiSelectWithTree",
+      "propMappings": {
+        "state": {
+          "map": {
+            "Default": {},
+            "Hover": {},
+            "Focused": {},
+            "Filled": {},
+            "Disabled": {
+              "disabled": true
+            }
+          }
+        },
+        "Disabled": {
+          "prop": "disabled",
+          "transform": "boolean"
+        }
+      },
+      "slotMappings": {
+        "Label": {
+          "slot": "placeholder"
+        },
+        "Placeholder": {
+          "slot": "placeholder"
+        }
+      },
+      "fallback": null,
+      "confidence": "HIGH",
+      "defaultProps": {
+        "width": "100%"
+      },
+      "notes": "Figma 'Mixed single 1st level' (Frame 157:118563) maps to CapMultiSelectWithTree. Architecture: Tree + Popover. Dropdown shows: parent items with caret-down (expanded) or caret-right (collapsed) icons; child items indented pl-36px; selected child: 2px blue left border (#2466ea) + bg=#e9f0fe. Key props: treeData (required, hierarchical {key, title, children}), appliedKeys (selected keys), appliedKeyObjects (selected with titles), expandedKeys, expandedKeysHandler, onSelect, onChange, placeholder, searchPlaceholder, disabled, disableSearch, disableSelectAll, disableParentCategorySelection (prevent parent node selection), hideParentCheckboxes, enableSingleParentSelection, maxValuesToSelect, minValuesToSelect, onSearch (for external search), isExternalSearch, enableDebouncedSearch (200ms), showLoader, clearAllText, selectAllText, moreText, showSelectedFilterCount, showLeafNodeSelectionCount, resetSelectedKeysOnHide, onClose. replaceChildrenWithParent allows custom parent/child replacement logic.",
+      "alternatives": [
+        {
+          "targetComponent": "CapUnifiedSelect",
+          "importPath": "blaze-ui/components/CapUnifiedSelect",
+          "confidence": "MEDIUM",
+          "note": "Use CapUnifiedSelect type='multiTreeSelect' for the blaze-ui v5 unified approach"
+        }
+      ]
+    },
+    {
+      "figmaIdentifier": "cap-action-bar",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapActionBar*",
+        "ActionBar*",
+        "Action Bar*",
+        "Toolbar*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapActionBar",
+      "importPath": "@capillarytech/cap-ui-library/CapActionBar",
+      "propMappings": {},
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "_needsReview": true
+    },
+    {
+      "figmaIdentifier": "cap-advanced-icon",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapAdvancedIcon*",
+        "AdvancedIcon*",
+        "Advanced Icon*",
+        "IconWithAction*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapAdvancedIcon",
+      "importPath": "@capillarytech/cap-ui-library/CapAdvancedIcon",
+      "propMappings": {
+        "Type": {
+          "prop": "type",
+          "transform": "string"
+        }
+      },
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "_needsReview": true,
+      "_knownProps": [
+        "type",
+        "backgroundColor",
+        "actionNodes",
+        "label",
+        "preview",
+        "showStoreUploadStatusIcon",
+        "StoreUploadStatusIndicator"
+      ]
+    },
+    {
+      "figmaIdentifier": "cap-app-not-enabled",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapAppNotEnabled*",
+        "AppNotEnabled*",
+        "App Not Enabled*",
+        "Disabled App*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapAppNotEnabled",
+      "importPath": "@capillarytech/cap-ui-library/CapAppNotEnabled",
+      "propMappings": {},
+      "slotMappings": {
+        "Title": {
+          "slot": "title"
+        },
+        "Description": {
+          "slot": "description"
+        }
+      },
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "_needsReview": true,
+      "_knownProps": [
+        "headerText",
+        "title",
+        "description"
+      ]
+    },
+    {
+      "figmaIdentifier": "cap-ask-aira",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapAskAira*",
+        "AskAira*",
+        "Aira*",
+        "AI Assistant*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapAskAira",
+      "importPath": "@capillarytech/cap-ui-library/CapAskAira",
+      "propMappings": {},
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "_needsReview": true
+    },
+    {
+      "figmaIdentifier": "cap-banner",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapBanner*",
+        "Banner*",
+        "Alert Banner*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapBanner",
+      "importPath": "@capillarytech/cap-ui-library/CapBanner",
+      "propMappings": {},
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "_needsReview": true,
+      "_knownProps": [
+        "iconProps",
+        "bannerContent",
+        "actionContent"
+      ]
+    },
+    {
+      "figmaIdentifier": "cap-block",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapBlock*",
+        "Block*",
+        "ContentBlock*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapBlock",
+      "importPath": "@capillarytech/cap-ui-library/CapBlock",
+      "propMappings": {},
+      "slotMappings": {
+        "Content": {
+          "slot": "children"
+        }
+      },
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "_needsReview": true,
+      "_knownProps": [
+        "width",
+        "borderLeftColor",
+        "isDeleteEnabled",
+        "deleteCallback",
+        "isCollapseEnabled",
+        "componentName",
+        "children",
+        "className",
+        "deleteBlockMsg",
+        "collapseBlockMsg",
+        "expandBlockMsg",
+        "pathBlockText"
+      ]
+    },
+    {
+      "figmaIdentifier": "cap-bordered-box",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapBorderedBox*",
+        "BorderedBox*",
+        "Bordered Box*",
+        "Box*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapBorderedBox",
+      "importPath": "@capillarytech/cap-ui-library/CapBorderedBox",
+      "propMappings": {},
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "_needsReview": true
+    },
+    {
+      "figmaIdentifier": "cap-c-s-v-file-uploader",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapCSVFileUploader*",
+        "CSVUploader*",
+        "CSV Upload*",
+        "CSVFileUploader*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapCSVFileUploader",
+      "importPath": "@capillarytech/cap-ui-library/CapCSVFileUploader",
+      "propMappings": {},
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "_needsReview": true
+    },
+    {
+      "figmaIdentifier": "cap-calendar-date-picker",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapCalendarDatePicker*",
+        "CalendarDatePicker*",
+        "Calendar Picker*",
+        "CalendarInput*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapCalendarDatePicker",
+      "importPath": "@capillarytech/cap-ui-library/CapCalendarDatePicker",
+      "propMappings": {},
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "_needsReview": true,
+      "_knownProps": [
+        "className"
+      ]
+    },
+    {
+      "figmaIdentifier": "cap-card-box",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapCardBox*",
+        "CardBox*",
+        "Card Box*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapCardBox",
+      "importPath": "@capillarytech/cap-ui-library/CapCardBox",
+      "propMappings": {},
+      "slotMappings": {
+        "Content": {
+          "slot": "content"
+        }
+      },
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "_needsReview": true,
+      "_knownProps": [
+        "avatarText",
+        "content",
+        "width",
+        "height",
+        "borderStyle",
+        "topLeftIcon",
+        "wrapperClassName"
+      ],
+      "isComposite": true
+    },
+    {
+      "figmaIdentifier": "cap-carousel",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapCarousel*",
+        "Carousel*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapCarousel",
+      "importPath": "@capillarytech/cap-ui-library/CapCarousel",
+      "propMappings": {},
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "_needsReview": true,
+      "_knownProps": [
+        "showTopSwitcher",
+        "dots",
+        "data",
+        "beforeChange"
+      ],
+      "isComposite": true
+    },
+    {
+      "figmaIdentifier": "cap-collapsible-left-navigation",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapCollapsibleLeftNavigation*",
+        "CollapsibleNav*",
+        "Collapsible Nav*",
+        "LeftNav*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapCollapsibleLeftNavigation",
+      "importPath": "@capillarytech/cap-ui-library/CapCollapsibleLeftNavigation",
+      "propMappings": {},
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "_needsReview": true,
+      "_knownProps": [
+        "switcherClicked",
+        "leftNavbarExpanded",
+        "setBreadCrumbs",
+        "history",
+        "publicPath",
+        "handleGTMDataPush",
+        "pushFullUrl"
+      ]
+    },
+    {
+      "figmaIdentifier": "cap-collapsible-navbar",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapCollapsibleNavbar*",
+        "CollapsibleNavbar*",
+        "Collapsible Navbar*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapCollapsibleNavbar",
+      "importPath": "@capillarytech/cap-ui-library/CapCollapsibleNavbar",
+      "propMappings": {},
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "_needsReview": true,
+      "_knownProps": [
+        "config",
+        "history",
+        "className",
+        "navItemClicked",
+        "switcherClicked",
+        "handleCollapseChange",
+        "displaySyncBanner",
+        "navExpandedDefault",
+        "messages"
+      ],
+      "isComposite": true
+    },
+    {
+      "figmaIdentifier": "cap-condition",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapCondition*",
+        "Condition*",
+        "ConditionBuilder*",
+        "Condition Builder*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapCondition",
+      "importPath": "@capillarytech/cap-ui-library/CapCondition",
+      "propMappings": {},
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "LOW",
+      "_needsReview": true,
+      "_knownProps": [
+        "fact",
+        "dataType",
+        "conditionExpressionOptions",
+        "conditionExpression",
+        "setConditionExpression",
+        "criteriaOptions",
+        "criteria",
+        "setCriteria",
+        "conditionValidationError",
+        "setConditionValidationError",
+        "className",
+        "prefix",
+        "suffix",
+        "treeData",
+        "multiSelectPlaceholder"
+      ]
+    },
+    {
+      "figmaIdentifier": "cap-condition-preview",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapConditionPreview*",
+        "ConditionPreview*",
+        "Condition Preview*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapConditionPreview",
+      "importPath": "@capillarytech/cap-ui-library/CapConditionPreview",
+      "propMappings": {
+        "Type": {
+          "prop": "type",
+          "transform": "string"
+        }
+      },
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "LOW",
+      "_needsReview": true,
+      "_knownProps": [
+        "type",
+        "className",
+        "conditionName",
+        "operand",
+        "operator",
+        "isExcluded",
+        "dstData",
+        "listData",
+        "additionalFields",
+        "includeMsg",
+        "excludeMsg",
+        "whoseMsg",
+        "isMsg",
+        "andMsg",
+        "equalMsg"
+      ]
+    },
+    {
+      "figmaIdentifier": "cap-custom-card",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapCustomCard*",
+        "CustomCard*",
+        "Custom Card*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapCustomCard",
+      "importPath": "@capillarytech/cap-ui-library/CapCustomCard",
+      "propMappings": {},
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "LOW",
+      "_needsReview": true,
+      "isComposite": true
+    },
+    {
+      "figmaIdentifier": "cap-custom-carousel",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapCustomCarousel*",
+        "CustomCarousel*",
+        "Custom Carousel*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapCustomCarousel",
+      "importPath": "@capillarytech/cap-ui-library/CapCustomCarousel",
+      "propMappings": {},
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "LOW",
+      "_needsReview": true,
+      "_knownProps": [
+        "carouselData"
+      ]
+    },
+    {
+      "figmaIdentifier": "cap-custom-checkbox-list",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapCustomCheckboxList*",
+        "CustomCheckboxList*",
+        "Checkbox List*",
+        "CheckboxList*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapCustomCheckboxList",
+      "importPath": "@capillarytech/cap-ui-library/CapCustomCheckboxList",
+      "propMappings": {},
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "LOW",
+      "_needsReview": true
+    },
+    {
+      "figmaIdentifier": "cap-custom-list",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapCustomList*",
+        "CustomList*",
+        "Custom List*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapCustomList",
+      "importPath": "@capillarytech/cap-ui-library/CapCustomList",
+      "propMappings": {
+        "Type": {
+          "prop": "type",
+          "transform": "string"
+        }
+      },
+      "slotMappings": {
+        "Title": {
+          "slot": "title"
+        }
+      },
+      "fallback": null,
+      "confidence": "LOW",
+      "_needsReview": true,
+      "_knownProps": [
+        "title",
+        "list",
+        "className",
+        "loader",
+        "contentId",
+        "getList",
+        "type"
+      ]
+    },
+    {
+      "figmaIdentifier": "cap-custom-select",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapCustomSelect*",
+        "CustomSelect*",
+        "Custom Select*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapCustomSelect",
+      "importPath": "@capillarytech/cap-ui-library/CapCustomSelect",
+      "propMappings": {
+        "Disabled": {
+          "prop": "disabled",
+          "transform": "boolean"
+        },
+        "Type": {
+          "prop": "type",
+          "transform": "string"
+        },
+        "Placement": {
+          "prop": "placement",
+          "transform": "string"
+        }
+      },
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "LOW",
+      "_needsReview": true,
+      "_knownProps": [
+        "value",
+        "options",
+        "onChange",
+        "showSearch",
+        "searchPlaceholder",
+        "selectPlaceholder",
+        "width",
+        "className",
+        "popoverClassName",
+        "disabled",
+        "type",
+        "virtual",
+        "closeOnSelect",
+        "placement",
+        "virtualContainerStyle"
+      ]
+    },
+    {
+      "figmaIdentifier": "cap-date-time-picker",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapDateTimePicker*",
+        "DateTimePicker*",
+        "DateTime Picker*",
+        "Date Time*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapDateTimePicker",
+      "importPath": "@capillarytech/cap-ui-library/CapDateTimePicker",
+      "propMappings": {},
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "_needsReview": true
+    },
+    {
+      "figmaIdentifier": "cap-date-time-range-picker",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapDateTimeRangePicker*",
+        "DateTimeRange*",
+        "Date Time Range*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapDateTimeRangePicker",
+      "importPath": "@capillarytech/cap-ui-library/CapDateTimeRangePicker",
+      "propMappings": {},
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "_needsReview": true
+    },
+    {
+      "figmaIdentifier": "cap-dn-d-graph",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapDnDGraph*",
+        "DnDGraph*",
+        "DragDropGraph*",
+        "Drag Drop Graph*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapDnDGraph",
+      "importPath": "@capillarytech/cap-ui-library/CapDnDGraph",
+      "propMappings": {},
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "LOW",
+      "_needsReview": true,
+      "_knownProps": [
+        "sidebarIcons",
+        "graphBuilderId",
+        "nodeTitleMapping",
+        "testMode",
+        "reportMode",
+        "processChartData",
+        "chartDataStatus"
+      ]
+    },
+    {
+      "figmaIdentifier": "cap-dnd-graph-sidebar",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapDndGraphSidebar*",
+        "DnDGraphSidebar*",
+        "DragDropSidebar*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapDndGraphSidebar",
+      "importPath": "@capillarytech/cap-ui-library/CapDndGraphSidebar",
+      "propMappings": {},
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "LOW",
+      "_needsReview": true,
+      "_knownProps": [
+        "nodes",
+        "sidebarTitle",
+        "sidebarDescription",
+        "sidebarTitleInfo",
+        "isNodeDraggable",
+        "endDrag",
+        "viewMode",
+        "onDropOutsideCanvas"
+      ]
+    },
+    {
+      "figmaIdentifier": "cap-drag-and-drop",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapDragAndDrop*",
+        "DragAndDrop*",
+        "Drag and Drop*",
+        "Drag Drop*",
+        "DnD*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapDragAndDrop",
+      "importPath": "@capillarytech/cap-ui-library/CapDragAndDrop",
+      "propMappings": {},
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "_needsReview": true,
+      "_knownProps": [
+        "setacceptedfiles",
+        "setrejectedfiles",
+        "accept",
+        "maxfilesize",
+        "multiple",
+        "dropboxwidth",
+        "dropboxtext",
+        "className"
+      ]
+    },
+    {
+      "figmaIdentifier": "cap-drag-reorder",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapDragReorder*",
+        "DragReorder*",
+        "Drag Reorder*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapDragReorder",
+      "importPath": "@capillarytech/cap-ui-library/CapDragReorder",
+      "propMappings": {},
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "LOW",
+      "_needsReview": true,
+      "_knownProps": [
+        "cards",
+        "setCards"
+      ]
+    },
+    {
+      "figmaIdentifier": "cap-emoji-picker",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapEmojiPicker*",
+        "EmojiPicker*",
+        "Emoji Picker*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapEmojiPicker",
+      "importPath": "@capillarytech/cap-ui-library/CapEmojiPicker",
+      "propMappings": {},
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "_needsReview": true
+    },
+    {
+      "figmaIdentifier": "cap-empty-div-with-border",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapEmptyDivWithBorder*",
+        "EmptyBox*",
+        "BorderBox*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapEmptyDivWithBorder",
+      "importPath": "@capillarytech/cap-ui-library/CapEmptyDivWithBorder",
+      "propMappings": {},
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "_needsReview": true
+    },
+    {
+      "figmaIdentifier": "cap-error",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapError*",
+        "Error*",
+        "ErrorPage*",
+        "Error Page*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapError",
+      "importPath": "@capillarytech/cap-ui-library/CapError",
+      "propMappings": {
+        "Type": {
+          "prop": "type",
+          "transform": "string"
+        }
+      },
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "_needsReview": true,
+      "_knownProps": [
+        "type"
+      ]
+    },
+    {
+      "figmaIdentifier": "cap-error-boundary",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapErrorBoundary*",
+        "ErrorBoundary*",
+        "Error Boundary*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapErrorBoundary",
+      "importPath": "@capillarytech/cap-ui-library/CapErrorBoundary",
+      "propMappings": {},
+      "slotMappings": {
+        "Content": {
+          "slot": "children"
+        }
+      },
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "_needsReview": true,
+      "_knownProps": [
+        "children",
+        "isExpired",
+        "isApiError",
+        "className",
+        "useSlideBox",
+        "errorHandler",
+        "onRefreshClick",
+        "onCloseSlideBox",
+        "slideBoxProps",
+        "refreshThreshold",
+        "isApiErrorBoundary",
+        "showIllustrationImage",
+        "showAnimation",
+        "refreshText",
+        "expiryTitle"
+      ]
+    },
+    {
+      "figmaIdentifier": "cap-error-state-illustration",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapErrorStateIllustration*",
+        "ErrorState*",
+        "Error State*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapErrorStateIllustration",
+      "importPath": "@capillarytech/cap-ui-library/CapErrorStateIllustration",
+      "propMappings": {},
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "_needsReview": true,
+      "_knownProps": [
+        "showImage",
+        "className",
+        "onRefreshClick",
+        "isRefreshExpired",
+        "refreshText",
+        "expiryTitle",
+        "refreshTitle",
+        "expiryDescription"
+      ]
+    },
+    {
+      "figmaIdentifier": "cap-event-calendar",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapEventCalendar*",
+        "EventCalendar*",
+        "Event Calendar*",
+        "Calendar*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapEventCalendar",
+      "importPath": "@capillarytech/cap-ui-library/CapEventCalendar",
+      "propMappings": {},
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "_needsReview": true
+    },
+    {
+      "figmaIdentifier": "cap-expression-editor",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapExpressionEditor*",
+        "ExpressionEditor*",
+        "Expression Editor*",
+        "Formula*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapExpressionEditor",
+      "importPath": "@capillarytech/cap-ui-library/CapExpressionEditor",
+      "propMappings": {},
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "LOW",
+      "_needsReview": true,
+      "_knownProps": [
+        "grammar",
+        "expected",
+        "typeSource",
+        "delims",
+        "expression"
+      ]
+    },
+    {
+      "figmaIdentifier": "cap-graph",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapGraph*",
+        "Graph*",
+        "Chart*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapGraph",
+      "importPath": "@capillarytech/cap-ui-library/CapGraph",
+      "propMappings": {
+        "Size": {
+          "map": {
+            "Small": {
+              "size": "small"
+            },
+            "Default": {
+              "size": "default"
+            },
+            "Large": {
+              "size": "large"
+            }
+          }
+        }
+      },
+      "slotMappings": {
+        "Title": {
+          "slot": "title"
+        }
+      },
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "_needsReview": true,
+      "_knownProps": [
+        "height",
+        "data",
+        "xAxis",
+        "yAxis",
+        "legend",
+        "g2Tooltip",
+        "g2TooltipList",
+        "g2TooltipListItem",
+        "itemTemplate",
+        "containerTemplate",
+        "size",
+        "scale",
+        "tooltipData",
+        "graphList",
+        "yAxisProps"
+      ]
+    },
+    {
+      "figmaIdentifier": "cap-hamburger-menu",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapHamburgerMenu*",
+        "HamburgerMenu*",
+        "Hamburger Menu*",
+        "HamburgerNav*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapHamburgerMenu",
+      "importPath": "@capillarytech/cap-ui-library/CapHamburgerMenu",
+      "propMappings": {
+        "Placement": {
+          "prop": "placement",
+          "transform": "string"
+        }
+      },
+      "slotMappings": {
+        "Footer": {
+          "slot": "footer"
+        }
+      },
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "_needsReview": true,
+      "_knownProps": [
+        "goToHome",
+        "placement",
+        "productName",
+        "userData",
+        "loadStorageItem",
+        "changeOrgEntity",
+        "selectOrganization",
+        "sidebarContent",
+        "selectedSidebarItem",
+        "onSidebarClick",
+        "noResultsText",
+        "footer",
+        "screenHeight",
+        "screenWidth",
+        "insights"
+      ]
+    },
+    {
+      "figmaIdentifier": "cap-header",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapHeader*",
+        "Header*",
+        "AppHeader*",
+        "Top Header*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapHeader",
+      "importPath": "@capillarytech/cap-ui-library/CapHeader",
+      "propMappings": {},
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "_needsReview": true
+    },
+    {
+      "figmaIdentifier": "cap-heading",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapHeading*",
+        "Heading*",
+        "PageHeading*",
+        "Page Heading*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapHeading",
+      "importPath": "@capillarytech/cap-ui-library/CapHeading",
+      "propMappings": {
+        "Type": {
+          "prop": "type",
+          "transform": "string"
+        }
+      },
+      "slotMappings": {
+        "Content": {
+          "slot": "children"
+        }
+      },
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "_needsReview": true,
+      "_knownProps": [
+        "type",
+        "children"
+      ]
+    },
+    {
+      "figmaIdentifier": "cap-hierarchy-component",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapHierarchyComponent*",
+        "Hierarchy*",
+        "HierarchyTree*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapHierarchyComponent",
+      "importPath": "@capillarytech/cap-ui-library/CapHierarchyComponent",
+      "propMappings": {},
+      "slotMappings": {
+        "Content": {
+          "slot": "children"
+        }
+      },
+      "fallback": null,
+      "confidence": "LOW",
+      "_needsReview": true,
+      "_knownProps": [
+        "className",
+        "structure",
+        "component",
+        "capColumn",
+        "formItem",
+        "componentProps",
+        "children",
+        "entity"
+      ]
+    },
+    {
+      "figmaIdentifier": "cap-illustration",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapIllustration*",
+        "Illustration*",
+        "EmptyState*",
+        "Empty State*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapIllustration",
+      "importPath": "@capillarytech/cap-ui-library/CapIllustration",
+      "propMappings": {
+        "Disabled": {
+          "prop": "disabled",
+          "transform": "boolean"
+        }
+      },
+      "slotMappings": {
+        "Title": {
+          "slot": "title"
+        },
+        "Description": {
+          "slot": "description"
+        }
+      },
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "_needsReview": true,
+      "_knownProps": [
+        "buttonLabel",
+        "illustrationImage",
+        "onClick",
+        "description",
+        "title",
+        "hasAccess",
+        "accessForbiddenMsg",
+        "buttonClassName",
+        "disabled",
+        "buttonTooltip"
+      ]
+    },
+    {
+      "figmaIdentifier": "cap-image",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapImage*",
+        "Image*",
+        "Img*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapImage",
+      "importPath": "@capillarytech/cap-ui-library/CapImage",
+      "propMappings": {},
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "_needsReview": true,
+      "_knownProps": [
+        "className",
+        "src",
+        "alt"
+      ]
+    },
+    {
+      "figmaIdentifier": "cap-import-m-f-e-component",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapImportMFEComponent*",
+        "ImportMFE*",
+        "MFE Component*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapImportMFEComponent",
+      "importPath": "@capillarytech/cap-ui-library/CapImportMFEComponent",
+      "propMappings": {},
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "LOW",
+      "_needsReview": true,
+      "_knownProps": [
+        "system",
+        "url",
+        "scope",
+        "module",
+        "loadingFallback"
+      ]
+    },
+    {
+      "figmaIdentifier": "cap-info-note-component",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapInfoNote*",
+        "InfoNote*",
+        "Info Note*",
+        "Note*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapInfoNote",
+      "importPath": "@capillarytech/cap-ui-library/CapInfoNote",
+      "propMappings": {
+        "Type": {
+          "prop": "type",
+          "transform": "string"
+        }
+      },
+      "slotMappings": {
+        "Message": {
+          "slot": "message"
+        }
+      },
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "_needsReview": true,
+      "_knownProps": [
+        "noteText",
+        "message",
+        "style",
+        "type",
+        "className"
+      ]
+    },
+    {
+      "figmaIdentifier": "cap-language-provider",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapLanguageProvider*",
+        "LanguageProvider*",
+        "Language Provider*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapLanguageProvider",
+      "importPath": "@capillarytech/cap-ui-library/CapLanguageProvider",
+      "propMappings": {},
+      "slotMappings": {
+        "Content": {
+          "slot": "children"
+        }
+      },
+      "fallback": null,
+      "confidence": "LOW",
+      "_needsReview": true,
+      "_knownProps": [
+        "user",
+        "actions",
+        "children",
+        "language",
+        "messages",
+        "supportedLocalesDetails",
+        "className",
+        "spinnerVisible"
+      ]
+    },
+    {
+      "figmaIdentifier": "cap-level-graph-renderer",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapLevelGraphRenderer*",
+        "LevelGraph*",
+        "Level Graph*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapLevelGraphRenderer",
+      "importPath": "@capillarytech/cap-ui-library/CapLevelGraphRenderer",
+      "propMappings": {},
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "LOW",
+      "_needsReview": true,
+      "_knownProps": [
+        "nodes",
+        "showToolTip",
+        "className",
+        "connections",
+        "graphStyles",
+        "offsetHeight",
+        "defaultStartX",
+        "defaultStartY",
+        "scrollerProps",
+        "scrollClassName",
+        "containerStyles",
+        "lineStrokeColor",
+        "defaultEleWidth",
+        "reverseConnProps",
+        "forwardConnProps"
+      ]
+    },
+    {
+      "figmaIdentifier": "cap-list-layout",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapListLayout*",
+        "ListLayout*",
+        "List Layout*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapListLayout",
+      "importPath": "@capillarytech/cap-ui-library/CapListLayout",
+      "propMappings": {},
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "_needsReview": true,
+      "isComposite": true
+    },
+    {
+      "figmaIdentifier": "cap-login",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapLogin*",
+        "Login*",
+        "LoginForm*",
+        "Sign In*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapLogin",
+      "importPath": "@capillarytech/cap-ui-library/CapLogin",
+      "propMappings": {},
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "_needsReview": true,
+      "_knownProps": [
+        "onSuccess",
+        "onFailure",
+        "signInLabel",
+        "userNameLabel",
+        "passwordLabel",
+        "apiEndPoint"
+      ]
+    },
+    {
+      "figmaIdentifier": "cap-media-preview",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapMediaPreview*",
+        "MediaPreview*",
+        "Media Preview*",
+        "Preview*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapMediaPreview",
+      "importPath": "@capillarytech/cap-ui-library/CapMediaPreview",
+      "propMappings": {
+        "Type": {
+          "prop": "type",
+          "transform": "string"
+        }
+      },
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "_needsReview": true,
+      "_knownProps": [
+        "intl",
+        "overrideClassName",
+        "overrideWrapperClassName",
+        "isMediaPreviewVisible",
+        "media",
+        "type",
+        "file",
+        "name",
+        "imageProps",
+        "videoProps",
+        "startIndex",
+        "width",
+        "height",
+        "topNavigationHeight",
+        "onClose"
+      ]
+    },
+    {
+      "figmaIdentifier": "cap-mobile-date-picker",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapMobileDatePicker*",
+        "MobileDatePicker*",
+        "Mobile Date Picker*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapMobileDatePicker",
+      "importPath": "@capillarytech/cap-ui-library/CapMobileDatePicker",
+      "propMappings": {},
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "_needsReview": true,
+      "_knownProps": [
+        "value",
+        "lastSyncDate",
+        "onChange"
+      ]
+    },
+    {
+      "figmaIdentifier": "cap-mobile-date-range-picker",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapMobileDateRangePicker*",
+        "MobileDateRange*",
+        "Mobile Date Range*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapMobileDateRangePicker",
+      "importPath": "@capillarytech/cap-ui-library/CapMobileDateRangePicker",
+      "propMappings": {
+        "Type": {
+          "prop": "type",
+          "transform": "string"
+        }
+      },
+      "slotMappings": {
+        "Title": {
+          "slot": "title"
+        }
+      },
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "_needsReview": true,
+      "_knownProps": [
+        "cancelText",
+        "resetText",
+        "dateDisplayFormat",
+        "yesText",
+        "noText",
+        "doneText",
+        "startDate",
+        "endDate",
+        "minDate",
+        "maxDate",
+        "type",
+        "minimumNights",
+        "onDone",
+        "switchBackToScrollerText",
+        "switchBackToCalenderText"
+      ]
+    },
+    {
+      "figmaIdentifier": "cap-multi-select-date-picker",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapMultiSelectDatePicker*",
+        "MultiSelectDatePicker*",
+        "Date Multi Select*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapMultiSelectDatePicker",
+      "importPath": "@capillarytech/cap-ui-library/CapMultiSelectDatePicker",
+      "propMappings": {},
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "_needsReview": true,
+      "_knownProps": [
+        "selected",
+        "defaultValue",
+        "showLastDay",
+        "lastDayText",
+        "onClick"
+      ]
+    },
+    {
+      "figmaIdentifier": "cap-multiple-path",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapMultiplePath*",
+        "MultiplePath*",
+        "Multiple Path*",
+        "PathSelector*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapMultiplePath",
+      "importPath": "@capillarytech/cap-ui-library/CapMultiplePath",
+      "propMappings": {},
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "LOW",
+      "_needsReview": true,
+      "_knownProps": [
+        "pathList",
+        "setPathList",
+        "capBlockWidth",
+        "continueAddPath",
+        "addPathDisabled",
+        "addPathDisabledMessage",
+        "isToggleEnabled",
+        "isSinglePath",
+        "defaultContents",
+        "ContentsRenderer",
+        "hideDeleteBtn",
+        "hideCollapseBtn",
+        "customLeftBorderColor",
+        "notUniqueMsg",
+        "deleteButtonTextMsg"
+      ]
+    },
+    {
+      "figmaIdentifier": "cap-navigation",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapNavigation*",
+        "Navigation*",
+        "Nav*",
+        "NavBar*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapNavigation",
+      "importPath": "@capillarytech/cap-ui-library/CapNavigation",
+      "propMappings": {},
+      "slotMappings": {
+        "Content": {
+          "slot": "children"
+        }
+      },
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "_needsReview": true,
+      "_knownProps": [
+        "className",
+        "showContent",
+        "userData",
+        "loadStorageItem",
+        "changeOrgEntity",
+        "topbarMenuData",
+        "dropdownMenuProps",
+        "topbarIcons",
+        "topbarSelectedMenuData",
+        "sidebarMenuData",
+        "sidebarMenuItemsPosition",
+        "sidebarMenuItemClick",
+        "secondaryTopBarActionHandler",
+        "children",
+        "selectProduct"
+      ]
+    },
+    {
+      "figmaIdentifier": "cap-notification-dropdown",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapNotificationDropdown*",
+        "NotificationDropdown*",
+        "Notification Dropdown*",
+        "NotificationBell*",
+        "Notification Bell*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapNotificationDropdown",
+      "importPath": "@capillarytech/cap-ui-library/CapNotificationDropdown",
+      "propMappings": {},
+      "slotMappings": {
+        "Title": {
+          "slot": "title"
+        }
+      },
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "_needsReview": true,
+      "_knownProps": [
+        "history",
+        "notifications",
+        "onClickNotification",
+        "title",
+        "markAsRead",
+        "notFound",
+        "handleMarkAllAsRead"
+      ],
+      "isComposite": true
+    },
+    {
+      "figmaIdentifier": "cap-popover-tree",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapPopoverTree*",
+        "PopoverTree*",
+        "Popover Tree*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapPopoverTree",
+      "importPath": "@capillarytech/cap-ui-library/CapPopoverTree",
+      "propMappings": {
+        "Placement": {
+          "prop": "placement",
+          "transform": "string"
+        }
+      },
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "_needsReview": true,
+      "_knownProps": [
+        "trigger",
+        "placement",
+        "className",
+        "defaultExpandAll",
+        "overlayClassName",
+        "showIcon",
+        "blockNode",
+        "propsTreeData",
+        "switcherIcon",
+        "TriggerComponent",
+        "componentText",
+        "triggerProps",
+        "isTriggerDisabled",
+        "triggerDisabledText",
+        "tooltipText"
+      ]
+    },
+    {
+      "figmaIdentifier": "cap-product-selection",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapProductSelection*",
+        "ProductSelection*",
+        "Product Selection*",
+        "ProductPicker*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapProductSelection",
+      "importPath": "@capillarytech/cap-ui-library/CapProductSelection",
+      "propMappings": {
+        "Placement": {
+          "prop": "placement",
+          "transform": "string"
+        }
+      },
+      "slotMappings": {
+        "Description": {
+          "slot": "description"
+        }
+      },
+      "fallback": null,
+      "confidence": "LOW",
+      "_needsReview": true,
+      "_knownProps": [
+        "target",
+        "treeData",
+        "trigger",
+        "placement",
+        "overlayClassName",
+        "handleSelect",
+        "selectedAttributes",
+        "isProductMandatory",
+        "lineItem",
+        "selectAttribute",
+        "brand",
+        "brandInfo",
+        "category",
+        "categoryInfo",
+        "product"
+      ]
+    },
+    {
+      "figmaIdentifier": "cap-radio-button",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapRadioButton*",
+        "RadioButton*",
+        "Radio Button*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapRadioButton",
+      "importPath": "@capillarytech/cap-ui-library/CapRadioButton",
+      "propMappings": {},
+      "slotMappings": {
+        "Content": {
+          "slot": "children"
+        }
+      },
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "_needsReview": true,
+      "_knownProps": [
+        "children",
+        "className"
+      ]
+    },
+    {
+      "figmaIdentifier": "cap-radio-card",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapRadioCard*",
+        "RadioCard*",
+        "Radio Card*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapRadioCard",
+      "importPath": "@capillarytech/cap-ui-library/CapRadioCard",
+      "propMappings": {},
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "_needsReview": true,
+      "_knownProps": [
+        "panes",
+        "className",
+        "onChange",
+        "selected",
+        "cardHeight",
+        "cardWidth",
+        "customDisableClass"
+      ]
+    },
+    {
+      "figmaIdentifier": "cap-radio-group",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapRadioGroup*",
+        "RadioGroup*",
+        "Radio Group*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapRadioGroup",
+      "importPath": "@capillarytech/cap-ui-library/CapRadioGroup",
+      "propMappings": {},
+      "slotMappings": {
+        "Content": {
+          "slot": "children"
+        }
+      },
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "_needsReview": true,
+      "_knownProps": [
+        "children",
+        "className",
+        "errorMessage"
+      ]
+    },
+    {
+      "figmaIdentifier": "cap-reorder-component",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapReorderComponent*",
+        "Reorder*",
+        "Sortable*",
+        "DragSort*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapReorderComponent",
+      "importPath": "@capillarytech/cap-ui-library/CapReorderComponent",
+      "propMappings": {},
+      "slotMappings": {
+        "Title": {
+          "slot": "title"
+        }
+      },
+      "fallback": null,
+      "confidence": "LOW",
+      "_needsReview": true,
+      "_knownProps": [
+        "panes",
+        "title",
+        "reOrderChannel",
+        "reset"
+      ]
+    },
+    {
+      "figmaIdentifier": "cap-road-map",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapRoadMap*",
+        "Roadmap*",
+        "Road Map*",
+        "RoadMap*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapRoadMap",
+      "importPath": "@capillarytech/cap-ui-library/CapRoadMap",
+      "propMappings": {},
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "LOW",
+      "_needsReview": true,
+      "_knownProps": [
+        "roadMapPanes",
+        "defaultRoadMapDisabledMessage"
+      ],
+      "isComposite": true
+    },
+    {
+      "figmaIdentifier": "cap-s-k-u-uploader",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapSKUUploader*",
+        "SKUUploader*",
+        "SKU Upload*",
+        "SkuUploader*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapSKUUploader",
+      "importPath": "@capillarytech/cap-ui-library/CapSKUUploader",
+      "propMappings": {},
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "_needsReview": true,
+      "_knownProps": [
+        "validateSkuIds",
+        "setSkuList",
+        "skuList",
+        "removeUploadedSkus",
+        "validatingSKUs",
+        "invalid",
+        "invalidSKUs",
+        "valid",
+        "addedSKUsMsg",
+        "skuFileName",
+        "invalidSKUFilename",
+        "uploadedMsg"
+      ]
+    },
+    {
+      "figmaIdentifier": "cap-secondary-top-bar",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapSecondaryTopBar*",
+        "SecondaryTopBar*",
+        "Secondary Top Bar*",
+        "SubHeader*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapSecondaryTopBar",
+      "importPath": "@capillarytech/cap-ui-library/CapSecondaryTopBar",
+      "propMappings": {},
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "_needsReview": true,
+      "_knownProps": [
+        "primaryMenuItem",
+        "secondaryMenuItem",
+        "menuActions",
+        "menuActionHandler",
+        "menuItemHandler"
+      ]
+    },
+    {
+      "figmaIdentifier": "cap-select-filter",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapSelectFilter*",
+        "SelectFilter*",
+        "Select Filter*",
+        "FilterSelect*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapSelectFilter",
+      "importPath": "@capillarytech/cap-ui-library/CapSelectFilter",
+      "propMappings": {
+        "Placement": {
+          "prop": "placement",
+          "transform": "string"
+        }
+      },
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "_needsReview": true,
+      "_knownProps": [
+        "placement",
+        "className",
+        "overlayClassName",
+        "onSelect",
+        "selectedValue",
+        "data",
+        "placeholder",
+        "width",
+        "dropdownMaxHeight",
+        "dropdownWidth"
+      ]
+    },
+    {
+      "figmaIdentifier": "cap-shape",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapShape*",
+        "Shape*",
+        "ShapeIcon*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapShape",
+      "importPath": "@capillarytech/cap-ui-library/CapShape",
+      "propMappings": {},
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "_needsReview": true
+    },
+    {
+      "figmaIdentifier": "cap-side-bar",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapSideBar*",
+        "SideBar*",
+        "Side Bar*",
+        "Sidebar*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapSideBar",
+      "importPath": "@capillarytech/cap-ui-library/CapSideBar",
+      "propMappings": {},
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "_needsReview": true,
+      "_knownProps": [
+        "sidebarItems",
+        "defaultActiveKey",
+        "selectedMenuItem",
+        "searchData",
+        "handleSearch",
+        "searchSupportPortalUrl",
+        "onLinkClick",
+        "pageHeading",
+        "showSearchbar"
+      ],
+      "isComposite": true
+    },
+    {
+      "figmaIdentifier": "cap-slide-box",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapSlideBox*",
+        "SlideBox*",
+        "Slide Box*",
+        "SidePanel*",
+        "SlidePanel*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapSlideBox",
+      "importPath": "@capillarytech/cap-ui-library/CapSlideBox",
+      "propMappings": {
+        "Size": {
+          "map": {
+            "Small": {
+              "size": "small"
+            },
+            "Default": {
+              "size": "default"
+            },
+            "Large": {
+              "size": "large"
+            }
+          }
+        },
+        "Visible": {
+          "prop": "show",
+          "transform": "boolean"
+        }
+      },
+      "slotMappings": {
+        "Header": {
+          "slot": "header"
+        },
+        "Footer": {
+          "slot": "footer"
+        },
+        "Content": {
+          "slot": "content"
+        }
+      },
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "_needsReview": true,
+      "_knownProps": [
+        "header",
+        "footer",
+        "content",
+        "show",
+        "handleClose",
+        "size",
+        "className",
+        "position",
+        "closeIconSize",
+        "closeIconPosition",
+        "closeIconType"
+      ]
+    },
+    {
+      "figmaIdentifier": "cap-something-went-wrong",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapSomethingWentWrong*",
+        "SomethingWentWrong*",
+        "Error Screen*",
+        "500*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapSomethingWentWrong",
+      "importPath": "@capillarytech/cap-ui-library/CapSomethingWentWrong",
+      "propMappings": {},
+      "slotMappings": {
+        "Title": {
+          "slot": "title"
+        },
+        "Description": {
+          "slot": "description"
+        }
+      },
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "_needsReview": true,
+      "_knownProps": [
+        "className",
+        "titleClassName",
+        "descClassName",
+        "buttonClassName",
+        "title",
+        "description",
+        "reloadText",
+        "url",
+        "onClickReload"
+      ]
+    },
+    {
+      "figmaIdentifier": "cap-split",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapSplit*",
+        "Split*",
+        "SplitView*",
+        "Split View*",
+        "SplitPane*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapSplit",
+      "importPath": "@capillarytech/cap-ui-library/CapSplit",
+      "propMappings": {},
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "_needsReview": true,
+      "_knownProps": [
+        "showSlideBox",
+        "setShowSlideBox",
+        "journeySetting",
+        "setJourneySetting"
+      ]
+    },
+    {
+      "figmaIdentifier": "cap-static-templates",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapStaticTemplates*",
+        "StaticTemplate*",
+        "Template*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapStaticTemplates",
+      "importPath": "@capillarytech/cap-ui-library/CapStaticTemplates",
+      "propMappings": {},
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "LOW",
+      "_needsReview": true,
+      "_knownProps": [
+        "categories",
+        "className",
+        "cardWidth",
+        "cardHeight",
+        "blankCardWidth",
+        "blankCardHeight",
+        "selectedCategory",
+        "onSelectCategory",
+        "selectedStrategyTemplate",
+        "onSelectStrategyTemplate",
+        "isBlankTemplateRequired",
+        "templatesContainerWidth",
+        "templatesContainerMaxHeight",
+        "searchPlaceholder"
+      ]
+    },
+    {
+      "figmaIdentifier": "cap-steps-accordian",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapStepsAccordian*",
+        "StepsAccordion*",
+        "Steps Accordion*",
+        "Accordion*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapStepsAccordian",
+      "importPath": "@capillarytech/cap-ui-library/CapStepsAccordian",
+      "propMappings": {},
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "_needsReview": true,
+      "_knownProps": [
+        "items",
+        "showNumberSteps"
+      ],
+      "isComposite": true
+    },
+    {
+      "figmaIdentifier": "cap-support-videos-wrapper",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapSupportVideosWrapper*",
+        "SupportVideos*",
+        "Support Videos*",
+        "VideoHelp*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapSupportVideosWrapper",
+      "importPath": "@capillarytech/cap-ui-library/CapSupportVideosWrapper",
+      "propMappings": {},
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "LOW",
+      "_needsReview": true
+    },
+    {
+      "figmaIdentifier": "cap-tab-v3",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapTabV3*",
+        "TabV3*",
+        "Tab V3*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapTabV3",
+      "importPath": "@capillarytech/cap-ui-library/CapTabV3",
+      "propMappings": {},
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "_needsReview": true,
+      "_knownProps": [
+        "panes",
+        "className",
+        "activeKey",
+        "onTabChange"
+      ],
+      "isComposite": true
+    },
+    {
+      "figmaIdentifier": "cap-tag-dropdown",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapTagDropdown*",
+        "TagDropdown*",
+        "Tag Dropdown*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapTagDropdown",
+      "importPath": "@capillarytech/cap-ui-library/CapTagDropdown",
+      "propMappings": {},
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "_needsReview": true
+    },
+    {
+      "figmaIdentifier": "cap-timeline-nested",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapTimelineNested*",
+        "TimelineNested*",
+        "Timeline Nested*",
+        "Nested Timeline*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapTimelineNested",
+      "importPath": "@capillarytech/cap-ui-library/CapTimelineNested",
+      "propMappings": {},
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "_needsReview": true,
+      "_knownProps": [
+        "timelinePanes",
+        "currentStep",
+        "setCurrentStep",
+        "width"
+      ],
+      "isComposite": true
+    },
+    {
+      "figmaIdentifier": "cap-top-bar",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapTopBar*",
+        "TopBar*",
+        "Top Bar*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapTopBar",
+      "importPath": "@capillarytech/cap-ui-library/CapTopBar",
+      "propMappings": {},
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "_needsReview": true,
+      "_knownProps": [
+        "drawerListProps",
+        "fixedProduct",
+        "productsList",
+        "selectedProduct",
+        "handleProductChange",
+        "selectProps",
+        "menuProps",
+        "topbarIcons",
+        "dropdownMenuProps",
+        "userName",
+        "breadcrumbs",
+        "headerOverideCss"
+      ]
+    },
+    {
+      "figmaIdentifier": "cap-tree-view",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapTreeView*",
+        "TreeView*",
+        "Tree View*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapTreeView",
+      "importPath": "@capillarytech/cap-ui-library/CapTreeView",
+      "propMappings": {},
+      "slotMappings": {
+        "Title": {
+          "slot": "title"
+        },
+        "Content": {
+          "slot": "children"
+        }
+      },
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "_needsReview": true,
+      "_knownProps": [
+        "treeData",
+        "title",
+        "key",
+        "children",
+        "placeholder",
+        "showLine",
+        "showIcon",
+        "defaultExpandAll",
+        "counterMargin"
+      ]
+    },
+    {
+      "figmaIdentifier": "cap-truncate-list",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapTruncateList*",
+        "TruncateList*",
+        "Truncate List*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapTruncateList",
+      "importPath": "@capillarytech/cap-ui-library/CapTruncateList",
+      "propMappings": {},
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "_needsReview": true,
+      "_knownProps": [
+        "list",
+        "showNumber",
+        "capLabelType",
+        "more",
+        "showTooltip",
+        "truncateToWidth"
+      ]
+    },
+    {
+      "figmaIdentifier": "cap-user-profile",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapUserProfile*",
+        "UserProfile*",
+        "User Profile*",
+        "Avatar*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapUserProfile",
+      "importPath": "@capillarytech/cap-ui-library/CapUserProfile",
+      "propMappings": {
+        "Visible": {
+          "prop": "show",
+          "transform": "boolean"
+        }
+      },
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "_needsReview": true,
+      "_knownProps": [
+        "show",
+        "onClose",
+        "intl",
+        "language",
+        "supportedLocalesDetails",
+        "setShowUserProfile"
+      ]
+    },
+    {
+      "figmaIdentifier": "cap-vertical-group-table",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapVerticalGroupTable*",
+        "VerticalGroupTable*",
+        "Vertical Group Table*",
+        "GroupedTable*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapVerticalGroupTable",
+      "importPath": "@capillarytech/cap-ui-library/CapVerticalGroupTable",
+      "propMappings": {},
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "_needsReview": true
+    },
+    {
+      "figmaIdentifier": "cap-virtual-list",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapVirtualList*",
+        "VirtualList*",
+        "Virtual List*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapVirtualList",
+      "importPath": "@capillarytech/cap-ui-library/CapVirtualList",
+      "propMappings": {},
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "_needsReview": true
+    },
+    {
+      "figmaIdentifier": "cap-virtual-multi-select",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapVirtualMultiSelect*",
+        "VirtualMultiSelect*",
+        "Virtual Multi Select*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapVirtualMultiSelect",
+      "importPath": "@capillarytech/cap-ui-library/CapVirtualMultiSelect",
+      "propMappings": {
+        "Disabled": {
+          "prop": "disabled",
+          "transform": "boolean"
+        }
+      },
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "_needsReview": true,
+      "_knownProps": [
+        "onSelect",
+        "placeholder",
+        "searchPlaceholder",
+        "noResultsFoundText",
+        "selectedText",
+        "moreText",
+        "triggerClassName",
+        "popoverClassName",
+        "searchKey",
+        "disabled",
+        "width",
+        "closeText",
+        "selectText",
+        "appliedKeys",
+        "getPopupContainer"
+      ]
+    },
+    {
+      "figmaIdentifier": "cap-virtual-select",
+      "nodeTypes": [
+        "COMPONENT",
+        "INSTANCE",
+        "FRAME"
+      ],
+      "componentNames": [
+        "CapVirtualSelect*",
+        "VirtualSelect*",
+        "Virtual Select*"
+      ],
+      "variantPatterns": {},
+      "targetComponent": "CapVirtualSelect",
+      "importPath": "@capillarytech/cap-ui-library/CapVirtualSelect",
+      "propMappings": {
+        "Disabled": {
+          "prop": "disabled",
+          "transform": "boolean"
+        }
+      },
+      "slotMappings": {},
+      "fallback": null,
+      "confidence": "MEDIUM",
+      "_needsReview": true,
+      "_knownProps": [
+        "namespace",
+        "listingApiConfig",
+        "method",
+        "rpmLimit",
+        "payloadPath",
+        "successStatus",
+        "success",
+        "error",
+        "label",
+        "value",
+        "totalCount",
+        "apiParamsMapper",
+        "key",
+        "getByIdApiConfig",
+        "selectedOption"
+      ]
+    }
+  ]
+}

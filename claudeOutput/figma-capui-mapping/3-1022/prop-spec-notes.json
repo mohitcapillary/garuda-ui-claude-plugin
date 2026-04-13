@@ -1,0 +1,72 @@
+{
+  "CapRow": {
+    "antdComponent": "Row",
+    "antdProps": ["gutter", "type", "align", "justify"],
+    "wrapperProps": [],
+    "caveats": [
+      "ALWAYS pass type='flex' to enable flexbox behavior",
+      "Use justify prop (not CSS justify-content)",
+      "Use align prop (not CSS align-items)"
+    ],
+    "styledPattern": "styled(CapRow).attrs(() => ({ type: 'flex', justify: '{{justify}}', align: '{{align}}' }))`...css...`",
+    "disambiguation": "CapRow = horizontal flex container. Use when Figma layoutMode is HORIZONTAL."
+  },
+  "CapColumn": {
+    "antdComponent": "Col",
+    "antdProps": ["span", "order", "offset", "push", "pull"],
+    "wrapperProps": [],
+    "caveats": ["Use span prop (1-24) when inside CapRow grid layout"],
+    "styledPattern": "styled(CapColumn)`...css...`",
+    "disambiguation": "CapColumn = vertical stack or grid cell."
+  },
+  "CapButton": {
+    "antdComponent": "Button",
+    "antdProps": ["type", "icon", "shape", "size", "loading", "className", "ghost", "block", "children"],
+    "wrapperProps": ["type", "isAddBtn", "prefix", "suffix"],
+    "caveats": ["type='primary' uses the app theme color"]
+  },
+  "CapTable": {
+    "antdComponent": "Table",
+    "antdProps": ["dataSource", "columns", "rowKey", "rowClassName", "onRowClick", "loading", "scroll", "pagination", "onChange", "sortDirections"],
+    "wrapperProps": [],
+    "caveats": [
+      "Wraps antd Table. dataSource + columns are required",
+      "Use pagination={false} to disable pagination",
+      "Use infinteScroll={true} + setPagination + loadMoreData for infinite scroll",
+      "NOT to be confused with CapTab"
+    ],
+    "disambiguation": "CapTable = data grid. Figma node 5:2877 named 'CapTable' confirmed as data table component."
+  },
+  "CapInput": {
+    "antdComponent": "Input",
+    "antdProps": ["size", "onPressEnter", "prefix", "suffix", "allowClear"],
+    "wrapperProps": ["label", "labelPosition", "isRequired", "errorMessage", "size"]
+  },
+  "CapIcon": {
+    "antdComponent": "Icon",
+    "antdProps": ["type", "className", "onClick", "role"],
+    "wrapperProps": ["type", "withBackground", "allowSvg"]
+  },
+  "CapHeading": {
+    "antdComponent": null,
+    "antdProps": [],
+    "wrapperProps": ["type"],
+    "caveats": ["Use for page/section headings — NOT CapLabel. Mixing crashes styled-components with undefined font-size."]
+  },
+  "CapLabel": {
+    "antdComponent": null,
+    "antdProps": [],
+    "wrapperProps": ["type"],
+    "caveats": ["Only accepts labelN types. For page/section headings use CapHeading hN."]
+  },
+  "CapDivider": {
+    "antdComponent": "Divider",
+    "antdProps": ["type", "orientation", "className"],
+    "wrapperProps": []
+  },
+  "CapSkeleton": {
+    "antdComponent": "Skeleton",
+    "antdProps": ["active", "loading", "className", "paragraph"],
+    "wrapperProps": []
+  }
+}

@@ -1,0 +1,111 @@
+{
+  "resolvedAt": "2026-04-13",
+  "screens": {
+    "Benefits Listing Page": {
+      "figmaNodeId": "3:1022",
+      "recipeSource": "claudeOutput/figma-capui-mapping/3-1022.recipe.json",
+      "propSpecSource": "claudeOutput/figma-capui-mapping/3-1022/prop-spec-notes.json",
+      "metadataSource": "claudeOutput/figma-capui-mapping/3-1022/metadata.xml",
+      "designContextSource": "claudeOutput/figma-capui-mapping/3:1022/design-context.jsx",
+      "components": [
+        {
+          "section": "Page Wrapper (3:1023)",
+          "targetComponent": "CapColumn",
+          "importPath": "@capillarytech/cap-ui-library/CapColumn",
+          "recipeStatus": "EXACT",
+          "provenance": "recipe.json 3:1023 mappingStatus=EXACT",
+          "props": {}
+        },
+        {
+          "section": "Toolbar Row (3:1024)",
+          "targetComponent": "CapRow",
+          "importPath": "@capillarytech/cap-ui-library/CapRow",
+          "recipeStatus": "RESOLVED-UNMAPPED",
+          "provenance": "HLD recipe table row 2: RESOLVED-UNMAPPED 3:1024 with fallback=CapRow",
+          "props": { "type": "flex", "align": "middle" }
+        },
+        {
+          "section": "Page Heading 'Benefits' (3:1026/3:1027)",
+          "targetComponent": "CapHeading",
+          "importPath": "@capillarytech/cap-ui-library/CapHeading",
+          "recipeStatus": "RESOLVED-UNMAPPED",
+          "provenance": "HLD Reviewer Override: CapHeading hN per memory rule (page headings must not use CapLabel — crashes styled-components with undefined font-size). Recipe 3:1027 was EXACT CapLabel but overridden.",
+          "props": { "type": "h1" },
+          "citation": "EXACT-OVERRIDE: HLD recipe table row 3 — 'RESOLVED-UNMAPPED (3:1026/3:1027 — overridden from CapLabel per memory rule: page headings use CapHeading hN)'"
+        },
+        {
+          "section": "Search + Filter Group (3:1029)",
+          "targetComponent": "CapRow",
+          "importPath": "@capillarytech/cap-ui-library/CapRow",
+          "recipeStatus": "RESOLVED-UNMAPPED",
+          "provenance": "HLD recipe table row 4: RESOLVED-UNMAPPED 3:1029 with fallback=CapRow",
+          "props": { "type": "flex", "align": "middle" }
+        },
+        {
+          "section": "Search Input (3:1031/3:1035)",
+          "targetComponent": "CapInput",
+          "importPath": "@capillarytech/cap-ui-library/CapInput",
+          "recipeStatus": "RESOLVED-UNMAPPED",
+          "provenance": "HLD recipe table row 5: RESOLVED-UNMAPPED (Field states → CapInput). prop-spec-notes.json confirms CapInput antdProps include prefix, allowClear.",
+          "props": { "allowClear": true }
+        },
+        {
+          "section": "Search Icon prefix (3:1038/3:1039)",
+          "targetComponent": "CapIcon",
+          "importPath": "@capillarytech/cap-ui-library/CapIcon",
+          "recipeStatus": "PARTIAL",
+          "provenance": "HLD recipe table row 6: PARTIAL 3:1038/3:1039. prop-spec-notes.json CapIcon props: type, className, onClick.",
+          "props": { "type": "search" }
+        },
+        {
+          "section": "Toolbar Divider (3:1046)",
+          "targetComponent": "CapDivider",
+          "importPath": "@capillarytech/cap-ui-library/CapDivider",
+          "recipeStatus": "PARTIAL",
+          "provenance": "HLD recipe table row 7: PARTIAL 3:1046 (Divider/Vector/Vertical). prop-spec-notes.json CapDivider antdProps: type, orientation.",
+          "props": { "type": "vertical" }
+        },
+        {
+          "section": "Filter Icon Button (3:1047)",
+          "targetComponent": "CapIcon",
+          "importPath": "@capillarytech/cap-ui-library/CapIcon",
+          "recipeStatus": "RESOLVED-UNMAPPED",
+          "provenance": "HLD recipe table row 8: RESOLVED-UNMAPPED 3:1047 (32x32 square → CapIcon). Figma node named 'Download config' but screenshot shows filter icon; HLD says 'filter toggle'.",
+          "props": { "type": "filter" }
+        },
+        {
+          "section": "Create Benefit Button (8:2902)",
+          "targetComponent": "OMITTED",
+          "recipeStatus": "EXACT",
+          "provenance": "HLD Reviewer Override: '[FIGMA-VS-SPEC: Omit — PM resolved Q3: no Create Benefit button. See Section 15 Q1]'. Recipe entry is EXACT but PM decision overrides Figma. Logged as Figma-vs-Spec conflict.",
+          "figmaVsSpecConflict": "Figma node 8:2902 shows CapButton type=primary 'Create Benefit'. Spec/PM says omit. Figma wins on visual design but spec (PM decision) wins on functionality. Conflict logged."
+        },
+        {
+          "section": "Benefits Data Table (5:2877)",
+          "targetComponent": "CapTable",
+          "importPath": "@capillarytech/cap-ui-library/CapTable",
+          "recipeStatus": "RESOLVED-UNMAPPED",
+          "provenance": "HLD Reviewer Override: 'CapTable (overridden from registry erroneous CapTab match)'. prop-spec-notes.json disambiguation note: 'CapTable = data grid. Figma node 5:2877 named CapTable confirmed as data table component.'",
+          "citation": "EXACT-OVERRIDE: HLD recipe table row 10 — 'RESOLVED-UNMAPPED (5:2877 — named CapTable, registry mapped to CapTab; overridden to CapTable per disambiguation rule)'",
+          "props": { "rowKey": "id", "pagination": false }
+        },
+        {
+          "section": "Loading Skeleton (ASSUMED)",
+          "targetComponent": "CapSkeleton",
+          "importPath": "@capillarytech/cap-ui-library/CapSkeleton",
+          "recipeStatus": "ASSUMED",
+          "provenance": "HLD recipe table row 11: ASSUMED (no recipe node; per FR-12 loading state)",
+          "props": { "active": true, "title": false, "paragraph": { "rows": 7 } }
+        },
+        {
+          "section": "Status Badge (ASSUMED)",
+          "targetComponent": "CapLabel",
+          "importPath": "@capillarytech/cap-ui-library/CapLabel",
+          "recipeStatus": "ASSUMED",
+          "provenance": "HLD recipe table row 12: ASSUMED (no recipe node; status dot+text cell in table). Used inside BenefitStatusTag atom.",
+          "props": { "type": "label4" }
+        }
+      ]
+    }
+  }
+}

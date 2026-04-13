@@ -1,0 +1,240 @@
+{
+  "feature": "benefits-settings",
+  "featureName": "Benefits Settings",
+  "prdSource": "claudeOutput/filteredPrd/benefits-settings-spec.md",
+  "inScope": [
+    "Display a Settings > Benefits page accessible via the left navigation sidebar",
+    "Show two sections: Custom fields (top) and Categories (bottom)",
+    "Full CRUD for custom fields: list, create (Name + Data type), edit (Name only; Data type read-only), delete with confirmation",
+    "Full CRUD for categories: list, create (Name input), edit (Name update), delete with confirmation",
+    "Uniqueness enforcement for both entity types per program",
+    "Soft deletion (name reuse enabled after deletion)",
+    "Sortable Last updated on column in both tables",
+    "Empty state display when no items exist",
+    "Inline validation: empty name, duplicate name detection",
+    "Delete confirmation dialog before executing deletion"
+  ],
+  "outOfScope": [
+    "Assigning custom fields or categories to individual benefits",
+    "Bulk import/export",
+    "Custom field ordering or drag-and-drop reordering",
+    "Custom field validation rules beyond data type",
+    "Cross-program sharing of custom fields or categories"
+  ],
+  "newComponents": [
+    { "name": "BenefitsSettings", "tier": "page", "location": "app/components/pages/BenefitsSettings/BenefitsSettings.js", "purpose": "Root container for the Benefits Settings page. Redux-connected. Renders both settings sections." },
+    { "name": "BenefitsSettingsLoadable", "tier": "page", "location": "app/components/pages/BenefitsSettings/Loadable.js", "purpose": "Async loadable wrapper with HOC composition (auth, translations)." },
+    { "name": "CustomFieldsSection", "tier": "organism", "location": "app/components/organisms/CustomFieldsSection/index.js", "purpose": "Renders the Custom Fields listing table, section header, and manages create/edit/delete modal state locally." },
+    { "name": "CategoriesSection", "tier": "organism", "location": "app/components/organisms/CategoriesSection/index.js", "purpose": "Renders the Categories listing table, section header, and manages create/edit/delete modal state locally." },
+    { "name": "BenefitsSettingsModal", "tier": "molecule", "location": "app/components/molecules/BenefitsSettingsModal/index.js", "purpose": "Shared modal component for create/edit operations on both custom fields and categories." },
+    { "name": "DeleteConfirmModal", "tier": "molecule", "location": "app/components/molecules/DeleteConfirmModal/index.js", "purpose": "Reusable confirmation dialog for delete operations." }
+  ],
+  "modifiedComponents": [
+    { "name": "Cap constants.js", "location": "app/components/pages/Cap/constants.js", "change": "Add BENEFITS_SETTINGS_URL = '/settings/benefits' and add Benefits item to getSettingsMenuData()." },
+    { "name": "App routes.js", "location": "app/components/pages/App/routes.js", "change": "Add route { path: '/settings/benefits', component: lazy(() => import('../BenefitsSettings')) }." },
+    { "name": "app/services/api.js", "location": "app/services/api.js", "change": "Add 8 new API methods for Benefits Settings CRUD." }
+  ],
+  "newReduxDomains": [
+    {
+      "domain": "benefits-settings",
+      "injectKey": "${CURRENT_APP_NAME}-benefits-settings",
+      "reducer": "BenefitsSettings/reducer.js",
+      "saga": "BenefitsSettings/saga.js",
+      "purpose": "Stores custom fields list, categories list, and API status fields for both sections."
+    }
+  ],
+  "newRoutes": [
+    { "path": "/settings/benefits", "component": "BenefitsSettingsLoadable", "authRequired": true, "description": "Benefits Settings page" }
+  ],
+  "sharedUtilities": [
+    { "name": "messages.js", "location": "app/components/pages/BenefitsSettings/messages.js", "new": true, "purpose": "react-intl message descriptors for all user-visible strings." }
+  ],
+  "screens": [
+    {
+      "name": "BenefitsSettings",
+      "route": "/settings/benefits",
+      "prototypeUrl": "https://www.figma.com/design/Q3rZlYt8ZY6g0TuVg1TZzm/Mohit-list?node-id=24-2729",
+      "figmaNodeId": "24:2729",
+      "recipeTable": [
+        { "section": "Settings Sidebar", "capComponent": "CapSideBar", "recipeStatus": "EXACT", "reviewerOverride": "" },
+        { "section": "Sidebar Nav Items", "capComponent": "CapMenu", "recipeStatus": "PARTIAL", "reviewerOverride": "" },
+        { "section": "Nav Active Indicator Divider", "capComponent": "CapDivider", "recipeStatus": "PARTIAL", "reviewerOverride": "" },
+        { "section": "Page Title Benefits", "capComponent": "CapLabel", "recipeStatus": "EXACT", "reviewerOverride": "CapHeading" },
+        { "section": "Custom Fields Section Container", "capComponent": "CapColumn", "recipeStatus": "EXACT", "reviewerOverride": "" },
+        { "section": "Custom Fields Section Header Row", "capComponent": "CapRow", "recipeStatus": "RESOLVED-UNMAPPED", "reviewerOverride": "" },
+        { "section": "Section Title Group (title + subtitle)", "capComponent": "CapColumn", "recipeStatus": "EXACT", "reviewerOverride": "" },
+        { "section": "New custom field Button", "capComponent": "CapButton", "recipeStatus": "EXACT", "reviewerOverride": "" },
+        { "section": "Custom Fields Table", "capComponent": "CapTable", "recipeStatus": "EXACT", "reviewerOverride": "" },
+        { "section": "Categories Section Container", "capComponent": "CapColumn", "recipeStatus": "EXACT", "reviewerOverride": "" },
+        { "section": "Categories Section Header Row", "capComponent": "CapRow", "recipeStatus": "RESOLVED-UNMAPPED", "reviewerOverride": "" },
+        { "section": "New category Button", "capComponent": "CapButton", "recipeStatus": "EXACT", "reviewerOverride": "" },
+        { "section": "Categories Table", "capComponent": "CapTable", "recipeStatus": "EXACT", "reviewerOverride": "" },
+        { "section": "Create Category Modal", "capComponent": "CapModal", "recipeStatus": "RESOLVED-UNMAPPED", "reviewerOverride": "" },
+        { "section": "Category/Custom Field Name Input", "capComponent": "CapInput", "recipeStatus": "EXACT", "reviewerOverride": "" },
+        { "section": "Data Type Selector", "capComponent": "CapSelect", "recipeStatus": "ASSUMED", "reviewerOverride": "" },
+        { "section": "Sort Icon (carrot) in table headers", "capComponent": "CapIcon", "recipeStatus": "ASSUMED", "reviewerOverride": "" }
+      ],
+      "interactions": [
+        { "action": "Page mounts", "component": "BenefitsSettings", "dispatchedAction": "GET_CUSTOM_FIELDS_REQUEST", "saga": "getCustomFieldsSaga" },
+        { "action": "Page mounts", "component": "BenefitsSettings", "dispatchedAction": "GET_CATEGORIES_REQUEST", "saga": "getCategoriesSaga" },
+        { "action": "Click New custom field", "component": "CustomFieldsSection", "dispatchedAction": "local state only (modal open)", "saga": "none" },
+        { "action": "Submit create custom field form", "component": "BenefitsSettingsModal", "dispatchedAction": "CREATE_CUSTOM_FIELD_REQUEST", "saga": "createCustomFieldSaga" },
+        { "action": "Click edit icon on custom field row", "component": "CustomFieldsSection", "dispatchedAction": "local state only (modal open with pre-fill)", "saga": "none" },
+        { "action": "Submit edit custom field form", "component": "BenefitsSettingsModal", "dispatchedAction": "UPDATE_CUSTOM_FIELD_REQUEST", "saga": "updateCustomFieldSaga" },
+        { "action": "Click delete icon on custom field row", "component": "CustomFieldsSection", "dispatchedAction": "local state only (confirm modal open)", "saga": "none" },
+        { "action": "Confirm delete of custom field", "component": "DeleteConfirmModal", "dispatchedAction": "DELETE_CUSTOM_FIELD_REQUEST", "saga": "deleteCustomFieldSaga" },
+        { "action": "Click New category", "component": "CategoriesSection", "dispatchedAction": "local state only (modal open)", "saga": "none" },
+        { "action": "Submit create category form", "component": "BenefitsSettingsModal", "dispatchedAction": "CREATE_CATEGORY_REQUEST", "saga": "createCategorySaga" },
+        { "action": "Click edit icon on category row", "component": "CategoriesSection", "dispatchedAction": "local state only (modal open with pre-fill)", "saga": "none" },
+        { "action": "Submit edit category form", "component": "BenefitsSettingsModal", "dispatchedAction": "UPDATE_CATEGORY_REQUEST", "saga": "updateCategorySaga" },
+        { "action": "Click delete icon on category row", "component": "CategoriesSection", "dispatchedAction": "local state only (confirm modal open)", "saga": "none" },
+        { "action": "Confirm delete of category", "component": "DeleteConfirmModal", "dispatchedAction": "DELETE_CATEGORY_REQUEST", "saga": "deleteCategorySaga" },
+        { "action": "Click sort icon on Last updated on column", "component": "CapTable (onChange)", "dispatchedAction": "SET_CUSTOM_FIELDS_SORT / SET_CATEGORIES_SORT", "saga": "none (reducer update, then re-dispatch GET)" }
+      ]
+    }
+  ],
+  "apis": [
+    {
+      "name": "getBenefitsCustomFields",
+      "status": "ASSUMED",
+      "endpoint": "/incentives/api/v1/benefits/custom-fields",
+      "method": "GET",
+      "requestPayload": { "programId": "string (required)", "sortBy": "updatedOn", "sortOrder": "ASC | DESC", "status": "ACTIVE" },
+      "responsePayload": {
+        "status": "success",
+        "code": 200,
+        "data": {
+          "customFields": [{ "id": "string", "name": "Disclaimer", "dataType": "STRING", "programId": "string", "updatedBy": "Dev Patel", "updatedOn": "2024-06-12T00:00:00Z", "status": "ACTIVE" }],
+          "totalCount": 5
+        }
+      },
+      "validation": "programId required; sortOrder must be ASC or DESC if provided",
+      "errors": [400, 401, 403, 404, 500]
+    },
+    {
+      "name": "createBenefitCustomField",
+      "status": "ASSUMED",
+      "endpoint": "/incentives/api/v1/benefits/custom-fields",
+      "method": "POST",
+      "requestPayload": { "programId": "string", "name": "Disclaimer", "dataType": "STRING | DATE | NUMBER" },
+      "responsePayload": { "status": "success", "code": 200, "data": { "id": "string", "name": "Disclaimer", "dataType": "STRING", "programId": "string", "updatedBy": "string", "updatedOn": "2024-06-12T00:00:00Z", "status": "ACTIVE" } },
+      "validation": "name required max 255; dataType one of STRING/DATE/NUMBER; name unique per programId",
+      "errors": [400, 401, 403, 500]
+    },
+    {
+      "name": "updateBenefitCustomField",
+      "status": "ASSUMED",
+      "endpoint": "/incentives/api/v1/benefits/custom-fields/{id}",
+      "method": "PUT",
+      "requestPayload": { "programId": "string", "name": "Updated Name" },
+      "responsePayload": { "status": "success", "code": 200, "data": { "id": "string", "name": "Updated Name", "dataType": "STRING", "programId": "string", "updatedBy": "string", "updatedOn": "2024-06-12T00:00:00Z" } },
+      "validation": "name required max 255; dataType NOT accepted (immutable); name unique per programId",
+      "errors": [400, 401, 403, 404, 500]
+    },
+    {
+      "name": "deleteBenefitCustomField",
+      "status": "ASSUMED",
+      "endpoint": "/incentives/api/v1/benefits/custom-fields/{id}",
+      "method": "DELETE",
+      "requestPayload": null,
+      "responsePayload": { "status": "success", "code": 200, "data": { "id": "string", "status": "DELETED" } },
+      "validation": "id in URL path",
+      "errors": [401, 403, 404, 500]
+    },
+    {
+      "name": "getBenefitsCategories",
+      "status": "ASSUMED",
+      "endpoint": "/incentives/api/v1/benefits/categories",
+      "method": "GET",
+      "requestPayload": { "programId": "string (required)", "sortBy": "updatedOn", "sortOrder": "ASC | DESC", "status": "ACTIVE" },
+      "responsePayload": {
+        "status": "success",
+        "code": 200,
+        "data": {
+          "categories": [{ "id": "string", "name": "Disclaimer", "programId": "string", "updatedBy": "Dev Patel", "updatedOn": "2024-06-12T00:00:00Z", "status": "ACTIVE" }],
+          "totalCount": 5
+        }
+      },
+      "validation": "programId required",
+      "errors": [400, 401, 403, 500]
+    },
+    {
+      "name": "createBenefitCategory",
+      "status": "ASSUMED",
+      "endpoint": "/incentives/api/v1/benefits/categories",
+      "method": "POST",
+      "requestPayload": { "programId": "string", "name": "Disclaimer" },
+      "responsePayload": { "status": "success", "code": 200, "data": { "id": "string", "name": "Disclaimer", "programId": "string", "updatedBy": "string", "updatedOn": "2024-06-12T00:00:00Z", "status": "ACTIVE" } },
+      "validation": "name required max 255; name unique per programId",
+      "errors": [400, 401, 403, 500]
+    },
+    {
+      "name": "updateBenefitCategory",
+      "status": "ASSUMED",
+      "endpoint": "/incentives/api/v1/benefits/categories/{id}",
+      "method": "PUT",
+      "requestPayload": { "programId": "string", "name": "Updated Category Name" },
+      "responsePayload": { "status": "success", "code": 200, "data": { "id": "string", "name": "Updated Category Name", "programId": "string", "updatedBy": "string", "updatedOn": "2024-06-12T00:00:00Z" } },
+      "validation": "name required max 255; name unique per programId",
+      "errors": [400, 401, 403, 404, 500]
+    },
+    {
+      "name": "deleteBenefitCategory",
+      "status": "ASSUMED",
+      "endpoint": "/incentives/api/v1/benefits/categories/{id}",
+      "method": "DELETE",
+      "requestPayload": null,
+      "responsePayload": { "status": "success", "code": 200, "data": { "id": "string", "status": "DELETED" } },
+      "validation": "id in URL path",
+      "errors": [401, 403, 404, 500]
+    }
+  ],
+  "redux": {
+    "storeShape": "${CURRENT_APP_NAME}-benefits-settings: { customFields, customFieldsStatus, customFieldsError, customFieldsSortBy, customFieldsSortOrder, createCustomFieldStatus, updateCustomFieldStatus, deleteCustomFieldStatus, categories, categoriesStatus, categoriesError, categoriesSortBy, categoriesSortOrder, createCategoryStatus, updateCategoryStatus, deleteCategoryStatus }",
+    "actions": [
+      "GET_CUSTOM_FIELDS_REQUEST", "GET_CUSTOM_FIELDS_SUCCESS", "GET_CUSTOM_FIELDS_FAILURE",
+      "CREATE_CUSTOM_FIELD_REQUEST", "CREATE_CUSTOM_FIELD_SUCCESS", "CREATE_CUSTOM_FIELD_FAILURE",
+      "UPDATE_CUSTOM_FIELD_REQUEST", "UPDATE_CUSTOM_FIELD_SUCCESS", "UPDATE_CUSTOM_FIELD_FAILURE",
+      "DELETE_CUSTOM_FIELD_REQUEST", "DELETE_CUSTOM_FIELD_SUCCESS", "DELETE_CUSTOM_FIELD_FAILURE",
+      "SET_CUSTOM_FIELDS_SORT",
+      "GET_CATEGORIES_REQUEST", "GET_CATEGORIES_SUCCESS", "GET_CATEGORIES_FAILURE",
+      "CREATE_CATEGORY_REQUEST", "CREATE_CATEGORY_SUCCESS", "CREATE_CATEGORY_FAILURE",
+      "UPDATE_CATEGORY_REQUEST", "UPDATE_CATEGORY_SUCCESS", "UPDATE_CATEGORY_FAILURE",
+      "DELETE_CATEGORY_REQUEST", "DELETE_CATEGORY_SUCCESS", "DELETE_CATEGORY_FAILURE",
+      "SET_CATEGORIES_SORT",
+      "CLEAR_BENEFITS_SETTINGS_DATA"
+    ],
+    "selectors": [
+      "makeSelectCustomFields", "makeSelectCustomFieldsStatus", "makeSelectCustomFieldsError",
+      "makeSelectCategories", "makeSelectCategoriesStatus", "makeSelectCategoriesError",
+      "makeSelectCreateCustomFieldStatus", "makeSelectCreateCategoryStatus",
+      "makeSelectDeleteCustomFieldStatus", "makeSelectDeleteCategoryStatus",
+      "makeSelectUpdateCustomFieldStatus", "makeSelectUpdateCategoryStatus"
+    ],
+    "sagas": [
+      "getCustomFieldsSaga", "getCategoriesSaga",
+      "createCustomFieldSaga", "updateCustomFieldSaga", "deleteCustomFieldSaga",
+      "createCategorySaga", "updateCategorySaga", "deleteCategorySaga"
+    ]
+  },
+  "validation": {
+    "clientSide": [
+      { "screen": "Create/Edit Custom Field", "field": "Name", "rule": "Required (non-empty)", "message": "Name is required" },
+      { "screen": "Create/Edit Custom Field", "field": "Name", "rule": "Unique among active custom fields in program", "message": "This custom field name already exists" },
+      { "screen": "Create Custom Field", "field": "Data type", "rule": "Required (must select a value)", "message": "Data type is required" },
+      { "screen": "Create/Edit Category", "field": "Name", "rule": "Required (non-empty)", "message": "Name is required" },
+      { "screen": "Create/Edit Category", "field": "Name", "rule": "Unique among active categories in program", "message": "This category name already exists" }
+    ],
+    "serverSide": "HTTP 400 DUPLICATE_NAME caught in saga catch block, dispatched as *_FAILURE, shown via errorMessage prop on CapInput"
+  },
+  "openQuestions": [
+    { "num": 1, "question": "What are the actual API endpoints for custom fields and categories CRUD?", "impact": "High", "owner": "Backend team", "status": "open", "comment": "All 8 API contracts are assumed." },
+    { "num": 2, "question": "Does the Benefits Settings page require a feature flag similar to isLoyaltyPromotionsV2Enabled?", "impact": "Medium", "owner": "Product + Backend", "status": "open", "comment": "" },
+    { "num": 3, "question": "Does the page inherit the Settings secondary top bar from the onSettingsPage logic in Cap.js?", "impact": "Medium", "owner": "UX + Frontend", "status": "open", "comment": "" },
+    { "num": 4, "question": "Are RBAC/permission checks required for Benefits Settings CRUD operations?", "impact": "Medium", "owner": "Product + Backend", "status": "open", "comment": "" },
+    { "num": 5, "question": "Is sort for Last updated on server-side (API refetch) or client-side?", "impact": "Low", "owner": "Frontend", "status": "open", "comment": "Architecture assumes server-side sort." },
+    { "num": 6, "question": "What is the Figma frame for the Custom Field create/edit modal?", "impact": "Low", "owner": "Design", "status": "open", "comment": "Only category creation modal visible in node 24-2729. Custom field modal is spec-derived." },
+    { "num": 7, "question": "Does the API response include the updatedBy display name directly?", "impact": "Low", "owner": "Backend", "status": "open", "comment": "Architecture assumes display name is in the API response." },
+    { "num": 8, "question": "Is there a maximum number of custom fields or categories allowed per program?", "impact": "Low", "owner": "Backend", "status": "open", "comment": "No limit mentioned in PRD; assumed unlimited." }
+  ]
+}

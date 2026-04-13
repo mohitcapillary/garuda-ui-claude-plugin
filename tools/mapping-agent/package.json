@@ -1,0 +1,37 @@
+{
+  "name": "@capillarytech/figma-blazeui-mapping-agent",
+  "version": "1.0.0",
+  "description": "Deterministic mapping layer between Figma MCP tool output and blaze-ui components",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "blazemap": "dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "test": "jest",
+    "test:unit": "jest --testPathPattern=tests/unit",
+    "test:integration": "jest --testPathPattern=tests/integration",
+    "lint": "eslint src tests --ext .ts",
+    "typecheck": "tsc --noEmit",
+    "validate-registry": "node dist/cli.js validate-registry"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.86.1",
+    "commander": "^11.0.0",
+    "micromatch": "^4.0.5",
+    "sharp": "^0.34.5"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.0",
+    "@types/micromatch": "^4.0.4",
+    "@types/node": "^18.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.0",
+    "jest": "^29.5.0",
+    "ts-jest": "^29.1.0",
+    "typescript": "^5.0.0"
+  }
+}

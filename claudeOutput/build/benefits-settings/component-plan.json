@@ -1,0 +1,228 @@
+{
+  "feature": "benefits-settings",
+  "screenName": "BenefitsSettings",
+  "figmaNodeId": "24:2729",
+  "resolvedAt": "2026-04-13",
+  "components": [
+    {
+      "nodeId": "24:2730",
+      "section": "Settings Sidebar",
+      "figmaDataName": "CapSideBar",
+      "targetComponent": "CapSideBar",
+      "mappingStatus": "EXACT",
+      "reviewerOverride": "",
+      "provenance": "recipe.json EXACT; HLD recipeTable EXACT",
+      "note": "Rendered by Cap shell at /settings/* routes. Page does NOT emit CapSideBar in its own JSX."
+    },
+    {
+      "nodeId": "24:2733",
+      "section": "Sidebar Nav Items",
+      "figmaDataName": "SideBar Nav Items",
+      "targetComponent": "CapMenu",
+      "mappingStatus": "PARTIAL",
+      "reviewerOverride": "",
+      "provenance": "recipe.json PARTIAL",
+      "note": "Shell-owned. Not in page JSX."
+    },
+    {
+      "nodeId": "24:2738",
+      "section": "Nav Active Indicator Divider",
+      "figmaDataName": "Divider/Vector/Vertical",
+      "targetComponent": "CapDivider",
+      "mappingStatus": "PARTIAL",
+      "reviewerOverride": "",
+      "provenance": "recipe.json PARTIAL",
+      "note": "Shell-owned. Not in page JSX."
+    },
+    {
+      "nodeId": "24:2777",
+      "section": "Page Title Benefits",
+      "figmaDataName": "Page Title Benefits",
+      "targetComponent": "CapHeading",
+      "mappingStatus": "EXACT",
+      "reviewerOverride": "CapHeading",
+      "provenance": "HLD recipeTable reviewerOverride=CapHeading (overrides original CapLabel mapping)",
+      "capType": "h2",
+      "note": "REVIEWER OVERRIDE wins. Was CapLabel in initial recipe; Reviewer changed to CapHeading. 24px medium #091e42 → CapHeading type=h2."
+    },
+    {
+      "nodeId": "24:2779",
+      "section": "Custom Fields Section Container",
+      "figmaDataName": "Custom Fields Section",
+      "targetComponent": "CapColumn",
+      "mappingStatus": "EXACT",
+      "reviewerOverride": "",
+      "provenance": "recipe.json EXACT; HLD recipeTable EXACT"
+    },
+    {
+      "nodeId": "24:2780",
+      "section": "Custom Fields Section Header Row",
+      "figmaDataName": "Custom Fields Section Header Row",
+      "targetComponent": "CapRow",
+      "mappingStatus": "RESOLVED-UNMAPPED",
+      "reviewerOverride": "",
+      "provenance": "recipe.json RESOLVED-UNMAPPED; HLD recipeTable RESOLVED-UNMAPPED"
+    },
+    {
+      "nodeId": "24:2781",
+      "section": "Section Title Group (title + subtitle)",
+      "figmaDataName": "Section Title Group",
+      "targetComponent": "CapColumn",
+      "mappingStatus": "EXACT",
+      "reviewerOverride": "",
+      "provenance": "recipe.json EXACT; HLD recipeTable EXACT"
+    },
+    {
+      "nodeId": "24:2782",
+      "section": "Custom Fields Section Title text",
+      "figmaDataName": "Custom fields text node",
+      "targetComponent": "CapHeading",
+      "mappingStatus": "DERIVED",
+      "reviewerOverride": "",
+      "capType": "h4",
+      "provenance": "design-context.jsx: 16px medium #091e42 → typography table → CapHeading type=h4"
+    },
+    {
+      "nodeId": "24:2783",
+      "section": "Custom Fields Section Subtitle text",
+      "figmaDataName": "subtitle text node",
+      "targetComponent": "CapLabel",
+      "mappingStatus": "DERIVED",
+      "reviewerOverride": "",
+      "capType": "label3",
+      "provenance": "design-context.jsx: 12px regular #97a0af → typography table → CapLabel type=label3"
+    },
+    {
+      "nodeId": "24:2784",
+      "section": "New custom field Button",
+      "figmaDataName": "CapButton New custom field",
+      "targetComponent": "CapButton",
+      "mappingStatus": "EXACT",
+      "reviewerOverride": "",
+      "provenance": "recipe.json EXACT; HLD recipeTable EXACT",
+      "capType": "primary"
+    },
+    {
+      "nodeId": "24:2785",
+      "section": "Custom Fields Table",
+      "figmaDataName": "CapTable Custom Fields",
+      "targetComponent": "CapTable",
+      "mappingStatus": "EXACT",
+      "reviewerOverride": "",
+      "provenance": "recipe.json EXACT; HLD recipeTable EXACT"
+    },
+    {
+      "nodeId": "24:2940",
+      "section": "Categories Section Container",
+      "figmaDataName": "Categories Section",
+      "targetComponent": "CapColumn",
+      "mappingStatus": "EXACT",
+      "reviewerOverride": "",
+      "provenance": "recipe.json EXACT; HLD recipeTable EXACT"
+    },
+    {
+      "nodeId": "24:2941",
+      "section": "Categories Section Header Row",
+      "figmaDataName": "Categories Section Header Row",
+      "targetComponent": "CapRow",
+      "mappingStatus": "RESOLVED-UNMAPPED",
+      "reviewerOverride": "",
+      "provenance": "recipe.json RESOLVED-UNMAPPED; HLD recipeTable RESOLVED-UNMAPPED"
+    },
+    {
+      "nodeId": "24:2942",
+      "section": "Categories Section Title Group",
+      "figmaDataName": "Categories Section Title Group",
+      "targetComponent": "CapColumn",
+      "mappingStatus": "DERIVED",
+      "reviewerOverride": "",
+      "provenance": "design-context.jsx structure"
+    },
+    {
+      "nodeId": "24:2943",
+      "section": "Categories Section Title text",
+      "figmaDataName": "Categories text node",
+      "targetComponent": "CapHeading",
+      "mappingStatus": "DERIVED",
+      "reviewerOverride": "",
+      "capType": "h4",
+      "provenance": "design-context.jsx: 16px medium #091e42 → typography table → CapHeading type=h4"
+    },
+    {
+      "nodeId": "24:2944",
+      "section": "Categories Section Subtitle text",
+      "figmaDataName": "subtitle text node",
+      "targetComponent": "CapLabel",
+      "mappingStatus": "DERIVED",
+      "reviewerOverride": "",
+      "capType": "label3",
+      "provenance": "design-context.jsx: 12px regular #97a0af → typography table → CapLabel type=label3"
+    },
+    {
+      "nodeId": "24:2945",
+      "section": "New category Button",
+      "figmaDataName": "CapButton New category",
+      "targetComponent": "CapButton",
+      "mappingStatus": "EXACT",
+      "reviewerOverride": "",
+      "provenance": "recipe.json EXACT; HLD recipeTable EXACT",
+      "capType": "primary"
+    },
+    {
+      "nodeId": "24:2946",
+      "section": "Categories Table",
+      "figmaDataName": "CapTable Categories",
+      "targetComponent": "CapTable",
+      "mappingStatus": "EXACT",
+      "reviewerOverride": "",
+      "provenance": "recipe.json EXACT; HLD recipeTable EXACT"
+    },
+    {
+      "nodeId": "24:3089",
+      "section": "Create Category Modal",
+      "figmaDataName": "CapPopover Create Category",
+      "targetComponent": "CapModal",
+      "mappingStatus": "RESOLVED-UNMAPPED",
+      "reviewerOverride": "",
+      "provenance": "recipe.json RESOLVED-UNMAPPED; HLD recipeTable RESOLVED-UNMAPPED; mapped from CapPopover → CapModal per FR-3/FR-7"
+    },
+    {
+      "nodeId": "24:2872",
+      "section": "Sort Icon (carrot) in Custom Fields table header",
+      "figmaDataName": "Atoms/Icons/24/filled/carrot",
+      "targetComponent": "CapIcon",
+      "mappingStatus": "ASSUMED",
+      "reviewerOverride": "",
+      "provenance": "recipe.json ASSUMED; HLD recipeTable ASSUMED",
+      "capType": "carrot"
+    },
+    {
+      "nodeId": "24:3018",
+      "section": "Sort Icon (carrot) in Categories table header",
+      "figmaDataName": "Atoms/Icons/24/filled/carrot",
+      "targetComponent": "CapIcon",
+      "mappingStatus": "ASSUMED",
+      "reviewerOverride": "",
+      "provenance": "recipe.json ASSUMED; HLD recipeTable ASSUMED",
+      "capType": "carrot"
+    },
+    {
+      "nodeId": "MODAL",
+      "section": "Category/Custom Field Name Input",
+      "figmaDataName": "N/A (modal interior)",
+      "targetComponent": "CapInput",
+      "mappingStatus": "EXACT",
+      "reviewerOverride": "",
+      "provenance": "HLD recipeTable EXACT"
+    },
+    {
+      "nodeId": "MODAL",
+      "section": "Data Type Selector",
+      "figmaDataName": "N/A (modal interior)",
+      "targetComponent": "CapSelect",
+      "mappingStatus": "ASSUMED",
+      "reviewerOverride": "",
+      "provenance": "HLD recipeTable ASSUMED"
+    }
+  ]
+}

@@ -1,0 +1,405 @@
+{
+  "resolvedAt": "2026-04-11T05:05:35.027Z",
+  "root": {
+    "figmaNodeId": "1:2117",
+    "figmaNodeType": "FRAME",
+    "figmaComponentName": "Meta data",
+    "mappingStatus": "EXACT",
+    "targetComponent": "CapColumn",
+    "importPath": "@capillarytech/cap-ui-library/CapColumn",
+    "props": {},
+    "slots": {},
+    "cssVariables": {},
+    "manualOverrides": [],
+    "warnings": [],
+    "fallback": null,
+    "children": [
+      {
+        "figmaNodeId": "1:2118",
+        "figmaNodeType": "FRAME",
+        "figmaComponentName": "Frame 2087331651",
+        "mappingStatus": "EXACT",
+        "targetComponent": "CapRow",
+        "importPath": "@capillarytech/cap-ui-library/CapRow",
+        "props": {
+          "gutter": 16
+        },
+        "slots": {},
+        "cssVariables": {},
+        "itemSpacing": 16,
+        "manualOverrides": [],
+        "warnings": [
+          "Child \"Frame 4\" (FRAME) could not be mapped",
+          "Child \"Frame 2087331650\" (FRAME) could not be mapped"
+        ],
+        "fallback": null,
+        "children": [
+          {
+            "figmaNodeId": "1:2119",
+            "figmaNodeType": "FRAME",
+            "figmaComponentName": "Frame 4",
+            "mappingStatus": "UNMAPPED",
+            "targetComponent": null,
+            "importPath": null,
+            "props": {},
+            "slots": {},
+            "cssVariables": {},
+            "padding": {
+              "bottom": 4
+            },
+            "manualOverrides": [
+              "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+            ],
+            "warnings": [],
+            "fallback": {
+              "nearestComponent": "CapRow",
+              "nearestComponentRationale": "Multi-child container with no matched component; layout wrapper suggested",
+              "htmlFallback": "<div style=\"width: 24px; height: 32px; display: flex;\"><!-- Frame 4 --></div>"
+            },
+            "children": [
+              {
+                "figmaNodeId": "1:2120",
+                "figmaNodeType": "INSTANCE",
+                "figmaComponentName": "arrow-left",
+                "mappingStatus": "UNMAPPED",
+                "targetComponent": null,
+                "importPath": null,
+                "props": {},
+                "slots": {},
+                "cssVariables": {},
+                "manualOverrides": [],
+                "warnings": [],
+                "fallback": {
+                  "nearestComponent": "CapIcon",
+                  "nearestComponentRationale": "Square leaf node (no children) resembles an icon",
+                  "htmlFallback": "<div style=\"width: 24px; height: 24px; display: flex;\"><!-- arrow-left --></div>"
+                },
+                "children": [],
+                "source": "unresolved",
+                "fingerprint": "22f52781e3e8"
+              }
+            ],
+            "source": "unresolved",
+            "fingerprint": "11aa0a01b674"
+          },
+          {
+            "figmaNodeId": "1:2121",
+            "figmaNodeType": "FRAME",
+            "figmaComponentName": "Frame 2087331650",
+            "mappingStatus": "UNMAPPED",
+            "targetComponent": null,
+            "importPath": null,
+            "props": {},
+            "slots": {},
+            "cssVariables": {},
+            "label": "New Benefit",
+            "manualOverrides": [
+              "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+            ],
+            "warnings": [],
+            "fallback": {
+              "nearestComponent": "CapRow",
+              "nearestComponentRationale": "Multi-child container with no matched component; layout wrapper suggested",
+              "htmlFallback": "<div style=\"width: 190px; height: 32px; display: flex;\"><!-- Frame 2087331650 --></div>"
+            },
+            "children": [
+              {
+                "figmaNodeId": "1:2122",
+                "figmaNodeType": "TEXT",
+                "figmaComponentName": "New Benefit",
+                "mappingStatus": "EXACT",
+                "targetComponent": "CapLabel",
+                "importPath": "@capillarytech/cap-ui-library/CapLabel",
+                "props": {
+                  "type": "label22"
+                },
+                "slots": {
+                  "children": "New Benefit"
+                },
+                "cssVariables": {
+                  "fontSize": "$font-size-vl"
+                },
+                "label": "New Benefit",
+                "fontWeight": 500,
+                "fontFamily": "Roboto",
+                "manualOverrides": [],
+                "warnings": [],
+                "fallback": null,
+                "children": [],
+                "source": "typography",
+                "fingerprint": "fe092a62d54a"
+              },
+              {
+                "figmaNodeId": "1:2123",
+                "figmaNodeType": "FRAME",
+                "figmaComponentName": "Frame 2087330659",
+                "mappingStatus": "UNMAPPED",
+                "targetComponent": null,
+                "importPath": null,
+                "props": {},
+                "slots": {},
+                "cssVariables": {},
+                "manualOverrides": [],
+                "warnings": [],
+                "fallback": {
+                  "nearestComponent": null,
+                  "nearestComponentRationale": "No structural match found",
+                  "htmlFallback": "<div style=\"width: 44px; height: 20px; display: flex;\"><!-- Frame 2087330659 --></div>"
+                },
+                "children": [],
+                "source": "unresolved",
+                "fingerprint": "d97fdd4f1207"
+              }
+            ],
+            "source": "unresolved",
+            "fingerprint": "4363fdb1ac06"
+          }
+        ],
+        "source": "layout-inferred",
+        "fingerprint": "2a75e6d288f7"
+      },
+      {
+        "figmaNodeId": "1:2126",
+        "figmaNodeType": "FRAME",
+        "figmaComponentName": "Frame 2087331660",
+        "mappingStatus": "EXACT",
+        "targetComponent": "CapColumn",
+        "importPath": "@capillarytech/cap-ui-library/CapColumn",
+        "props": {},
+        "slots": {},
+        "cssVariables": {},
+        "manualOverrides": [],
+        "warnings": [],
+        "fallback": null,
+        "children": [
+          {
+            "figmaNodeId": "1:2127",
+            "figmaNodeType": "FRAME",
+            "figmaComponentName": "Frame 2087331653",
+            "mappingStatus": "EXACT",
+            "targetComponent": "CapColumn",
+            "importPath": "@capillarytech/cap-ui-library/CapColumn",
+            "props": {},
+            "slots": {},
+            "cssVariables": {},
+            "manualOverrides": [],
+            "warnings": [],
+            "fallback": null,
+            "children": [
+              {
+                "figmaNodeId": "1:2128",
+                "figmaNodeType": "INSTANCE",
+                "figmaComponentName": "CapInput",
+                "mappingStatus": "EXACT",
+                "targetComponent": "CapInput",
+                "importPath": "@capillarytech/cap-ui-library/CapInput",
+                "props": {
+                  "size": "large"
+                },
+                "slots": {
+                  "children": "Benefit Name"
+                },
+                "cssVariables": {},
+                "label": "Benefit Name",
+                "byline": "Name that best describes the benefit you are setting up",
+                "fontWeight": 400,
+                "fontFamily": "Roboto",
+                "manualOverrides": [],
+                "warnings": [],
+                "fallback": null,
+                "children": [],
+                "source": "registry",
+                "fingerprint": "39f8daf23ca9"
+              },
+              {
+                "figmaNodeId": "1:2129",
+                "figmaNodeType": "INSTANCE",
+                "figmaComponentName": "CapInput",
+                "mappingStatus": "EXACT",
+                "targetComponent": "CapInput",
+                "importPath": "@capillarytech/cap-ui-library/CapInput",
+                "props": {
+                  "size": "large"
+                },
+                "slots": {
+                  "children": "Description"
+                },
+                "cssVariables": {},
+                "label": "Description",
+                "byline": "Describe the details of the benefit you are setting up",
+                "fontWeight": 400,
+                "fontFamily": "Roboto",
+                "manualOverrides": [],
+                "warnings": [],
+                "fallback": null,
+                "children": [],
+                "source": "registry",
+                "fingerprint": "d76e431536f0"
+              },
+              {
+                "figmaNodeId": "16:3078",
+                "figmaNodeType": "INSTANCE",
+                "figmaComponentName": "CapSelect",
+                "mappingStatus": "EXACT",
+                "targetComponent": "CapSelect",
+                "importPath": "@capillarytech/cap-ui-library/CapSelect",
+                "props": {
+                  "size": "large",
+                  "showSearch": true
+                },
+                "slots": {},
+                "cssVariables": {},
+                "label": "Program",
+                "byline": "Select the program name the benefit is part of",
+                "placeholder": "Delta program",
+                "manualOverrides": [],
+                "warnings": [],
+                "fallback": null,
+                "children": [],
+                "source": "registry",
+                "fingerprint": "d58c59850197"
+              },
+              {
+                "figmaNodeId": "16:3079",
+                "figmaNodeType": "INSTANCE",
+                "figmaComponentName": "CapSelect",
+                "mappingStatus": "EXACT",
+                "targetComponent": "CapSelect",
+                "importPath": "@capillarytech/cap-ui-library/CapSelect",
+                "props": {
+                  "size": "large",
+                  "showSearch": true
+                },
+                "slots": {},
+                "cssVariables": {},
+                "label": "Benefit Category",
+                "byline": "Select the benefit category from program level values",
+                "placeholder": "Upgrade bonus points",
+                "manualOverrides": [],
+                "warnings": [],
+                "fallback": null,
+                "children": [],
+                "source": "registry",
+                "fingerprint": "d58c59850197"
+              },
+              {
+                "figmaNodeId": "16:3080",
+                "figmaNodeType": "INSTANCE",
+                "figmaComponentName": "CapSelect",
+                "mappingStatus": "EXACT",
+                "targetComponent": "CapSelect",
+                "importPath": "@capillarytech/cap-ui-library/CapSelect",
+                "props": {
+                  "size": "large",
+                  "showSearch": true
+                },
+                "slots": {},
+                "cssVariables": {},
+                "label": "Timezone",
+                "byline": "(UTC+05:30) - Asia/Kolkata, IST",
+                "placeholder": "Benefit Duration",
+                "manualOverrides": [],
+                "warnings": [],
+                "fallback": null,
+                "children": [],
+                "source": "registry",
+                "fingerprint": "8f8ff3800a31"
+              },
+              {
+                "figmaNodeId": "16:3081",
+                "figmaNodeType": "INSTANCE",
+                "figmaComponentName": "CapSelect",
+                "mappingStatus": "EXACT",
+                "targetComponent": "CapSelect",
+                "importPath": "@capillarytech/cap-ui-library/CapSelect",
+                "props": {
+                  "size": "large",
+                  "showSearch": true
+                },
+                "slots": {},
+                "cssVariables": {},
+                "label": "Benefit Duration",
+                "byline": "Jan 25 2026 | 00:00 → Mar 04 2026 | 11:59",
+                "placeholder": "New Benefit",
+                "manualOverrides": [],
+                "warnings": [],
+                "fallback": null,
+                "children": [],
+                "source": "registry",
+                "fingerprint": "8f8ff3800a31"
+              },
+              {
+                "figmaNodeId": "16:3109",
+                "figmaNodeType": "INSTANCE",
+                "figmaComponentName": "CapInput",
+                "mappingStatus": "EXACT",
+                "targetComponent": "CapInput",
+                "importPath": "@capillarytech/cap-ui-library/CapInput",
+                "props": {
+                  "size": "large"
+                },
+                "slots": {},
+                "cssVariables": {},
+                "label": "Benefit Identifier",
+                "byline": "Set a unique external ID for reporting. A default ID is always generated.",
+                "placeholder": "Type external identifier here",
+                "manualOverrides": [
+                  "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                ],
+                "warnings": [],
+                "fallback": null,
+                "children": [],
+                "source": "registry",
+                "fingerprint": "0e6d33f3691c"
+              },
+              {
+                "figmaNodeId": "1:2268",
+                "figmaNodeType": "INSTANCE",
+                "figmaComponentName": "CapButton",
+                "mappingStatus": "EXACT",
+                "targetComponent": "CapButton",
+                "importPath": "@capillarytech/cap-ui-library/CapButton",
+                "props": {
+                  "type": "primary",
+                  "size": "large"
+                },
+                "slots": {},
+                "cssVariables": {
+                  "background": "$cap-primary-hover"
+                },
+                "label": "Next",
+                "cornerRadius": 4,
+                "padding": {
+                  "top": 10,
+                  "right": 24,
+                  "bottom": 10,
+                  "left": 24
+                },
+                "manualOverrides": [
+                  "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                ],
+                "warnings": [],
+                "fallback": null,
+                "children": [],
+                "source": "registry",
+                "fingerprint": "fa44f48d0470"
+              }
+            ],
+            "source": "layout-inferred",
+            "fingerprint": "0db91825affd"
+          }
+        ],
+        "source": "layout-inferred",
+        "fingerprint": "0d374feb6fe2"
+      }
+    ],
+    "source": "layout-inferred",
+    "fingerprint": "ed23e15d260e"
+  },
+  "stats": {
+    "total": 17,
+    "exact": 13,
+    "partial": 0,
+    "unmapped": 4
+  }
+}
