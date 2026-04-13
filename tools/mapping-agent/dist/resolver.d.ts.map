@@ -1,0 +1,1 @@
+{"version":3,"file":"resolver.d.ts","sourceRoot":"","sources":["../src/resolver.ts"],"names":[],"mappings":"AAKA,OAAO,EAEL,gBAAgB,EAEhB,SAAS,EACT,eAAe,EAGf,UAAU,EAEX,MAAM,SAAS,CAAC;AA2UjB;;;GAGG;AACH,wBAAgB,WAAW,CACzB,IAAI,EAAE,SAAS,EACf,QAAQ,EAAE,eAAe,GACxB,UAAU,CAgFZ;AA+DD;;GAEG;AACH,wBAAgB,aAAa,CAC3B,QAAQ,EAAE,SAAS,EACnB,QAAQ,EAAE,eAAe,GACxB,gBAAgB,CAUlB"}

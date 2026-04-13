@@ -1,5 +1,5 @@
 node_modules/
-dist/
+# dist/ is intentionally committed in this plugin repo so users get a zero-build install
 *.log
 .env*
 coverage/

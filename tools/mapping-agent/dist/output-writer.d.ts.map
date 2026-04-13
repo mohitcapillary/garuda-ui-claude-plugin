@@ -1,0 +1,1 @@
+{"version":3,"file":"output-writer.d.ts","sourceRoot":"","sources":["../src/output-writer.ts"],"names":[],"mappings":"AAGA,OAAO,EAAE,gBAAgB,EAAE,kBAAkB,EAAE,MAAM,SAAS,CAAC;AAa/D;;;GAGG;AACH,wBAAgB,WAAW,CACzB,MAAM,EAAE,gBAAgB,EACxB,SAAS,CAAC,EAAE,MAAM,GACjB,MAAM,CAQR;AAED;;;GAGG;AACH,wBAAgB,aAAa,CAC3B,QAAQ,EAAE,kBAAkB,EAC5B,SAAS,CAAC,EAAE,MAAM,GACjB,MAAM,CAOR"}
