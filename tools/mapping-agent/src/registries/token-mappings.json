@@ -1,5 +1,7 @@
 {
   "version": "1.0.0",
+  "generatedFrom": "@capillarytech/cap-ui-library styled/variables.js + styles/_variables.scss",
+  "generatedAt": "2026-04-14",
   "entries": [
     {
       "figmaVariable": "primary/base",
@@ -267,7 +269,7 @@
     },
     {
       "figmaVariable": "grey/g17",
-      "figmaValuePattern": "#5d6b85",
+      "figmaValuePattern": "#7f8185",
       "blazeCSSVar": "$cap-g17",
       "tokenType": "COLOR"
     },
@@ -291,8 +293,14 @@
     },
     {
       "figmaVariable": "grey/g21",
-      "figmaValuePattern": "#676e7c",
+      "figmaValuePattern": "#fafafa",
       "blazeCSSVar": "$cap-g21",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "grey/g22",
+      "figmaValuePattern": "#f3f3f3",
+      "blazeCSSVar": "$cap-g22",
       "tokenType": "COLOR"
     },
     {
@@ -308,27 +316,15 @@
       "tokenType": "COLOR"
     },
     {
-      "figmaVariable": "semantic/error",
-      "figmaValuePattern": "#ff4d4f",
-      "blazeCSSVar": "$color-error",
+      "figmaVariable": "black-alpha08",
+      "figmaValuePattern": "rgba(0, 0, 0, 0.08)",
+      "blazeCSSVar": "$cap-black-alpha08",
       "tokenType": "COLOR"
     },
     {
-      "figmaVariable": "semantic/success",
-      "figmaValuePattern": "#52c41a",
-      "blazeCSSVar": "$color-success",
-      "tokenType": "COLOR"
-    },
-    {
-      "figmaVariable": "semantic/warning",
-      "figmaValuePattern": "#faad14",
-      "blazeCSSVar": "$color-warning",
-      "tokenType": "COLOR"
-    },
-    {
-      "figmaVariable": "semantic/info",
-      "figmaValuePattern": "#1890ff",
-      "blazeCSSVar": "$color-info",
+      "figmaVariable": "black-alpha01",
+      "figmaValuePattern": "#00000022",
+      "blazeCSSVar": "$cap-black-alpha01",
       "tokenType": "COLOR"
     },
     {
@@ -423,13 +419,13 @@
     },
     {
       "figmaVariable": "cap-color/16",
-      "figmaValuePattern": "#d9d9d9",
+      "figmaValuePattern": "#22b803",
       "blazeCSSVar": "$cap-color-16",
       "tokenType": "COLOR"
     },
     {
       "figmaVariable": "cap-color/17",
-      "figmaValuePattern": "#1d61ee",
+      "figmaValuePattern": "#eb2e2d",
       "blazeCSSVar": "$cap-color-17",
       "tokenType": "COLOR"
     },
@@ -512,15 +508,33 @@
       "tokenType": "COLOR"
     },
     {
-      "figmaVariable": "background/bg08",
-      "figmaValuePattern": "#ecf7ec",
-      "blazeCSSVar": "$bg-08",
+      "figmaVariable": "background/bg04",
+      "figmaValuePattern": "#1d5b96",
+      "blazeCSSVar": "$bg-04",
       "tokenType": "COLOR"
     },
     {
-      "figmaVariable": "background/bg09",
-      "figmaValuePattern": "#fffbe6",
-      "blazeCSSVar": "$bg-09",
+      "figmaVariable": "background/bg05",
+      "figmaValuePattern": "#85b940",
+      "blazeCSSVar": "$bg-05",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "background/bg06",
+      "figmaValuePattern": "#d0011b",
+      "blazeCSSVar": "$bg-06",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "background/bg07",
+      "figmaValuePattern": "#f9f9fa",
+      "blazeCSSVar": "$bg-07",
+      "tokenType": "COLOR"
+    },
+    {
+      "figmaVariable": "background/bg08",
+      "figmaValuePattern": "#ecf7ec",
+      "blazeCSSVar": "$bg-08",
       "tokenType": "COLOR"
     },
     {
@@ -606,6 +620,30 @@
       "figmaValuePattern": "Roboto",
       "blazeCSSVar": "$font-family",
       "tokenType": "TYPOGRAPHY"
+    },
+    {
+      "figmaVariable": "icon/size-xs",
+      "figmaValuePattern": "12px",
+      "blazeCSSVar": "$icon-size-xs",
+      "tokenType": "ICON"
+    },
+    {
+      "figmaVariable": "icon/size-s",
+      "figmaValuePattern": "16px",
+      "blazeCSSVar": "$icon-size-s",
+      "tokenType": "ICON"
+    },
+    {
+      "figmaVariable": "icon/size-m",
+      "figmaValuePattern": "24px",
+      "blazeCSSVar": "$icon-size-m",
+      "tokenType": "ICON"
+    },
+    {
+      "figmaVariable": "icon/size-l",
+      "figmaValuePattern": "32px",
+      "blazeCSSVar": "$icon-size-l",
+      "tokenType": "ICON"
     },
     {
       "figmaVariable": "spacing/space-00",
@@ -767,6 +805,12 @@
       "figmaVariable": "spacing/space-80",
       "figmaValuePattern": "80",
       "blazeCSSVar": "$cap-space-80",
+      "tokenType": "SPACING"
+    },
+    {
+      "figmaVariable": "spacing/space-140",
+      "figmaValuePattern": "140",
+      "blazeCSSVar": "$cap-space-140",
       "tokenType": "SPACING"
     },
     {

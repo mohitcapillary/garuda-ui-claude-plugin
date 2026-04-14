@@ -1,6 +1,6 @@
-# @capillarytech/figma-blazeui-mapping-agent
+# @capillarytech/figma-cap-ui-library-mapping-agent
 
-A deterministic + AI-assisted mapping layer between Figma MCP tool output and blaze-ui (cap-ui-library) React components.
+A deterministic + AI-assisted mapping layer between Figma MCP tool output and cap-ui-library React components.
 
 ---
 
@@ -136,7 +136,7 @@ Without this tool, the LLM re-reasons from scratch on every conversation, re-inf
 │                                                                 │
 │  Every node has:                                                │
 │  • targetComponent: "CapDatePicker"                             │
-│  • importPath: "blaze-ui/components/CapDatePicker"              │
+│  • importPath: "@capillarytech/cap-ui-library/CapDatePicker"    │
 │  • props: { disabled: false, size: "default" }                  │
 │  • slots: { placeholder: "Select date" }                        │
 │  • cssVariables: { background: "$cap-primary-base" }            │
@@ -200,7 +200,7 @@ export ANTHROPIC_API_KEY=sk-ant-...
 ```bash
 cat /tmp/figma-metadata.xml | node dist/cli.js resolve-metadata \
   --registry src/registries \
-  --output .claude/output/figma-blazeui-mapping
+  --output .claude/output/figma-capui-mapping
 ```
 
 ### With visual resolution (UNMAPPED nodes sent to Claude vision)
@@ -208,7 +208,7 @@ cat /tmp/figma-metadata.xml | node dist/cli.js resolve-metadata \
 ```bash
 cat /tmp/figma-metadata.xml | node dist/cli.js resolve-metadata \
   --registry src/registries \
-  --output .claude/output/figma-blazeui-mapping \
+  --output .claude/output/figma-capui-mapping \
   --screenshot /tmp/figma-screenshot.png
 ```
 
@@ -217,7 +217,7 @@ cat /tmp/figma-metadata.xml | node dist/cli.js resolve-metadata \
 ```bash
 cat /tmp/figma-metadata.xml | node dist/cli.js resolve-metadata \
   --registry src/registries \
-  --output .claude/output/figma-blazeui-mapping \
+  --output .claude/output/figma-capui-mapping \
   --screenshot /tmp/figma-screenshot.png \
   --learn
 ```
@@ -242,18 +242,133 @@ echo '{"id":"1:1","name":"Button","type":"INSTANCE",...}' | \
 
 ## How It Works: The 4 Resolution Stages
 
+All example outputs below are from a real run on the **Benefits listing** screen (node `3:1022`). See `claudeOutput/figma-capui-mapping/3-1022/` for the full artifacts.
+
 ### Stage 1 — XML Parser
+
 Converts `get_metadata` XML into a typed `FigmaNode` tree. Infers `layoutMode` (HORIZONTAL/VERTICAL) from child `x`/`y` positions since `get_metadata` doesn't return auto-layout info directly.
+
+**Input:** Raw XML from Figma `get_metadata` MCP tool.
+
+**Example output** (from `claudeOutput/figma-capui-mapping/3-1022/metadata.xml`):
+
+```xml
+<frame id="3:1022" name="Frame 2087331945" x="0" y="89" width="1280" height="492">
+  <frame id="3:1023" name="Frame 2087332157" x="54" y="0" width="1162" height="458">
+    <frame id="3:1024" name="Frame 2087331367" x="0" y="0" width="1162" height="40">
+      <frame id="3:1025" name="Frame 2087330619" x="0" y="4" width="89" height="32">
+        <text id="3:1027" name="Benefits" x="0" y="0" width="89" height="32" />
+      </frame>
+      <frame id="3:1028" name="Frame 2087330635" x="129" y="0" width="1033" height="40">
+        ...
+      </frame>
+    </frame>
+    <frame id="5:2877" name="CapTable" x="0" y="60" width="1202" height="438">
+      <symbol id="5:2876" name="Property 1=Default" x="20" y="20" width="1162" height="398" />
+    </frame>
+  </frame>
+</frame>
+```
+
+Notice how most frames are named `Frame 2087331945` — unnamed by the designer. The resolver has to figure out what they are.
+
+---
 
 ### Stage 2 — Resolver (4 sub-resolvers in order)
 
-1. **Registry lookup** — glob pattern match on node name + variant properties against `component-mappings.json`. Most common components (Button, Input, Table, Modal, etc.) resolve here.
+Walks every node in the tree and tries 4 resolution strategies in order.
 
-2. **Layout inference** — any FRAME with `layoutMode: HORIZONTAL` → `CapRow`, `layoutMode: VERTICAL` → `CapColumn`. No registry entry needed.
+**1. Registry lookup** — glob pattern match on node name + variant properties against `component-mappings.json`. Most common components (Button, Input, Table, Modal, etc.) resolve here.
 
-3. **Typography** — all TEXT nodes → `CapLabel` with the correct `type` (label1–label33) derived from `fontSize` + `fontWeight`. Handles non-Roboto fonts with a `NEEDS_MANUAL_OVERRIDE` flag.
+```json
+// Node "CapTable" (5:2877) → matched "CapTable*" pattern in registry
+{
+  "figmaNodeId": "5:2877",
+  "figmaComponentName": "CapTable",
+  "mappingStatus": "EXACT",
+  "targetComponent": "CapTable",
+  "importPath": "@capillarytech/cap-ui-library/CapTable",
+  "source": "registry"
+}
+```
 
-4. **Color tokens** — fill colors on matched nodes are converted from Figma `{r,g,b}` → hex → nearest `$cap-*` CSS variable by RGB distance.
+**2. Layout inference** — any FRAME with `layoutMode: HORIZONTAL` → `CapRow`, `layoutMode: VERTICAL` → `CapColumn`. No registry entry needed.
+
+```json
+// Node "Frame 2087332157" (3:1023) → children stacked vertically
+{
+  "figmaNodeId": "3:1023",
+  "figmaComponentName": "Frame 2087332157",
+  "mappingStatus": "EXACT",
+  "targetComponent": "CapColumn",
+  "importPath": "@capillarytech/cap-ui-library/CapColumn",
+  "source": "layout-inferred"
+}
+
+// Node "Frame 2087330635" (3:1028) → children laid out horizontally
+{
+  "figmaNodeId": "3:1028",
+  "figmaComponentName": "Frame 2087330635",
+  "mappingStatus": "EXACT",
+  "targetComponent": "CapRow",
+  "importPath": "@capillarytech/cap-ui-library/CapRow",
+  "source": "layout-inferred"
+}
+```
+
+**3. Typography** — all TEXT nodes → `CapLabel` with the correct `type` (label1–label33) derived from `fontSize` + `fontWeight`. Handles non-Roboto fonts with a `NEEDS_MANUAL_OVERRIDE` flag.
+
+```json
+// Node "Benefits" (3:1027) → TEXT node resolved to CapLabel
+{
+  "figmaNodeId": "3:1027",
+  "figmaNodeType": "TEXT",
+  "figmaComponentName": "Benefits",
+  "mappingStatus": "EXACT",
+  "targetComponent": "CapLabel",
+  "importPath": "@capillarytech/cap-ui-library/CapLabel",
+  "slots": { "children": "Benefits" },
+  "source": "typography"
+}
+```
+
+**4. Color tokens** — fill colors on matched nodes are converted from Figma `{r,g,b}` → hex → nearest `$cap-*` CSS variable by RGB distance.
+
+```json
+// From design-context.jsx: bg-[#2466ea] → resolved to:
+{ "background": "$cap-secondary-base" }
+
+// From design-context.jsx: text-[#5e6c84] → resolved to:
+{ "color": "$cap-G04" }
+```
+
+**UNMAPPED nodes** — when none of the 4 resolvers match, the node gets a fallback suggestion:
+
+```json
+// Node "Frame 2087331367" (3:1024) — unnamed frame, no layout detected
+{
+  "figmaNodeId": "3:1024",
+  "figmaComponentName": "Frame 2087331367",
+  "mappingStatus": "UNMAPPED",
+  "targetComponent": null,
+  "source": "unresolved",
+  "fallback": {
+    "nearestComponent": "CapRow",
+    "nearestComponentRationale": "Multi-child container with no matched component; layout wrapper suggested",
+    "htmlFallback": "<div style=\"width: 1162px; height: 40px; display: flex;\"><!-- Frame 2087331367 --></div>"
+  }
+}
+```
+
+**Final stats for this screen:**
+
+```json
+{ "total": 25, "exact": 4, "partial": 6, "unmapped": 15 }
+```
+
+15 UNMAPPED nodes because the designer used generic names like `Frame 2087331945`. This is where Stage 3 (vision) helps.
+
+---
 
 ### Stage 3 — Vision Resolver (optional, `--screenshot`)
 
@@ -265,19 +380,110 @@ For every node that remains UNMAPPED after Stage 2:
 - Validates the response against the registry
 - Resolved nodes get `source: "vision-inferred"`
 
+**Example:** The 15 UNMAPPED nodes from Stage 2 would be cropped individually from the screenshot and sent to Claude vision. A `Frame 2087331367` that visually looks like a toolbar would resolve to:
+
+```json
+{
+  "figmaNodeId": "3:1024",
+  "mappingStatus": "EXACT",
+  "targetComponent": "CapRow",
+  "source": "vision-inferred",
+  "fingerprint": "a3f9c12d8e41"
+}
+```
+
+---
+
 ### Stage 4 — Registry Writer (optional, `--learn`)
 
 **This is the only real persistence.** Writes vision-inferred decisions to `component-mappings.json` on disk. New patterns → new entry; existing patterns → `usageCount` incremented.
 
 On the next CLI run, those same nodes match in Stage 2 (registry lookup) before vision is ever called — no API cost, instant. Over time the registry learns your designer's actual naming conventions from real usage.
 
+**Example entry auto-written to `component-mappings.json`:**
+
+```json
+{
+  "figmaIdentifier": "auto:a3f9c12d8e41",
+  "nodeTypes": ["FRAME"],
+  "componentNames": ["Frame 2087331367", "Frame 2087331367*"],
+  "targetComponent": "CapRow",
+  "importPath": "@capillarytech/cap-ui-library/CapRow",
+  "source": "llm-inferred",
+  "inferredAt": "2026-04-13T15:57:23.000Z",
+  "usageCount": 1
+}
+```
+
+Next run: same fingerprint → instant registry hit, zero API cost.
+
+---
+
+### Bonus: Companion Artifacts
+
+The mapping agent (and the `/figma-node-mapper` skill that wraps it) also produces these files per node, used by downstream agents (`/generate-hld`, `/hld-to-code`):
+
+**`design-context.jsx`** — Figma `get_design_context` output with pixel values, colors, typography (from `claudeOutput/figma-capui-mapping/3:1022/design-context.jsx`):
+
+```jsx
+// Figma node 3:1022 — Benefits listing page
+// Structural summary captured for downstream reuse.
+
+/*
+<Page title="Benefits">
+  <Toolbar>
+    <SearchInput placeholder="Search" iconLeft="search" width="360" />
+    <Divider vertical />
+    <IconButton name="Download config" />
+    <CapButton variant="primary" color="green" label="Create Benefit" />
+  </Toolbar>
+  <CapTable>
+    Columns: Name | Status | Duration | Program name | Category | Updated at
+  </CapTable>
+</Page>
+*/
+```
+
+**`prop-spec-notes.json`** — Prop API reference for every Cap* component used on this screen (from `claudeOutput/figma-capui-mapping/3-1022/prop-spec-notes.json`):
+
+```json
+{
+  "CapRow": {
+    "antdComponent": "Row",
+    "antdProps": ["gutter", "type", "align", "justify"],
+    "caveats": ["ALWAYS pass type='flex' to enable flexbox behavior"]
+  },
+  "CapTable": {
+    "antdComponent": "Table",
+    "antdProps": ["dataSource", "columns", "rowKey", "pagination", "onChange"],
+    "caveats": ["dataSource + columns are required", "NOT to be confused with CapTab"]
+  },
+  "CapButton": {
+    "antdComponent": "Button",
+    "wrapperProps": ["type", "isAddBtn", "prefix", "suffix"],
+    "caveats": ["type='primary' uses the app theme color"]
+  }
+}
+```
+
 ---
 
 ## Registry Files
 
-### `src/registries/component-mappings.json`
+Three JSON files that power all resolution stages:
 
-Maps Figma component names/variants to Cap* components. Each entry:
+```
+src/registries/
+├── component-mappings.json   — Figma component name → Cap* component
+├── token-mappings.json       — Figma hex/variable → $cap-* CSS variable
+└── prop-spec.json            — Every Cap* component's props, types, caveats
+```
+
+### `component-mappings.json` — Hand-curated + auto-learned
+
+**Generated:** Manually authored. Each entry maps a Figma component name/variant pattern to a cap-ui-library component. Auto-entries are appended when running with `--learn` flag (see Stage 4 above).
+
+**To add a new component:** Add an entry to this file. No code changes needed.
 
 ```json
 {
@@ -286,7 +492,7 @@ Maps Figma component names/variants to Cap* components. Each entry:
   "componentNames": ["Modal*", "Dialog*", "Overlay*"],
   "variantPatterns": { "Type": "Default" },
   "targetComponent": "CapModal",
-  "importPath": "blaze-ui/components/CapModal",
+  "importPath": "@capillarytech/cap-ui-library/CapModal",
   "propMappings": {
     "Closable": { "prop": "closable", "transform": "boolean" }
   },
@@ -298,11 +504,69 @@ Maps Figma component names/variants to Cap* components. Each entry:
 }
 ```
 
-To add a new component: just add an entry. No code changes needed. Rebuild with `npm run build`.
+### `token-mappings.json` — Hand-curated
 
-### `src/registries/token-mappings.json`
+**Generated:** Manually authored by mapping Figma design system variables to cap-ui-library CSS/SCSS variables. Covers colors, spacing, typography sizes, and border-radius.
 
-Maps Figma color/spacing variables to `$cap-*` CSS variables and TypeScript constants. Used for fill color → token resolution.
+```json
+{
+  "figmaVariable": "primary/base",
+  "figmaValuePattern": "#47af46",
+  "blazeCSSVar": "$cap-primary-base",
+  "tokenType": "COLOR"
+}
+```
+
+### `prop-spec.json` — Auto-generated from cap-ui-library source
+
+**Generated:** By running the `generate-prop-spec` CLI command against your installed `@capillarytech/cap-ui-library`. It scans every Cap* component's source code and produces a complete prop API spec.
+
+**What the generator does for each Cap* component:**
+
+1. Detects which **antd component** it wraps (e.g. `CapRow` → antd `Row`)
+2. Detects **spread patterns** — 5 patterns handled:
+   - Direct spread: `<Row {...rest} />`
+   - Styled wrapper: `const StyledTable = styled(Table)` → `<StyledTable {...rest} />`
+   - Sub-component alias: `const FormItem = Form.Item` → `<FormItem {...rest} />`
+   - Custom spread vars: `<Steps {...stepsProps} />`
+   - Styled from local import: `import { StyledTag } from './styles'` where styles.js has `styled(Tag)`
+3. If spread detected → reads the **antd `.d.ts` type definitions** to pull all inherited props
+4. Extracts **wrapper-specific `propTypes`** declared by the Cap* component itself
+5. Merges all props + adds hand-curated **caveats** and **styled() patterns**
+
+**Command to regenerate** (run after cap-ui-library updates):
+
+```bash
+node dist/cli.js generate-prop-spec \
+  --library-path node_modules/@capillarytech/cap-ui-library \
+  --output src/registries/prop-spec.json \
+  --verbose
+```
+
+**Requires:** `node_modules/@capillarytech/cap-ui-library` and `node_modules/antd` must be installed.
+
+Example entry:
+
+```json
+{
+  "CapRow": {
+    "description": "Wraps antd Row. All antd Row props available via spread.",
+    "spreadsAllAntdProps": true,
+    "antdProps": { "gutter": { "type": "number", "source": "antd" } },
+    "wrapperProps": { "type": { "type": "string", "source": "wrapper" } },
+    "caveats": ["ALWAYS pass type='flex' to enable flexbox behavior"],
+    "styledPattern": "styled(CapRow).attrs(() => ({ type: 'flex' }))`...`"
+  }
+}
+```
+
+### Summary
+
+| File | How to generate | When to regenerate |
+|---|---|---|
+| `component-mappings.json` | Manual edits + auto-learned via `--learn` | When new Figma components are added to the design system |
+| `token-mappings.json` | Manual edits | When Figma design tokens change (new colors, spacing, etc.) |
+| `prop-spec.json` | `node dist/cli.js generate-prop-spec ...` | After any `cap-ui-library` version update |
 
 ---
 
@@ -317,7 +581,7 @@ Maps Figma color/spacing variables to `$cap-*` CSS variables and TypeScript cons
     "figmaComponentName": "BenefitsListing",
     "mappingStatus": "EXACT",
     "targetComponent": "CapColumn",
-    "importPath": "blaze-ui/components/CapColumn",
+    "importPath": "@capillarytech/cap-ui-library/CapColumn",
     "source": "layout-inferred",
     "fingerprint": "a3f9c12d8e41",
     "props": {},
@@ -383,7 +647,7 @@ mapping-agent/
 
 ---
 
-## Independent of blaze-ui
+## Independent of cap-ui-library
 
 This tool has zero garuda-ui specific code. To use with a different component library:
 
