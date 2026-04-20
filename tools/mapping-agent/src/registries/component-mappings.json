@@ -1529,7 +1529,7 @@
         "FRAME"
       ],
       "componentNames": [
-        "CapTab*",
+        "CapTab",
         "Tab*",
         "Tabs*",
         "TabGroup*"
@@ -2478,6 +2478,7 @@
           "slot": "footer"
         }
       },
+      "isComposite": true,
       "fallback": null,
       "confidence": "HIGH"
     },

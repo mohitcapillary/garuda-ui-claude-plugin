@@ -1,0 +1,265 @@
+<frame id="32:3147" name="LoyaltyProgramTiers" x="-3186" y="784" width="1280" height="1362">
+  <frame id="32:3148" name="PageContent" x="0" y="23" width="1280" height="1524.257568359375">
+    <frame id="32:3149" name="PageHeader" x="0" y="0" width="1280" height="36.257511138916016">
+      <frame id="32:3150" name="CapSelect" x="32" y="6.128755569458008" width="189" height="24">
+        <frame id="32:3151" name="Frame 2087332865" x="0" y="0" width="189" height="24">
+          <ellipse id="32:3152" name="Ellipse 2094" x="92" y="-2" width="32" height="32" hidden="true" />
+          <text id="32:3153" name="Loyalty program 2025" x="0" y="0" width="157" height="24" />
+          <instance id="32:3154" name="Atoms/Icons/24/chevron-down" x="165" y="0" width="24" height="24" />
+        </frame>
+        <instance id="32:3155" name="Key value pair" x="0" y="32" width="411" height="16" hidden="true" />
+      </frame>
+      <instance id="32:3156" name="Divider/Vector/Horizontal" x="32" y="40" width="1152" height="1" hidden="true" />
+      <frame id="32:3157" name="ActionButtons" x="987" y="0" width="261" height="36.257511138916016">
+        <instance id="32:3158" name="CapButton" x="0" y="0" width="108" height="36.257511138916016" />
+        <instance id="32:3159" name="CapButton" x="128" y="0.1287555694580078" width="133" height="36" />
+      </frame>
+    </frame>
+    <frame id="32:3160" name="Container" x="33" y="48.257511138916016" width="1214" height="1476">
+      <frame id="32:3161" name="y3" x="0" y="0" width="1214" height="1476">
+        <frame id="32:3162" name="TierComparisonTable" x="0" y="0" width="1212" height="1245">
+          <frame id="32:3163" name="CapTable" x="0" y="30" width="1212" height="1157">
+            <frame id="32:3164" name="RowLabelsColumn" x="1" y="1" width="240" height="1156">
+              <frame id="32:3165" name="Container" x="0" y="0" width="240" height="41">
+                <frame id="32:3166" name="Paragraph" x="24" y="10" width="68.484375" height="16">
+                  <text id="32:3167" name="Basic details" x="0" y="0" width="69" height="16" />
+                </frame>
+              </frame>
+              <frame id="32:3168" name="Container" x="0" y="41" width="240" height="81">
+                <frame id="32:3169" name="Paragraph" x="24" y="16" width="203" height="16">
+                  <text id="32:3170" name="Description" x="0" y="0" width="61" height="16" />
+                </frame>
+              </frame>
+              <frame id="32:3171" name="Container" x="0" y="122" width="240" height="33">
+                <frame id="32:3172" name="Paragraph" x="24" y="8" width="203" height="16">
+                  <text id="32:3173" name="Duration" x="0" y="0" width="46" height="16" />
+                </frame>
+              </frame>
+              <frame id="32:3174" name="Container" x="0" y="155" width="240" height="33">
+                <frame id="32:3175" name="Paragraph" x="24" y="8" width="203" height="16">
+                  <text id="32:3176" name="Members (Total - 280.2k)" x="0" y="0" width="135" height="16" />
+                </frame>
+              </frame>
+              <frame id="32:3177" name="Container" x="0" y="188" width="240" height="44">
+                <frame id="32:3178" name="Paragraph" x="24" y="13.5" width="90.8671875" height="16">
+                  <text id="32:3179" name="Eligibility Criteria" x="0" y="0" width="91" height="16" />
+                </frame>
+              </frame>
+              <frame id="32:3180" name="Container" x="0" y="232" width="240" height="33">
+                <frame id="32:3181" name="Paragraph" x="24" y="8" width="203" height="16">
+                  <text id="32:3182" name="Type" x="0" y="0" width="26" height="16" />
+                </frame>
+              </frame>
+              <frame id="32:3183" name="Container" x="0" y="265" width="240" height="33">
+                <frame id="32:3184" name="Paragraph" x="24" y="8" width="203" height="16">
+                  <text id="32:3185" name="Activities" x="0" y="0" width="50" height="16" />
+                </frame>
+              </frame>
+              <frame id="32:3186" name="Container" x="0" y="298" width="240" height="33">
+                <frame id="32:3187" name="Paragraph" x="24" y="8" width="203" height="16">
+                  <text id="32:3188" name="Duration" x="0" y="0" width="46" height="16" />
+                </frame>
+              </frame>
+              <frame id="32:3189" name="Container" x="0" y="331" width="240" height="33">
+                <frame id="32:3190" name="Paragraph" x="24" y="8" width="203" height="16">
+                  <text id="32:3191" name="Upgrade Schedule" x="0" y="0" width="97" height="16" />
+                </frame>
+              </frame>
+              <frame id="32:3192" name="Container" x="0" y="364" width="240" height="34">
+                <frame id="32:3193" name="Paragraph" x="24" y="8.5" width="203" height="16">
+                  <text id="32:3194" name="Nudges / Communication" x="0" y="0" width="138" height="16" />
+                </frame>
+              </frame>
+              <frame id="32:3195" name="Container" x="0" y="398" width="240" height="43">
+                <frame id="32:3196" name="Paragraph" x="24" y="13.5" width="87.84375" height="16">
+                  <text id="32:3197" name="Renewal Criteria" x="0" y="0" width="88" height="16" />
+                </frame>
+              </frame>
+              <frame id="32:3198" name="Container" x="0" y="441" width="240" height="33">
+                <frame id="32:3199" name="Paragraph" x="24" y="8" width="203" height="16">
+                  <text id="32:3200" name="Type" x="0" y="0" width="26" height="16" />
+                </frame>
+              </frame>
+              <frame id="32:3201" name="Container" x="0" y="474" width="240" height="33">
+                <frame id="32:3202" name="Paragraph" x="24" y="8" width="203" height="16">
+                  <text id="32:3203" name="Activities" x="0" y="0" width="50" height="16" />
+                </frame>
+              </frame>
+              <frame id="32:3204" name="Container" x="0" y="507" width="240" height="33">
+                <frame id="32:3205" name="Paragraph" x="24" y="8" width="203" height="16">
+                  <text id="32:3206" name="Duration" x="0" y="0" width="46" height="16" />
+                </frame>
+              </frame>
+              <frame id="32:3207" name="Container" x="0" y="540" width="240" height="33">
+                <frame id="32:3208" name="Paragraph" x="24" y="8" width="203" height="16">
+                  <text id="32:3209" name="Upgrade Schedule" x="0" y="0" width="97" height="16" />
+                </frame>
+              </frame>
+              <frame id="32:3210" name="Container" x="0" y="573" width="240" height="34">
+                <frame id="32:3211" name="Paragraph" x="24" y="8.5" width="203" height="16">
+                  <text id="32:3212" name="Nudges / Communication" x="0" y="0" width="138" height="16" />
+                </frame>
+              </frame>
+              <frame id="32:3213" name="Container" x="0" y="607" width="240" height="43">
+                <frame id="32:3214" name="Paragraph" x="24" y="13.5" width="101.46875" height="16">
+                  <text id="32:3215" name="Downgrade criteria" x="0" y="0" width="102" height="16" />
+                </frame>
+              </frame>
+              <frame id="32:3216" name="Container" x="0" y="650" width="240" height="33">
+                <frame id="32:3217" name="Paragraph" x="24" y="8" width="203" height="16">
+                  <text id="32:3218" name="Downgrade to" x="0" y="0" width="75" height="16" />
+                </frame>
+              </frame>
+              <frame id="32:3219" name="Container" x="0" y="683" width="240" height="33">
+                <frame id="32:3220" name="Paragraph" x="24" y="8" width="203" height="16">
+                  <text id="32:3221" name="Schedule" x="0" y="0" width="50" height="16" />
+                </frame>
+              </frame>
+              <frame id="32:3222" name="Container" x="0" y="716" width="240" height="34">
+                <frame id="32:3223" name="Paragraph" x="24" y="8.5" width="203" height="16">
+                  <text id="32:3224" name="Expiry reminders" x="0" y="0" width="90" height="16" />
+                </frame>
+              </frame>
+              <frame id="32:3225" name="Container" x="0" y="750" width="240" height="43">
+                <frame id="32:3226" name="Paragraph" x="24" y="13.5" width="44.3046875" height="16">
+                  <text id="32:3227" name="Benefit category" x="0" y="0" width="89" height="16" />
+                </frame>
+              </frame>
+              <frame id="32:3228" name="Container" x="0" y="793" width="240" height="33">
+                <frame id="32:3229" name="Paragraph" x="24" y="8" width="203" height="16">
+                  <text id="32:3230" name="Welcome Gift" x="0" y="0" width="72" height="16" />
+                </frame>
+              </frame>
+              <frame id="32:3231" name="Container" x="0" y="826" width="240" height="33">
+                <frame id="32:3232" name="Paragraph" x="24" y="8" width="203" height="16">
+                  <text id="32:3233" name="Upgrade bonus points" x="0" y="0" width="117" height="16" />
+                </frame>
+              </frame>
+              <frame id="32:3234" name="Container" x="0" y="859" width="240" height="33">
+                <frame id="32:3235" name="Paragraph" x="24" y="8" width="203" height="16">
+                  <text id="32:3236" name="Tier badge" x="0" y="0" width="57" height="16" />
+                </frame>
+              </frame>
+              <frame id="32:3237" name="Container" x="0" y="892" width="240" height="33">
+                <frame id="32:3238" name="Paragraph" x="24" y="8" width="203" height="16">
+                  <text id="32:3239" name="Renewal Bonus" x="0" y="0" width="82" height="16" />
+                </frame>
+              </frame>
+              <frame id="32:3240" name="Container" x="0" y="925" width="240" height="33">
+                <frame id="32:3241" name="Paragraph" x="24" y="8" width="203" height="16">
+                  <text id="32:3242" name="Loyalty Voucher" x="0" y="0" width="85" height="16" />
+                </frame>
+              </frame>
+              <frame id="32:3243" name="Container" x="0" y="958" width="240" height="33">
+                <frame id="32:3244" name="Paragraph" x="24" y="8" width="203" height="16">
+                  <text id="32:3245" name="Earn Points" x="0" y="0" width="62" height="16" />
+                </frame>
+              </frame>
+              <frame id="32:3246" name="Container" x="0" y="991" width="240" height="33">
+                <frame id="32:3247" name="Paragraph" x="24" y="8" width="203" height="16">
+                  <text id="32:3248" name="Priority Support" x="0" y="0" width="84" height="16" />
+                </frame>
+              </frame>
+              <frame id="32:3249" name="Container" x="0" y="1024" width="240" height="33">
+                <frame id="32:3250" name="Paragraph" x="24" y="8" width="203" height="16">
+                  <text id="32:3251" name="Free Shipping" x="0" y="0" width="73" height="16" />
+                </frame>
+              </frame>
+              <frame id="32:3252" name="Container" x="0" y="1057" width="240" height="33">
+                <frame id="32:3253" name="Paragraph" x="24" y="8" width="203" height="16">
+                  <text id="32:3254" name="VIP Events" x="0" y="0" width="57" height="16" />
+                </frame>
+              </frame>
+              <frame id="32:3255" name="Container" x="0" y="1090" width="240" height="33">
+                <frame id="32:3256" name="Paragraph" x="24" y="8" width="203" height="16">
+                  <text id="32:3257" name="Birthday Bonus" x="0" y="0" width="81" height="16" />
+                </frame>
+              </frame>
+              <frame id="32:3258" name="Container" x="0" y="1123" width="240" height="33">
+                <frame id="32:3259" name="Paragraph" x="24" y="8" width="203" height="16">
+                  <text id="32:3260" name="Exclusive Comms" x="0" y="0" width="95" height="16" />
+                </frame>
+              </frame>
+            </frame>
+            <frame id="32:3261" name="Container" x="241" y="1" width="971" height="1167">
+              <frame id="32:3262" name="Container" x="0" y="0" width="1398" height="1156">
+                <frame id="32:3263" name="Container" x="0" y="0" width="1515" height="41">
+                  <frame id="32:3264" name="TierColumnHeader_Bronze" x="0" y="0" width="303" height="41">
+                    <frame id="32:3265" name="Container" x="12" y="10" width="266" height="20">
+                      <frame id="32:3266" name="Container" x="0" y="4" width="12" height="12" />
+                      <frame id="32:3267" name="Paragraph" x="20" y="2" width="38" height="16">
+                        <text id="32:3268" name="Bronze" x="0" y="0" width="38" height="16" />
+                      </frame>
+                      <frame id="32:3269" name="Container" x="66" y="0" width="45.0546875" height="20">
+                        <frame id="32:3270" name="Paragraph" x="6" y="2" width="33.0546875" height="16">
+                          <text id="32:3271" name="Active" x="0" y="0" width="34" height="16" />
+                        </frame>
+                      </frame>
+                      <instance id="32:3272" name="Atoms/Icons/24/Nav/edit" x="250" y="2" width="16" height="16" />
+                    </frame>
+                  </frame>
+                  <frame id="32:3273" name="Container" x="303" y="0" width="303" height="41">
+                    <frame id="32:3274" name="Container" x="12" y="10" width="266" height="20">
+                      <frame id="32:3275" name="Container" x="0" y="4" width="12" height="12" />
+                      <frame id="32:3276" name="Paragraph" x="20" y="2" width="30" height="16">
+                        <text id="32:3277" name="Silver" x="0" y="0" width="30" height="16" />
+                      </frame>
+                      <frame id="32:3278" name="Container" x="58" y="0" width="45.0546875" height="20">
+                        <frame id="32:3279" name="Paragraph" x="6" y="2" width="33.0546875" height="16">
+                          <text id="32:3280" name="Active" x="0" y="0" width="34" height="16" />
+                        </frame>
+                      </frame>
+                    </frame>
+                  </frame>
+                  <frame id="32:3281" name="Container" x="606" y="0" width="303" height="41">
+                    <frame id="32:3282" name="Container" x="12" y="10" width="98" height="20">
+                      <frame id="32:3283" name="Container" x="0" y="4" width="12" height="12" />
+                      <frame id="32:3284" name="Paragraph" x="20" y="2" width="25" height="16">
+                        <text id="32:3285" name="Gold" x="0" y="0" width="25" height="16" />
+                      </frame>
+                      <frame id="32:3286" name="Container" x="53" y="0" width="45.0546875" height="20">
+                        <frame id="32:3287" name="Paragraph" x="6" y="2" width="33.0546875" height="16">
+                          <text id="32:3288" name="Active" x="0" y="0" width="34" height="16" />
+                        </frame>
+                      </frame>
+                    </frame>
+                  </frame>
+                  <frame id="32:3289" name="Container" x="909" y="0" width="303" height="41">
+                    <frame id="32:3290" name="Container" x="12" y="10" width="266" height="20">
+                      <frame id="32:3291" name="Container" x="0" y="2" width="12" height="12" />
+                      <frame id="32:3292" name="Paragraph" x="20" y="0" width="192.9453125" height="16">
+                        <text id="32:3293" name="Platinum" x="0" y="0" width="49" height="16" />
+                      </frame>
+                      <frame id="32:3294" name="Container" x="220.9453125" y="0" width="45.0546875" height="20">
+                        <frame id="32:3295" name="Paragraph" x="6" y="2" width="33.0546875" height="16">
+                          <text id="32:3296" name="Active" x="0" y="0" width="34" height="16" />
+                        </frame>
+                      </frame>
+                    </frame>
+                  </frame>
+                </frame>
+                <frame id="32:3305" name="Container" x="0" y="41" width="1515" height="81">
+                  <frame id="32:3306" name="Container" x="0" y="0" width="303" height="81">
+                    <frame id="32:3307" name="Paragraph" x="12" y="16" width="266" height="48">
+                      <text id="32:3308" name="Entry level tier with basic benefits and the optio" x="0" y="0" width="266" height="48" />
+                    </frame>
+                  </frame>
+                  <frame id="32:3309" name="Container" x="303" y="0" width="303" height="81" />
+                  <frame id="32:3312" name="Container" x="606" y="0" width="303" height="81" />
+                  <frame id="32:3315" name="Container" x="909" y="0" width="303" height="81" />
+                </frame>
+              </frame>
+            </frame>
+          </frame>
+          <frame id="32:3741" name="CategoryTabs" x="0" y="0" width="1200" height="30">
+            <instance id="32:3742" name="Frame 27" x="0" y="0" width="100" height="30" />
+            <instance id="32:3743" name="Frame 32" x="108" y="0" width="123" height="30" />
+            <instance id="32:3744" name="Frame 33" x="239" y="0" width="120" height="30" />
+            <instance id="32:3745" name="Frame 34" x="367" y="0" width="138" height="30" />
+            <instance id="32:3746" name="Frame 35" x="513" y="0" width="72" height="30" />
+          </frame>
+        </frame>
+      </frame>
+    </frame>
+  </frame>
+</frame>

@@ -1,0 +1,971 @@
+{
+  "resolvedAt": "2026-04-19T20:28:16.515Z",
+  "root": {
+    "figmaNodeId": "122:4327",
+    "figmaNodeType": "INSTANCE",
+    "figmaComponentName": "CapDrawerBenefitsFilterDrawer",
+    "mappingStatus": "PARTIAL",
+    "targetComponent": "CapDrawer",
+    "importPath": "@capillarytech/cap-ui-library/CapDrawer",
+    "props": {},
+    "slots": {
+      "children": "{/* Header: \"Benefit filters\" title + X close icon */}"
+    },
+    "cssVariables": {},
+    "label": "Benefit filters",
+    "byline": "{/* Filter fields body */}",
+    "placeholder": "{/* Program name - CapMultiSelect */}",
+    "manualOverrides": [
+      "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+    ],
+    "warnings": [
+      "Child \"Rightpane\" (INSTANCE) could not be mapped",
+      "Some props from entry cap-drawer could not be resolved"
+    ],
+    "fallback": null,
+    "children": [
+      {
+        "figmaNodeId": "122:4328",
+        "figmaNodeType": "INSTANCE",
+        "figmaComponentName": "Rightpane",
+        "mappingStatus": "UNMAPPED",
+        "targetComponent": null,
+        "importPath": null,
+        "props": {},
+        "slots": {},
+        "cssVariables": {},
+        "fontWeight": 500,
+        "fontFamily": "Roboto",
+        "manualOverrides": [],
+        "warnings": [],
+        "fallback": {
+          "nearestComponent": null,
+          "nearestComponentRationale": "No structural match found",
+          "htmlFallback": "<div style=\"width: 440px; height: 96px; display: flex;\"><!-- Rightpane --></div>"
+        },
+        "children": [],
+        "source": "unresolved",
+        "fingerprint": "cff1ecb61034"
+      },
+      {
+        "figmaNodeId": "122:4329",
+        "figmaNodeType": "FRAME",
+        "figmaComponentName": "BenefitsFilterFields",
+        "mappingStatus": "EXACT",
+        "targetComponent": "CapColumn",
+        "importPath": "@capillarytech/cap-ui-library/CapColumn",
+        "props": {},
+        "slots": {
+          "children": "{/* Program name - CapMultiSelect */}"
+        },
+        "cssVariables": {},
+        "label": "{/* Program name - CapMultiSelect */}",
+        "manualOverrides": [],
+        "warnings": [],
+        "fallback": null,
+        "children": [
+          {
+            "figmaNodeId": "122:4330",
+            "figmaNodeType": "FRAME",
+            "figmaComponentName": "Input fields- Top label",
+            "mappingStatus": "EXACT",
+            "targetComponent": "CapColumn",
+            "importPath": "@capillarytech/cap-ui-library/CapColumn",
+            "props": {},
+            "slots": {},
+            "cssVariables": {},
+            "manualOverrides": [],
+            "warnings": [],
+            "fallback": null,
+            "children": [
+              {
+                "figmaNodeId": "122:4331",
+                "figmaNodeType": "FRAME",
+                "figmaComponentName": "Label+byline",
+                "mappingStatus": "BESPOKE",
+                "targetComponent": null,
+                "importPath": null,
+                "props": {},
+                "slots": {},
+                "cssVariables": {},
+                "manualOverrides": [
+                  "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                ],
+                "warnings": [],
+                "fallback": {
+                  "nearestComponent": null,
+                  "nearestComponentRationale": "No structural match found",
+                  "htmlFallback": "<div style=\"width: 344px; height: 20px; display: flex;\"><!-- Label+byline --></div>"
+                },
+                "children": [
+                  {
+                    "figmaNodeId": "122:4332",
+                    "figmaNodeType": "FRAME",
+                    "figmaComponentName": "Top label",
+                    "mappingStatus": "UNMAPPED",
+                    "targetComponent": null,
+                    "importPath": null,
+                    "props": {},
+                    "slots": {},
+                    "cssVariables": {},
+                    "label": "Top Label",
+                    "manualOverrides": [
+                      "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                    ],
+                    "warnings": [],
+                    "fallback": {
+                      "nearestComponent": "CapLabel",
+                      "nearestComponentRationale": "Single TEXT child — container is a label wrapper",
+                      "htmlFallback": "<div style=\"width: 344px; height: 20px; display: flex;\"><!-- Top label --></div>"
+                    },
+                    "children": [
+                      {
+                        "figmaNodeId": "122:4333",
+                        "figmaNodeType": "TEXT",
+                        "figmaComponentName": "Top Label",
+                        "mappingStatus": "EXACT",
+                        "targetComponent": "CapLabel",
+                        "importPath": "@capillarytech/cap-ui-library/CapLabel",
+                        "props": {},
+                        "slots": {
+                          "children": "Top Label"
+                        },
+                        "cssVariables": {},
+                        "label": "Top Label",
+                        "manualOverrides": [],
+                        "warnings": [],
+                        "fallback": null,
+                        "children": [],
+                        "source": "typography",
+                        "fingerprint": "b6546948e14c"
+                      }
+                    ],
+                    "source": "unresolved",
+                    "fingerprint": "e1eeb4b92621"
+                  }
+                ],
+                "source": "unresolved",
+                "fingerprint": "32494ce3755f"
+              },
+              {
+                "figmaNodeId": "122:4334",
+                "figmaNodeType": "INSTANCE",
+                "figmaComponentName": "CapMultiSelect",
+                "mappingStatus": "EXACT",
+                "targetComponent": "CapMultiSelect",
+                "importPath": "@capillarytech/cap-ui-library/CapMultiSelect",
+                "props": {
+                  "width": "100%"
+                },
+                "slots": {},
+                "cssVariables": {},
+                "label": "Loyalty Program 2025",
+                "byline": "{/* Status - CapMultiSelect */}",
+                "cornerRadius": 4,
+                "manualOverrides": [
+                  "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                ],
+                "warnings": [],
+                "fallback": null,
+                "children": [],
+                "source": "registry",
+                "fingerprint": "07a2d1310929"
+              }
+            ],
+            "source": "layout-inferred",
+            "fingerprint": "0b990e4a0eb9"
+          },
+          {
+            "figmaNodeId": "122:4342",
+            "figmaNodeType": "FRAME",
+            "figmaComponentName": "Input fields- Top label",
+            "mappingStatus": "EXACT",
+            "targetComponent": "CapColumn",
+            "importPath": "@capillarytech/cap-ui-library/CapColumn",
+            "props": {},
+            "slots": {},
+            "cssVariables": {},
+            "manualOverrides": [],
+            "warnings": [],
+            "fallback": null,
+            "children": [
+              {
+                "figmaNodeId": "122:4343",
+                "figmaNodeType": "FRAME",
+                "figmaComponentName": "Label+byline",
+                "mappingStatus": "BESPOKE",
+                "targetComponent": null,
+                "importPath": null,
+                "props": {},
+                "slots": {},
+                "cssVariables": {},
+                "manualOverrides": [
+                  "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                ],
+                "warnings": [],
+                "fallback": {
+                  "nearestComponent": null,
+                  "nearestComponentRationale": "No structural match found",
+                  "htmlFallback": "<div style=\"width: 344px; height: 20px; display: flex;\"><!-- Label+byline --></div>"
+                },
+                "children": [
+                  {
+                    "figmaNodeId": "122:4344",
+                    "figmaNodeType": "FRAME",
+                    "figmaComponentName": "Top label",
+                    "mappingStatus": "UNMAPPED",
+                    "targetComponent": null,
+                    "importPath": null,
+                    "props": {},
+                    "slots": {},
+                    "cssVariables": {},
+                    "label": "Top Label",
+                    "manualOverrides": [
+                      "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                    ],
+                    "warnings": [],
+                    "fallback": {
+                      "nearestComponent": "CapLabel",
+                      "nearestComponentRationale": "Single TEXT child — container is a label wrapper",
+                      "htmlFallback": "<div style=\"width: 344px; height: 20px; display: flex;\"><!-- Top label --></div>"
+                    },
+                    "children": [
+                      {
+                        "figmaNodeId": "122:4345",
+                        "figmaNodeType": "TEXT",
+                        "figmaComponentName": "Top Label",
+                        "mappingStatus": "EXACT",
+                        "targetComponent": "CapLabel",
+                        "importPath": "@capillarytech/cap-ui-library/CapLabel",
+                        "props": {},
+                        "slots": {
+                          "children": "Top Label"
+                        },
+                        "cssVariables": {},
+                        "label": "Top Label",
+                        "manualOverrides": [],
+                        "warnings": [],
+                        "fallback": null,
+                        "children": [],
+                        "source": "typography",
+                        "fingerprint": "2a583b52763f"
+                      }
+                    ],
+                    "source": "unresolved",
+                    "fingerprint": "e1eeb4b92621"
+                  }
+                ],
+                "source": "unresolved",
+                "fingerprint": "32494ce3755f"
+              },
+              {
+                "figmaNodeId": "122:4346",
+                "figmaNodeType": "INSTANCE",
+                "figmaComponentName": "CapMultiSelect",
+                "mappingStatus": "EXACT",
+                "targetComponent": "CapMultiSelect",
+                "importPath": "@capillarytech/cap-ui-library/CapMultiSelect",
+                "props": {
+                  "width": "100%"
+                },
+                "slots": {
+                  "children": "Upcoming"
+                },
+                "cssVariables": {},
+                "label": "{/* Category - CapMultiSelect */}",
+                "byline": "Category",
+                "placeholder": "Streak Rewards",
+                "manualOverrides": [
+                  "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                ],
+                "warnings": [],
+                "fallback": null,
+                "children": [],
+                "source": "registry",
+                "fingerprint": "071b6702b3de"
+              }
+            ],
+            "source": "layout-inferred",
+            "fingerprint": "0b990e4a0eb9"
+          },
+          {
+            "figmaNodeId": "122:4347",
+            "figmaNodeType": "FRAME",
+            "figmaComponentName": "Input fields- Top label",
+            "mappingStatus": "EXACT",
+            "targetComponent": "CapColumn",
+            "importPath": "@capillarytech/cap-ui-library/CapColumn",
+            "props": {},
+            "slots": {},
+            "cssVariables": {},
+            "manualOverrides": [],
+            "warnings": [],
+            "fallback": null,
+            "children": [
+              {
+                "figmaNodeId": "122:4348",
+                "figmaNodeType": "FRAME",
+                "figmaComponentName": "Label+byline",
+                "mappingStatus": "BESPOKE",
+                "targetComponent": null,
+                "importPath": null,
+                "props": {},
+                "slots": {},
+                "cssVariables": {},
+                "manualOverrides": [
+                  "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                ],
+                "warnings": [],
+                "fallback": {
+                  "nearestComponent": null,
+                  "nearestComponentRationale": "No structural match found",
+                  "htmlFallback": "<div style=\"width: 344px; height: 20px; display: flex;\"><!-- Label+byline --></div>"
+                },
+                "children": [
+                  {
+                    "figmaNodeId": "122:4349",
+                    "figmaNodeType": "FRAME",
+                    "figmaComponentName": "Top label",
+                    "mappingStatus": "UNMAPPED",
+                    "targetComponent": null,
+                    "importPath": null,
+                    "props": {},
+                    "slots": {},
+                    "cssVariables": {},
+                    "label": "Top Label",
+                    "manualOverrides": [
+                      "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                    ],
+                    "warnings": [],
+                    "fallback": {
+                      "nearestComponent": "CapLabel",
+                      "nearestComponentRationale": "Single TEXT child — container is a label wrapper",
+                      "htmlFallback": "<div style=\"width: 344px; height: 20px; display: flex;\"><!-- Top label --></div>"
+                    },
+                    "children": [
+                      {
+                        "figmaNodeId": "122:4350",
+                        "figmaNodeType": "TEXT",
+                        "figmaComponentName": "Top Label",
+                        "mappingStatus": "EXACT",
+                        "targetComponent": "CapLabel",
+                        "importPath": "@capillarytech/cap-ui-library/CapLabel",
+                        "props": {},
+                        "slots": {
+                          "children": "Top Label"
+                        },
+                        "cssVariables": {},
+                        "label": "Top Label",
+                        "manualOverrides": [],
+                        "warnings": [],
+                        "fallback": null,
+                        "children": [],
+                        "source": "typography",
+                        "fingerprint": "b6546948e14c"
+                      }
+                    ],
+                    "source": "unresolved",
+                    "fingerprint": "e1eeb4b92621"
+                  }
+                ],
+                "source": "unresolved",
+                "fingerprint": "32494ce3755f"
+              },
+              {
+                "figmaNodeId": "122:4351",
+                "figmaNodeType": "INSTANCE",
+                "figmaComponentName": "CapMultiSelect",
+                "mappingStatus": "EXACT",
+                "targetComponent": "CapMultiSelect",
+                "importPath": "@capillarytech/cap-ui-library/CapMultiSelect",
+                "props": {
+                  "width": "100%"
+                },
+                "slots": {
+                  "children": "Streak Rewards"
+                },
+                "cssVariables": {},
+                "label": "{/* Duration - CapDateRangePicker */}",
+                "byline": "Duration",
+                "placeholder": "Mar 28 2025 → Mar 29 2025",
+                "manualOverrides": [
+                  "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                ],
+                "warnings": [],
+                "fallback": null,
+                "children": [],
+                "source": "registry",
+                "fingerprint": "071b6702b3de"
+              }
+            ],
+            "source": "layout-inferred",
+            "fingerprint": "0b990e4a0eb9"
+          },
+          {
+            "figmaNodeId": "122:4352",
+            "figmaNodeType": "FRAME",
+            "figmaComponentName": "Frame 2087331958",
+            "mappingStatus": "EXACT",
+            "targetComponent": "CapColumn",
+            "importPath": "@capillarytech/cap-ui-library/CapColumn",
+            "props": {},
+            "slots": {},
+            "cssVariables": {},
+            "manualOverrides": [],
+            "warnings": [],
+            "fallback": null,
+            "children": [
+              {
+                "figmaNodeId": "122:4353",
+                "figmaNodeType": "FRAME",
+                "figmaComponentName": "Frame 2087331953",
+                "mappingStatus": "BESPOKE",
+                "targetComponent": null,
+                "importPath": null,
+                "props": {},
+                "slots": {},
+                "cssVariables": {},
+                "manualOverrides": [
+                  "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                ],
+                "warnings": [],
+                "fallback": {
+                  "nearestComponent": null,
+                  "nearestComponentRationale": "No structural match found",
+                  "htmlFallback": "<div style=\"width: 344px; height: 20px; display: flex;\"><!-- Frame 2087331953 --></div>"
+                },
+                "children": [
+                  {
+                    "figmaNodeId": "122:4354",
+                    "figmaNodeType": "FRAME",
+                    "figmaComponentName": "Input fields- Top label",
+                    "mappingStatus": "BESPOKE",
+                    "targetComponent": null,
+                    "importPath": null,
+                    "props": {},
+                    "slots": {},
+                    "cssVariables": {},
+                    "manualOverrides": [
+                      "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                    ],
+                    "warnings": [],
+                    "fallback": {
+                      "nearestComponent": null,
+                      "nearestComponentRationale": "No structural match found",
+                      "htmlFallback": "<div style=\"width: 54px; height: 20px; display: flex;\"><!-- Input fields- Top label --></div>"
+                    },
+                    "children": [
+                      {
+                        "figmaNodeId": "122:4355",
+                        "figmaNodeType": "FRAME",
+                        "figmaComponentName": "Label+byline",
+                        "mappingStatus": "BESPOKE",
+                        "targetComponent": null,
+                        "importPath": null,
+                        "props": {},
+                        "slots": {},
+                        "cssVariables": {},
+                        "manualOverrides": [
+                          "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                        ],
+                        "warnings": [],
+                        "fallback": {
+                          "nearestComponent": null,
+                          "nearestComponentRationale": "No structural match found",
+                          "htmlFallback": "<div style=\"width: 54px; height: 20px; display: flex;\"><!-- Label+byline --></div>"
+                        },
+                        "children": [
+                          {
+                            "figmaNodeId": "122:4356",
+                            "figmaNodeType": "FRAME",
+                            "figmaComponentName": "Top label",
+                            "mappingStatus": "UNMAPPED",
+                            "targetComponent": null,
+                            "importPath": null,
+                            "props": {},
+                            "slots": {},
+                            "cssVariables": {},
+                            "label": "Top Label",
+                            "manualOverrides": [
+                              "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                            ],
+                            "warnings": [],
+                            "fallback": {
+                              "nearestComponent": "CapLabel",
+                              "nearestComponentRationale": "Single TEXT child — container is a label wrapper",
+                              "htmlFallback": "<div style=\"width: 54px; height: 20px; display: flex;\"><!-- Top label --></div>"
+                            },
+                            "children": [
+                              {
+                                "figmaNodeId": "122:4357",
+                                "figmaNodeType": "TEXT",
+                                "figmaComponentName": "Top Label",
+                                "mappingStatus": "EXACT",
+                                "targetComponent": "CapLabel",
+                                "importPath": "@capillarytech/cap-ui-library/CapLabel",
+                                "props": {},
+                                "slots": {
+                                  "children": "Top Label"
+                                },
+                                "cssVariables": {},
+                                "label": "Top Label",
+                                "manualOverrides": [],
+                                "warnings": [],
+                                "fallback": null,
+                                "children": [],
+                                "source": "typography",
+                                "fingerprint": "b6546948e14c"
+                              }
+                            ],
+                            "source": "unresolved",
+                            "fingerprint": "5216ff0164d8"
+                          }
+                        ],
+                        "source": "unresolved",
+                        "fingerprint": "2c0d0cedb741"
+                      }
+                    ],
+                    "source": "unresolved",
+                    "fingerprint": "3d07279661bc"
+                  }
+                ],
+                "source": "unresolved",
+                "fingerprint": "fe780b55c8f1"
+              },
+              {
+                "figmaNodeId": "122:4358",
+                "figmaNodeType": "INSTANCE",
+                "figmaComponentName": "CapDateRangePicker",
+                "mappingStatus": "PARTIAL",
+                "targetComponent": "CapDateRangePicker",
+                "importPath": "@capillarytech/cap-ui-library/CapDateRangePicker",
+                "props": {},
+                "slots": {
+                  "children": "Mar 28 2025 → Mar 29 2025"
+                },
+                "cssVariables": {},
+                "label": "{/* Last updated - CapMultiSelect */}",
+                "byline": "Last updated",
+                "manualOverrides": [
+                  "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                ],
+                "warnings": [
+                  "Some props from entry cap-date-range-picker could not be resolved"
+                ],
+                "fallback": null,
+                "children": [],
+                "source": "registry",
+                "fingerprint": "bf3f9e31a4fe"
+              }
+            ],
+            "source": "layout-inferred",
+            "fingerprint": "46fb618dfe88"
+          },
+          {
+            "figmaNodeId": "122:4365",
+            "figmaNodeType": "FRAME",
+            "figmaComponentName": "Frame 2087331955",
+            "mappingStatus": "EXACT",
+            "targetComponent": "CapColumn",
+            "importPath": "@capillarytech/cap-ui-library/CapColumn",
+            "props": {},
+            "slots": {},
+            "cssVariables": {},
+            "manualOverrides": [],
+            "warnings": [],
+            "fallback": null,
+            "children": [
+              {
+                "figmaNodeId": "122:4366",
+                "figmaNodeType": "FRAME",
+                "figmaComponentName": "Frame 2087331953",
+                "mappingStatus": "BESPOKE",
+                "targetComponent": null,
+                "importPath": null,
+                "props": {},
+                "slots": {},
+                "cssVariables": {},
+                "manualOverrides": [
+                  "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                ],
+                "warnings": [],
+                "fallback": {
+                  "nearestComponent": null,
+                  "nearestComponentRationale": "No structural match found",
+                  "htmlFallback": "<div style=\"width: 344px; height: 20px; display: flex;\"><!-- Frame 2087331953 --></div>"
+                },
+                "children": [
+                  {
+                    "figmaNodeId": "122:4367",
+                    "figmaNodeType": "FRAME",
+                    "figmaComponentName": "Input fields- Top label",
+                    "mappingStatus": "BESPOKE",
+                    "targetComponent": null,
+                    "importPath": null,
+                    "props": {},
+                    "slots": {},
+                    "cssVariables": {},
+                    "manualOverrides": [
+                      "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                    ],
+                    "warnings": [],
+                    "fallback": {
+                      "nearestComponent": null,
+                      "nearestComponentRationale": "No structural match found",
+                      "htmlFallback": "<div style=\"width: 82px; height: 20px; display: flex;\"><!-- Input fields- Top label --></div>"
+                    },
+                    "children": [
+                      {
+                        "figmaNodeId": "122:4368",
+                        "figmaNodeType": "FRAME",
+                        "figmaComponentName": "Label+byline",
+                        "mappingStatus": "BESPOKE",
+                        "targetComponent": null,
+                        "importPath": null,
+                        "props": {},
+                        "slots": {},
+                        "cssVariables": {},
+                        "manualOverrides": [
+                          "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                        ],
+                        "warnings": [],
+                        "fallback": {
+                          "nearestComponent": null,
+                          "nearestComponentRationale": "No structural match found",
+                          "htmlFallback": "<div style=\"width: 82px; height: 20px; display: flex;\"><!-- Label+byline --></div>"
+                        },
+                        "children": [
+                          {
+                            "figmaNodeId": "122:4369",
+                            "figmaNodeType": "FRAME",
+                            "figmaComponentName": "Top label",
+                            "mappingStatus": "UNMAPPED",
+                            "targetComponent": null,
+                            "importPath": null,
+                            "props": {},
+                            "slots": {},
+                            "cssVariables": {},
+                            "label": "Top Label",
+                            "manualOverrides": [
+                              "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                            ],
+                            "warnings": [],
+                            "fallback": {
+                              "nearestComponent": "CapLabel",
+                              "nearestComponentRationale": "Single TEXT child — container is a label wrapper",
+                              "htmlFallback": "<div style=\"width: 82px; height: 20px; display: flex;\"><!-- Top label --></div>"
+                            },
+                            "children": [
+                              {
+                                "figmaNodeId": "122:4370",
+                                "figmaNodeType": "TEXT",
+                                "figmaComponentName": "Top Label",
+                                "mappingStatus": "EXACT",
+                                "targetComponent": "CapLabel",
+                                "importPath": "@capillarytech/cap-ui-library/CapLabel",
+                                "props": {},
+                                "slots": {
+                                  "children": "Top Label"
+                                },
+                                "cssVariables": {},
+                                "label": "Top Label",
+                                "manualOverrides": [],
+                                "warnings": [],
+                                "fallback": null,
+                                "children": [],
+                                "source": "typography",
+                                "fingerprint": "b6546948e14c"
+                              }
+                            ],
+                            "source": "unresolved",
+                            "fingerprint": "5216ff0164d8"
+                          }
+                        ],
+                        "source": "unresolved",
+                        "fingerprint": "2c0d0cedb741"
+                      }
+                    ],
+                    "source": "unresolved",
+                    "fingerprint": "3d07279661bc"
+                  }
+                ],
+                "source": "unresolved",
+                "fingerprint": "fe780b55c8f1"
+              },
+              {
+                "figmaNodeId": "122:4371",
+                "figmaNodeType": "INSTANCE",
+                "figmaComponentName": "CapMultiSelect",
+                "mappingStatus": "EXACT",
+                "targetComponent": "CapMultiSelect",
+                "importPath": "@capillarytech/cap-ui-library/CapMultiSelect",
+                "props": {
+                  "width": "100%"
+                },
+                "slots": {
+                  "children": "Select last updated"
+                },
+                "cssVariables": {},
+                "label": "{/* Updated by - CapMultiSelect */}",
+                "byline": "Updated by",
+                "manualOverrides": [
+                  "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                ],
+                "warnings": [],
+                "fallback": null,
+                "children": [],
+                "source": "registry",
+                "fingerprint": "bf3f9e31a4fe"
+              }
+            ],
+            "source": "layout-inferred",
+            "fingerprint": "e766662d4a95"
+          },
+          {
+            "figmaNodeId": "122:4379",
+            "figmaNodeType": "FRAME",
+            "figmaComponentName": "Frame 2087331957",
+            "mappingStatus": "EXACT",
+            "targetComponent": "CapColumn",
+            "importPath": "@capillarytech/cap-ui-library/CapColumn",
+            "props": {},
+            "slots": {},
+            "cssVariables": {},
+            "manualOverrides": [],
+            "warnings": [],
+            "fallback": null,
+            "children": [
+              {
+                "figmaNodeId": "122:4380",
+                "figmaNodeType": "FRAME",
+                "figmaComponentName": "Frame 2087331953",
+                "mappingStatus": "BESPOKE",
+                "targetComponent": null,
+                "importPath": null,
+                "props": {},
+                "slots": {},
+                "cssVariables": {},
+                "manualOverrides": [
+                  "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                ],
+                "warnings": [],
+                "fallback": {
+                  "nearestComponent": null,
+                  "nearestComponentRationale": "No structural match found",
+                  "htmlFallback": "<div style=\"width: 344px; height: 20px; display: flex;\"><!-- Frame 2087331953 --></div>"
+                },
+                "children": [
+                  {
+                    "figmaNodeId": "122:4381",
+                    "figmaNodeType": "FRAME",
+                    "figmaComponentName": "Input fields- Top label",
+                    "mappingStatus": "BESPOKE",
+                    "targetComponent": null,
+                    "importPath": null,
+                    "props": {},
+                    "slots": {},
+                    "cssVariables": {},
+                    "manualOverrides": [
+                      "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                    ],
+                    "warnings": [],
+                    "fallback": {
+                      "nearestComponent": null,
+                      "nearestComponentRationale": "No structural match found",
+                      "htmlFallback": "<div style=\"width: 71px; height: 20px; display: flex;\"><!-- Input fields- Top label --></div>"
+                    },
+                    "children": [
+                      {
+                        "figmaNodeId": "122:4382",
+                        "figmaNodeType": "FRAME",
+                        "figmaComponentName": "Label+byline",
+                        "mappingStatus": "BESPOKE",
+                        "targetComponent": null,
+                        "importPath": null,
+                        "props": {},
+                        "slots": {},
+                        "cssVariables": {},
+                        "manualOverrides": [
+                          "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                        ],
+                        "warnings": [],
+                        "fallback": {
+                          "nearestComponent": null,
+                          "nearestComponentRationale": "No structural match found",
+                          "htmlFallback": "<div style=\"width: 71px; height: 20px; display: flex;\"><!-- Label+byline --></div>"
+                        },
+                        "children": [
+                          {
+                            "figmaNodeId": "122:4383",
+                            "figmaNodeType": "FRAME",
+                            "figmaComponentName": "Top label",
+                            "mappingStatus": "UNMAPPED",
+                            "targetComponent": null,
+                            "importPath": null,
+                            "props": {},
+                            "slots": {},
+                            "cssVariables": {},
+                            "label": "Top Label",
+                            "manualOverrides": [
+                              "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                            ],
+                            "warnings": [],
+                            "fallback": {
+                              "nearestComponent": "CapLabel",
+                              "nearestComponentRationale": "Single TEXT child — container is a label wrapper",
+                              "htmlFallback": "<div style=\"width: 71px; height: 20px; display: flex;\"><!-- Top label --></div>"
+                            },
+                            "children": [
+                              {
+                                "figmaNodeId": "122:4384",
+                                "figmaNodeType": "TEXT",
+                                "figmaComponentName": "Top Label",
+                                "mappingStatus": "EXACT",
+                                "targetComponent": "CapLabel",
+                                "importPath": "@capillarytech/cap-ui-library/CapLabel",
+                                "props": {},
+                                "slots": {
+                                  "children": "Top Label"
+                                },
+                                "cssVariables": {},
+                                "label": "Top Label",
+                                "manualOverrides": [],
+                                "warnings": [],
+                                "fallback": null,
+                                "children": [],
+                                "source": "typography",
+                                "fingerprint": "b6546948e14c"
+                              }
+                            ],
+                            "source": "unresolved",
+                            "fingerprint": "5216ff0164d8"
+                          }
+                        ],
+                        "source": "unresolved",
+                        "fingerprint": "2c0d0cedb741"
+                      }
+                    ],
+                    "source": "unresolved",
+                    "fingerprint": "3d07279661bc"
+                  }
+                ],
+                "source": "unresolved",
+                "fingerprint": "fe780b55c8f1"
+              },
+              {
+                "figmaNodeId": "122:4385",
+                "figmaNodeType": "INSTANCE",
+                "figmaComponentName": "CapMultiSelect",
+                "mappingStatus": "EXACT",
+                "targetComponent": "CapMultiSelect",
+                "importPath": "@capillarytech/cap-ui-library/CapMultiSelect",
+                "props": {
+                  "width": "100%"
+                },
+                "slots": {
+                  "children": "Select updated by"
+                },
+                "cssVariables": {},
+                "label": "{/* Footer: Apply + Clear all filters buttons */}",
+                "byline": "Apply",
+                "manualOverrides": [
+                  "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                ],
+                "warnings": [],
+                "fallback": null,
+                "children": [],
+                "source": "registry",
+                "fingerprint": "bf3f9e31a4fe"
+              }
+            ],
+            "source": "layout-inferred",
+            "fingerprint": "e766662d4a95"
+          }
+        ],
+        "source": "layout-inferred",
+        "fingerprint": "66f2b331b2d6"
+      },
+      {
+        "figmaNodeId": "122:4394",
+        "figmaNodeType": "FRAME",
+        "figmaComponentName": "BenefitsFilterFooter",
+        "mappingStatus": "EXACT",
+        "targetComponent": "CapRow",
+        "importPath": "@capillarytech/cap-ui-library/CapRow",
+        "props": {
+          "gutter": 16
+        },
+        "slots": {},
+        "cssVariables": {},
+        "itemSpacing": 16,
+        "padding": {
+          "top": 24,
+          "right": 48,
+          "bottom": 24,
+          "left": 48
+        },
+        "manualOverrides": [],
+        "warnings": [],
+        "fallback": null,
+        "children": [
+          {
+            "figmaNodeId": "122:4395",
+            "figmaNodeType": "INSTANCE",
+            "figmaComponentName": "CapButton",
+            "mappingStatus": "EXACT",
+            "targetComponent": "CapButton",
+            "importPath": "@capillarytech/cap-ui-library/CapButton",
+            "props": {
+              "type": "primary",
+              "size": "large"
+            },
+            "slots": {
+              "children": "Apply"
+            },
+            "cssVariables": {},
+            "label": "Clear all filters",
+            "manualOverrides": [
+              "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+            ],
+            "warnings": [],
+            "fallback": null,
+            "children": [],
+            "source": "registry",
+            "fingerprint": "fa44f48d0470"
+          },
+          {
+            "figmaNodeId": "122:4396",
+            "figmaNodeType": "INSTANCE",
+            "figmaComponentName": "CapButton",
+            "mappingStatus": "EXACT",
+            "targetComponent": "CapButton",
+            "importPath": "@capillarytech/cap-ui-library/CapButton",
+            "props": {
+              "type": "primary",
+              "size": "large"
+            },
+            "slots": {},
+            "cssVariables": {},
+            "label": "Clear all filters",
+            "manualOverrides": [],
+            "warnings": [],
+            "fallback": null,
+            "children": [],
+            "source": "registry",
+            "fingerprint": "dc30f384246a"
+          }
+        ],
+        "source": "layout-inferred",
+        "fingerprint": "4f744840e8e2"
+      }
+    ],
+    "source": "registry",
+    "fingerprint": "b3ad778dacf9"
+  },
+  "stats": {
+    "total": 42,
+    "exact": 21,
+    "partial": 2,
+    "unmapped": 19
+  }
+}

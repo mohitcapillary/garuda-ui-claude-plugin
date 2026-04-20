@@ -34,7 +34,7 @@ const TAG_TO_TYPE: Record<string, FigmaNodeType> = {
   vector: 'VECTOR',
 };
 
-interface XmlNode {
+export interface XmlNode {
   tag: string;
   attrs: Record<string, string>;
   children: XmlNode[];
@@ -44,7 +44,7 @@ interface XmlNode {
  * Minimal XML parser for the flat Figma metadata format.
  * Does not handle CDATA, namespaces, or processing instructions.
  */
-function parseXml(xml: string): XmlNode[] {
+export function parseXml(xml: string): XmlNode[] {
   const roots: XmlNode[] = [];
   const stack: XmlNode[] = [];
   const tagRegex = /<\/?([a-zA-Z][a-zA-Z0-9]*)((?:\s+[^>]*?)?)\s*(\/?)>/g;

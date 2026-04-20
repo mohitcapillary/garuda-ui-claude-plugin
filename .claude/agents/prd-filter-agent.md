@@ -35,6 +35,11 @@ You may also be invoked directly on a raw PRD (no clarifications file). In that 
 - If something is vague, keep the original AND add clarifying context — never drop it
 - Cross-check line by line before writing
 
+## CRITICAL RULE: No UI Assumptions
+
+- **Never assume UI patterns from PRD text alone.** If Figma data exists (design-context, screenshots), verify interaction behavior against the screenshot. Flag any PRD-vs-Figma conflicts as `[NEEDS CLARIFICATION]` rather than silently choosing one interpretation.
+- If the PRD says "filter by tab" but Figma shows all sections visible simultaneously, that is a conflict — flag it, do not resolve it yourself.
+
 ## Input Handling
 
 Three input shapes are supported:

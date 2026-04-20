@@ -1,71 +1,111 @@
 Benefits Listing Page — Layout Preview
-Route: /benefits
-Figma node: 3:1022 (1280×492 viewport)
-Tokens: CAP_SPACE_72 horizontal padding, CAP_SPACE_20 top padding
+Route: /benefits/listing
+Source: design-context.jsx nodes 123:5146 (toolbar) + 123:5178 (table)
+Tokens verified against cap-ui-library/styled/variables.js
+========================================================================
 
-┌────────────────────────────────────────────────────────────────────────────────┐
-│ PageTemplate (template — reused)                                               │
-│                                                                                │
-│  ┌──────────────────────────────────────────────────────────────────────────┐  │
-│  │ CapColumn [3:1023]  (padLeft=CAP_SPACE_72, padRight=CAP_SPACE_72,       │  │
-│  │                      padTop=CAP_SPACE_20, width=1162px)                 │  │
-│  │                                                                          │  │
-│  │  ── TOOLBAR ROW CapRow [3:1024] h=40px align=middle ──────────────────  │  │
-│  │  │                                                                     │  │  │
-│  │  │  [3:1027] CapHeading type="h1"                                     │  │  │
-│  │  │  "Benefits"   (CAP_G01, medium weight)                             │  │  │
-│  │  │                                                                     │  │  │
-│  │  │  [3:1029] CapRow (search+filter group, w=413px)                    │  │  │
-│  │  │  ┌───────────────────────────────────────────────┐                 │  │  │
-│  │  │  │ CapInput [3:1035] w=360px allowClear          │                 │  │  │
-│  │  │  │ prefix: CapIcon[search]  placeholder="Search" │                 │  │  │
-│  │  │  └───────────────────────────────────────────────┘                 │  │  │
-│  │  │  [3:1044] divider+filter group (w=41px)                            │  │  │
-│  │  │  │ CapDivider [3:1046] type="vertical" h=20px                     │  │  │
-│  │  │  │ CapIcon [3:1047] type="filter" 32×32px  onClick=openPanel      │  │  │
-│  │  │  └────────────────────────────────────────────────────────────     │  │  │
-│  │  │                                                                     │  │  │
-│  │  └─────────────────────────────────────────────────────────────────── │  │
-│  │                                                                          │  │
-│  │  ── FiltersApplied (molecule, shown when isFilterApplied=true) ───────  │  │
-│  │                                                                          │  │
-│  │  ── LOADING STATE (CapSkeleton ASSUMED) ──────────────────────────────  │  │
-│  │  │ CapSkeleton active rows=7 (padLeft=CAP_SPACE_32)                   │  │  │
-│  │  └──────────────────────────────────────────────────────────────────── │  │
-│  │                                                                          │  │
-│  │  ── BENEFITS TABLE CapTable [5:2877] w=1202px ────────────────────────  │  │
-│  │  ┌──────────────────────────────────────────────────────────────────┐  │  │
-│  │  │ [Name] [Status] [Duration ⇅] [Program name] [Category] [Updated⇅]│  │  │
-│  │  │─────────────────────────────────────────────────────────────────│  │  │
-│  │  │ BenefitName      BenefitStatusTag   Jan 21 2025 12:30   Loyalty  │  │  │
-│  │  │ description      ● Awaiting         Jan 21 2025 12:30   Program  │  │  │
-│  │  │ ID: A12345W0     Approval           Dev Patel           2025     │  │  │
-│  │  │ EXT ID: C5MH...  2 Days left                                     │  │  │
-│  │  │─────────────────────────────────────────────────────────────────│  │  │
-│  │  │ BenefitName      Draft             21 Jan 2025...       Loyalty  │  │  │
-│  │  │ description      Rejected on Dec25 21 Jan 2025...       Program  │  │  │
-│  │  │                  ...                                    2026     │  │  │
-│  │  │─────────────────────────────────────────────────────────────────│  │  │
-│  │  │  [IntersectionObserver sentinel div — triggers next page fetch]  │  │  │
-│  │  └──────────────────────────────────────────────────────────────────┘  │  │
-│  │                                                                          │  │
-│  │  ── EMPTY STATES ──────────────────────────────────────────────────────  │  │
-│  │  EmptyStateIllustration (molecule, shown when benefits=[] and          │  │  │
-│  │                           no filters active)                           │  │  │
-│  │                                                                          │  │
-│  └──────────────────────────────────────────────────────────────────────────┘  │
-│                                                                                │
-│  BenefitsListFilterPanel (molecule, slide-out drawer)                          │
-│  visible: isFilterPanelOpen                                                    │
-│  7 filters: Status | Category | Program | Duration |                           │
-│             Last updated by | Last updated at | Tier event                     │
-│  [Apply] [Cancel]                                                              │
-└────────────────────────────────────────────────────────────────────────────────┘
+PAGE ROOT (BenefitsListing.js)
+flex, direction: column, background: CAP_WHITE, width: 1280px
+│
+├─ TOOLBAR (node 123:5150)
+│  flex-row, alignItems: center, gap: CAP_SPACE_40 (40px)
+│  ┌──────────────────────────────────────────────────────────────────────┐
+│  │ [CapHeading h2 — "Benefits"]            gap:CAP_SPACE_40             │
+│  │  font: 24px medium, color: CAP_G01                                   │
+│  │                                                                      │
+│  │  LEFT GROUP (width: 413px, flex-row, gap: CAP_SPACE_12)             │
+│  │  ┌─────────────────────────────┐  ┌──────────────┐                  │
+│  │  │ CapInput (search-styled)    │  │ │  [filter]  │                  │
+│  │  │ w:360px h:40px              │  │ CapDivider   │                  │
+│  │  │ border: CAP_G08 rounded:4px │  │ (vertical)   │                  │
+│  │  │ placeholder color: CAP_G06  │  │ + CapIcon    │                  │
+│  │  │ "Search" placeholder        │  │ type=filter  │                  │
+│  │  └─────────────────────────────┘  └──────────────┘                  │
+│  │                                                                      │
+│  │  ←── flex: 1 0 0, justify: flex-end ─────────────────────────────►  │
+│  │                                           ┌──────────────────────┐  │
+│  │                                           │ CapButton type=primary│  │
+│  │                                           │ "Create Benefit"     │  │
+│  │                                           │ bg: primary-base     │  │
+│  │                                           │ px:24px py:12px h:40 │  │
+│  │                                           └──────────────────────┘  │
+│  └──────────────────────────────────────────────────────────────────────┘
+│
+└─ TABLE AREA (node 123:5178 → BenefitsTable molecule)
+   CapTable, rowKey="id", server-side pagination
+   ┌──────────────────────────────────────────────────────────────────────┐
+   │ Name (259px)│Status(168px)│Duration(168)│Program(168)│Cat(168)│Upd. │
+   │─────────────┼─────────────┼─────────────┼────────────┼────────┼─────│
+   │ [CapLabel]  │[CapStatus]  │[CapLabel]   │[CapLabel]  │[CapLbl]│[Lbl]│
+   │  name       │ BenefitStatusTag           │            │        │ ⋯   │
+   │  desc       │             │             │            │        │     │
+   │  #id        │             │             │            │        │     │
+   │─────────────┼─────────────┼─────────────┼────────────┼────────┼─────│
+   │ [CapLabel]  │[CapStatus]  │[CapLabel]   │[CapLabel]  │[CapLbl]│[Lbl]│
+   │  ...        │             │             │            │        │ ⋯   │
+   │─────────────┴─────────────┴─────────────┴────────────┴────────┴─────│
+   │  [CapTable built-in pagination] ← GET_BENEFITS_LIST_REQUEST          │
+   └──────────────────────────────────────────────────────────────────────┘
+   [EmptyState — status=SUCCESS, benefits.length === 0]
+   [ErrorState  — status=FAILURE]
+   [CapSpin     — status=REQUEST]
 
-Key layout notes:
-- No CapSideBar — /benefits is an independent route (not /settings/*)
-- CapButton "Create Benefit" (8:2902, EXACT) is OMITTED per PM decision (Q1)
-  Figma shows it on the right side of toolbar — spec says omit — conflict logged
-- Table occupies full width of CapColumn (1162px content area)
-- Infinite scroll sentinel is a div at bottom of CapTable
-- Filter panel is a drawer/slide-out rendered outside PageTemplate
+
+FILTER DRAWER (BenefitsFilterDrawer molecule — conditionally rendered)
+CapDrawer placement=right, width=440px
+┌────────────────────────────────────────────────────┐
+│ HEADER                              [X CapIcon]    │
+│ "Benefit filters" (CapHeading h3)                  │
+│ px:48px py:34px, color: CAP_G01                    │
+│ gap: CAP_SPACE_24                                  │
+├────────────────────────────────────────────────────┤
+│ FILTER FIELDS BODY                                 │
+│ flex-col, gap: CAP_SPACE_24, left:48px top:108px   │
+│ width: 344px                                       │
+│                                                    │
+│ [CapLabel] "Program name"                          │
+│ [CapMultiSelect] treeData=programs, w:100%         │
+│ ── gap: CAP_SPACE_24 ──                            │
+│ [CapLabel] "Status"                                │
+│ [CapMultiSelect] treeData=STATUS_OPTIONS, w:100%   │
+│ ── gap: CAP_SPACE_24 ──                            │
+│ [CapLabel] "Category"                              │
+│ [CapMultiSelect] treeData=categories, w:100%       │
+│ ── gap: CAP_SPACE_24 ──                            │
+│ [CapLabel] "Duration"                              │
+│ [CapDateRangePicker] w:100%, h:72px                │
+│ ── gap: CAP_SPACE_24 ──                            │
+│ [CapLabel] "Last updated"                          │
+│ [CapMultiSelect] treeData=LAST_UPDATED_PRESETS     │
+│ ── gap: CAP_SPACE_24 ──                            │
+│ [CapLabel] "Updated by"                            │
+│ [CapMultiSelect] treeData=updatedByUsers, w:100%   │
+│                                                    │
+├────────────────────────────────────────────────────┤
+│ FOOTER (absolute-bottom, w:440, px:48, py:24)      │
+│ CapRow type=flex gutter=16                         │
+│ [CapButton type=primary] "Apply"                   │
+│ [CapButton type=secondary] "Clear all filters"     │
+└────────────────────────────────────────────────────┘
+
+
+TOKEN MAP (all values traced to design-context.jsx)
+──────────────────────────────────────────────────────
+Node         │ Raw value    │ Token          │ Usage
+─────────────┼──────────────┼────────────────┼──────────────────────────────
+123:5153     │ #091e42      │ CAP_G01        │ Page title color
+123:5153     │ 24px medium  │ CapHeading h2  │ Typography rule → h2
+123:5161     │ #ebecf0      │ CAP_G08        │ Search input border
+123:5161     │ #b3bac5      │ CAP_G06        │ Placeholder text color
+123:5172     │ #f6f6f6      │ CAP_G09        │ Divider background
+123:5176     │ #46af46      │ primary-base   │ CTA button fill
+123:5176     │ #ffffff      │ CAP_WHITE      │ CTA button text
+gap toolbar  │ 40px         │ CAP_SPACE_40   │ Toolbar item gap
+gap search   │ 12px         │ CAP_SPACE_12   │ Search-filter group gap
+gap filter   │ 8px          │ CAP_SPACE_08   │ Divider+icon group gap
+122:4394     │ 16px         │ CAP_SPACE_16   │ Footer button gap
+122:4394     │ 48px         │ CAP_SPACE_48   │ Footer horizontal padding
+122:4394     │ 24px         │ CAP_SPACE_24   │ Footer vertical padding
+122:4329     │ 24px         │ CAP_SPACE_24   │ Filter fields gap
+I122:4328    │ 48px         │ CAP_SPACE_48   │ Header horizontal padding
+──────────────────────────────────────────────────────

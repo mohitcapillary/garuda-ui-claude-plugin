@@ -51,6 +51,8 @@ The persisted path is the value used for `source:` in the clarifications frontma
 - **Architecture findings are notes, not blockers.** Default = follow existing convention.
 - **No code recommendations.** Questions are about product intent, not implementation.
 - **Do not skip the Figma pass.** One `get_design_context` + one `get_screenshot` per node. No recipe pipeline — that is the HLD agent's job.
+- **Figma data validation.** After each `get_design_context` call, verify the response contains real node/frame data (not a "too large" summary or placeholder). If it returned a sparse summary, call `get_design_context` on child nodes individually. If still incomplete → **STOP** and tell the user.
+- **No UI behavior assumptions.** If the Figma screenshot shows behavior different from the PRD text (e.g., all sections visible simultaneously vs tab-filtered, different number of items), raise it as a clarification question. Do not silently pick one interpretation.
 
 ## Execution
 

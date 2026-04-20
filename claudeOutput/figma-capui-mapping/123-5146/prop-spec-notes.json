@@ -1,0 +1,60 @@
+{
+  "CapRow": {
+    "antdComponent": "Row",
+    "antdProps": ["gutter", "type", "align", "justify"],
+    "caveats": ["ALWAYS pass type='flex' to enable flexbox behavior", "Use justify/align props not CSS"],
+    "styledPattern": "styled(CapRow).attrs(() => ({ type: 'flex', justify: '{{justify}}', align: '{{align}}' }))`...css...`"
+  },
+  "CapColumn": {
+    "antdComponent": "Col",
+    "antdProps": ["span", "order", "offset", "xs", "sm", "md", "lg", "xl", "xxl"],
+    "caveats": ["Use span prop (1-24) when inside CapRow grid", "Can be used standalone as vertical flex container"]
+  },
+  "CapButton": {
+    "antdComponent": "Button",
+    "antdProps": ["type", "icon", "shape", "size", "loading", "ghost", "block", "children"],
+    "wrapperProps": ["type", "isAddBtn", "prefix", "suffix"],
+    "caveats": ["type='primary' uses app theme color"]
+  },
+  "CapLabel": {
+    "antdComponent": null,
+    "wrapperProps": ["type"],
+    "caveats": []
+  },
+  "CapIcon": {
+    "antdComponent": "Icon",
+    "antdProps": ["type", "theme", "onClick", "style", "role"],
+    "wrapperProps": ["type", "withBackground", "allowSvg"]
+  },
+  "CapStatus": {
+    "wrapperProps": ["width", "height", "color", "type", "text"],
+    "note": "Used for status chip rendering"
+  },
+  "CapDropdown": {
+    "antdComponent": "Dropdown",
+    "antdProps": ["trigger", "overlay", "onVisibleChange", "visible", "placement"],
+    "note": "Used for three-dot overflow menu"
+  },
+  "CapTable": {
+    "antdComponent": "Table",
+    "antdProps": ["dataSource", "columns", "rowKey", "rowClassName", "pagination", "loading", "onChange", "scroll"],
+    "caveats": ["Wraps antd Table. dataSource + columns required", "Use infiniteScroll={true} for infinite scroll"],
+    "note": "Primary container for benefits listing table"
+  },
+  "CapMultiSelect": {
+    "antdComponent": "Tree",
+    "wrapperProps": ["onSelect", "placeholder", "treeData", "appliedKeys", "showFooter", "disabled"],
+    "note": "Used for all 6 filter fields in filter drawer (FR-18)"
+  },
+  "CapDrawer": {
+    "antdComponent": "Drawer",
+    "antdProps": ["visible", "width", "placement", "onClose", "title", "closable"],
+    "wrapperProps": ["width", "content", "size"],
+    "note": "Filter drawer container"
+  },
+  "CapDivider": {
+    "antdComponent": "Divider",
+    "antdProps": ["type", "orientation", "dashed"],
+    "note": "Vertical divider between search and filter icon in toolbar"
+  }
+}

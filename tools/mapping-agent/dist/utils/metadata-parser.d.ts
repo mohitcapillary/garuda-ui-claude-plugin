@@ -21,6 +21,16 @@
  *   vector   → VECTOR
  */
 import { FigmaNode } from '../types';
+export interface XmlNode {
+    tag: string;
+    attrs: Record<string, string>;
+    children: XmlNode[];
+}
+/**
+ * Minimal XML parser for the flat Figma metadata format.
+ * Does not handle CDATA, namespaces, or processing instructions.
+ */
+export declare function parseXml(xml: string): XmlNode[];
 /**
  * Parse Figma `get_metadata` XML string → FigmaNode[]
  *

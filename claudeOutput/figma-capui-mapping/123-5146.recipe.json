@@ -1,0 +1,3132 @@
+{
+  "resolvedAt": "2026-04-19T19:56:57.443Z",
+  "root": {
+    "figmaNodeId": "123:5146",
+    "figmaNodeType": "FRAME",
+    "figmaComponentName": "BenefitsListing",
+    "mappingStatus": "BESPOKE",
+    "targetComponent": null,
+    "importPath": null,
+    "props": {},
+    "slots": {},
+    "cssVariables": {},
+    "manualOverrides": [
+      "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+    ],
+    "warnings": [],
+    "fallback": {
+      "nearestComponent": null,
+      "nearestComponentRationale": "No structural match found",
+      "htmlFallback": "<div style=\"width: 1280px; height: 876px; display: flex;\"><!-- BenefitsListing --></div>"
+    },
+    "children": [
+      {
+        "figmaNodeId": "123:5148",
+        "figmaNodeType": "FRAME",
+        "figmaComponentName": "BenefitsListingContent",
+        "mappingStatus": "BESPOKE",
+        "targetComponent": null,
+        "importPath": null,
+        "props": {},
+        "slots": {},
+        "cssVariables": {},
+        "manualOverrides": [
+          "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+        ],
+        "warnings": [],
+        "fallback": {
+          "nearestComponent": null,
+          "nearestComponentRationale": "No structural match found",
+          "htmlFallback": "<div style=\"width: 1216px; height: 952px; display: flex;\"><!-- BenefitsListingContent --></div>"
+        },
+        "children": [
+          {
+            "figmaNodeId": "123:5149",
+            "figmaNodeType": "FRAME",
+            "figmaComponentName": "Frame 2087332157",
+            "mappingStatus": "EXACT",
+            "targetComponent": "CapColumn",
+            "importPath": "@capillarytech/cap-ui-library/CapColumn",
+            "props": {},
+            "slots": {},
+            "cssVariables": {},
+            "manualOverrides": [],
+            "warnings": [],
+            "fallback": null,
+            "children": [
+              {
+                "figmaNodeId": "123:5150",
+                "figmaNodeType": "FRAME",
+                "figmaComponentName": "BenefitsToolbar",
+                "mappingStatus": "BESPOKE",
+                "targetComponent": null,
+                "importPath": null,
+                "props": {},
+                "slots": {},
+                "cssVariables": {},
+                "manualOverrides": [
+                  "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                ],
+                "warnings": [],
+                "fallback": {
+                  "nearestComponent": null,
+                  "nearestComponentRationale": "No structural match found",
+                  "htmlFallback": "<div style=\"width: 1216px; height: 40px; display: flex;\"><!-- BenefitsToolbar --></div>"
+                },
+                "children": [
+                  {
+                    "figmaNodeId": "123:5151",
+                    "figmaNodeType": "FRAME",
+                    "figmaComponentName": "Frame 2087330619",
+                    "mappingStatus": "BESPOKE",
+                    "targetComponent": null,
+                    "importPath": null,
+                    "props": {},
+                    "slots": {},
+                    "cssVariables": {},
+                    "manualOverrides": [
+                      "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                    ],
+                    "warnings": [],
+                    "fallback": {
+                      "nearestComponent": null,
+                      "nearestComponentRationale": "No structural match found",
+                      "htmlFallback": "<div style=\"width: 89px; height: 32px; display: flex;\"><!-- Frame 2087330619 --></div>"
+                    },
+                    "children": [
+                      {
+                        "figmaNodeId": "123:5152",
+                        "figmaNodeType": "FRAME",
+                        "figmaComponentName": "Frame 2087329812",
+                        "mappingStatus": "UNMAPPED",
+                        "targetComponent": null,
+                        "importPath": null,
+                        "props": {},
+                        "slots": {},
+                        "cssVariables": {},
+                        "label": "Benefits",
+                        "manualOverrides": [
+                          "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                        ],
+                        "warnings": [],
+                        "fallback": {
+                          "nearestComponent": "CapLabel",
+                          "nearestComponentRationale": "Single TEXT child — container is a label wrapper",
+                          "htmlFallback": "<div style=\"width: 89px; height: 32px; display: flex;\"><!-- Frame 2087329812 --></div>"
+                        },
+                        "children": [
+                          {
+                            "figmaNodeId": "123:5153",
+                            "figmaNodeType": "TEXT",
+                            "figmaComponentName": "Benefits",
+                            "mappingStatus": "EXACT",
+                            "targetComponent": "CapLabel",
+                            "importPath": "@capillarytech/cap-ui-library/CapLabel",
+                            "props": {},
+                            "slots": {
+                              "children": "Benefits"
+                            },
+                            "cssVariables": {},
+                            "label": "Benefits",
+                            "manualOverrides": [],
+                            "warnings": [],
+                            "fallback": null,
+                            "children": [],
+                            "source": "typography",
+                            "fingerprint": "803596505787"
+                          }
+                        ],
+                        "source": "unresolved",
+                        "fingerprint": "f79602e41b49"
+                      }
+                    ],
+                    "source": "unresolved",
+                    "fingerprint": "6a2b004e84ae"
+                  },
+                  {
+                    "figmaNodeId": "123:5154",
+                    "figmaNodeType": "FRAME",
+                    "figmaComponentName": "Frame 2087330635",
+                    "mappingStatus": "EXACT",
+                    "targetComponent": "CapRow",
+                    "importPath": "@capillarytech/cap-ui-library/CapRow",
+                    "props": {
+                      "gutter": 478
+                    },
+                    "slots": {},
+                    "cssVariables": {},
+                    "itemSpacing": 478,
+                    "manualOverrides": [],
+                    "warnings": [],
+                    "fallback": null,
+                    "children": [
+                      {
+                        "figmaNodeId": "123:5155",
+                        "figmaNodeType": "FRAME",
+                        "figmaComponentName": "Frame 2087331362",
+                        "mappingStatus": "BESPOKE",
+                        "targetComponent": null,
+                        "importPath": null,
+                        "props": {},
+                        "slots": {},
+                        "cssVariables": {},
+                        "manualOverrides": [
+                          "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                        ],
+                        "warnings": [],
+                        "fallback": {
+                          "nearestComponent": null,
+                          "nearestComponentRationale": "No structural match found",
+                          "htmlFallback": "<div style=\"width: 413px; height: 40px; display: flex;\"><!-- Frame 2087331362 --></div>"
+                        },
+                        "children": [
+                          {
+                            "figmaNodeId": "123:5156",
+                            "figmaNodeType": "FRAME",
+                            "figmaComponentName": "Frame 2087330619",
+                            "mappingStatus": "BESPOKE",
+                            "targetComponent": null,
+                            "importPath": null,
+                            "props": {},
+                            "slots": {},
+                            "cssVariables": {},
+                            "manualOverrides": [
+                              "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                            ],
+                            "warnings": [],
+                            "fallback": {
+                              "nearestComponent": null,
+                              "nearestComponentRationale": "No structural match found",
+                              "htmlFallback": "<div style=\"width: 360px; height: 40px; display: flex;\"><!-- Frame 2087330619 --></div>"
+                            },
+                            "children": [
+                              {
+                                "figmaNodeId": "123:5157",
+                                "figmaNodeType": "FRAME",
+                                "figmaComponentName": "Input label styles",
+                                "mappingStatus": "BESPOKE",
+                                "targetComponent": null,
+                                "importPath": null,
+                                "props": {},
+                                "slots": {},
+                                "cssVariables": {},
+                                "manualOverrides": [
+                                  "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                                ],
+                                "warnings": [],
+                                "fallback": {
+                                  "nearestComponent": null,
+                                  "nearestComponentRationale": "No structural match found",
+                                  "htmlFallback": "<div style=\"width: 360px; height: 40px; display: flex;\"><!-- Input label styles --></div>"
+                                },
+                                "children": [
+                                  {
+                                    "figmaNodeId": "123:5158",
+                                    "figmaNodeType": "FRAME",
+                                    "figmaComponentName": "Component 1",
+                                    "mappingStatus": "BESPOKE",
+                                    "targetComponent": null,
+                                    "importPath": null,
+                                    "props": {},
+                                    "slots": {},
+                                    "cssVariables": {},
+                                    "manualOverrides": [
+                                      "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                                    ],
+                                    "warnings": [],
+                                    "fallback": {
+                                      "nearestComponent": null,
+                                      "nearestComponentRationale": "No structural match found",
+                                      "htmlFallback": "<div style=\"width: 360px; height: 40px; display: flex;\"><!-- Component 1 --></div>"
+                                    },
+                                    "children": [
+                                      {
+                                        "figmaNodeId": "123:5161",
+                                        "figmaNodeType": "FRAME",
+                                        "figmaComponentName": "Field states",
+                                        "mappingStatus": "PARTIAL",
+                                        "targetComponent": "CapFormItem",
+                                        "importPath": "@capillarytech/cap-ui-library/CapFormItem",
+                                        "props": {},
+                                        "slots": {},
+                                        "cssVariables": {},
+                                        "manualOverrides": [
+                                          "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                                        ],
+                                        "warnings": [
+                                          "Some props from entry cap-form-item could not be resolved"
+                                        ],
+                                        "fallback": null,
+                                        "children": [
+                                          {
+                                            "figmaNodeId": "123:5162",
+                                            "figmaNodeType": "FRAME",
+                                            "figmaComponentName": "Frame 9",
+                                            "mappingStatus": "BESPOKE",
+                                            "targetComponent": null,
+                                            "importPath": null,
+                                            "props": {},
+                                            "slots": {},
+                                            "cssVariables": {},
+                                            "manualOverrides": [
+                                              "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                                            ],
+                                            "warnings": [],
+                                            "fallback": {
+                                              "nearestComponent": null,
+                                              "nearestComponentRationale": "No structural match found",
+                                              "htmlFallback": "<div style=\"width: 360px; height: 40px; display: flex;\"><!-- Frame 9 --></div>"
+                                            },
+                                            "children": [
+                                              {
+                                                "figmaNodeId": "123:5163",
+                                                "figmaNodeType": "FRAME",
+                                                "figmaComponentName": "Frame 22",
+                                                "mappingStatus": "BESPOKE",
+                                                "targetComponent": null,
+                                                "importPath": null,
+                                                "props": {},
+                                                "slots": {},
+                                                "cssVariables": {},
+                                                "manualOverrides": [
+                                                  "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                                                ],
+                                                "warnings": [],
+                                                "fallback": {
+                                                  "nearestComponent": null,
+                                                  "nearestComponentRationale": "No structural match found",
+                                                  "htmlFallback": "<div style=\"width: 147px; height: 24px; display: flex;\"><!-- Frame 22 --></div>"
+                                                },
+                                                "children": [
+                                                  {
+                                                    "figmaNodeId": "123:5164",
+                                                    "figmaNodeType": "FRAME",
+                                                    "figmaComponentName": "Icon left",
+                                                    "mappingStatus": "PARTIAL",
+                                                    "targetComponent": "CapIcon",
+                                                    "importPath": "@capillarytech/cap-ui-library/CapIcon",
+                                                    "props": {},
+                                                    "slots": {},
+                                                    "cssVariables": {},
+                                                    "manualOverrides": [
+                                                      "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                                                    ],
+                                                    "warnings": [
+                                                      "Some props from entry cap-icon could not be resolved"
+                                                    ],
+                                                    "fallback": null,
+                                                    "children": [
+                                                      {
+                                                        "figmaNodeId": "123:5165",
+                                                        "figmaNodeType": "INSTANCE",
+                                                        "figmaComponentName": "icon",
+                                                        "mappingStatus": "PARTIAL",
+                                                        "targetComponent": "CapIcon",
+                                                        "importPath": "@capillarytech/cap-ui-library/CapIcon",
+                                                        "props": {},
+                                                        "slots": {},
+                                                        "cssVariables": {},
+                                                        "manualOverrides": [],
+                                                        "warnings": [
+                                                          "Some props from entry cap-icon could not be resolved"
+                                                        ],
+                                                        "fallback": null,
+                                                        "children": [],
+                                                        "source": "registry",
+                                                        "fingerprint": "22f52781e3e8"
+                                                      }
+                                                    ],
+                                                    "source": "registry",
+                                                    "fingerprint": "e00674555c22"
+                                                  },
+                                                  {
+                                                    "figmaNodeId": "123:5166",
+                                                    "figmaNodeType": "FRAME",
+                                                    "figmaComponentName": "Enter the text",
+                                                    "mappingStatus": "PARTIAL",
+                                                    "targetComponent": "CapRow",
+                                                    "importPath": "@capillarytech/cap-ui-library/CapRow",
+                                                    "props": {},
+                                                    "slots": {},
+                                                    "cssVariables": {},
+                                                    "label": "Search",
+                                                    "manualOverrides": [],
+                                                    "warnings": [
+                                                      "Child \"Spacer\" (FRAME) could not be mapped",
+                                                      "Some props from entry cap-row could not be resolved"
+                                                    ],
+                                                    "fallback": null,
+                                                    "children": [
+                                                      {
+                                                        "figmaNodeId": "123:5168",
+                                                        "figmaNodeType": "FRAME",
+                                                        "figmaComponentName": "Spacer",
+                                                        "mappingStatus": "UNMAPPED",
+                                                        "targetComponent": null,
+                                                        "importPath": null,
+                                                        "props": {},
+                                                        "slots": {},
+                                                        "cssVariables": {},
+                                                        "manualOverrides": [],
+                                                        "warnings": [],
+                                                        "fallback": {
+                                                          "nearestComponent": null,
+                                                          "nearestComponentRationale": "No structural match found",
+                                                          "htmlFallback": "<div style=\"width: 1px; height: 24px; display: flex;\"><!-- Spacer --></div>"
+                                                        },
+                                                        "children": [],
+                                                        "source": "unresolved",
+                                                        "fingerprint": "d97fdd4f1207"
+                                                      }
+                                                    ],
+                                                    "source": "layout-inferred",
+                                                    "fingerprint": "458cdf5a7ed3"
+                                                  }
+                                                ],
+                                                "source": "unresolved",
+                                                "fingerprint": "bd97ec6efe49"
+                                              }
+                                            ],
+                                            "source": "unresolved",
+                                            "fingerprint": "f78c5925b3e4"
+                                          }
+                                        ],
+                                        "source": "registry",
+                                        "fingerprint": "8c52081d5372"
+                                      }
+                                    ],
+                                    "source": "unresolved",
+                                    "fingerprint": "7dc9aa51bef7"
+                                  }
+                                ],
+                                "source": "unresolved",
+                                "fingerprint": "f51e4bef976c"
+                              }
+                            ],
+                            "source": "unresolved",
+                            "fingerprint": "0e2e2b174e7f"
+                          },
+                          {
+                            "figmaNodeId": "123:5170",
+                            "figmaNodeType": "FRAME",
+                            "figmaComponentName": "Frame 716352",
+                            "mappingStatus": "BESPOKE",
+                            "targetComponent": null,
+                            "importPath": null,
+                            "props": {},
+                            "slots": {},
+                            "cssVariables": {},
+                            "manualOverrides": [
+                              "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                            ],
+                            "warnings": [],
+                            "fallback": {
+                              "nearestComponent": null,
+                              "nearestComponentRationale": "No structural match found",
+                              "htmlFallback": "<div style=\"width: 41px; height: 32px; display: flex;\"><!-- Frame 716352 --></div>"
+                            },
+                            "children": [
+                              {
+                                "figmaNodeId": "123:5172",
+                                "figmaNodeType": "INSTANCE",
+                                "figmaComponentName": "Divider/Vector/Vertical",
+                                "mappingStatus": "PARTIAL",
+                                "targetComponent": "CapDivider",
+                                "importPath": "@capillarytech/cap-ui-library/CapDivider",
+                                "props": {},
+                                "slots": {},
+                                "cssVariables": {},
+                                "manualOverrides": [],
+                                "warnings": [
+                                  "Some props from entry cap-divider could not be resolved"
+                                ],
+                                "fallback": null,
+                                "children": [],
+                                "source": "registry",
+                                "fingerprint": "22f52781e3e8"
+                              },
+                              {
+                                "figmaNodeId": "123:5173",
+                                "figmaNodeType": "INSTANCE",
+                                "figmaComponentName": "Download config",
+                                "mappingStatus": "UNMAPPED",
+                                "targetComponent": null,
+                                "importPath": null,
+                                "props": {},
+                                "slots": {},
+                                "cssVariables": {},
+                                "manualOverrides": [],
+                                "warnings": [],
+                                "fallback": {
+                                  "nearestComponent": "CapIcon",
+                                  "nearestComponentRationale": "Square leaf node (no children) resembles an icon",
+                                  "htmlFallback": "<div style=\"width: 32px; height: 32px; display: flex;\"><!-- Download config --></div>"
+                                },
+                                "children": [],
+                                "source": "unresolved",
+                                "fingerprint": "baab34ea2c40"
+                              }
+                            ],
+                            "source": "unresolved",
+                            "fingerprint": "70ab041a9db9"
+                          }
+                        ],
+                        "source": "unresolved",
+                        "fingerprint": "a641bbf8ce97"
+                      },
+                      {
+                        "figmaNodeId": "123:5174",
+                        "figmaNodeType": "FRAME",
+                        "figmaComponentName": "Frame 2087330638",
+                        "mappingStatus": "BESPOKE",
+                        "targetComponent": null,
+                        "importPath": null,
+                        "props": {},
+                        "slots": {},
+                        "cssVariables": {},
+                        "manualOverrides": [
+                          "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                        ],
+                        "warnings": [],
+                        "fallback": {
+                          "nearestComponent": null,
+                          "nearestComponentRationale": "No structural match found",
+                          "htmlFallback": "<div style=\"width: 196px; height: 40px; display: flex;\"><!-- Frame 2087330638 --></div>"
+                        },
+                        "children": [
+                          {
+                            "figmaNodeId": "123:5175",
+                            "figmaNodeType": "FRAME",
+                            "figmaComponentName": "Frame 717289",
+                            "mappingStatus": "BESPOKE",
+                            "targetComponent": null,
+                            "importPath": null,
+                            "props": {},
+                            "slots": {},
+                            "cssVariables": {},
+                            "manualOverrides": [
+                              "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                            ],
+                            "warnings": [],
+                            "fallback": {
+                              "nearestComponent": null,
+                              "nearestComponentRationale": "No structural match found",
+                              "htmlFallback": "<div style=\"width: 138px; height: 40px; display: flex;\"><!-- Frame 717289 --></div>"
+                            },
+                            "children": [
+                              {
+                                "figmaNodeId": "123:5176",
+                                "figmaNodeType": "INSTANCE",
+                                "figmaComponentName": "Button",
+                                "mappingStatus": "EXACT",
+                                "targetComponent": "CapButton",
+                                "importPath": "@capillarytech/cap-ui-library/CapButton",
+                                "props": {
+                                  "type": "primary",
+                                  "size": "large"
+                                },
+                                "slots": {},
+                                "cssVariables": {},
+                                "manualOverrides": [],
+                                "warnings": [],
+                                "fallback": null,
+                                "children": [],
+                                "source": "registry",
+                                "fingerprint": "dc30f384246a"
+                              }
+                            ],
+                            "source": "unresolved",
+                            "fingerprint": "1ac97be72ead"
+                          }
+                        ],
+                        "source": "unresolved",
+                        "fingerprint": "0e0493202d39"
+                      }
+                    ],
+                    "source": "layout-inferred",
+                    "fingerprint": "184852dda7e7"
+                  }
+                ],
+                "source": "unresolved",
+                "fingerprint": "0657c12380b0"
+              },
+              {
+                "figmaNodeId": "123:5178",
+                "figmaNodeType": "FRAME",
+                "figmaComponentName": "BenefitsTable",
+                "mappingStatus": "PARTIAL",
+                "targetComponent": "CapRow",
+                "importPath": "@capillarytech/cap-ui-library/CapRow",
+                "props": {},
+                "slots": {},
+                "cssVariables": {},
+                "manualOverrides": [],
+                "warnings": [
+                  "Some props from entry cap-row could not be resolved"
+                ],
+                "fallback": null,
+                "children": [
+                  {
+                    "figmaNodeId": "123:5179",
+                    "figmaNodeType": "FRAME",
+                    "figmaComponentName": "NameColumn",
+                    "mappingStatus": "EXACT",
+                    "targetComponent": "CapColumn",
+                    "importPath": "@capillarytech/cap-ui-library/CapColumn",
+                    "props": {},
+                    "slots": {},
+                    "cssVariables": {},
+                    "manualOverrides": [],
+                    "warnings": [],
+                    "fallback": null,
+                    "children": [
+                      {
+                        "figmaNodeId": "123:5180",
+                        "figmaNodeType": "INSTANCE",
+                        "figmaComponentName": "Header",
+                        "mappingStatus": "EXACT",
+                        "targetComponent": "CapRow",
+                        "importPath": "@capillarytech/cap-ui-library/CapRow",
+                        "props": {},
+                        "slots": {},
+                        "cssVariables": {},
+                        "manualOverrides": [],
+                        "warnings": [],
+                        "fallback": null,
+                        "children": [],
+                        "source": "registry",
+                        "fingerprint": "3fda30491a7e"
+                      },
+                      {
+                        "figmaNodeId": "123:5181",
+                        "figmaNodeType": "FRAME",
+                        "figmaComponentName": "Row",
+                        "mappingStatus": "PARTIAL",
+                        "targetComponent": "CapRow",
+                        "importPath": "@capillarytech/cap-ui-library/CapRow",
+                        "props": {},
+                        "slots": {},
+                        "cssVariables": {},
+                        "manualOverrides": [
+                          "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                        ],
+                        "warnings": [
+                          "Some props from entry cap-row could not be resolved"
+                        ],
+                        "fallback": null,
+                        "children": [
+                          {
+                            "figmaNodeId": "123:5182",
+                            "figmaNodeType": "FRAME",
+                            "figmaComponentName": "Frame 2087330621",
+                            "mappingStatus": "BESPOKE",
+                            "targetComponent": null,
+                            "importPath": null,
+                            "props": {},
+                            "slots": {},
+                            "cssVariables": {},
+                            "manualOverrides": [
+                              "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                            ],
+                            "warnings": [],
+                            "fallback": {
+                              "nearestComponent": null,
+                              "nearestComponentRationale": "No structural match found",
+                              "htmlFallback": "<div style=\"width: 260px; height: 74px; display: flex;\"><!-- Frame 2087330621 --></div>"
+                            },
+                            "children": [
+                              {
+                                "figmaNodeId": "123:5183",
+                                "figmaNodeType": "FRAME",
+                                "figmaComponentName": "Frame 2381",
+                                "mappingStatus": "EXACT",
+                                "targetComponent": "CapColumn",
+                                "importPath": "@capillarytech/cap-ui-library/CapColumn",
+                                "props": {},
+                                "slots": {},
+                                "cssVariables": {},
+                                "label": "Complete 10 txns and get a badge",
+                                "manualOverrides": [],
+                                "warnings": [
+                                  "Child \"Group 645\" (FRAME) could not be mapped",
+                                  "Child \"Frame 2087332559\" (FRAME) could not be mapped",
+                                  "Child \"Frame 2087332560\" (FRAME) could not be mapped"
+                                ],
+                                "fallback": null,
+                                "children": [
+                                  {
+                                    "figmaNodeId": "123:5185",
+                                    "figmaNodeType": "FRAME",
+                                    "figmaComponentName": "Group 645",
+                                    "mappingStatus": "UNMAPPED",
+                                    "targetComponent": null,
+                                    "importPath": null,
+                                    "props": {},
+                                    "slots": {},
+                                    "cssVariables": {},
+                                    "label": "Text",
+                                    "manualOverrides": [
+                                      "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                                    ],
+                                    "warnings": [],
+                                    "fallback": {
+                                      "nearestComponent": "CapLabel",
+                                      "nearestComponentRationale": "Single TEXT child — container is a label wrapper",
+                                      "htmlFallback": "<div style=\"width: 260px; height: 16px; display: flex;\"><!-- Group 645 --></div>"
+                                    },
+                                    "children": [
+                                      {
+                                        "figmaNodeId": "123:5186",
+                                        "figmaNodeType": "TEXT",
+                                        "figmaComponentName": "Text",
+                                        "mappingStatus": "EXACT",
+                                        "targetComponent": "CapLabel",
+                                        "importPath": "@capillarytech/cap-ui-library/CapLabel",
+                                        "props": {},
+                                        "slots": {
+                                          "children": "Text"
+                                        },
+                                        "cssVariables": {},
+                                        "label": "Text",
+                                        "manualOverrides": [],
+                                        "warnings": [],
+                                        "fallback": null,
+                                        "children": [],
+                                        "source": "typography",
+                                        "fingerprint": "e8a2de92ca5e"
+                                      }
+                                    ],
+                                    "source": "unresolved",
+                                    "fingerprint": "bafd9bc6527e"
+                                  },
+                                  {
+                                    "figmaNodeId": "123:5188",
+                                    "figmaNodeType": "FRAME",
+                                    "figmaComponentName": "Frame 2087332559",
+                                    "mappingStatus": "UNMAPPED",
+                                    "targetComponent": null,
+                                    "importPath": null,
+                                    "props": {},
+                                    "slots": {},
+                                    "cssVariables": {},
+                                    "label": "ID: A12345W0",
+                                    "manualOverrides": [
+                                      "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                                    ],
+                                    "warnings": [],
+                                    "fallback": {
+                                      "nearestComponent": "CapLabel",
+                                      "nearestComponentRationale": "Single TEXT child — container is a label wrapper",
+                                      "htmlFallback": "<div style=\"width: 77px; height: 16px; display: flex;\"><!-- Frame 2087332559 --></div>"
+                                    },
+                                    "children": [
+                                      {
+                                        "figmaNodeId": "123:5189",
+                                        "figmaNodeType": "TEXT",
+                                        "figmaComponentName": "ID: A12345W0",
+                                        "mappingStatus": "EXACT",
+                                        "targetComponent": "CapLabel",
+                                        "importPath": "@capillarytech/cap-ui-library/CapLabel",
+                                        "props": {},
+                                        "slots": {
+                                          "children": "ID: A12345W0"
+                                        },
+                                        "cssVariables": {},
+                                        "label": "ID: A12345W0",
+                                        "manualOverrides": [],
+                                        "warnings": [],
+                                        "fallback": null,
+                                        "children": [],
+                                        "source": "typography",
+                                        "fingerprint": "b6546948e14c"
+                                      }
+                                    ],
+                                    "source": "unresolved",
+                                    "fingerprint": "ddc1478d04a1"
+                                  },
+                                  {
+                                    "figmaNodeId": "123:5190",
+                                    "figmaNodeType": "FRAME",
+                                    "figmaComponentName": "Frame 2087332560",
+                                    "mappingStatus": "UNMAPPED",
+                                    "targetComponent": null,
+                                    "importPath": null,
+                                    "props": {},
+                                    "slots": {},
+                                    "cssVariables": {},
+                                    "label": "EXT ID: C5MH123IHG12345678.....",
+                                    "manualOverrides": [
+                                      "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                                    ],
+                                    "warnings": [],
+                                    "fallback": {
+                                      "nearestComponent": "CapLabel",
+                                      "nearestComponentRationale": "Single TEXT child — container is a label wrapper",
+                                      "htmlFallback": "<div style=\"width: 185px; height: 16px; display: flex;\"><!-- Frame 2087332560 --></div>"
+                                    },
+                                    "children": [
+                                      {
+                                        "figmaNodeId": "123:5191",
+                                        "figmaNodeType": "TEXT",
+                                        "figmaComponentName": "EXT ID: C5MH123IHG12345678.....",
+                                        "mappingStatus": "EXACT",
+                                        "targetComponent": "CapLabel",
+                                        "importPath": "@capillarytech/cap-ui-library/CapLabel",
+                                        "props": {},
+                                        "slots": {
+                                          "children": "EXT ID: C5MH123IHG12345678....."
+                                        },
+                                        "cssVariables": {},
+                                        "label": "EXT ID: C5MH123IHG12345678.....",
+                                        "manualOverrides": [],
+                                        "warnings": [],
+                                        "fallback": null,
+                                        "children": [],
+                                        "source": "typography",
+                                        "fingerprint": "7dcab1292ddd"
+                                      }
+                                    ],
+                                    "source": "unresolved",
+                                    "fingerprint": "70f4cbb8e3be"
+                                  }
+                                ],
+                                "source": "layout-inferred",
+                                "fingerprint": "080f8643f32d"
+                              }
+                            ],
+                            "source": "unresolved",
+                            "fingerprint": "c7efdc46aec1"
+                          }
+                        ],
+                        "source": "registry",
+                        "fingerprint": "39c0d9d78ec8"
+                      },
+                      {
+                        "figmaNodeId": "123:5198",
+                        "figmaNodeType": "FRAME",
+                        "figmaComponentName": "Row",
+                        "mappingStatus": "PARTIAL",
+                        "targetComponent": "CapRow",
+                        "importPath": "@capillarytech/cap-ui-library/CapRow",
+                        "props": {},
+                        "slots": {},
+                        "cssVariables": {},
+                        "manualOverrides": [
+                          "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                        ],
+                        "warnings": [
+                          "Some props from entry cap-row could not be resolved"
+                        ],
+                        "fallback": null,
+                        "children": [
+                          {
+                            "figmaNodeId": "123:5199",
+                            "figmaNodeType": "FRAME",
+                            "figmaComponentName": "Frame 2087330621",
+                            "mappingStatus": "BESPOKE",
+                            "targetComponent": null,
+                            "importPath": null,
+                            "props": {},
+                            "slots": {},
+                            "cssVariables": {},
+                            "manualOverrides": [
+                              "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                            ],
+                            "warnings": [],
+                            "fallback": {
+                              "nearestComponent": null,
+                              "nearestComponentRationale": "No structural match found",
+                              "htmlFallback": "<div style=\"width: 260px; height: 74px; display: flex;\"><!-- Frame 2087330621 --></div>"
+                            },
+                            "children": [
+                              {
+                                "figmaNodeId": "123:5200",
+                                "figmaNodeType": "FRAME",
+                                "figmaComponentName": "Frame 2087330621",
+                                "mappingStatus": "BESPOKE",
+                                "targetComponent": null,
+                                "importPath": null,
+                                "props": {},
+                                "slots": {},
+                                "cssVariables": {},
+                                "manualOverrides": [
+                                  "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                                ],
+                                "warnings": [],
+                                "fallback": {
+                                  "nearestComponent": null,
+                                  "nearestComponentRationale": "No structural match found",
+                                  "htmlFallback": "<div style=\"width: 260px; height: 74px; display: flex;\"><!-- Frame 2087330621 --></div>"
+                                },
+                                "children": [
+                                  {
+                                    "figmaNodeId": "123:5201",
+                                    "figmaNodeType": "FRAME",
+                                    "figmaComponentName": "Frame 2381",
+                                    "mappingStatus": "EXACT",
+                                    "targetComponent": "CapColumn",
+                                    "importPath": "@capillarytech/cap-ui-library/CapColumn",
+                                    "props": {},
+                                    "slots": {},
+                                    "cssVariables": {},
+                                    "label": "Complete 10 txns and get a badge",
+                                    "manualOverrides": [],
+                                    "warnings": [
+                                      "Child \"Group 645\" (FRAME) could not be mapped",
+                                      "Child \"Frame 2087332559\" (FRAME) could not be mapped",
+                                      "Child \"Frame 2087332560\" (FRAME) could not be mapped"
+                                    ],
+                                    "fallback": null,
+                                    "children": [
+                                      {
+                                        "figmaNodeId": "123:5203",
+                                        "figmaNodeType": "FRAME",
+                                        "figmaComponentName": "Group 645",
+                                        "mappingStatus": "UNMAPPED",
+                                        "targetComponent": null,
+                                        "importPath": null,
+                                        "props": {},
+                                        "slots": {},
+                                        "cssVariables": {},
+                                        "label": "Text",
+                                        "manualOverrides": [
+                                          "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                                        ],
+                                        "warnings": [],
+                                        "fallback": {
+                                          "nearestComponent": "CapLabel",
+                                          "nearestComponentRationale": "Single TEXT child — container is a label wrapper",
+                                          "htmlFallback": "<div style=\"width: 260px; height: 16px; display: flex;\"><!-- Group 645 --></div>"
+                                        },
+                                        "children": [
+                                          {
+                                            "figmaNodeId": "123:5204",
+                                            "figmaNodeType": "TEXT",
+                                            "figmaComponentName": "Text",
+                                            "mappingStatus": "EXACT",
+                                            "targetComponent": "CapLabel",
+                                            "importPath": "@capillarytech/cap-ui-library/CapLabel",
+                                            "props": {},
+                                            "slots": {
+                                              "children": "Text"
+                                            },
+                                            "cssVariables": {},
+                                            "label": "Text",
+                                            "manualOverrides": [],
+                                            "warnings": [],
+                                            "fallback": null,
+                                            "children": [],
+                                            "source": "typography",
+                                            "fingerprint": "e8a2de92ca5e"
+                                          }
+                                        ],
+                                        "source": "unresolved",
+                                        "fingerprint": "bafd9bc6527e"
+                                      },
+                                      {
+                                        "figmaNodeId": "123:5206",
+                                        "figmaNodeType": "FRAME",
+                                        "figmaComponentName": "Frame 2087332559",
+                                        "mappingStatus": "UNMAPPED",
+                                        "targetComponent": null,
+                                        "importPath": null,
+                                        "props": {},
+                                        "slots": {},
+                                        "cssVariables": {},
+                                        "label": "ID: A12345W0",
+                                        "manualOverrides": [
+                                          "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                                        ],
+                                        "warnings": [],
+                                        "fallback": {
+                                          "nearestComponent": "CapLabel",
+                                          "nearestComponentRationale": "Single TEXT child — container is a label wrapper",
+                                          "htmlFallback": "<div style=\"width: 77px; height: 16px; display: flex;\"><!-- Frame 2087332559 --></div>"
+                                        },
+                                        "children": [
+                                          {
+                                            "figmaNodeId": "123:5207",
+                                            "figmaNodeType": "TEXT",
+                                            "figmaComponentName": "ID: A12345W0",
+                                            "mappingStatus": "EXACT",
+                                            "targetComponent": "CapLabel",
+                                            "importPath": "@capillarytech/cap-ui-library/CapLabel",
+                                            "props": {},
+                                            "slots": {
+                                              "children": "ID: A12345W0"
+                                            },
+                                            "cssVariables": {},
+                                            "label": "ID: A12345W0",
+                                            "manualOverrides": [],
+                                            "warnings": [],
+                                            "fallback": null,
+                                            "children": [],
+                                            "source": "typography",
+                                            "fingerprint": "b6546948e14c"
+                                          }
+                                        ],
+                                        "source": "unresolved",
+                                        "fingerprint": "ddc1478d04a1"
+                                      },
+                                      {
+                                        "figmaNodeId": "123:5208",
+                                        "figmaNodeType": "FRAME",
+                                        "figmaComponentName": "Frame 2087332560",
+                                        "mappingStatus": "UNMAPPED",
+                                        "targetComponent": null,
+                                        "importPath": null,
+                                        "props": {},
+                                        "slots": {},
+                                        "cssVariables": {},
+                                        "label": "EXT ID: C5MH123IHG12345678.....",
+                                        "manualOverrides": [
+                                          "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                                        ],
+                                        "warnings": [],
+                                        "fallback": {
+                                          "nearestComponent": "CapLabel",
+                                          "nearestComponentRationale": "Single TEXT child — container is a label wrapper",
+                                          "htmlFallback": "<div style=\"width: 185px; height: 16px; display: flex;\"><!-- Frame 2087332560 --></div>"
+                                        },
+                                        "children": [
+                                          {
+                                            "figmaNodeId": "123:5209",
+                                            "figmaNodeType": "TEXT",
+                                            "figmaComponentName": "EXT ID: C5MH123IHG12345678.....",
+                                            "mappingStatus": "EXACT",
+                                            "targetComponent": "CapLabel",
+                                            "importPath": "@capillarytech/cap-ui-library/CapLabel",
+                                            "props": {},
+                                            "slots": {
+                                              "children": "EXT ID: C5MH123IHG12345678....."
+                                            },
+                                            "cssVariables": {},
+                                            "label": "EXT ID: C5MH123IHG12345678.....",
+                                            "manualOverrides": [],
+                                            "warnings": [],
+                                            "fallback": null,
+                                            "children": [],
+                                            "source": "typography",
+                                            "fingerprint": "7dcab1292ddd"
+                                          }
+                                        ],
+                                        "source": "unresolved",
+                                        "fingerprint": "70f4cbb8e3be"
+                                      }
+                                    ],
+                                    "source": "layout-inferred",
+                                    "fingerprint": "080f8643f32d"
+                                  }
+                                ],
+                                "source": "unresolved",
+                                "fingerprint": "c7efdc46aec1"
+                              }
+                            ],
+                            "source": "unresolved",
+                            "fingerprint": "dc52ddf0bdf8"
+                          }
+                        ],
+                        "source": "registry",
+                        "fingerprint": "39c0d9d78ec8"
+                      },
+                      {
+                        "figmaNodeId": "123:5216",
+                        "figmaNodeType": "FRAME",
+                        "figmaComponentName": "Row",
+                        "mappingStatus": "PARTIAL",
+                        "targetComponent": "CapRow",
+                        "importPath": "@capillarytech/cap-ui-library/CapRow",
+                        "props": {},
+                        "slots": {},
+                        "cssVariables": {},
+                        "manualOverrides": [],
+                        "warnings": [
+                          "Some props from entry cap-row could not be resolved"
+                        ],
+                        "fallback": null,
+                        "children": [],
+                        "source": "registry",
+                        "fingerprint": "9f4cc6b4be8a"
+                      },
+                      {
+                        "figmaNodeId": "123:5230",
+                        "figmaNodeType": "FRAME",
+                        "figmaComponentName": "Row",
+                        "mappingStatus": "PARTIAL",
+                        "targetComponent": "CapRow",
+                        "importPath": "@capillarytech/cap-ui-library/CapRow",
+                        "props": {},
+                        "slots": {},
+                        "cssVariables": {},
+                        "manualOverrides": [],
+                        "warnings": [
+                          "Some props from entry cap-row could not be resolved"
+                        ],
+                        "fallback": null,
+                        "children": [],
+                        "source": "registry",
+                        "fingerprint": "ac010137f124"
+                      },
+                      {
+                        "figmaNodeId": "123:5244",
+                        "figmaNodeType": "FRAME",
+                        "figmaComponentName": "Row",
+                        "mappingStatus": "PARTIAL",
+                        "targetComponent": "CapRow",
+                        "importPath": "@capillarytech/cap-ui-library/CapRow",
+                        "props": {},
+                        "slots": {},
+                        "cssVariables": {},
+                        "manualOverrides": [],
+                        "warnings": [
+                          "Some props from entry cap-row could not be resolved"
+                        ],
+                        "fallback": null,
+                        "children": [],
+                        "source": "registry",
+                        "fingerprint": "9f4cc6b4be8a"
+                      },
+                      {
+                        "figmaNodeId": "123:5261",
+                        "figmaNodeType": "FRAME",
+                        "figmaComponentName": "Row",
+                        "mappingStatus": "PARTIAL",
+                        "targetComponent": "CapRow",
+                        "importPath": "@capillarytech/cap-ui-library/CapRow",
+                        "props": {},
+                        "slots": {},
+                        "cssVariables": {},
+                        "manualOverrides": [
+                          "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                        ],
+                        "warnings": [
+                          "Child \"Frame 2087330621\" (FRAME) could not be mapped",
+                          "Some props from entry cap-row could not be resolved"
+                        ],
+                        "fallback": null,
+                        "children": [
+                          {
+                            "figmaNodeId": "123:5262",
+                            "figmaNodeType": "FRAME",
+                            "figmaComponentName": "Frame 2087330621",
+                            "mappingStatus": "UNMAPPED",
+                            "targetComponent": null,
+                            "importPath": null,
+                            "props": {},
+                            "slots": {},
+                            "cssVariables": {},
+                            "manualOverrides": [],
+                            "warnings": [],
+                            "fallback": {
+                              "nearestComponent": null,
+                              "nearestComponentRationale": "No structural match found",
+                              "htmlFallback": "<div style=\"width: 238px; height: 74px; display: flex;\"><!-- Frame 2087330621 --></div>"
+                            },
+                            "children": [],
+                            "source": "unresolved",
+                            "fingerprint": "e018fba3a947"
+                          }
+                        ],
+                        "source": "registry",
+                        "fingerprint": "39c0d9d78ec8"
+                      },
+                      {
+                        "figmaNodeId": "123:5278",
+                        "figmaNodeType": "FRAME",
+                        "figmaComponentName": "Row",
+                        "mappingStatus": "PARTIAL",
+                        "targetComponent": "CapRow",
+                        "importPath": "@capillarytech/cap-ui-library/CapRow",
+                        "props": {},
+                        "slots": {},
+                        "cssVariables": {},
+                        "manualOverrides": [],
+                        "warnings": [
+                          "Some props from entry cap-row could not be resolved"
+                        ],
+                        "fallback": null,
+                        "children": [],
+                        "source": "registry",
+                        "fingerprint": "9f4cc6b4be8a"
+                      },
+                      {
+                        "figmaNodeId": "123:5292",
+                        "figmaNodeType": "FRAME",
+                        "figmaComponentName": "Row",
+                        "mappingStatus": "PARTIAL",
+                        "targetComponent": "CapRow",
+                        "importPath": "@capillarytech/cap-ui-library/CapRow",
+                        "props": {},
+                        "slots": {},
+                        "cssVariables": {},
+                        "manualOverrides": [
+                          "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                        ],
+                        "warnings": [
+                          "Some props from entry cap-row could not be resolved"
+                        ],
+                        "fallback": null,
+                        "children": [
+                          {
+                            "figmaNodeId": "123:5299",
+                            "figmaNodeType": "FRAME",
+                            "figmaComponentName": "Frame 2087330625",
+                            "mappingStatus": "BESPOKE",
+                            "targetComponent": null,
+                            "importPath": null,
+                            "props": {},
+                            "slots": {},
+                            "cssVariables": {},
+                            "manualOverrides": [
+                              "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                            ],
+                            "warnings": [],
+                            "fallback": {
+                              "nearestComponent": null,
+                              "nearestComponentRationale": "No structural match found",
+                              "htmlFallback": "<div style=\"width: 260px; height: 54px; display: flex;\"><!-- Frame 2087330625 --></div>"
+                            },
+                            "children": [
+                              {
+                                "figmaNodeId": "123:5300",
+                                "figmaNodeType": "FRAME",
+                                "figmaComponentName": "Frame 2384",
+                                "mappingStatus": "EXACT",
+                                "targetComponent": "CapColumn",
+                                "importPath": "@capillarytech/cap-ui-library/CapColumn",
+                                "props": {},
+                                "slots": {},
+                                "cssVariables": {},
+                                "label": "Limited edition circuit workouts",
+                                "byline": "Text",
+                                "manualOverrides": [],
+                                "warnings": [],
+                                "fallback": null,
+                                "children": [],
+                                "source": "layout-inferred",
+                                "fingerprint": "b6757aba1083"
+                              }
+                            ],
+                            "source": "unresolved",
+                            "fingerprint": "0b791f89beb8"
+                          }
+                        ],
+                        "source": "registry",
+                        "fingerprint": "39c0d9d78ec8"
+                      }
+                    ],
+                    "source": "registry",
+                    "fingerprint": "d77ad76ed4a3"
+                  },
+                  {
+                    "figmaNodeId": "123:5303",
+                    "figmaNodeType": "FRAME",
+                    "figmaComponentName": "StatusColumn",
+                    "mappingStatus": "EXACT",
+                    "targetComponent": "CapColumn",
+                    "importPath": "@capillarytech/cap-ui-library/CapColumn",
+                    "props": {},
+                    "slots": {},
+                    "cssVariables": {},
+                    "manualOverrides": [],
+                    "warnings": [],
+                    "fallback": null,
+                    "children": [
+                      {
+                        "figmaNodeId": "123:5304",
+                        "figmaNodeType": "FRAME",
+                        "figmaComponentName": "Header",
+                        "mappingStatus": "EXACT",
+                        "targetComponent": "CapRow",
+                        "importPath": "@capillarytech/cap-ui-library/CapRow",
+                        "props": {},
+                        "slots": {},
+                        "cssVariables": {},
+                        "manualOverrides": [
+                          "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                        ],
+                        "warnings": [
+                          "Child \"Frame 205\" (FRAME) could not be mapped"
+                        ],
+                        "fallback": null,
+                        "children": [
+                          {
+                            "figmaNodeId": "123:5305",
+                            "figmaNodeType": "FRAME",
+                            "figmaComponentName": "Frame 205",
+                            "mappingStatus": "UNMAPPED",
+                            "targetComponent": null,
+                            "importPath": null,
+                            "props": {},
+                            "slots": {},
+                            "cssVariables": {},
+                            "label": "Status",
+                            "manualOverrides": [
+                              "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                            ],
+                            "warnings": [],
+                            "fallback": {
+                              "nearestComponent": "CapLabel",
+                              "nearestComponentRationale": "Single TEXT child — container is a label wrapper",
+                              "htmlFallback": "<div style=\"width: 35px; height: 28px; display: flex;\"><!-- Frame 205 --></div>"
+                            },
+                            "children": [
+                              {
+                                "figmaNodeId": "123:5306",
+                                "figmaNodeType": "TEXT",
+                                "figmaComponentName": "Status",
+                                "mappingStatus": "EXACT",
+                                "targetComponent": "CapLabel",
+                                "importPath": "@capillarytech/cap-ui-library/CapLabel",
+                                "props": {},
+                                "slots": {
+                                  "children": "Status"
+                                },
+                                "cssVariables": {},
+                                "label": "Status",
+                                "manualOverrides": [],
+                                "warnings": [],
+                                "fallback": null,
+                                "children": [],
+                                "source": "typography",
+                                "fingerprint": "ff689247d4c0"
+                              }
+                            ],
+                            "source": "unresolved",
+                            "fingerprint": "03f1cf0e1225"
+                          }
+                        ],
+                        "source": "registry",
+                        "fingerprint": "b969e5b4571a"
+                      },
+                      {
+                        "figmaNodeId": "123:5307",
+                        "figmaNodeType": "FRAME",
+                        "figmaComponentName": "Row",
+                        "mappingStatus": "PARTIAL",
+                        "targetComponent": "CapRow",
+                        "importPath": "@capillarytech/cap-ui-library/CapRow",
+                        "props": {},
+                        "slots": {},
+                        "cssVariables": {},
+                        "manualOverrides": [
+                          "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                        ],
+                        "warnings": [
+                          "Some props from entry cap-row could not be resolved"
+                        ],
+                        "fallback": null,
+                        "children": [
+                          {
+                            "figmaNodeId": "123:5308",
+                            "figmaNodeType": "FRAME",
+                            "figmaComponentName": "Frame 2087330713",
+                            "mappingStatus": "EXACT",
+                            "targetComponent": "CapColumn",
+                            "importPath": "@capillarytech/cap-ui-library/CapColumn",
+                            "props": {},
+                            "slots": {},
+                            "cssVariables": {},
+                            "label": "2 Days left",
+                            "manualOverrides": [],
+                            "warnings": [],
+                            "fallback": null,
+                            "children": [
+                              {
+                                "figmaNodeId": "123:5309",
+                                "figmaNodeType": "FRAME",
+                                "figmaComponentName": "Frame 2087330659",
+                                "mappingStatus": "BESPOKE",
+                                "targetComponent": null,
+                                "importPath": null,
+                                "props": {},
+                                "slots": {},
+                                "cssVariables": {},
+                                "manualOverrides": [
+                                  "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                                ],
+                                "warnings": [],
+                                "fallback": {
+                                  "nearestComponent": null,
+                                  "nearestComponentRationale": "No structural match found",
+                                  "htmlFallback": "<div style=\"width: 130.02198373666033px; height: 20.14338602661155px; display: flex;\"><!-- Frame 2087330659 --></div>"
+                                },
+                                "children": [
+                                  {
+                                    "figmaNodeId": "123:5310",
+                                    "figmaNodeType": "FRAME",
+                                    "figmaComponentName": "badges",
+                                    "mappingStatus": "BESPOKE",
+                                    "targetComponent": null,
+                                    "importPath": null,
+                                    "props": {},
+                                    "slots": {},
+                                    "cssVariables": {},
+                                    "label": "text",
+                                    "manualOverrides": [
+                                      "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                                    ],
+                                    "warnings": [],
+                                    "fallback": {
+                                      "nearestComponent": null,
+                                      "nearestComponentRationale": "No structural match found",
+                                      "htmlFallback": "<div style=\"width: 130.02198373666033px; height: 20.14338602661155px; display: flex;\"><!-- badges --></div>"
+                                    },
+                                    "children": [
+                                      {
+                                        "figmaNodeId": "123:5312",
+                                        "figmaNodeType": "INSTANCE",
+                                        "figmaComponentName": "Status/Green",
+                                        "mappingStatus": "PARTIAL",
+                                        "targetComponent": "CapStatus",
+                                        "importPath": "@capillarytech/cap-ui-library/CapStatus",
+                                        "props": {},
+                                        "slots": {},
+                                        "cssVariables": {},
+                                        "manualOverrides": [],
+                                        "warnings": [
+                                          "Some props from entry cap-status could not be resolved"
+                                        ],
+                                        "fallback": null,
+                                        "children": [],
+                                        "source": "registry",
+                                        "fingerprint": "22f52781e3e8"
+                                      },
+                                      {
+                                        "figmaNodeId": "123:5313",
+                                        "figmaNodeType": "TEXT",
+                                        "figmaComponentName": "text",
+                                        "mappingStatus": "EXACT",
+                                        "targetComponent": "CapLabel",
+                                        "importPath": "@capillarytech/cap-ui-library/CapLabel",
+                                        "props": {},
+                                        "slots": {
+                                          "children": "text"
+                                        },
+                                        "cssVariables": {},
+                                        "label": "text",
+                                        "manualOverrides": [],
+                                        "warnings": [],
+                                        "fallback": null,
+                                        "children": [],
+                                        "source": "typography",
+                                        "fingerprint": "b6546948e14c"
+                                      }
+                                    ],
+                                    "source": "unresolved",
+                                    "fingerprint": "7b9f744c9ecb"
+                                  }
+                                ],
+                                "source": "unresolved",
+                                "fingerprint": "cfc780e1d80a"
+                              }
+                            ],
+                            "source": "layout-inferred",
+                            "fingerprint": "9068625106d8"
+                          }
+                        ],
+                        "source": "registry",
+                        "fingerprint": "8dd6fb7c888e"
+                      },
+                      {
+                        "figmaNodeId": "123:5322",
+                        "figmaNodeType": "FRAME",
+                        "figmaComponentName": "Row",
+                        "mappingStatus": "PARTIAL",
+                        "targetComponent": "CapRow",
+                        "importPath": "@capillarytech/cap-ui-library/CapRow",
+                        "props": {},
+                        "slots": {},
+                        "cssVariables": {},
+                        "manualOverrides": [
+                          "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                        ],
+                        "warnings": [
+                          "Some props from entry cap-row could not be resolved"
+                        ],
+                        "fallback": null,
+                        "children": [
+                          {
+                            "figmaNodeId": "123:5323",
+                            "figmaNodeType": "FRAME",
+                            "figmaComponentName": "Frame 2087330712",
+                            "mappingStatus": "EXACT",
+                            "targetComponent": "CapColumn",
+                            "importPath": "@capillarytech/cap-ui-library/CapColumn",
+                            "props": {},
+                            "slots": {},
+                            "cssVariables": {},
+                            "label": "Rejected on Dec 25",
+                            "manualOverrides": [],
+                            "warnings": [],
+                            "fallback": null,
+                            "children": [
+                              {
+                                "figmaNodeId": "123:5324",
+                                "figmaNodeType": "FRAME",
+                                "figmaComponentName": "Frame 2087330659",
+                                "mappingStatus": "BESPOKE",
+                                "targetComponent": null,
+                                "importPath": null,
+                                "props": {},
+                                "slots": {},
+                                "cssVariables": {},
+                                "manualOverrides": [
+                                  "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                                ],
+                                "warnings": [],
+                                "fallback": {
+                                  "nearestComponent": null,
+                                  "nearestComponentRationale": "No structural match found",
+                                  "htmlFallback": "<div style=\"width: 44px; height: 20px; display: flex;\"><!-- Frame 2087330659 --></div>"
+                                },
+                                "children": [
+                                  {
+                                    "figmaNodeId": "123:5325",
+                                    "figmaNodeType": "FRAME",
+                                    "figmaComponentName": "Frame 2087330659",
+                                    "mappingStatus": "BESPOKE",
+                                    "targetComponent": null,
+                                    "importPath": null,
+                                    "props": {},
+                                    "slots": {},
+                                    "cssVariables": {},
+                                    "manualOverrides": [
+                                      "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                                    ],
+                                    "warnings": [],
+                                    "fallback": {
+                                      "nearestComponent": null,
+                                      "nearestComponentRationale": "No structural match found",
+                                      "htmlFallback": "<div style=\"width: 44px; height: 20px; display: flex;\"><!-- Frame 2087330659 --></div>"
+                                    },
+                                    "children": [
+                                      {
+                                        "figmaNodeId": "123:5326",
+                                        "figmaNodeType": "INSTANCE",
+                                        "figmaComponentName": "badges",
+                                        "mappingStatus": "UNMAPPED",
+                                        "targetComponent": null,
+                                        "importPath": null,
+                                        "props": {},
+                                        "slots": {},
+                                        "cssVariables": {},
+                                        "manualOverrides": [],
+                                        "warnings": [],
+                                        "fallback": {
+                                          "nearestComponent": null,
+                                          "nearestComponentRationale": "No structural match found",
+                                          "htmlFallback": "<div style=\"width: 44px; height: 20px; display: flex;\"><!-- badges --></div>"
+                                        },
+                                        "children": [],
+                                        "source": "unresolved",
+                                        "fingerprint": "22f52781e3e8"
+                                      }
+                                    ],
+                                    "source": "unresolved",
+                                    "fingerprint": "4e62a93c6282"
+                                  }
+                                ],
+                                "source": "unresolved",
+                                "fingerprint": "907f645a1028"
+                              }
+                            ],
+                            "source": "layout-inferred",
+                            "fingerprint": "061fdb10c1bb"
+                          }
+                        ],
+                        "source": "registry",
+                        "fingerprint": "8dd6fb7c888e"
+                      },
+                      {
+                        "figmaNodeId": "123:5330",
+                        "figmaNodeType": "FRAME",
+                        "figmaComponentName": "Row",
+                        "mappingStatus": "PARTIAL",
+                        "targetComponent": "CapRow",
+                        "importPath": "@capillarytech/cap-ui-library/CapRow",
+                        "props": {},
+                        "slots": {},
+                        "cssVariables": {},
+                        "manualOverrides": [
+                          "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                        ],
+                        "warnings": [
+                          "Some props from entry cap-row could not be resolved"
+                        ],
+                        "fallback": null,
+                        "children": [
+                          {
+                            "figmaNodeId": "123:5331",
+                            "figmaNodeType": "FRAME",
+                            "figmaComponentName": "Frame 2087330712",
+                            "mappingStatus": "EXACT",
+                            "targetComponent": "CapColumn",
+                            "importPath": "@capillarytech/cap-ui-library/CapColumn",
+                            "props": {},
+                            "slots": {},
+                            "cssVariables": {},
+                            "label": "Starts in 5 days",
+                            "manualOverrides": [],
+                            "warnings": [
+                              "Child \"badges\" (INSTANCE) could not be mapped"
+                            ],
+                            "fallback": null,
+                            "children": [
+                              {
+                                "figmaNodeId": "123:5332",
+                                "figmaNodeType": "INSTANCE",
+                                "figmaComponentName": "badges",
+                                "mappingStatus": "UNMAPPED",
+                                "targetComponent": null,
+                                "importPath": null,
+                                "props": {},
+                                "slots": {},
+                                "cssVariables": {},
+                                "manualOverrides": [],
+                                "warnings": [],
+                                "fallback": {
+                                  "nearestComponent": null,
+                                  "nearestComponentRationale": "No structural match found",
+                                  "htmlFallback": "<div style=\"width: 72px; height: 20px; display: flex;\"><!-- badges --></div>"
+                                },
+                                "children": [],
+                                "source": "unresolved",
+                                "fingerprint": "b4d35d3e673f"
+                              }
+                            ],
+                            "source": "layout-inferred",
+                            "fingerprint": "ee7fb786dec9"
+                          }
+                        ],
+                        "source": "registry",
+                        "fingerprint": "8dd6fb7c888e"
+                      },
+                      {
+                        "figmaNodeId": "123:5334",
+                        "figmaNodeType": "FRAME",
+                        "figmaComponentName": "Row",
+                        "mappingStatus": "PARTIAL",
+                        "targetComponent": "CapRow",
+                        "importPath": "@capillarytech/cap-ui-library/CapRow",
+                        "props": {},
+                        "slots": {},
+                        "cssVariables": {},
+                        "manualOverrides": [
+                          "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                        ],
+                        "warnings": [
+                          "Some props from entry cap-row could not be resolved"
+                        ],
+                        "fallback": null,
+                        "children": [
+                          {
+                            "figmaNodeId": "123:5335",
+                            "figmaNodeType": "FRAME",
+                            "figmaComponentName": "Frame 2087330712",
+                            "mappingStatus": "EXACT",
+                            "targetComponent": "CapColumn",
+                            "importPath": "@capillarytech/cap-ui-library/CapColumn",
+                            "props": {},
+                            "slots": {},
+                            "cssVariables": {},
+                            "label": "Draft saved",
+                            "manualOverrides": [],
+                            "warnings": [
+                              "Child \"badges\" (INSTANCE) could not be mapped"
+                            ],
+                            "fallback": null,
+                            "children": [
+                              {
+                                "figmaNodeId": "123:5336",
+                                "figmaNodeType": "INSTANCE",
+                                "figmaComponentName": "badges",
+                                "mappingStatus": "UNMAPPED",
+                                "targetComponent": null,
+                                "importPath": null,
+                                "props": {},
+                                "slots": {},
+                                "cssVariables": {},
+                                "manualOverrides": [],
+                                "warnings": [],
+                                "fallback": {
+                                  "nearestComponent": null,
+                                  "nearestComponentRationale": "No structural match found",
+                                  "htmlFallback": "<div style=\"width: 72px; height: 20px; display: flex;\"><!-- badges --></div>"
+                                },
+                                "children": [],
+                                "source": "unresolved",
+                                "fingerprint": "b4d35d3e673f"
+                              }
+                            ],
+                            "source": "layout-inferred",
+                            "fingerprint": "8d6fac05be6f"
+                          }
+                        ],
+                        "source": "registry",
+                        "fingerprint": "e162b6365b8a"
+                      },
+                      {
+                        "figmaNodeId": "123:5338",
+                        "figmaNodeType": "FRAME",
+                        "figmaComponentName": "Row",
+                        "mappingStatus": "PARTIAL",
+                        "targetComponent": "CapRow",
+                        "importPath": "@capillarytech/cap-ui-library/CapRow",
+                        "props": {},
+                        "slots": {},
+                        "cssVariables": {},
+                        "manualOverrides": [
+                          "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                        ],
+                        "warnings": [
+                          "Some props from entry cap-row could not be resolved"
+                        ],
+                        "fallback": null,
+                        "children": [
+                          {
+                            "figmaNodeId": "123:5339",
+                            "figmaNodeType": "FRAME",
+                            "figmaComponentName": "Frame 2087330712",
+                            "mappingStatus": "EXACT",
+                            "targetComponent": "CapColumn",
+                            "importPath": "@capillarytech/cap-ui-library/CapColumn",
+                            "props": {},
+                            "slots": {},
+                            "cssVariables": {},
+                            "label": "Draft awaiting approval",
+                            "manualOverrides": [],
+                            "warnings": [
+                              "Child \"badges\" (INSTANCE) could not be mapped"
+                            ],
+                            "fallback": null,
+                            "children": [
+                              {
+                                "figmaNodeId": "123:5340",
+                                "figmaNodeType": "INSTANCE",
+                                "figmaComponentName": "badges",
+                                "mappingStatus": "UNMAPPED",
+                                "targetComponent": null,
+                                "importPath": null,
+                                "props": {},
+                                "slots": {},
+                                "cssVariables": {},
+                                "manualOverrides": [],
+                                "warnings": [],
+                                "fallback": {
+                                  "nearestComponent": null,
+                                  "nearestComponentRationale": "No structural match found",
+                                  "htmlFallback": "<div style=\"width: 72px; height: 20px; display: flex;\"><!-- badges --></div>"
+                                },
+                                "children": [],
+                                "source": "unresolved",
+                                "fingerprint": "b4d35d3e673f"
+                              }
+                            ],
+                            "source": "layout-inferred",
+                            "fingerprint": "1bc7afb0ad80"
+                          }
+                        ],
+                        "source": "registry",
+                        "fingerprint": "8dd6fb7c888e"
+                      },
+                      {
+                        "figmaNodeId": "123:5342",
+                        "figmaNodeType": "FRAME",
+                        "figmaComponentName": "Row",
+                        "mappingStatus": "PARTIAL",
+                        "targetComponent": "CapRow",
+                        "importPath": "@capillarytech/cap-ui-library/CapRow",
+                        "props": {},
+                        "slots": {},
+                        "cssVariables": {},
+                        "manualOverrides": [
+                          "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                        ],
+                        "warnings": [
+                          "Some props from entry cap-row could not be resolved"
+                        ],
+                        "fallback": null,
+                        "children": [
+                          {
+                            "figmaNodeId": "123:5343",
+                            "figmaNodeType": "FRAME",
+                            "figmaComponentName": "Frame 2087330711",
+                            "mappingStatus": "EXACT",
+                            "targetComponent": "CapColumn",
+                            "importPath": "@capillarytech/cap-ui-library/CapColumn",
+                            "props": {},
+                            "slots": {},
+                            "cssVariables": {},
+                            "label": "Ends in 3 months",
+                            "manualOverrides": [],
+                            "warnings": [],
+                            "fallback": null,
+                            "children": [
+                              {
+                                "figmaNodeId": "123:5344",
+                                "figmaNodeType": "FRAME",
+                                "figmaComponentName": "Frame 2087330659",
+                                "mappingStatus": "BESPOKE",
+                                "targetComponent": null,
+                                "importPath": null,
+                                "props": {},
+                                "slots": {},
+                                "cssVariables": {},
+                                "manualOverrides": [
+                                  "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                                ],
+                                "warnings": [],
+                                "fallback": {
+                                  "nearestComponent": null,
+                                  "nearestComponentRationale": "No structural match found",
+                                  "htmlFallback": "<div style=\"width: 51px; height: 20px; display: flex;\"><!-- Frame 2087330659 --></div>"
+                                },
+                                "children": [
+                                  {
+                                    "figmaNodeId": "123:5345",
+                                    "figmaNodeType": "FRAME",
+                                    "figmaComponentName": "badges",
+                                    "mappingStatus": "BESPOKE",
+                                    "targetComponent": null,
+                                    "importPath": null,
+                                    "props": {},
+                                    "slots": {},
+                                    "cssVariables": {},
+                                    "label": "text",
+                                    "manualOverrides": [
+                                      "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                                    ],
+                                    "warnings": [],
+                                    "fallback": {
+                                      "nearestComponent": null,
+                                      "nearestComponentRationale": "No structural match found",
+                                      "htmlFallback": "<div style=\"width: 51px; height: 20px; display: flex;\"><!-- badges --></div>"
+                                    },
+                                    "children": [
+                                      {
+                                        "figmaNodeId": "123:5347",
+                                        "figmaNodeType": "INSTANCE",
+                                        "figmaComponentName": "Status/Green",
+                                        "mappingStatus": "PARTIAL",
+                                        "targetComponent": "CapStatus",
+                                        "importPath": "@capillarytech/cap-ui-library/CapStatus",
+                                        "props": {},
+                                        "slots": {},
+                                        "cssVariables": {},
+                                        "manualOverrides": [],
+                                        "warnings": [
+                                          "Some props from entry cap-status could not be resolved"
+                                        ],
+                                        "fallback": null,
+                                        "children": [],
+                                        "source": "registry",
+                                        "fingerprint": "22f52781e3e8"
+                                      },
+                                      {
+                                        "figmaNodeId": "123:5348",
+                                        "figmaNodeType": "TEXT",
+                                        "figmaComponentName": "text",
+                                        "mappingStatus": "EXACT",
+                                        "targetComponent": "CapLabel",
+                                        "importPath": "@capillarytech/cap-ui-library/CapLabel",
+                                        "props": {},
+                                        "slots": {
+                                          "children": "text"
+                                        },
+                                        "cssVariables": {},
+                                        "label": "text",
+                                        "manualOverrides": [],
+                                        "warnings": [],
+                                        "fallback": null,
+                                        "children": [],
+                                        "source": "typography",
+                                        "fingerprint": "2a583b52763f"
+                                      }
+                                    ],
+                                    "source": "unresolved",
+                                    "fingerprint": "7b9f744c9ecb"
+                                  }
+                                ],
+                                "source": "unresolved",
+                                "fingerprint": "cfc780e1d80a"
+                              }
+                            ],
+                            "source": "layout-inferred",
+                            "fingerprint": "3d132a0646eb"
+                          }
+                        ],
+                        "source": "registry",
+                        "fingerprint": "8dd6fb7c888e"
+                      },
+                      {
+                        "figmaNodeId": "123:5357",
+                        "figmaNodeType": "FRAME",
+                        "figmaComponentName": "Row",
+                        "mappingStatus": "PARTIAL",
+                        "targetComponent": "CapRow",
+                        "importPath": "@capillarytech/cap-ui-library/CapRow",
+                        "props": {},
+                        "slots": {},
+                        "cssVariables": {},
+                        "manualOverrides": [
+                          "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                        ],
+                        "warnings": [
+                          "Some props from entry cap-row could not be resolved"
+                        ],
+                        "fallback": null,
+                        "children": [
+                          {
+                            "figmaNodeId": "123:5358",
+                            "figmaNodeType": "FRAME",
+                            "figmaComponentName": "Frame 2087330659",
+                            "mappingStatus": "BESPOKE",
+                            "targetComponent": null,
+                            "importPath": null,
+                            "props": {},
+                            "slots": {},
+                            "cssVariables": {},
+                            "manualOverrides": [
+                              "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                            ],
+                            "warnings": [],
+                            "fallback": {
+                              "nearestComponent": null,
+                              "nearestComponentRationale": "No structural match found",
+                              "htmlFallback": "<div style=\"width: 62px; height: 20px; display: flex;\"><!-- Frame 2087330659 --></div>"
+                            },
+                            "children": [
+                              {
+                                "figmaNodeId": "123:5359",
+                                "figmaNodeType": "FRAME",
+                                "figmaComponentName": "Frame 2087330659",
+                                "mappingStatus": "BESPOKE",
+                                "targetComponent": null,
+                                "importPath": null,
+                                "props": {},
+                                "slots": {},
+                                "cssVariables": {},
+                                "manualOverrides": [
+                                  "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                                ],
+                                "warnings": [],
+                                "fallback": {
+                                  "nearestComponent": null,
+                                  "nearestComponentRationale": "No structural match found",
+                                  "htmlFallback": "<div style=\"width: 62px; height: 20px; display: flex;\"><!-- Frame 2087330659 --></div>"
+                                },
+                                "children": [
+                                  {
+                                    "figmaNodeId": "123:5360",
+                                    "figmaNodeType": "INSTANCE",
+                                    "figmaComponentName": "badges",
+                                    "mappingStatus": "UNMAPPED",
+                                    "targetComponent": null,
+                                    "importPath": null,
+                                    "props": {},
+                                    "slots": {},
+                                    "cssVariables": {},
+                                    "manualOverrides": [],
+                                    "warnings": [],
+                                    "fallback": {
+                                      "nearestComponent": null,
+                                      "nearestComponentRationale": "No structural match found",
+                                      "htmlFallback": "<div style=\"width: 62px; height: 20px; display: flex;\"><!-- badges --></div>"
+                                    },
+                                    "children": [],
+                                    "source": "unresolved",
+                                    "fingerprint": "b4d35d3e673f"
+                                  }
+                                ],
+                                "source": "unresolved",
+                                "fingerprint": "f16881e14bae"
+                              }
+                            ],
+                            "source": "unresolved",
+                            "fingerprint": "597d41631149"
+                          }
+                        ],
+                        "source": "registry",
+                        "fingerprint": "8dd6fb7c888e"
+                      },
+                      {
+                        "figmaNodeId": "123:5363",
+                        "figmaNodeType": "FRAME",
+                        "figmaComponentName": "Row",
+                        "mappingStatus": "PARTIAL",
+                        "targetComponent": "CapRow",
+                        "importPath": "@capillarytech/cap-ui-library/CapRow",
+                        "props": {},
+                        "slots": {},
+                        "cssVariables": {},
+                        "manualOverrides": [
+                          "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                        ],
+                        "warnings": [
+                          "Some props from entry cap-row could not be resolved"
+                        ],
+                        "fallback": null,
+                        "children": [
+                          {
+                            "figmaNodeId": "123:5364",
+                            "figmaNodeType": "FRAME",
+                            "figmaComponentName": "Frame 2087330712",
+                            "mappingStatus": "EXACT",
+                            "targetComponent": "CapColumn",
+                            "importPath": "@capillarytech/cap-ui-library/CapColumn",
+                            "props": {},
+                            "slots": {},
+                            "cssVariables": {},
+                            "label": "2 Days left",
+                            "manualOverrides": [],
+                            "warnings": [],
+                            "fallback": null,
+                            "children": [
+                              {
+                                "figmaNodeId": "123:5365",
+                                "figmaNodeType": "INSTANCE",
+                                "figmaComponentName": "Status components",
+                                "mappingStatus": "PARTIAL",
+                                "targetComponent": "CapStatus",
+                                "importPath": "@capillarytech/cap-ui-library/CapStatus",
+                                "props": {},
+                                "slots": {},
+                                "cssVariables": {},
+                                "manualOverrides": [],
+                                "warnings": [
+                                  "Some props from entry cap-status could not be resolved"
+                                ],
+                                "fallback": null,
+                                "children": [],
+                                "source": "registry",
+                                "fingerprint": "b4d35d3e673f"
+                              }
+                            ],
+                            "source": "layout-inferred",
+                            "fingerprint": "4ba741e1b2f3"
+                          }
+                        ],
+                        "source": "registry",
+                        "fingerprint": "8dd6fb7c888e"
+                      }
+                    ],
+                    "source": "registry",
+                    "fingerprint": "d7fc0b6f0203"
+                  },
+                  {
+                    "figmaNodeId": "123:5367",
+                    "figmaNodeType": "FRAME",
+                    "figmaComponentName": "DurationColumn",
+                    "mappingStatus": "EXACT",
+                    "targetComponent": "CapColumn",
+                    "importPath": "@capillarytech/cap-ui-library/CapColumn",
+                    "props": {},
+                    "slots": {},
+                    "cssVariables": {},
+                    "manualOverrides": [],
+                    "warnings": [],
+                    "fallback": null,
+                    "children": [
+                      {
+                        "figmaNodeId": "123:5368",
+                        "figmaNodeType": "FRAME",
+                        "figmaComponentName": "Header",
+                        "mappingStatus": "EXACT",
+                        "targetComponent": "CapRow",
+                        "importPath": "@capillarytech/cap-ui-library/CapRow",
+                        "props": {},
+                        "slots": {},
+                        "cssVariables": {},
+                        "manualOverrides": [
+                          "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                        ],
+                        "warnings": [
+                          "Child \"Frame 2087331621\" (INSTANCE) could not be mapped"
+                        ],
+                        "fallback": null,
+                        "children": [
+                          {
+                            "figmaNodeId": "123:5369",
+                            "figmaNodeType": "INSTANCE",
+                            "figmaComponentName": "Frame 2087331621",
+                            "mappingStatus": "UNMAPPED",
+                            "targetComponent": null,
+                            "importPath": null,
+                            "props": {},
+                            "slots": {},
+                            "cssVariables": {},
+                            "manualOverrides": [],
+                            "warnings": [],
+                            "fallback": {
+                              "nearestComponent": null,
+                              "nearestComponentRationale": "No structural match found",
+                              "htmlFallback": "<div style=\"width: 80px; height: 28px; display: flex;\"><!-- Frame 2087331621 --></div>"
+                            },
+                            "children": [],
+                            "source": "unresolved",
+                            "fingerprint": "dc30f384246a"
+                          }
+                        ],
+                        "source": "registry",
+                        "fingerprint": "792064e2b991"
+                      },
+                      {
+                        "figmaNodeId": "123:5370",
+                        "figmaNodeType": "FRAME",
+                        "figmaComponentName": "Row",
+                        "mappingStatus": "PARTIAL",
+                        "targetComponent": "CapRow",
+                        "importPath": "@capillarytech/cap-ui-library/CapRow",
+                        "props": {},
+                        "slots": {},
+                        "cssVariables": {},
+                        "manualOverrides": [
+                          "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                        ],
+                        "warnings": [
+                          "Some props from entry cap-row could not be resolved"
+                        ],
+                        "fallback": null,
+                        "children": [
+                          {
+                            "figmaNodeId": "123:5371",
+                            "figmaNodeType": "FRAME",
+                            "figmaComponentName": "Frame 2087330627",
+                            "mappingStatus": "EXACT",
+                            "targetComponent": "CapColumn",
+                            "importPath": "@capillarytech/cap-ui-library/CapColumn",
+                            "props": {},
+                            "slots": {},
+                            "cssVariables": {},
+                            "label": "Text",
+                            "byline": "Text",
+                            "manualOverrides": [],
+                            "warnings": [],
+                            "fallback": null,
+                            "children": [],
+                            "source": "layout-inferred",
+                            "fingerprint": "b0d936763c31"
+                          }
+                        ],
+                        "source": "registry",
+                        "fingerprint": "8dd6fb7c888e"
+                      },
+                      {
+                        "figmaNodeId": "123:5386",
+                        "figmaNodeType": "FRAME",
+                        "figmaComponentName": "Row",
+                        "mappingStatus": "PARTIAL",
+                        "targetComponent": "CapRow",
+                        "importPath": "@capillarytech/cap-ui-library/CapRow",
+                        "props": {},
+                        "slots": {},
+                        "cssVariables": {},
+                        "manualOverrides": [],
+                        "warnings": [
+                          "Some props from entry cap-row could not be resolved"
+                        ],
+                        "fallback": null,
+                        "children": [],
+                        "source": "registry",
+                        "fingerprint": "cc83bed483a3"
+                      },
+                      {
+                        "figmaNodeId": "123:5398",
+                        "figmaNodeType": "FRAME",
+                        "figmaComponentName": "Row",
+                        "mappingStatus": "PARTIAL",
+                        "targetComponent": "CapRow",
+                        "importPath": "@capillarytech/cap-ui-library/CapRow",
+                        "props": {},
+                        "slots": {},
+                        "cssVariables": {},
+                        "manualOverrides": [],
+                        "warnings": [
+                          "Some props from entry cap-row could not be resolved"
+                        ],
+                        "fallback": null,
+                        "children": [],
+                        "source": "registry",
+                        "fingerprint": "cc83bed483a3"
+                      },
+                      {
+                        "figmaNodeId": "123:5419",
+                        "figmaNodeType": "FRAME",
+                        "figmaComponentName": "Row",
+                        "mappingStatus": "PARTIAL",
+                        "targetComponent": "CapRow",
+                        "importPath": "@capillarytech/cap-ui-library/CapRow",
+                        "props": {},
+                        "slots": {},
+                        "cssVariables": {},
+                        "manualOverrides": [],
+                        "warnings": [
+                          "Some props from entry cap-row could not be resolved"
+                        ],
+                        "fallback": null,
+                        "children": [],
+                        "source": "registry",
+                        "fingerprint": "e018fba3a947"
+                      },
+                      {
+                        "figmaNodeId": "123:5472",
+                        "figmaNodeType": "FRAME",
+                        "figmaComponentName": "Row",
+                        "mappingStatus": "PARTIAL",
+                        "targetComponent": "CapRow",
+                        "importPath": "@capillarytech/cap-ui-library/CapRow",
+                        "props": {},
+                        "slots": {},
+                        "cssVariables": {},
+                        "manualOverrides": [],
+                        "warnings": [
+                          "Some props from entry cap-row could not be resolved"
+                        ],
+                        "fallback": null,
+                        "children": [],
+                        "source": "registry",
+                        "fingerprint": "cc83bed483a3"
+                      }
+                    ],
+                    "source": "registry",
+                    "fingerprint": "03f1c4ff48ac"
+                  },
+                  {
+                    "figmaNodeId": "123:5495",
+                    "figmaNodeType": "FRAME",
+                    "figmaComponentName": "ProgramNameColumn",
+                    "mappingStatus": "EXACT",
+                    "targetComponent": "CapColumn",
+                    "importPath": "@capillarytech/cap-ui-library/CapColumn",
+                    "props": {},
+                    "slots": {},
+                    "cssVariables": {},
+                    "manualOverrides": [],
+                    "warnings": [],
+                    "fallback": null,
+                    "children": [
+                      {
+                        "figmaNodeId": "123:5496",
+                        "figmaNodeType": "FRAME",
+                        "figmaComponentName": "Header",
+                        "mappingStatus": "EXACT",
+                        "targetComponent": "CapRow",
+                        "importPath": "@capillarytech/cap-ui-library/CapRow",
+                        "props": {},
+                        "slots": {},
+                        "cssVariables": {},
+                        "manualOverrides": [
+                          "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                        ],
+                        "warnings": [
+                          "Child \"Frame 206\" (FRAME) could not be mapped"
+                        ],
+                        "fallback": null,
+                        "children": [
+                          {
+                            "figmaNodeId": "123:5497",
+                            "figmaNodeType": "FRAME",
+                            "figmaComponentName": "Frame 206",
+                            "mappingStatus": "UNMAPPED",
+                            "targetComponent": null,
+                            "importPath": null,
+                            "props": {},
+                            "slots": {},
+                            "cssVariables": {},
+                            "label": "Program name",
+                            "manualOverrides": [
+                              "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                            ],
+                            "warnings": [],
+                            "fallback": {
+                              "nearestComponent": "CapLabel",
+                              "nearestComponentRationale": "Single TEXT child — container is a label wrapper",
+                              "htmlFallback": "<div style=\"width: 80px; height: 28px; display: flex;\"><!-- Frame 206 --></div>"
+                            },
+                            "children": [
+                              {
+                                "figmaNodeId": "123:5498",
+                                "figmaNodeType": "TEXT",
+                                "figmaComponentName": "Program name",
+                                "mappingStatus": "EXACT",
+                                "targetComponent": "CapLabel",
+                                "importPath": "@capillarytech/cap-ui-library/CapLabel",
+                                "props": {},
+                                "slots": {
+                                  "children": "Program name"
+                                },
+                                "cssVariables": {},
+                                "label": "Program name",
+                                "manualOverrides": [],
+                                "warnings": [],
+                                "fallback": null,
+                                "children": [],
+                                "source": "typography",
+                                "fingerprint": "803596505787"
+                              }
+                            ],
+                            "source": "unresolved",
+                            "fingerprint": "5df5723ad558"
+                          }
+                        ],
+                        "source": "registry",
+                        "fingerprint": "2732ffe1b702"
+                      },
+                      {
+                        "figmaNodeId": "123:5515",
+                        "figmaNodeType": "FRAME",
+                        "figmaComponentName": "Row",
+                        "mappingStatus": "PARTIAL",
+                        "targetComponent": "CapRow",
+                        "importPath": "@capillarytech/cap-ui-library/CapRow",
+                        "props": {},
+                        "slots": {},
+                        "cssVariables": {},
+                        "manualOverrides": [
+                          "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                        ],
+                        "warnings": [
+                          "Child \"Frame 2087331379\" (FRAME) could not be mapped",
+                          "Some props from entry cap-row could not be resolved"
+                        ],
+                        "fallback": null,
+                        "children": [
+                          {
+                            "figmaNodeId": "123:5516",
+                            "figmaNodeType": "FRAME",
+                            "figmaComponentName": "Frame 2087331379",
+                            "mappingStatus": "UNMAPPED",
+                            "targetComponent": null,
+                            "importPath": null,
+                            "props": {},
+                            "slots": {},
+                            "cssVariables": {},
+                            "label": "Loyalty Program 2025",
+                            "manualOverrides": [
+                              "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                            ],
+                            "warnings": [],
+                            "fallback": {
+                              "nearestComponent": "CapLabel",
+                              "nearestComponentRationale": "Single TEXT child — container is a label wrapper",
+                              "htmlFallback": "<div style=\"width: 137px; height: 20px; display: flex;\"><!-- Frame 2087331379 --></div>"
+                            },
+                            "children": [
+                              {
+                                "figmaNodeId": "123:5517",
+                                "figmaNodeType": "TEXT",
+                                "figmaComponentName": "Loyalty Program 2025",
+                                "mappingStatus": "EXACT",
+                                "targetComponent": "CapLabel",
+                                "importPath": "@capillarytech/cap-ui-library/CapLabel",
+                                "props": {},
+                                "slots": {
+                                  "children": "Loyalty Program 2025"
+                                },
+                                "cssVariables": {},
+                                "label": "Loyalty Program 2025",
+                                "manualOverrides": [],
+                                "warnings": [],
+                                "fallback": null,
+                                "children": [],
+                                "source": "typography",
+                                "fingerprint": "b6546948e14c"
+                              }
+                            ],
+                            "source": "unresolved",
+                            "fingerprint": "10528e3ba38f"
+                          }
+                        ],
+                        "source": "registry",
+                        "fingerprint": "5619cf0e80a2"
+                      },
+                      {
+                        "figmaNodeId": "123:5524",
+                        "figmaNodeType": "FRAME",
+                        "figmaComponentName": "Row",
+                        "mappingStatus": "PARTIAL",
+                        "targetComponent": "CapRow",
+                        "importPath": "@capillarytech/cap-ui-library/CapRow",
+                        "props": {},
+                        "slots": {},
+                        "cssVariables": {},
+                        "manualOverrides": [],
+                        "warnings": [
+                          "Some props from entry cap-row could not be resolved"
+                        ],
+                        "fallback": null,
+                        "children": [],
+                        "source": "registry",
+                        "fingerprint": "cc83bed483a3"
+                      }
+                    ],
+                    "source": "registry",
+                    "fingerprint": "412de59ce948"
+                  },
+                  {
+                    "figmaNodeId": "123:5532",
+                    "figmaNodeType": "FRAME",
+                    "figmaComponentName": "CategoryColumn",
+                    "mappingStatus": "EXACT",
+                    "targetComponent": "CapColumn",
+                    "importPath": "@capillarytech/cap-ui-library/CapColumn",
+                    "props": {},
+                    "slots": {},
+                    "cssVariables": {},
+                    "manualOverrides": [],
+                    "warnings": [],
+                    "fallback": null,
+                    "children": [
+                      {
+                        "figmaNodeId": "123:5533",
+                        "figmaNodeType": "FRAME",
+                        "figmaComponentName": "Header",
+                        "mappingStatus": "EXACT",
+                        "targetComponent": "CapRow",
+                        "importPath": "@capillarytech/cap-ui-library/CapRow",
+                        "props": {},
+                        "slots": {},
+                        "cssVariables": {},
+                        "manualOverrides": [
+                          "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                        ],
+                        "warnings": [
+                          "Child \"Frame 205\" (FRAME) could not be mapped"
+                        ],
+                        "fallback": null,
+                        "children": [
+                          {
+                            "figmaNodeId": "123:5534",
+                            "figmaNodeType": "FRAME",
+                            "figmaComponentName": "Frame 205",
+                            "mappingStatus": "UNMAPPED",
+                            "targetComponent": null,
+                            "importPath": null,
+                            "props": {},
+                            "slots": {},
+                            "cssVariables": {},
+                            "label": "Category",
+                            "manualOverrides": [
+                              "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                            ],
+                            "warnings": [],
+                            "fallback": {
+                              "nearestComponent": "CapLabel",
+                              "nearestComponentRationale": "Single TEXT child — container is a label wrapper",
+                              "htmlFallback": "<div style=\"width: 49px; height: 28px; display: flex;\"><!-- Frame 205 --></div>"
+                            },
+                            "children": [
+                              {
+                                "figmaNodeId": "123:5535",
+                                "figmaNodeType": "TEXT",
+                                "figmaComponentName": "Category",
+                                "mappingStatus": "EXACT",
+                                "targetComponent": "CapLabel",
+                                "importPath": "@capillarytech/cap-ui-library/CapLabel",
+                                "props": {},
+                                "slots": {
+                                  "children": "Category"
+                                },
+                                "cssVariables": {},
+                                "label": "Category",
+                                "manualOverrides": [],
+                                "warnings": [],
+                                "fallback": null,
+                                "children": [],
+                                "source": "typography",
+                                "fingerprint": "ff689247d4c0"
+                              }
+                            ],
+                            "source": "unresolved",
+                            "fingerprint": "a1398107974e"
+                          }
+                        ],
+                        "source": "registry",
+                        "fingerprint": "b969e5b4571a"
+                      },
+                      {
+                        "figmaNodeId": "123:5536",
+                        "figmaNodeType": "FRAME",
+                        "figmaComponentName": "Row",
+                        "mappingStatus": "PARTIAL",
+                        "targetComponent": "CapRow",
+                        "importPath": "@capillarytech/cap-ui-library/CapRow",
+                        "props": {},
+                        "slots": {},
+                        "cssVariables": {},
+                        "manualOverrides": [
+                          "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                        ],
+                        "warnings": [
+                          "Child \"Frame 2087330627\" (FRAME) could not be mapped",
+                          "Some props from entry cap-row could not be resolved"
+                        ],
+                        "fallback": null,
+                        "children": [
+                          {
+                            "figmaNodeId": "123:5537",
+                            "figmaNodeType": "FRAME",
+                            "figmaComponentName": "Frame 2087330627",
+                            "mappingStatus": "UNMAPPED",
+                            "targetComponent": null,
+                            "importPath": null,
+                            "props": {},
+                            "slots": {},
+                            "cssVariables": {},
+                            "label": "Streak Rewards",
+                            "manualOverrides": [
+                              "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                            ],
+                            "warnings": [],
+                            "fallback": {
+                              "nearestComponent": "CapLabel",
+                              "nearestComponentRationale": "Single TEXT child — container is a label wrapper",
+                              "htmlFallback": "<div style=\"width: 174px; height: 20px; display: flex;\"><!-- Frame 2087330627 --></div>"
+                            },
+                            "children": [
+                              {
+                                "figmaNodeId": "123:5538",
+                                "figmaNodeType": "TEXT",
+                                "figmaComponentName": "Streak Rewards",
+                                "mappingStatus": "EXACT",
+                                "targetComponent": "CapLabel",
+                                "importPath": "@capillarytech/cap-ui-library/CapLabel",
+                                "props": {},
+                                "slots": {
+                                  "children": "Streak Rewards"
+                                },
+                                "cssVariables": {},
+                                "label": "Streak Rewards",
+                                "manualOverrides": [],
+                                "warnings": [],
+                                "fallback": null,
+                                "children": [],
+                                "source": "typography",
+                                "fingerprint": "b6546948e14c"
+                              }
+                            ],
+                            "source": "unresolved",
+                            "fingerprint": "5478d4217a6d"
+                          }
+                        ],
+                        "source": "registry",
+                        "fingerprint": "8dd6fb7c888e"
+                      },
+                      {
+                        "figmaNodeId": "123:5550",
+                        "figmaNodeType": "FRAME",
+                        "figmaComponentName": "Row",
+                        "mappingStatus": "PARTIAL",
+                        "targetComponent": "CapRow",
+                        "importPath": "@capillarytech/cap-ui-library/CapRow",
+                        "props": {},
+                        "slots": {},
+                        "cssVariables": {},
+                        "manualOverrides": [],
+                        "warnings": [
+                          "Some props from entry cap-row could not be resolved"
+                        ],
+                        "fallback": null,
+                        "children": [],
+                        "source": "registry",
+                        "fingerprint": "cc83bed483a3"
+                      }
+                    ],
+                    "source": "registry",
+                    "fingerprint": "412de59ce948"
+                  },
+                  {
+                    "figmaNodeId": "123:5810",
+                    "figmaNodeType": "FRAME",
+                    "figmaComponentName": "UpdatedAtColumn",
+                    "mappingStatus": "EXACT",
+                    "targetComponent": "CapColumn",
+                    "importPath": "@capillarytech/cap-ui-library/CapColumn",
+                    "props": {},
+                    "slots": {},
+                    "cssVariables": {},
+                    "manualOverrides": [],
+                    "warnings": [],
+                    "fallback": null,
+                    "children": [
+                      {
+                        "figmaNodeId": "123:5811",
+                        "figmaNodeType": "FRAME",
+                        "figmaComponentName": "Header",
+                        "mappingStatus": "EXACT",
+                        "targetComponent": "CapRow",
+                        "importPath": "@capillarytech/cap-ui-library/CapRow",
+                        "props": {},
+                        "slots": {},
+                        "cssVariables": {},
+                        "manualOverrides": [
+                          "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                        ],
+                        "warnings": [
+                          "Child \"Frame 2087331621\" (INSTANCE) could not be mapped"
+                        ],
+                        "fallback": null,
+                        "children": [
+                          {
+                            "figmaNodeId": "123:5812",
+                            "figmaNodeType": "INSTANCE",
+                            "figmaComponentName": "Frame 2087331621",
+                            "mappingStatus": "UNMAPPED",
+                            "targetComponent": null,
+                            "importPath": null,
+                            "props": {},
+                            "slots": {},
+                            "cssVariables": {},
+                            "manualOverrides": [],
+                            "warnings": [],
+                            "fallback": {
+                              "nearestComponent": null,
+                              "nearestComponentRationale": "No structural match found",
+                              "htmlFallback": "<div style=\"width: 80px; height: 28px; display: flex;\"><!-- Frame 2087331621 --></div>"
+                            },
+                            "children": [],
+                            "source": "unresolved",
+                            "fingerprint": "dc30f384246a"
+                          }
+                        ],
+                        "source": "registry",
+                        "fingerprint": "792064e2b991"
+                      },
+                      {
+                        "figmaNodeId": "123:5813",
+                        "figmaNodeType": "FRAME",
+                        "figmaComponentName": "Row",
+                        "mappingStatus": "EXACT",
+                        "targetComponent": "CapRow",
+                        "importPath": "@capillarytech/cap-ui-library/CapRow",
+                        "props": {
+                          "gutter": 8
+                        },
+                        "slots": {},
+                        "cssVariables": {},
+                        "itemSpacing": 8,
+                        "manualOverrides": [],
+                        "warnings": [],
+                        "fallback": null,
+                        "children": [
+                          {
+                            "figmaNodeId": "123:5814",
+                            "figmaNodeType": "FRAME",
+                            "figmaComponentName": "Frame 2087330627",
+                            "mappingStatus": "EXACT",
+                            "targetComponent": "CapColumn",
+                            "importPath": "@capillarytech/cap-ui-library/CapColumn",
+                            "props": {},
+                            "slots": {},
+                            "cssVariables": {},
+                            "label": "Text",
+                            "byline": "Dev Patel",
+                            "manualOverrides": [],
+                            "warnings": [],
+                            "fallback": null,
+                            "children": [],
+                            "source": "layout-inferred",
+                            "fingerprint": "092a7702116c"
+                          },
+                          {
+                            "figmaNodeId": "123:5824",
+                            "figmaNodeType": "FRAME",
+                            "figmaComponentName": "Frame 2087330698",
+                            "mappingStatus": "BESPOKE",
+                            "targetComponent": null,
+                            "importPath": null,
+                            "props": {},
+                            "slots": {},
+                            "cssVariables": {},
+                            "manualOverrides": [
+                              "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                            ],
+                            "warnings": [],
+                            "fallback": {
+                              "nearestComponent": null,
+                              "nearestComponentRationale": "No structural match found",
+                              "htmlFallback": "<div style=\"width: 24px; height: 24px; display: flex;\"><!-- Frame 2087330698 --></div>"
+                            },
+                            "children": [
+                              {
+                                "figmaNodeId": "123:5825",
+                                "figmaNodeType": "FRAME",
+                                "figmaComponentName": "more_vert",
+                                "mappingStatus": "UNMAPPED",
+                                "targetComponent": null,
+                                "importPath": null,
+                                "props": {},
+                                "slots": {},
+                                "cssVariables": {},
+                                "manualOverrides": [],
+                                "warnings": [],
+                                "fallback": {
+                                  "nearestComponent": "CapIcon",
+                                  "nearestComponentRationale": "Square leaf node (no children) resembles an icon",
+                                  "htmlFallback": "<div style=\"width: 24px; height: 24px; display: flex;\"><!-- more_vert --></div>"
+                                },
+                                "children": [],
+                                "source": "unresolved",
+                                "fingerprint": "d97fdd4f1207"
+                              }
+                            ],
+                            "source": "unresolved",
+                            "fingerprint": "96f3d0266d89"
+                          }
+                        ],
+                        "source": "registry",
+                        "fingerprint": "e55c3a1f68e2"
+                      },
+                      {
+                        "figmaNodeId": "123:5828",
+                        "figmaNodeType": "FRAME",
+                        "figmaComponentName": "Row",
+                        "mappingStatus": "PARTIAL",
+                        "targetComponent": "CapRow",
+                        "importPath": "@capillarytech/cap-ui-library/CapRow",
+                        "props": {},
+                        "slots": {},
+                        "cssVariables": {},
+                        "label": "Text",
+                        "byline": "Aashish Saha",
+                        "manualOverrides": [],
+                        "warnings": [
+                          "Some props from entry cap-row could not be resolved"
+                        ],
+                        "fallback": null,
+                        "children": [],
+                        "source": "registry",
+                        "fingerprint": "610ec5ea0bc9"
+                      },
+                      {
+                        "figmaNodeId": "123:5839",
+                        "figmaNodeType": "FRAME",
+                        "figmaComponentName": "Row",
+                        "mappingStatus": "PARTIAL",
+                        "targetComponent": "CapRow",
+                        "importPath": "@capillarytech/cap-ui-library/CapRow",
+                        "props": {},
+                        "slots": {},
+                        "cssVariables": {},
+                        "manualOverrides": [
+                          "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                        ],
+                        "warnings": [
+                          "Some props from entry cap-row could not be resolved"
+                        ],
+                        "fallback": null,
+                        "children": [
+                          {
+                            "figmaNodeId": "123:5840",
+                            "figmaNodeType": "FRAME",
+                            "figmaComponentName": "Frame 717404",
+                            "mappingStatus": "EXACT",
+                            "targetComponent": "CapColumn",
+                            "importPath": "@capillarytech/cap-ui-library/CapColumn",
+                            "props": {},
+                            "slots": {},
+                            "cssVariables": {},
+                            "label": "Text",
+                            "byline": "Suryakumar",
+                            "manualOverrides": [],
+                            "warnings": [],
+                            "fallback": null,
+                            "children": [],
+                            "source": "layout-inferred",
+                            "fingerprint": "902410ad46ed"
+                          }
+                        ],
+                        "source": "registry",
+                        "fingerprint": "56199be6c37b"
+                      },
+                      {
+                        "figmaNodeId": "123:5859",
+                        "figmaNodeType": "FRAME",
+                        "figmaComponentName": "Row",
+                        "mappingStatus": "PARTIAL",
+                        "targetComponent": "CapRow",
+                        "importPath": "@capillarytech/cap-ui-library/CapRow",
+                        "props": {},
+                        "slots": {},
+                        "cssVariables": {},
+                        "manualOverrides": [
+                          "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+                        ],
+                        "warnings": [
+                          "Child \"Frame 2087331619\" (FRAME) could not be mapped",
+                          "Some props from entry cap-row could not be resolved"
+                        ],
+                        "fallback": null,
+                        "children": [
+                          {
+                            "figmaNodeId": "123:5861",
+                            "figmaNodeType": "FRAME",
+                            "figmaComponentName": "Frame 2087331619",
+                            "mappingStatus": "UNMAPPED",
+                            "targetComponent": null,
+                            "importPath": null,
+                            "props": {},
+                            "slots": {},
+                            "cssVariables": {},
+                            "manualOverrides": [],
+                            "warnings": [],
+                            "fallback": {
+                              "nearestComponent": null,
+                              "nearestComponentRationale": "No structural match found",
+                              "htmlFallback": "<div style=\"width: 0px; height: 16px; display: flex;\"><!-- Frame 2087331619 --></div>"
+                            },
+                            "children": [],
+                            "source": "unresolved",
+                            "fingerprint": "d97fdd4f1207"
+                          }
+                        ],
+                        "source": "registry",
+                        "fingerprint": "62fd29a572e4"
+                      },
+                      {
+                        "figmaNodeId": "123:5887",
+                        "figmaNodeType": "FRAME",
+                        "figmaComponentName": "Row",
+                        "mappingStatus": "PARTIAL",
+                        "targetComponent": "CapRow",
+                        "importPath": "@capillarytech/cap-ui-library/CapRow",
+                        "props": {},
+                        "slots": {},
+                        "cssVariables": {},
+                        "manualOverrides": [],
+                        "warnings": [
+                          "Some props from entry cap-row could not be resolved"
+                        ],
+                        "fallback": null,
+                        "children": [],
+                        "source": "registry",
+                        "fingerprint": "cc83bed483a3"
+                      },
+                      {
+                        "figmaNodeId": "123:5909",
+                        "figmaNodeType": "FRAME",
+                        "figmaComponentName": "Row",
+                        "mappingStatus": "PARTIAL",
+                        "targetComponent": "CapRow",
+                        "importPath": "@capillarytech/cap-ui-library/CapRow",
+                        "props": {},
+                        "slots": {},
+                        "cssVariables": {},
+                        "manualOverrides": [],
+                        "warnings": [
+                          "Some props from entry cap-row could not be resolved"
+                        ],
+                        "fallback": null,
+                        "children": [],
+                        "source": "registry",
+                        "fingerprint": "cc83bed483a3"
+                      },
+                      {
+                        "figmaNodeId": "123:5920",
+                        "figmaNodeType": "FRAME",
+                        "figmaComponentName": "Row",
+                        "mappingStatus": "PARTIAL",
+                        "targetComponent": "CapRow",
+                        "importPath": "@capillarytech/cap-ui-library/CapRow",
+                        "props": {},
+                        "slots": {},
+                        "cssVariables": {},
+                        "manualOverrides": [],
+                        "warnings": [
+                          "Some props from entry cap-row could not be resolved"
+                        ],
+                        "fallback": null,
+                        "children": [],
+                        "source": "registry",
+                        "fingerprint": "cc83bed483a3"
+                      }
+                    ],
+                    "source": "registry",
+                    "fingerprint": "49d891063d01"
+                  }
+                ],
+                "source": "layout-inferred",
+                "fingerprint": "8c3a0fec1b97"
+              },
+              {
+                "figmaNodeId": "123:5964",
+                "figmaNodeType": "INSTANCE",
+                "figmaComponentName": "Dropdown",
+                "mappingStatus": "PARTIAL",
+                "targetComponent": "CapDropdown",
+                "importPath": "@capillarytech/cap-ui-library/CapDropdown",
+                "props": {},
+                "slots": {},
+                "cssVariables": {},
+                "manualOverrides": [],
+                "warnings": [
+                  "Some props from entry cap-dropdown could not be resolved"
+                ],
+                "fallback": null,
+                "children": [],
+                "source": "registry",
+                "fingerprint": "3fda30491a7e"
+              }
+            ],
+            "source": "layout-inferred",
+            "fingerprint": "aa6b59e94a4d"
+          }
+        ],
+        "source": "unresolved",
+        "fingerprint": "fbbb816b7a61"
+      },
+      {
+        "figmaNodeId": "123:5966",
+        "figmaNodeType": "FRAME",
+        "figmaComponentName": "Dropdown",
+        "mappingStatus": "EXACT",
+        "targetComponent": "CapColumn",
+        "importPath": "@capillarytech/cap-ui-library/CapColumn",
+        "props": {},
+        "slots": {},
+        "cssVariables": {},
+        "manualOverrides": [],
+        "warnings": [],
+        "fallback": null,
+        "children": [
+          {
+            "figmaNodeId": "123:5967",
+            "figmaNodeType": "FRAME",
+            "figmaComponentName": "Frame 316",
+            "mappingStatus": "BESPOKE",
+            "targetComponent": null,
+            "importPath": null,
+            "props": {},
+            "slots": {},
+            "cssVariables": {},
+            "manualOverrides": [
+              "NEEDS_MANUAL_OVERRIDE: absolute positioning detected (no layoutMode)"
+            ],
+            "warnings": [],
+            "fallback": {
+              "nearestComponent": null,
+              "nearestComponentRationale": "No structural match found",
+              "htmlFallback": "<div style=\"width: 205px; height: 40px; display: flex;\"><!-- Frame 316 --></div>"
+            },
+            "children": [
+              {
+                "figmaNodeId": "123:5968",
+                "figmaNodeType": "FRAME",
+                "figmaComponentName": "Dropdown - options",
+                "mappingStatus": "EXACT",
+                "targetComponent": "CapRow",
+                "importPath": "@capillarytech/cap-ui-library/CapRow",
+                "props": {
+                  "gutter": 12
+                },
+                "slots": {},
+                "cssVariables": {},
+                "label": "Text",
+                "itemSpacing": 12,
+                "manualOverrides": [],
+                "warnings": [
+                  "Child \"Frame\" (FRAME) could not be mapped"
+                ],
+                "fallback": null,
+                "children": [
+                  {
+                    "figmaNodeId": "123:5971",
+                    "figmaNodeType": "FRAME",
+                    "figmaComponentName": "Frame",
+                    "mappingStatus": "UNMAPPED",
+                    "targetComponent": null,
+                    "importPath": null,
+                    "props": {},
+                    "slots": {},
+                    "cssVariables": {},
+                    "manualOverrides": [],
+                    "warnings": [],
+                    "fallback": {
+                      "nearestComponent": "CapIcon",
+                      "nearestComponentRationale": "Square leaf node (no children) resembles an icon",
+                      "htmlFallback": "<div style=\"width: 16px; height: 16px; display: flex;\"><!-- Frame --></div>"
+                    },
+                    "children": [],
+                    "source": "unresolved",
+                    "fingerprint": "d97fdd4f1207"
+                  }
+                ],
+                "source": "layout-inferred",
+                "fingerprint": "3b0ece60618a"
+              }
+            ],
+            "source": "unresolved",
+            "fingerprint": "40e78a4acc65"
+          },
+          {
+            "figmaNodeId": "123:5981",
+            "figmaNodeType": "FRAME",
+            "figmaComponentName": "Dropdown - options",
+            "mappingStatus": "EXACT",
+            "targetComponent": "CapRow",
+            "importPath": "@capillarytech/cap-ui-library/CapRow",
+            "props": {
+              "gutter": 12
+            },
+            "slots": {},
+            "cssVariables": {},
+            "label": "Text",
+            "itemSpacing": 12,
+            "manualOverrides": [],
+            "warnings": [
+              "Child \"Frame\" (FRAME) could not be mapped"
+            ],
+            "fallback": null,
+            "children": [
+              {
+                "figmaNodeId": "123:5982",
+                "figmaNodeType": "FRAME",
+                "figmaComponentName": "Frame",
+                "mappingStatus": "UNMAPPED",
+                "targetComponent": null,
+                "importPath": null,
+                "props": {},
+                "slots": {},
+                "cssVariables": {},
+                "manualOverrides": [],
+                "warnings": [],
+                "fallback": {
+                  "nearestComponent": "CapIcon",
+                  "nearestComponentRationale": "Square leaf node (no children) resembles an icon",
+                  "htmlFallback": "<div style=\"width: 16px; height: 16px; display: flex;\"><!-- Frame --></div>"
+                },
+                "children": [],
+                "source": "unresolved",
+                "fingerprint": "d97fdd4f1207"
+              }
+            ],
+            "source": "layout-inferred",
+            "fingerprint": "3b0ece60618a"
+          },
+          {
+            "figmaNodeId": "123:5991",
+            "figmaNodeType": "FRAME",
+            "figmaComponentName": "Dropdown - options",
+            "mappingStatus": "EXACT",
+            "targetComponent": "CapRow",
+            "importPath": "@capillarytech/cap-ui-library/CapRow",
+            "props": {
+              "gutter": 12
+            },
+            "slots": {},
+            "cssVariables": {},
+            "label": "Text",
+            "itemSpacing": 12,
+            "manualOverrides": [],
+            "warnings": [
+              "Child \"Frame\" (FRAME) could not be mapped"
+            ],
+            "fallback": null,
+            "children": [
+              {
+                "figmaNodeId": "123:5992",
+                "figmaNodeType": "FRAME",
+                "figmaComponentName": "Frame",
+                "mappingStatus": "UNMAPPED",
+                "targetComponent": null,
+                "importPath": null,
+                "props": {},
+                "slots": {},
+                "cssVariables": {},
+                "manualOverrides": [],
+                "warnings": [],
+                "fallback": {
+                  "nearestComponent": "CapIcon",
+                  "nearestComponentRationale": "Square leaf node (no children) resembles an icon",
+                  "htmlFallback": "<div style=\"width: 16px; height: 16px; display: flex;\"><!-- Frame --></div>"
+                },
+                "children": [],
+                "source": "unresolved",
+                "fingerprint": "d97fdd4f1207"
+              }
+            ],
+            "source": "layout-inferred",
+            "fingerprint": "3b0ece60618a"
+          },
+          {
+            "figmaNodeId": "123:6002",
+            "figmaNodeType": "FRAME",
+            "figmaComponentName": "Dropdown - options",
+            "mappingStatus": "EXACT",
+            "targetComponent": "CapRow",
+            "importPath": "@capillarytech/cap-ui-library/CapRow",
+            "props": {
+              "gutter": 12
+            },
+            "slots": {},
+            "cssVariables": {},
+            "label": "Text",
+            "itemSpacing": 12,
+            "manualOverrides": [],
+            "warnings": [
+              "Child \"Frame\" (FRAME) could not be mapped"
+            ],
+            "fallback": null,
+            "children": [
+              {
+                "figmaNodeId": "123:6003",
+                "figmaNodeType": "FRAME",
+                "figmaComponentName": "Frame",
+                "mappingStatus": "UNMAPPED",
+                "targetComponent": null,
+                "importPath": null,
+                "props": {},
+                "slots": {},
+                "cssVariables": {},
+                "manualOverrides": [],
+                "warnings": [],
+                "fallback": {
+                  "nearestComponent": "CapIcon",
+                  "nearestComponentRationale": "Square leaf node (no children) resembles an icon",
+                  "htmlFallback": "<div style=\"width: 16px; height: 16px; display: flex;\"><!-- Frame --></div>"
+                },
+                "children": [],
+                "source": "unresolved",
+                "fingerprint": "d97fdd4f1207"
+              }
+            ],
+            "source": "layout-inferred",
+            "fingerprint": "3b0ece60618a"
+          }
+        ],
+        "source": "layout-inferred",
+        "fingerprint": "5831574a4f61"
+      },
+      {
+        "figmaNodeId": "123:6012",
+        "figmaNodeType": "INSTANCE",
+        "figmaComponentName": "Atoms/Icons/01/mouse_pointer1",
+        "mappingStatus": "UNMAPPED",
+        "targetComponent": null,
+        "importPath": null,
+        "props": {},
+        "slots": {},
+        "cssVariables": {},
+        "manualOverrides": [],
+        "warnings": [],
+        "fallback": {
+          "nearestComponent": "CapIcon",
+          "nearestComponentRationale": "Square leaf node (no children) resembles an icon",
+          "htmlFallback": "<div style=\"width: 24px; height: 24px; display: flex;\"><!-- Atoms/Icons/01/mouse_pointer1 --></div>"
+        },
+        "children": [],
+        "source": "unresolved",
+        "fingerprint": "22f52781e3e8"
+      }
+    ],
+    "source": "unresolved",
+    "fingerprint": "faa19174ae3c"
+  },
+  "stats": {
+    "total": 145,
+    "exact": 48,
+    "partial": 41,
+    "unmapped": 56
+  }
+}

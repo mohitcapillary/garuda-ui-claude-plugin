@@ -1,0 +1,26 @@
+{
+  "CapDrawer": {
+    "antdComponent": "Drawer",
+    "antdProps": ["visible", "width", "placement", "onClose", "title", "closable", "maskClosable"],
+    "wrapperProps": ["width", "content", "size"],
+    "note": "Root filter drawer container node 122:4327"
+  },
+  "CapMultiSelect": {
+    "antdComponent": "Tree",
+    "wrapperProps": ["onSelect", "placeholder", "treeData", "appliedKeys", "showFooter", "disabled"],
+    "note": "Used for Program name, Status, Category, Last updated, Updated by filter fields"
+  },
+  "CapDateRangePicker": {
+    "note": "Used for Duration filter field (122:4358). Not in standard cap-ui-library registry; treat as CapInput-based date range or custom component. ASSUMED from Figma node name.",
+    "assumedProps": ["startDate", "endDate", "onChange", "format", "showTime"]
+  },
+  "CapButton": {
+    "antdComponent": "Button",
+    "antdProps": ["type", "onClick", "children"],
+    "note": "Apply (122:4395) and Clear all filters (122:4396) footer buttons"
+  },
+  "CapLabel": {
+    "wrapperProps": ["type"],
+    "note": "Section labels: Program name, Status, Category, Duration, Last updated, Updated by"
+  }
+}

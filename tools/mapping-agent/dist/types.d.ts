@@ -134,7 +134,7 @@ export interface ValidationResult {
     valid: boolean;
     errors: string[];
 }
-export type MappingStatus = 'EXACT' | 'PARTIAL' | 'UNMAPPED';
+export type MappingStatus = 'EXACT' | 'PARTIAL' | 'UNMAPPED' | 'BESPOKE';
 export interface FallbackSpec {
     nearestComponent: string | null;
     nearestComponentRationale: string;
@@ -199,6 +199,57 @@ export interface ConversionRecipe {
         partial: number;
         unmapped: number;
     };
+}
+export interface SectionEntry {
+    nodeId: string;
+    name: string;
+    boundingBox: FigmaBoundingBox;
+    layoutMode: 'HORIZONTAL' | 'VERTICAL' | 'NONE';
+    depth: number;
+    estimatedDescendants: number;
+}
+export interface SectionManifest {
+    rootNodeId: string;
+    rootName: string;
+    rootBoundingBox: FigmaBoundingBox;
+    rootLayoutMode: 'HORIZONTAL' | 'VERTICAL' | 'NONE';
+    sections: SectionEntry[];
+    estimatedNodeCount: number;
+    isTruncated: boolean;
+}
+export interface ScreenManifestMeta {
+    rootNodeId: string;
+    rootName: string;
+    rootBoundingBox: FigmaBoundingBox;
+    rootLayoutMode: 'HORIZONTAL' | 'VERTICAL' | 'NONE';
+    sections: Array<SectionEntry & {
+        recipeFilePath: string;
+    }>;
+    isTruncated: boolean;
+}
+export interface StitchingSection {
+    sectionNodeId: string;
+    sectionName: string;
+    relativePosition: {
+        x: number;
+        y: number;
+        width: number;
+        height: number;
+    };
+    readingOrder: number;
+    recipePath: string;
+    componentSummary: string[];
+    mappingStats: ConversionRecipe['stats'];
+}
+export interface StitchingContext {
+    rootNodeId: string;
+    rootName: string;
+    rootLayoutMode: 'HORIZONTAL' | 'VERTICAL' | 'NONE';
+    totalBoundingBox: FigmaBoundingBox;
+    mergedRecipePath: string;
+    sections: StitchingSection[];
+    stats: ConversionRecipe['stats'];
+    generatedAt: string;
 }
 export interface TokenResolutionEntry {
     figmaVariable: string;

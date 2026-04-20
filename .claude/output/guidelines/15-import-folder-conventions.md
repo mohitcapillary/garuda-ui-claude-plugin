@@ -31,6 +31,20 @@ Avoid `../../../../`.
 
 **Why**: 180+ components follow this convention. Single responsibility per file.
 
+### Rule 5: `index.js` must re-export ALL named exports from the component file
+
+A barrel `index.js` that only re-exports the default silently breaks any consumer that imports a named export via the index path.
+
+```js
+// wrong — only exports default, named exports are unreachable via index path:
+export { default } from './TierComparisonTable';
+
+// correct — re-exports everything the component file exposes:
+export { default, SECTION_ANCHOR_IDS, ROW_LABELS } from './TierComparisonTable';
+```
+
+**Why**: When another file does `import { SECTION_ANCHOR_IDS } from '../../organisms/TierComparisonTable'`, it resolves to `index.js`. If `index.js` doesn't re-export the named export, the import is silently `undefined` — no build error, no runtime error until it's actually used.
+
 ## Good Examples
 
 ### Clean import ordering

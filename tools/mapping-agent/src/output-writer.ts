@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 
-import { ConversionRecipe, TokenResolutionMap } from './types';
+import { ConversionRecipe, StitchingContext, TokenResolutionMap } from './types';
 
 const DEFAULT_OUTPUT_DIR = path.resolve(
   __dirname,
@@ -28,6 +28,22 @@ export function writeRecipe(
   const nodeId = recipe.root.figmaNodeId.replace(':', '-');
   const filePath = path.join(dir, `${nodeId}.recipe.json`);
   fs.writeFileSync(filePath, JSON.stringify(recipe, null, 2), 'utf-8');
+  return filePath;
+}
+
+/**
+ * Write a StitchingContext to <outputDir>/<rootNodeId>.stitching-context.json.
+ * Returns the absolute path of the written file.
+ */
+export function writeStitchingContext(
+  context: StitchingContext,
+  outputDir?: string
+): string {
+  const dir = outputDir ?? DEFAULT_OUTPUT_DIR;
+  ensureDir(dir);
+
+  const filePath = path.join(dir, `${context.rootNodeId}.stitching-context.json`);
+  fs.writeFileSync(filePath, JSON.stringify(context, null, 2), 'utf-8');
   return filePath;
 }
 

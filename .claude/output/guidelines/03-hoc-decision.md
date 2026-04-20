@@ -30,6 +30,12 @@ NOT inline styled-components.
 
 **Why**: 149 files use withStyles. It integrates with the vulcan SDK build pipeline.
 
+### Rule 2b: Forward `className` when using `withStyles`
+
+Any component wrapped with `withStyles(Component, styles)` MUST destructure `className` from props and apply it to the root DOM element (e.g., `` <div className={`my-class ${className}`}> ``). Also declare `className: PropTypes.string` in propTypes and `className: ''` in defaultProps.
+
+**Why**: `withStyles` uses `styled(WrappedComponent)` internally, which injects a `className` prop containing the generated CSS class. If the component does not forward this `className` to a DOM element, **none of the CSS in `styles.js` will take effect** — all styles silently fail. Every existing page component follows this pattern (e.g., PromotionList destructures `className` and applies it to the root `<CapRow>`).
+
 ### Rule 3: Use `injectSaga` / `injectReducer` for dynamic injection
 
 At page/organism level for code splitting.

@@ -22,6 +22,27 @@ Not `PropTypes.object`.
 
 **Why**: Explicit defaults prevent undefined behavior.
 
+### Rule 5: `intlShape` belongs in `propTypes`, never in `defaultProps`
+
+`intlShape` is a PropTypes validator shape, not a value. Putting it in `defaultProps` assigns a function object as the default — which won't crash but is semantically wrong and confuses tooling.
+
+```js
+// correct:
+Component.propTypes = {
+  intl: intlShape,
+};
+Component.defaultProps = {
+  intl: {},
+};
+
+// wrong:
+Component.defaultProps = {
+  intl: intlShape.isRequired,  // ← intlShape is a validator, not a default value
+};
+```
+
+**Why**: `injectIntl` HOC always provides the `intl` object at runtime, so the default is a safety net only. An empty object `{}` is the correct neutral default.
+
 ## Good Examples
 
 ### FiltersApplied — Well-typed props

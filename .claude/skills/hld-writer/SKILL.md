@@ -13,7 +13,7 @@ This skill composes the final High-Level Design document by loading the standard
 
 ## Template
 
-Load the HLD template from `.claude/templates/hld-template.md`. This template defines the exact 15-section structure that MUST be preserved. Do not reorder, merge, or skip any section.
+Load the HLD template from `.claude/templates/hld-template.md`. This template defines the exact 16-section structure that MUST be preserved. Do not reorder, merge, or skip any section.
 
 ## Composition Process
 
@@ -61,6 +61,10 @@ Replace template metadata placeholders:
 - Each ASCII diagram MUST be immediately followed by a prototype screen link on its own line:
   `[See: {Screen Name}]({prototype-url-or-figma-frame-url})`
   Copy these links exactly from the prototype-analyser output. Do not omit them.
+- **Component Recipe table**: every row MUST populate the `Node ID` column from
+  `sectionComponentMap.<section>.figmaNodeId` (already produced by figma-node-mapper).
+  Node IDs let reviewers open the specific Figma frame to verify PARTIAL/UNMAPPED/BESPOKE rows.
+- **Reviewer Override is mandatory for agent overrides**: if the HLD agent writes a Note that overrides or contradicts a recipe mapping (e.g., "use custom organism instead of CapTable"), the corresponding Component Recipe row MUST have its `Reviewer Override` column populated with the replacement component name. Prose Notes alone are not consumed by downstream code generation — only the Reviewer Override column is machine-readable.
 
 #### Section 5: Directory Structure
 - **Source**: Impact analysis + garuda-ui conventions
@@ -130,10 +134,22 @@ Replace template metadata placeholders:
 - **Source**: Accumulated unknowns from all prior steps
 - Questions table: number, question, impact, owner, status
 
+#### Section 16: Figma Naming Improvements
+- **Source**: cross-reference Section 3 component names (`New Components` table) against `figmaComponentName` values in `claudeOutput/figma-capui-mapping/<nodeId>.recipe.json` for each node ID that appears in Section 4's Component Recipe table.
+- **Rule**: for each Section 3 component, locate its corresponding Figma frame (via the node IDs in Section 4) and compare names:
+  - If Figma frame name equals the Section 3 PascalCase name (e.g. Figma `TierComparisonTable` ↔ Section 3 `TierComparisonTable`) → skip the row
+  - If they differ → emit one row proposing the Section 3 name as the rename target
+- **Ordering**: auto-generated frame names (`Frame NNN`, `Group N`, `Rectangle`) first (most ambiguous), then human-named-but-mismatched frames
+- **Proposed rename**: always the Section 3 component name in PascalCase (no prefix, no Cap* prefix)
+- **Fallback**: if every Section 3 component's Figma frame name already matches, emit a single row saying `All Figma frames already named to match Section 3 components — decomposition will be deterministic.`
+- **Purpose clarification**: this section is unrelated to the `Custom_` prefix BESPOKE signal. The two mechanisms solve different problems:
+  - Section 16 renames → make decomposition deterministic for Section 3 components
+  - `Custom_` prefix → force BESPOKE for nodes that are NOT in Section 3 (standalone custom visual primitives)
+
 ### Step 4: Quality Check
 
 Before writing the output, verify:
-- [ ] All 15 sections are filled (no `{{PLACEHOLDER}}` tokens remaining except in section 14)
+- [ ] All 16 sections are filled (no `{{PLACEHOLDER}}` tokens remaining except in section 14)
 - [ ] All ASCII diagrams fit within 100-character width
 - [ ] All ASCII diagrams have an accompanying `[See: Screen Name](url)` link immediately after them
 - [ ] All `[ASSUMED]` markers are present where appropriate

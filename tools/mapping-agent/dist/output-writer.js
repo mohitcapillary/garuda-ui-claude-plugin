@@ -34,6 +34,7 @@ var __importStar = (this && this.__importStar) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.writeRecipe = writeRecipe;
+exports.writeStitchingContext = writeStitchingContext;
 exports.writeTokenMap = writeTokenMap;
 const fs = __importStar(require("fs"));
 const path = __importStar(require("path"));
@@ -53,6 +54,17 @@ function writeRecipe(recipe, outputDir) {
     const nodeId = recipe.root.figmaNodeId.replace(':', '-');
     const filePath = path.join(dir, `${nodeId}.recipe.json`);
     fs.writeFileSync(filePath, JSON.stringify(recipe, null, 2), 'utf-8');
+    return filePath;
+}
+/**
+ * Write a StitchingContext to <outputDir>/<rootNodeId>.stitching-context.json.
+ * Returns the absolute path of the written file.
+ */
+function writeStitchingContext(context, outputDir) {
+    const dir = outputDir !== null && outputDir !== void 0 ? outputDir : DEFAULT_OUTPUT_DIR;
+    ensureDir(dir);
+    const filePath = path.join(dir, `${context.rootNodeId}.stitching-context.json`);
+    fs.writeFileSync(filePath, JSON.stringify(context, null, 2), 'utf-8');
     return filePath;
 }
 /**

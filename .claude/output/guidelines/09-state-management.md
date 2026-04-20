@@ -26,6 +26,60 @@ For memoized selectors.
 
 **Why**: Only 4 files use Context (PromotionConfigContext, StrategyDashboard, ConfigureWorkflows, AddEarnCondition). Global state MUST go through Redux.
 
+### Rule 5: Selectors returning arrays or objects MUST call `.toJS()`
+
+Reducers use `fromJS()` (ImmutableJS). Selectors that return non-primitive values must convert back to plain JS before components receive them.
+
+```js
+// correct:
+export const makeSelectTiers = () =>
+  createSelector(selectDomain, (substate) => substate.get('tiers').toJS());
+
+// wrong — Immutable List leaks into component:
+export const makeSelectTiers = () =>
+  createSelector(selectDomain, (substate) => substate.get('tiers'));
+```
+
+**Why**: `.map()` works on Immutable Lists by accident, but `.find()`, spread, `JSON.stringify`, and array destructuring behave differently. Leaking Immutable objects into components causes silent, hard-to-debug failures.
+
+### Rule 6: `isLoading` must only include `REQUEST` status — never `INITIAL`
+
+```js
+// correct:
+const isLoading = status === REQUEST;
+
+// wrong — causes infinite spinner if the effect never fires:
+const isLoading = status === INITIAL || status === REQUEST;
+```
+
+**Why**: `INITIAL` is the Redux state before any request has been dispatched. Including it in the loading condition means a conditional `useEffect` that never fires will show a spinner forever. The initial render before a data fetch should show nothing or a skeleton, not a spinner.
+
+### Rule 7: `clearDataOnUnmount` cleanup string must match an action creator exactly
+
+```js
+// the string passed here must exactly match a key in actions.js:
+clearDataOnUnmount(injectIntl(withStyles(Page, styles)), 'clearTiersData')
+```
+
+**Why**: `clearDataOnUnmount` uses the string to dispatch the action by name. A typo or mismatch silently disables cleanup — stale Redux state persists across navigation, causing the next page load to show stale data.
+
+### Rule 8: Sagas must normalize API responses before dispatching to Redux
+
+```js
+function* getTiersWorker({ payload }) {
+  try {
+    const response = yield call(api.getTiers, payload);
+    // Extract the data shape components expect — never put the raw API envelope into Redux
+    const data = response && response.data ? response.data : response;
+    yield put(actions.getTiersSuccess(data));
+  } catch (error) {
+    yield put(actions.getTiersFailure(error));
+  }
+}
+```
+
+**Why**: Components and selectors must not depend on the API envelope structure (`{ status, data, errors }`). Normalizing in the saga means a backend response format change only requires updating one place.
+
 ## Good Examples
 
 ### PromotionList/saga.js — Standard saga pattern

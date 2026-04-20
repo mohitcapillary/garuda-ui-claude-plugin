@@ -28,6 +28,40 @@ Extract to styles.js.
 
 **Why**: Inline styles bypass the withStyles pipeline, cannot use tokens, and break consistency.
 
+### Rule 5: `withStyles` className scoping — component class must be on a child element, NOT the root
+
+`withStyles` prepends the generated class to every selector in `styles.js`. A stylesheet `.my-component { .child { … } }` becomes `.generatedCls .my-component .child { … }` at runtime. If you put both classes on the **same** root element (`className={`my-component ${className}`}`), the selector `.generatedCls .my-component` looks for a descendant that never exists — **all CSS silently fails**.
+
+**Rule**: The root element takes `className={className}` only. The component's own CSS class sits one level inside.
+
+```jsx
+// ✅ CORRECT — matches PromotionList pattern
+const MyComponent = ({ className }) => (
+  <div className={className}>          {/* withStyles class ONLY */}
+    <div className="my-component">     {/* CSS selector root */}
+      …
+    </div>
+  </div>
+);
+export default withStyles(MyComponent, styles);
+```
+
+```jsx
+// ❌ WRONG — root carries both classes; all CSS is silently dead
+<div className={`my-component ${className}`}>
+```
+
+**Special cases by root element type:**
+
+| Root type | Fix |
+|-----------|-----|
+| `div` / `CapRow` / `CapColumn` | Wrap with `<div className={className}>`; move component class to first child |
+| Leaf with no children (`CapInput`, `span`, `CapButton`) | Wrap with `<div className={className}>`; keep component class on inner element |
+| 3rd-party container with own DOM (`CapDrawer`, `CapModal`) | Use `className={className}` on the component; remove the outer `.my-component { … }` wrapper from `styles.js` so selectors are scoped directly by the generated class |
+| Simple atom with no nested selectors (2–3 flat rules) | Remove outer wrapper in `styles.js`; use `className={className}` on root |
+
+**Why**: Discovered after `BenefitsListing` codegen — 6 components had this bug and all `withStyles` CSS was silently unapplied.
+
 ## Good Examples
 
 ### PromotionSettings/style.js

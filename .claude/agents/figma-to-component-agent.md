@@ -86,6 +86,7 @@ An autonomous agent that converts a Figma design node into a blaze-ui React comp
        { "file": ".../CustomFieldsSection.js", "line": 48, "literal": "New custom field", "suggestedIntlKey": "newCustomFieldCta" }
      ],
      "tokensUsed": ["CAP_G01", "CAP_G05", "CAP_G07", "CAP_WHITE", "CAP_SPACE_04", "CAP_SPACE_16", "CAP_SPACE_24", "CAP_SPACE_48", "FONT_WEIGHT_MEDIUM"],
+     "bespokeFiles": ["app/components/organisms/TierBadge/TierBadge.js"],
      "layoutSummary": {
        "viewportWidth": 1440,
        "sidebar": { "width": 240, "position": "absolute-left" },
@@ -121,6 +122,9 @@ Once validated, proceed to Phase 1.
 | Generated file exceeds 450 lines | Split into sub-component files — see Phase 4. |
 | Audit grep finds violations | Fix each violation in-place, re-run audit. Never skip. |
 | Cache file exists but is empty or corrupted (0 bytes, truncated XML, JSX that doesn't start with `<`) | Set `CACHE_HIT=false`. Delete the bad file (`rm "${CACHE_DIR}/design-context.jsx"`), then proceed with fresh MCP calls. Print: `⚠ Cache invalid for node <nodeId> — falling back to Figma MCP`. |
+| `design-context.jsx` is <50 lines or contains only comments/summary (no `<frame` or `<div` or `className=` tokens) | **STOP**: "HARD STOP: design-context.jsx is a placeholder/summary, not real Figma data. Re-fetch from Figma MCP required." Do NOT proceed to Phase 2 or code generation. |
+| `get_design_context` returns a "too large" message with sparse metadata summary | Call `get_design_context` on individual child nodeIds from the metadata XML. Do NOT use the summary as a substitute for real design data. |
+| UI behavior ambiguity (e.g., does tab filter content or just scroll? how many items?) | **STOP** and use `AskUserQuestion`. Never assume interaction patterns. |
 
 ---
 
@@ -156,12 +160,38 @@ echo "design-context: $DC_OK | metadata: $MD_OK | recipe: $RC_OK"
 **If ALL THREE are non-empty**:
 - Set `CACHE_HIT=true`
 - Set `DESIGN_CONTEXT_PATH="${CACHE_DIR}/design-context.jsx"` ← used by Phase 1e
-- Read `${CACHE_DIR}/design-context.jsx` → use as design context (skip Phase 1d MCP call)
+- Read `${CACHE_DIR}/design-context.jsx`
+
+**CRITICAL — Validate the cached design-context.jsx before using it:**
+```bash
+# Check if it's metadata-only (no color/visual data)
+METADATA_ONLY=false
+grep -q "metadata mode" "${CACHE_DIR}/design-context.jsx" && METADATA_ONLY=true
+grep -qE 'bg-\[#|text-\[#|fill:|background:' "${CACHE_DIR}/design-context.jsx" || METADATA_ONLY=true
+```
+- If `METADATA_ONLY=true`: the cached file has structure but NO color/fill/visual data (the root frame was too large when it was first fetched). **Do NOT use it for token extraction.** Instead:
+  1. Still use it for structure/tree understanding
+  2. Set `CACHE_INCOMPLETE=true`
+  3. After Phase 2b (recipe loaded), proceed to **Phase 1d-drill**: call `get_design_context` on each EXACT-recipe node individually to recover visual properties. Cache results in `${CACHE_DIR}/node-<nodeId>-design-context.jsx`.
+  4. Use per-node design contexts (not the root) for Phase 1e token extraction.
+  5. Print: `⚠ Cache hit but design-context.jsx is metadata-only — drilling into EXACT child nodes for visual data`
+
+- If `METADATA_ONLY=false`: use normally.
 - Read `${CACHE_DIR}/metadata.xml` → use as metadata XML (skip Phase 1c MCP call)
 - Read `claudeOutput/figma-capui-mapping/${NODE_DASH}.recipe.json` → use as recipe (skip Phase 2b mapping agent run)
 - Still run Phase 1b (`get_screenshot`) ONLY if `--vision` flag is set AND `${CACHE_DIR}/screenshot.png` does not exist
 - Print: `▶ Cache hit for node <nodeId> — skipping Figma MCP calls and mapping agent`
 - Jump directly to Phase 1e (token extraction from `$DESIGN_CONTEXT_PATH`)
+
+**Check for pre-built layout-plan.json** (written by hld-to-code Phase 2.2 — avoids duplicate token extraction in Phase 1e):
+```bash
+LAYOUT_PLAN_PATH=""
+LP_CANDIDATE=$(grep -rl "\"rootNode\": \"${nodeId}\"" claudeOutput/build/*/layout-plan.json 2>/dev/null | head -1)
+if [ -n "$LP_CANDIDATE" ]; then
+  LAYOUT_PLAN_PATH="$LP_CANDIDATE"
+  echo "▶ layout-plan.json found at $LAYOUT_PLAN_PATH — Phase 1e will read tokens from it directly"
+fi
+```
 
 **If ANY is missing**:
 - Set `CACHE_HIT=false`
@@ -229,7 +259,27 @@ Use the JSX for:
 
 Do **not** use this as a node tree or component structure.
 
-### 1e. Extract design token map from the design context JSX
+### 1e. Build design token map
+
+**If `LAYOUT_PLAN_PATH` is set** (invoked from hld-to-code — layout-plan.json already built by Phase 2.2):
+
+Read `colorTokenMap` and `spacingTokenMap` directly from `$LAYOUT_PLAN_PATH`:
+
+```bash
+node -e "
+const lp = require(process.env.LAYOUT_PLAN_PATH);
+console.log('COLORS:', JSON.stringify(lp.colorTokenMap, null, 2));
+console.log('SPACING:', JSON.stringify(lp.spacingTokenMap, null, 2));
+" LAYOUT_PLAN_PATH="$LAYOUT_PLAN_PATH"
+```
+
+Print: `▶ Token map loaded from layout-plan.json (hld-to-code pre-built) — skipping re-extraction`
+
+Build the Design Token Map from those values and skip Steps 1–2 below. Go directly to Step 3.
+
+---
+
+**If `LAYOUT_PLAN_PATH` is NOT set** (standalone invocation — no layout-plan.json):
 
 Extract visual values from `$DESIGN_CONTEXT_PATH` (set in Phase 1a' on cache hit, or Phase 1d on fresh fetch) and **map them to blaze-ui token variables** using `token-mappings.json`. This is mandatory — not optional.
 
@@ -402,7 +452,7 @@ This prints every unique Cap* component name in the recipe (e.g. `CapRow CapTabl
 
 ```bash
 node -e "
-const spec = require('/Users/mohitgupta/Documents/capillary/revert/garuda-ui/tools/mapping-agent/src/registries/prop-spec.json');
+const spec = require(process.env.GARUDA_UI_PATH + '/tools/mapping-agent/src/registries/prop-spec.json');
 const components = process.argv.slice(1);
 components.forEach(c => {
   const e = spec[c];
@@ -442,23 +492,85 @@ Props in Phase 4 must come exclusively from:
 1. The `prop-table` built above (antdProps + wrapperProps from prop-spec.json)
 2. Design token map (from Phase 1e) — correct visual values (colors, spacing, fonts)
 
-### 2d. Resolve every UNMAPPED node
+**Step 4 — Persist prop-table to disk** (REQUIRED — reused by Phase 5c and by hld-to-code Phase 5c Step 6, avoiding duplicate prop-spec.json parses):
+
+```bash
+PROP_TABLE_PATH="${CACHE_DIR}/prop-table.json"
+
+node -e "
+const fs = require('fs');
+const crypto = require('crypto');
+const specPath = process.env.GARUDA_UI_PATH + '/tools/mapping-agent/src/registries/prop-spec.json';
+const spec = require(specPath);
+const components = process.argv.slice(1);
+
+const specHash = crypto.createHash('sha256').update(fs.readFileSync(specPath)).digest('hex');
+
+const propTable = {
+  generatedAt: new Date().toISOString(),
+  recipeNodeId: process.env.NODE_ID,
+  sourceSpec: 'tools/mapping-agent/src/registries/prop-spec.json',
+  sourceSpecHash: 'sha256:' + specHash,
+  components: {}
+};
+
+components.forEach(c => {
+  const e = spec[c];
+  if (!e) { propTable.components[c] = { notInSpec: true }; return; }
+  const antdKeys = Object.keys(e.antdProps || {});
+  const wrapperKeys = Object.keys(e.wrapperProps || {});
+  propTable.components[c] = {
+    antdProps: antdKeys,
+    wrapperProps: wrapperKeys,
+    allowedProps: [...antdKeys, ...wrapperKeys],
+    caveats: e.caveats || [],
+    styledPattern: e.styledPattern || null,
+    spreadsAllAntdProps: e.spreadsAllAntdProps || false,
+    disambiguation: e.disambiguation || null
+  };
+});
+
+fs.writeFileSync(process.env.PROP_TABLE_PATH, JSON.stringify(propTable, null, 2));
+console.log('▶ Wrote ' + process.env.PROP_TABLE_PATH + ' (' + components.length + ' components)');
+" NODE_ID="$nodeId" PROP_TABLE_PATH="$PROP_TABLE_PATH" -- $uniqueComponents
+```
+
+This derived file (`claudeOutput/figma-capui-mapping/<nodeDashId>/prop-table.json`) contains only the components used in this recipe — not the full prop-spec.json. Phase 4, Phase 5c, and hld-to-code Phase 5c Step 6 all read from this file instead of re-parsing prop-spec.json.
+
+### 2d. Resolve every UNMAPPED and BESPOKE node
+
+> **BESPOKE** = "this component does not exist in cap-ui-library. Build it from scratch using Cap* primitives (CapRow, CapColumn, CapLabel, etc.) as building blocks, plus styled-components for custom layout/styling." Two triggers produce BESPOKE in the recipe: (1) designer prefixed the Figma frame with `Custom_`, (2) the mapping agent found no Cap* match AND no reasonable fallback for a node with children.
 
 Process the recipe tree **from leaves to root** (deepest children first).
 
-For every node with `mappingStatus: "UNMAPPED"`:
+**Path A — `mappingStatus: "UNMAPPED"` with `fallback.nearestComponent` non-null**:
+The mapping-agent already ran the heuristics and found a Cap* match. Read it directly:
+- Use `fallback.nearestComponent` as-is: `styled(<nearestComponent>)`
+- Record: `[nodeId] [nodeName] → <nearestComponent>` (from recipe fallback)
+- Do NOT re-apply heuristics — the mapping-agent already ran them with registry validation.
 
-1. Check the **Composition Patterns Lookup Table** — does this node match a known pattern?
+**Path B — `mappingStatus: "UNMAPPED"` with `fallback.nearestComponent: null`**:
+No heuristic matched. Apply manual resolution, **leaves first** (children must be resolved before parents, since rules like "has kids + HORIZONTAL → CapRow" require knowing resolved children):
+1. Check the **Composition Patterns Lookup Table**
 2. If no pattern matches, walk the **Fallback Priority Chain**
-3. Record your decision: `[nodeId] [nodeName] → [CapComponent]`
+3. Record: `[nodeId] [nodeName] → [CapComponent]` (manual)
 
-**Layout mode → container mapping:**
+Layout mode → container mapping (Path B only):
 
 | Figma `layoutMode` | BlazeUI Container | Notes |
 |--------------------|-------------------|-------|
 | `HORIZONTAL` | `CapRow` | Use `gutter` from `itemSpacing` value |
 | `VERTICAL` | `CapColumn` | Stack children vertically |
 | `null` / absent | `CapColumn` | Default; add `// TODO: absolute positioning lost` comment |
+
+**Path C — `mappingStatus: "BESPOKE"`** (self-contained visual primitive — no Cap* match, has fills, has children):
+This node needs a **standalone custom component file**, not an inline `styled.div`. Do NOT generate it here — record it for Phase 4:
+1. Derive the component name from Figma node name in PascalCase (e.g. `"Tier Badge"` → `TierBadge`)
+2. Identify props from children:
+   - `TEXT` child → `label: string` prop
+   - fills on node → `color: string` prop (look up `colorTokenMap` from layout-plan.json)
+   - `INSTANCE` child matching a Cap* icon pattern → `icon: string` prop
+3. Record: `[nodeId] [nodeName] → <BespokeName>` (BESPOKE — standalone file, Phase 4 will write it)
 
 ### Phase 2 Output
 
@@ -468,6 +580,7 @@ Mapping Summary:
 - EXACT: N nodes (list component names)
 - PARTIAL: N nodes (list with warnings)
 - UNMAPPED → resolved: N nodes (list each with chosen Cap* component)
+- BESPOKE: N nodes (list each — standalone custom component files, generated in Phase 4)
 - Genuinely unmappable: N nodes (list with TODO reasons)
 - Styled HTML fallbacks: N nodes (list each — only when Cap* composition is insufficient)
 ```
@@ -522,6 +635,60 @@ After user confirmation, generate the component file.
 - Imports use canonical paths: `import CapX from '@capillarytech/cap-ui-library/CapX'`
 - Each blaze-ui component imported exactly once
 - No unused imports
+- **`withStyles` className scoping — CRITICAL**: `withStyles` from `@capillarytech/vulcan-react-sdk/utils` injects CSS by prepending the generated class to every selector in `styles.js`. A styles.js that exports `.my-component { .child { … } }` becomes `.generatedCls .my-component .child { … }` at runtime. This means **`.my-component` must be a descendant of the root element — never on the root element itself**. Putting both classes on the root (`className={`my-component ${className}`}`) makes the selector look for `.my-component` inside `.generatedCls`, which never matches since they are on the same element — **all styles silently fail**.
+
+  **Always use this pattern (mirrors PromotionList):**
+
+  ```jsx
+  // ✅ CORRECT — root carries only the withStyles class; component class is one level inside
+  const MyComponent = ({ className, … }) => (
+    <div className={className}>           {/* withStyles-generated class ONLY */}
+      <div className="my-component">      {/* CSS selector root */}
+        …
+      </div>
+    </div>
+  );
+  export default withStyles(MyComponent, styles);
+  ```
+
+  ```jsx
+  // ❌ WRONG — both classes on the same element; all CSS is silently dead
+  <div className={`my-component ${className}`}>
+  ```
+
+  **Special cases:**
+
+  | Root element type | Fix |
+  |---|---|
+  | Plain `div` / `CapRow` / `CapColumn` | Add outer `<div className={className}>`, move component class to first child |
+  | Leaf with no children (`CapInput`, `<span>`) | Wrap with `<div className={className}>`; keep component class on inner element |
+  | 3rd-party container with own DOM (`CapDrawer`, `CapModal`) | Use `className={className}` on the component; **hoist CSS** — remove the `.my-component { … }` outer wrapper from `styles.js` so selectors are scoped directly by the generated class |
+  | Simple atom with no nested CSS (2–3 rules, no child selectors) | **Hoist CSS** — remove outer wrapper in `styles.js`, use `className={className}` on root |
+
+  Also destructure `className` from props, add `className: PropTypes.string` and `className: ''` in defaultProps.
+
+- **Slide-out panels — ALWAYS use `CapSlideBox`, NEVER `CapDrawer`**: `CapDrawer` (raw Ant Design) is not integrated with the garuda-ui shell layout and renders as a sliver. `CapSlideBox` is the correct component for all slide-out panels (`show`, `handleClose`, `content`/`header`/`footer`, `size="size-m"`, `placement="right"`). If a Figma node maps to a drawer/panel, emit `CapSlideBox`.
+
+- **Popup components inside `CapSlideBox` must have `getPopupContainer`**: Any `CapMultiSelect`, `CapSelect`, `CapDateRangePicker`, or similar Ant Design popup-based component rendered inside a `CapSlideBox` (or `CapModal`) MUST include `getPopupContainer={(trigger) => trigger.parentElement}`. Without it the popup renders into `document.body` and may appear hidden behind the panel overlay.
+
+- **`CapMultiSelect` callback is `onSelect` not `onChange`**: Always use `onSelect` for `CapMultiSelect`. `onChange` is not a valid prop and silently does nothing.
+
+- **New page components must apply standard horizontal padding** (Figma artboards do not encode this — add it regardless of what the design shows): Listing pages → `padding: ${CAP_SPACE_20} ${CAP_SPACE_72} 0 ${CAP_SPACE_72}` on root content div. Config/Edit pages → `margin: ${CAP_SPACE_24} ${CAP_SPACE_72}` on inner `CapRow` wrapper. Do NOT retrofit existing pages.
+
+- **`CapTable` must use infinite scroll by default**: Unless the HLD explicitly requires pagination, always set `infinteScroll={true}` (⚠️ cap-ui-library typo — `infin**te**Scroll`, not `infiniteScroll`). Required companion props: `showLoader`, `setPagination`, `loadMoreData`. Paginated mode only if product spec explicitly says so.
+
+  ```jsx
+  <CapTable
+    dataSource={data}
+    columns={columns}
+    infinteScroll={true}
+    showLoader={isLoading}
+    pagination={pagination}
+    setPagination={onPaginationChange}
+    loadMoreData={formatMessage(messages.loadMore)}
+    scroll={{ x: 'max-content' }}
+  />
+  ```
 
 ### Prop-spec rules (from Phase 2c — enforced per-component before writing):
 
@@ -539,6 +706,21 @@ STEP B — allowed props:
   Each prop MUST appear in prop-table[CapX].antdProps OR prop-table[CapX].wrapperProps.
   If a prop is not listed → remove it. Do not pass it.
   Do not invent props by guessing from Figma node names or design intent.
+
+  STEP B.1 — enriched props from layout-plan.json (only when LAYOUT_PLAN_PATH is set):
+    Read layout-plan.json → screens[*].enrichedProps[<nodeId>] for the node
+    you are currently emitting. Every key there has already been validated
+    against prop-spec by hld-to-code Phase 5.6, but re-check locally:
+      • key MUST exist in prop-table[CapX].antdProps ∪ wrapperProps
+      • key MUST NOT collide with a key already emitted via recipe props or
+        visualProps (those win)
+    For each surviving enriched prop, emit it in JSX with a trailing
+    provenance comment so Phase 7 can audit:
+      <CapButton type="secondary" onClick={handleCreateCustomField}
+        /* enriched: hld.actions.createCustomField */>
+    Enriched props are the ONLY exception to "do not invent props" — they
+    are not invented, they were proposed by Phase 5.6 against prop-spec
+    with an HLD/API citation.
 
 STEP C — caveats:
   Read every caveat in prop-table[CapX].caveats.
@@ -577,7 +759,36 @@ Only after all three steps pass for a given component may you write it.
 
 1. **Compose from Cap* primitives** — combine CapRow, CapColumn, CapLabel, CapIcon, CapButton etc. into a custom component
 2. **Mix Cap* + styled HTML** — when Cap* alone isn't sufficient (e.g. `styled.div` for a custom grid, `styled.svg` for an icon wrapper)
-3. **TODO marker** — only for genuinely impossible content (third-party embeds, canvas, WebGL):
+3. **BESPOKE component** — for nodes with `mappingStatus: "BESPOKE"` (named in Phase 2d Path C):
+
+   Write a **standalone file** at `<targetPath>/<BespokeName>.js` — NOT inline inside the parent:
+
+   ```js
+   import styled from 'styled-components';
+   import * as styledVars from '@capillarytech/cap-ui-library/styled/variables';
+   const { CAP_G01, /* tokens from design token map */ } = styledVars;
+
+   const Styled<BespokeName> = styled.div`
+     /* geometry from fallback.htmlFallback (width, height, display) */
+     /* colors from design token map — no raw hex */
+   `;
+
+   const <BespokeName> = ({ label, color, icon }) => (
+     <Styled<BespokeName>>
+       {/* internal Cap* composition from Phase 2d Path C prop list */}
+     </Styled<BespokeName>>
+   );
+
+   export default <BespokeName>;
+   ```
+
+   Parent component imports it:
+   ```js
+   import <BespokeName> from './<BespokeName>';
+   // <BespokeName label="Gold" color={CAP_COLOR_GOLD} />
+   ```
+
+4. **TODO marker** — only for genuinely impossible content (third-party embeds, canvas, WebGL):
 
 ```jsx
 {/* TODO: [figmaNodeName] (node: [figmaNodeId]) — requires third-party library or custom implementation.
@@ -628,6 +839,67 @@ echo "Cap* components:" && grep -cE 'styled\(Cap' "$OUTPUT_FILE"
 echo "styled HTML:" && grep -cE 'styled\.(div|span|p|section)' "$OUTPUT_FILE"
 ```
 - Cap* count should be significantly higher than styled HTML count. If styled HTML dominates, review for missed Cap* opportunities.
+
+**Check 4 (Phase 5c) — prop-spec gate** (MANDATORY — runs on ALL generated files before manifest is written):
+
+For every `.js` / `.jsx` file written in Phase 4:
+
+```bash
+# Step 1: extract all Cap* component names used in the file
+grep -oE '<Cap[A-Z][a-zA-Z]+' "$OUTPUT_FILE" | sort -u | sed 's/^<//'
+```
+
+For each component name found, read the derived prop-table written in Phase 2c (falling back to the full prop-spec.json if the derived file is missing or stale):
+
+```bash
+node -e "
+const fs = require('fs');
+const crypto = require('crypto');
+const propTablePath = process.env.CACHE_DIR + '/prop-table.json';
+const specPath = process.env.GARUDA_UI_PATH + '/tools/mapping-agent/src/registries/prop-spec.json';
+const name = process.argv[1];
+
+let componentSpec = null;
+let source = 'prop-spec.json';
+
+if (fs.existsSync(propTablePath)) {
+  const pt = JSON.parse(fs.readFileSync(propTablePath, 'utf8'));
+  // Staleness check: if prop-spec.json changed since Phase 2c, fall back to it
+  const currentHash = crypto.createHash('sha256').update(fs.readFileSync(specPath)).digest('hex');
+  if (pt.sourceSpecHash === 'sha256:' + currentHash && pt.components[name]) {
+    componentSpec = pt.components[name];
+    source = 'prop-table.json';
+  }
+}
+
+if (!componentSpec) {
+  const spec = require(specPath);
+  const entry = spec[name];
+  if (!entry) { console.log('NOT IN SPEC:', name); process.exit(1); }
+  componentSpec = {
+    allowedProps: [...Object.keys(entry.antdProps || {}), ...Object.keys(entry.wrapperProps || {})],
+    caveats: entry.caveats || [],
+    styledPattern: entry.styledPattern || null
+  };
+}
+
+console.log('source:', source);
+console.log('allowed:', componentSpec.allowedProps.join(', '));
+componentSpec.caveats.forEach(c => console.log('CAVEAT:', c));
+if (componentSpec.styledPattern) console.log('styledPattern:', componentSpec.styledPattern);
+" GARUDA_UI_PATH="$GARUDA_UI_PATH" CACHE_DIR="$CACHE_DIR" -- CapButton
+```
+
+Rules enforced per component:
+- **NOT IN SPEC** → HALT. Use `AskUserQuestion` to confirm the component name or request it be added to prop-spec.
+- **Prop not in `antdProps` ∪ `wrapperProps`** → HALT. List every violation. Do NOT proceed to manifest.
+- **Caveats** → parse and verify each is satisfied (e.g. CapTab must use `panes={[...]}`, CapRow must have `type="flex"`, CapButton `type` ∈ `["primary","secondary","link"]`).
+- **`styledPattern`** → verify the component is wrapped in a `styled(CapX).attrs(...)` call, not passed props directly.
+
+On pass: log `✓ prop-spec: <ComponentName> — OK`
+On fail: log `PROP-SPEC VIOLATION: <file> — <ComponentName> uses prop <propName> not in spec` then HALT.
+
+**Do NOT write the manifest until all files show `✓ prop-spec: … — OK`.**
 
 ---
 

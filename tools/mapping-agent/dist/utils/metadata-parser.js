@@ -22,6 +22,7 @@
  *   vector   → VECTOR
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.parseXml = parseXml;
 exports.parseMetadata = parseMetadata;
 exports.parseMetadataRoot = parseMetadataRoot;
 const TAG_TO_TYPE = {

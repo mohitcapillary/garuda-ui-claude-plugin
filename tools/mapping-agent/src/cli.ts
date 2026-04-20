@@ -5,12 +5,15 @@ import * as path from 'path';
 import { loadRegistry, validateRegistry } from './registry-loader';
 import { resolveScreen } from './resolver';
 import { resolveAllTokens } from './token-resolver';
-import { writeRecipe, writeTokenMap } from './output-writer';
+import { writeRecipe, writeStitchingContext, writeTokenMap } from './output-writer';
 import { parseMetadataRoot } from './utils/metadata-parser';
+import { parseManifest, needsChunking } from './utils/manifest-parser';
 import { extractJSXNodes, enrichFigmaTree } from './utils/jsx-parser';
 import { enhanceRecipeWithVision, buildNodeMap } from './vision-resolver';
 import { writeLearnedMappings } from './registry-writer';
 import { generatePropSpec } from './prop-spec-generator';
+import { mergeRecipes, buildStitchingContext } from './recipe-merger';
+import { ConversionRecipe, ScreenManifestMeta, SectionManifest } from './types';
 
 const program = new Command();
 
@@ -243,6 +246,124 @@ program
       only,
       verbose: opts.verbose ?? true,
     });
+  });
+
+// ─── scan-manifest command ────────────────────────────────────────────────────
+program
+  .command('scan-manifest')
+  .description(
+    'Shallow-scan a get_metadata XML (stdin) and emit a SectionManifest. ' +
+    'Determines whether a screen needs chunked fetching (> 800 nodes or truncated).'
+  )
+  .option('--output <dir>', 'Directory to write manifest.json into')
+  .option('--threshold <n>', 'Node count threshold for chunked mode (default: 800)', '800')
+  .action(async (opts) => {
+    let inputXml = '';
+    process.stdin.setEncoding('utf-8');
+    for await (const chunk of process.stdin) inputXml += chunk;
+
+    const trimmed = inputXml.trim();
+    if (!trimmed.startsWith('<')) {
+      console.error('ERROR: scan-manifest expects get_metadata XML (starts with <).');
+      process.exit(1);
+    }
+
+    const manifest: SectionManifest = parseManifest(trimmed);
+    const threshold = parseInt(opts.threshold, 10);
+    const chunkedModeRequired = needsChunking(manifest, threshold);
+
+    if (opts.output) {
+      const { mkdirSync, writeFileSync } = await import('fs');
+      mkdirSync(opts.output, { recursive: true });
+      const outPath = path.join(opts.output, 'manifest.json');
+      writeFileSync(outPath, JSON.stringify(manifest, null, 2), 'utf-8');
+      console.log(`Manifest written to: ${outPath}`);
+    }
+
+    console.log(`estimatedNodeCount: ${manifest.estimatedNodeCount}`);
+    console.log(`isTruncated: ${manifest.isTruncated}`);
+    console.log(`sections: ${manifest.sections.length}`);
+    console.log(`chunkedModeRequired: ${chunkedModeRequired}`);
+
+    if (chunkedModeRequired) {
+      console.log('\nSection IDs (fetch each individually):');
+      for (const section of manifest.sections) {
+        console.log(
+          `  ${section.nodeId}  "${section.name}"  ~${section.estimatedDescendants} nodes`
+        );
+      }
+    }
+  });
+
+// ─── merge-recipes command ────────────────────────────────────────────────────
+program
+  .command('merge-recipes')
+  .description(
+    'Merge N per-section recipe.json files into one unified ConversionRecipe ' +
+    'and write a stitching-context.json for the HLD writer.'
+  )
+  .requiredOption('--manifest <path>', 'Path to manifest.json produced by scan-manifest')
+  .requiredOption('--sections-dir <dir>', 'Directory containing per-section <nodeId>.recipe.json files')
+  .requiredOption('--root-node-id <id>', 'Root screen node ID (dash format, e.g. 32-3147)')
+  .option('--output <dir>', 'Output directory for merged recipe (default: claudeOutput/figma-capui-mapping/)')
+  .action(async (opts) => {
+    const { readFileSync, existsSync } = await import('fs');
+
+    // Load manifest
+    if (!existsSync(opts.manifest)) {
+      console.error(`ERROR: manifest not found: ${opts.manifest}`);
+      process.exit(1);
+    }
+    const rawManifest: SectionManifest = JSON.parse(readFileSync(opts.manifest, 'utf-8'));
+
+    // Build ScreenManifestMeta — add recipeFilePath per section
+    const manifestMeta: ScreenManifestMeta = {
+      rootNodeId: opts.rootNodeId,
+      rootName: rawManifest.rootName,
+      rootBoundingBox: rawManifest.rootBoundingBox,
+      rootLayoutMode: rawManifest.rootLayoutMode,
+      isTruncated: rawManifest.isTruncated,
+      sections: rawManifest.sections.map((s) => ({
+        ...s,
+        recipeFilePath: path.join(opts.sectionsDir, `${s.nodeId}.recipe.json`),
+      })),
+    };
+
+    // Load all section recipes
+    const partials: ConversionRecipe[] = [];
+    for (const section of manifestMeta.sections) {
+      if (!existsSync(section.recipeFilePath)) {
+        console.error(`ERROR: missing section recipe: ${section.recipeFilePath}`);
+        process.exit(1);
+      }
+      partials.push(JSON.parse(readFileSync(section.recipeFilePath, 'utf-8')));
+    }
+
+    if (partials.length === 0) {
+      console.error('ERROR: no section recipes found to merge.');
+      process.exit(1);
+    }
+
+    const outputDir = opts.output ?? 'claudeOutput/figma-capui-mapping';
+
+    // Merge recipes
+    const merged = mergeRecipes(partials, manifestMeta);
+
+    // Write merged recipe
+    const mergedPath = writeRecipe(merged, outputDir);
+    console.log(`Merged recipe written to: ${mergedPath}`);
+
+    // Build and write stitching context
+    const stitchingCtx = buildStitchingContext(merged, manifestMeta, opts.sectionsDir, mergedPath);
+    const stitchingPath = writeStitchingContext(stitchingCtx, outputDir);
+    console.log(`Stitching context written to: ${stitchingPath}`);
+
+    console.log(
+      `\nMerged stats: ${merged.stats.total} nodes — ` +
+      `${merged.stats.exact} EXACT, ${merged.stats.partial} PARTIAL, ` +
+      `${merged.stats.unmapped} UNMAPPED`
+    );
+    console.log(`Sections merged: ${partials.length}`);
   });
 
 program.parse(process.argv);

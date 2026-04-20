@@ -39,6 +39,29 @@ Custom React.memo wrapper from `app/hoc/withMemo.js`.
 
 **Why**: withMemo handles intl prop exclusion automatically. 40 files use withMemo vs 6 using React.memo directly.
 
+### Rule 6: Never suppress `react-hooks/exhaustive-deps` with eslint-disable comments
+
+Fill the `useEffect` dependency array correctly. Never use `// eslint-disable-line react-hooks/exhaustive-deps` or `// eslint-disable-next-line react-hooks/exhaustive-deps` as an escape hatch.
+
+```js
+// wrong — suppresses a real stale-closure warning:
+useEffect(() => {
+  fetchData(userId);
+}, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+// correct option A — include deps:
+useEffect(() => {
+  fetchData(userId);
+}, [userId, fetchData]);
+
+// correct option B — intentional mount-only with explicit comment explaining why:
+useEffect(() => {
+  pageActions.getTiersRequest(initialProgramId);
+}, []); // intentional: runs once on mount — initialProgramId is captured at mount time
+```
+
+**Why**: The exhaustive-deps rule exists to catch stale closures — bugs where an effect reads an outdated value. Suppressing it hides real bugs. If the effect genuinely needs to run only once, document why with an inline comment, not an eslint-disable.
+
 ## Good Examples
 
 ### Loadable.js — Code splitting pattern

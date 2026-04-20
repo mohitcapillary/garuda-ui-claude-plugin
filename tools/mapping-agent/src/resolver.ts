@@ -42,6 +42,19 @@ function matchesVariantPatterns(
   });
 }
 
+// ─── Icon Type Extraction ─────────────────────────────────────────────────────
+
+/**
+ * Extract icon type from a node name following the CapIcon/<type> convention.
+ * E.g. "CapIcon/edit" → "edit", "CapIcon/chevron-right" → "chevron-right"
+ * Returns null if the name doesn't follow the convention.
+ */
+function extractIconType(nodeName: string): string | null {
+  const match = nodeName.match(/^cap\s*icon[/\-](.+)$/i);
+  if (match) return match[1].trim().toLowerCase();
+  return null;
+}
+
 // ─── Entry Lookup ─────────────────────────────────────────────────────────────
 
 function findEntry(
@@ -215,13 +228,38 @@ function applySlotMappings(
   const slots: Record<string, RecipeSlot | string> = {};
   if (!node.children) return slots;
 
-  for (const child of node.children) {
+  // Track label/children slot index for position-based icon inference
+  let labelIndex = -1;
+
+  for (let i = 0; i < node.children.length; i++) {
+    const child = node.children[i];
     const slotDef = entry.slotMappings[child.name];
     if (slotDef) {
       if (child.type === 'TEXT' && child.characters) {
         slots[slotDef.slot] = child.characters;
       } else {
         slots[slotDef.slot] = { component: slotDef.component ?? child.name };
+      }
+      if (slotDef.slot === 'children') labelIndex = i;
+    }
+  }
+
+  // Position-based icon slot inference for CapIcon/<type> children.
+  // Only applies to components with prefix/suffix slots (CapButton, CapInput, etc.)
+  const hasPrefixSuffix = 'Icon Left' in entry.slotMappings || 'Left Icon' in entry.slotMappings;
+  if (hasPrefixSuffix) {
+    for (let i = 0; i < node.children.length; i++) {
+      const child = node.children[i];
+      // Already captured by exact name match? Skip.
+      if (entry.slotMappings[child.name]) continue;
+
+      const iconType = extractIconType(child.name);
+      if (!iconType) continue;
+
+      // Left of label → prefix; right of label (or no label found) → suffix
+      const slot = (labelIndex === -1 || i < labelIndex) ? 'prefix' : 'suffix';
+      if (!slots[slot]) {
+        slots[slot] = { component: 'CapIcon', props: { type: iconType } };
       }
     }
   }
@@ -314,15 +352,9 @@ function buildFallback(node: FigmaNode, registry: MappingRegistry): FallbackSpec
   } else if (isVertical && childCount > 0) {
     nearestComponent = 'CapColumn';
     nearestRationale = 'Auto-layout VERTICAL container';
-  } else if (childCount > 2 && hasFills) {
-    nearestComponent = 'CapCard';
-    nearestRationale = 'Multi-child frame with fills resembles a card container';
   } else if (childCount === 0 && hasFills) {
     nearestComponent = 'CapIcon';
     nearestRationale = 'Leaf node with fills resembles an icon element';
-  } else if (childCount > 0) {
-    nearestComponent = 'CapRow';
-    nearestRationale = 'Multi-child container with no matched component; layout wrapper suggested';
   }
 
   // Ensure suggested component exists in registry
@@ -374,6 +406,38 @@ export function resolveNode(
       }
     }
 
+    // Custom_ prefix forces BESPOKE — skip registry matching entirely.
+    // Designers prefix a frame with "Custom_" to signal it needs a bespoke
+    // component (no Cap* match). Strip the prefix for the display name.
+    if (node.name.startsWith('Custom_')) {
+      const children: RecipeNode[] = resolveChildren(
+        node,
+        { targetComponent: '', importPath: '', figmaIdentifier: '', propMappings: {}, slotMappings: {} } as ComponentMapping,
+        registry,
+        manualOverrides
+      );
+      return {
+        figmaNodeId: node.id,
+        figmaNodeType: node.type,
+        figmaComponentName: node.name,
+        mappingStatus: 'BESPOKE' as MappingStatus,
+        targetComponent: null,
+        importPath: null,
+        props: {},
+        slots: {},
+        cssVariables: {},
+        ...extractRichContext(node),
+        manualOverrides,
+        warnings: [],
+        fallback: {
+          nearestComponent: null,
+          nearestComponentRationale: `Custom_ prefix — bespoke component required`,
+          htmlFallback: `<div><!-- ${node.name} — BESPOKE --></div>`,
+        },
+        children,
+      };
+    }
+
     // Try to find a matching entry
     let entry = findEntry(node, registry);
 
@@ -387,6 +451,13 @@ export function resolveNode(
     }
 
     const props = { ...(entry.defaultProps ?? {}), ...applyPropMappings(node, entry) };
+
+    // Extract icon type from CapIcon/<type> naming convention
+    if (entry.targetComponent === 'CapIcon' && !props['type']) {
+      const iconType = extractIconType(node.name);
+      if (iconType) props['type'] = iconType;
+    }
+
     const slots = applySlotMappings(node, entry);
     const cssVariables = applyCssVariables(node, entry, registry);
 
@@ -472,20 +543,37 @@ function unmappedNode(
     resolveNode(child, registry)
   );
 
+  const fallback = buildFallback(node, registry);
+
+  // Extract icon type for UNMAPPED nodes where fallback suggests CapIcon
+  const unmappedProps: Record<string, unknown> = {};
+  if (fallback.nearestComponent === 'CapIcon') {
+    const iconType = extractIconType(node.name);
+    if (iconType) unmappedProps['type'] = iconType;
+  }
+
+  // No Cap* match and no reasonable fallback, but has children →
+  // this is a complex custom layout that needs a bespoke component
+  // built from scratch using Cap* primitives (bottom-up).
+  const hasChildren = (node.children?.length ?? 0) > 0;
+  const status: MappingStatus = (fallback.nearestComponent === null && hasChildren)
+    ? 'BESPOKE'
+    : 'UNMAPPED';
+
   return {
     figmaNodeId: node.id,
     figmaNodeType: node.type,
     figmaComponentName: node.name,
-    mappingStatus: 'UNMAPPED',
+    mappingStatus: status,
     targetComponent: null,
     importPath: null,
-    props: {},
+    props: unmappedProps,
     slots: {},
     cssVariables: {},
     ...extractRichContext(node),
     manualOverrides: extraOverrides,
     warnings: [],
-    fallback: buildFallback(node, registry),
+    fallback,
     children,
     source: 'unresolved',
     fingerprint: fingerprintNode(node),

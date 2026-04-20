@@ -64,6 +64,36 @@ This visual read is the basis for building the `sectionComponentMap` after recip
 
 ---
 
+## Step 2.5 — Size Check + Truncation Detection
+
+```
+get_metadata(fileKey, nodeId)
+```
+
+Write the response to disk:
+```bash
+mkdir -p claudeOutput/figma-capui-mapping/<nodeId>
+cat > claudeOutput/figma-capui-mapping/<nodeId>/metadata-shallow.xml << 'XMLEOF'
+<paste the get_metadata XML output here>
+XMLEOF
+```
+
+Run scan-manifest:
+```bash
+node tools/mapping-agent/dist/cli.js scan-manifest \
+  --output claudeOutput/figma-capui-mapping/<nodeId> \
+  < claudeOutput/figma-capui-mapping/<nodeId>/metadata-shallow.xml
+```
+
+**Read the output and branch:**
+
+- `chunkedModeRequired: false` → **continue with Step 3 below** (single-node mode, no change)
+- `chunkedModeRequired: true` → **jump to Section B** (chunked mode)
+
+The `metadata-shallow.xml` written here is reused as `metadata.xml` in Step 3 if you stay in single-node mode — no second fetch needed.
+
+---
+
 ## Step 3 — Get the Metadata XML
 
 ```
@@ -269,11 +299,88 @@ The skill produces a mental model the calling agent carries forward:
 
 ---
 
+---
+
+## Section B: Chunked Mode (screens with > 800 nodes or truncated XML)
+
+> Enter here when Step 2.5 emits `chunkedModeRequired: true`.
+> Steps 3–7 are **skipped**. Resume at Step 8 after B4.
+
+### Step B1 — Check for Truncation-Missing Sections
+
+Read `claudeOutput/figma-capui-mapping/<nodeId>/manifest.json`.
+
+If `isTruncated: true`, the bottom sections of the screen may be absent from the manifest because the XML was cut off. Cross-reference the **screenshot** (Step 2) against `manifest.sections`:
+
+- Visually identify any screen sections present in the screenshot but missing from `manifest.sections`
+- For each missing section: call `get_metadata(fileKey, adjacentNodeId)` using a sibling nodeId visible in the partial XML to discover the cut section's nodeId
+- Add any discovered sections to `manifest.json` before proceeding
+
+### Step B2 — Fetch and Map Each Section
+
+For **each section** in `manifest.sections` (process sequentially):
+
+**a. Fetch section metadata:**
+```
+get_metadata(fileKey, section.nodeId)
+```
+Write to:
+```bash
+mkdir -p claudeOutput/figma-capui-mapping/<rootNodeId>/sections/<sectionNodeId>
+cat > claudeOutput/figma-capui-mapping/<rootNodeId>/sections/<sectionNodeId>/metadata.xml << 'XMLEOF'
+<paste get_metadata output>
+XMLEOF
+```
+
+**Validate:** output starts with `<`. If JSX returned, call `get_metadata` again.
+
+**b. Run mapping agent on this section:**
+```bash
+node tools/mapping-agent/dist/cli.js resolve-metadata \
+  --output claudeOutput/figma-capui-mapping/<rootNodeId>/sections/ \
+  < claudeOutput/figma-capui-mapping/<rootNodeId>/sections/<sectionNodeId>/metadata.xml
+```
+Output: `claudeOutput/figma-capui-mapping/<rootNodeId>/sections/<sectionNodeId>.recipe.json`
+
+**Note:** `--design-context` is NOT passed here. Design context enrichment for code generation is handled downstream by `figma-to-component-agent`.
+
+**If a section has `estimatedDescendants > 150`:** split one level deeper — call `get_metadata` on that section's direct children individually and treat each as a sub-section.
+
+### Step B3 — Merge All Section Recipes
+
+```bash
+node tools/mapping-agent/dist/cli.js merge-recipes \
+  --manifest claudeOutput/figma-capui-mapping/<rootNodeId>/manifest.json \
+  --sections-dir claudeOutput/figma-capui-mapping/<rootNodeId>/sections \
+  --root-node-id <rootNodeId> \
+  --output claudeOutput/figma-capui-mapping/
+```
+
+**Outputs:**
+- `claudeOutput/figma-capui-mapping/<rootNodeId>.recipe.json` — unified merged recipe
+- `claudeOutput/figma-capui-mapping/<rootNodeId>.stitching-context.json` — compact section index for HLD writer
+
+**Validate output:**
+- First line: `Merged recipe written to: ...`
+- Stats line shows total = sum of all section node counts
+
+### Step B4 — Resume Normal Flow at Step 8
+
+Continue from **Step 8** (Resolve UNMAPPED Nodes) using the merged recipe at `claudeOutput/figma-capui-mapping/<rootNodeId>.recipe.json`.
+
+Steps 9 (Prop-Spec lookup) and 10 (Section Component Map) operate on the merged recipe unchanged.
+
+The `sectionComponentMap` in Step 10 can be populated from `stitching-context.json`'s `sections[].componentSummary` fields — no need to walk the full merged recipe tree.
+
+---
+
 ## Error Handling
 
 | Situation | Action |
 |-----------|--------|
+| `get_metadata` tool call fails or tool not available | **STOP immediately.** Do NOT fall back to manual recipe construction from design-context.jsx or visual analysis. Report: "HARD STOP: get_metadata is unavailable. Add mcp__claude_ai_Figma__get_metadata to the agent's tools list and re-run." |
 | `get_metadata` returns JSX | Call again; if still wrong, STOP |
+| `metadata.xml` not written to disk after Step 3 | **STOP.** Do not proceed to Step 7. The mapping agent CLI requires a valid metadata.xml — there is no valid fallback. |
 | Mapping agent binary missing | Run `npm run build` in `tools/mapping-agent/`, retry |
 | Mapping agent exits non-zero | Print stderr, STOP |
 | All nodes UNMAPPED after Step 8 | STOP: "Mapping produced no resolutions. Check the registry." |

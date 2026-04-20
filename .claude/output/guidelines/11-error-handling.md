@@ -30,6 +30,36 @@ Use error boundaries or saga error handling instead.
 
 **Why**: These cap-ui-library components provide consistent error UI.
 
+### Rule 5: Every list/table/grid MUST handle all four data states explicitly
+
+Components that render data from Redux must explicitly handle loading, error, empty, and data states. A missing empty state shows a blank screen which looks like a bug.
+
+```jsx
+{/* 1. Loading */}
+{isLoading && <CapSpin />}
+
+{/* 2. Error */}
+{isError && !isLoading && (
+  <div className="error-state">
+    <FormattedMessage {...messages.errorLoading} />
+  </div>
+)}
+
+{/* 3. Empty — REQUIRED, never omit */}
+{!isLoading && !isError && status === SUCCESS && items.length === 0 && (
+  <div className="empty-state">
+    <FormattedMessage {...messages.noItemsFound} />
+  </div>
+)}
+
+{/* 4. Data */}
+{!isLoading && !isError && items.length > 0 && (
+  <DataComponent items={items} />
+)}
+```
+
+**Why**: All four states represent real user-visible conditions. An omitted empty state forces users to guess whether the page is broken or simply has no data.
+
 ## Good Examples
 
 ### Saga with try/catch

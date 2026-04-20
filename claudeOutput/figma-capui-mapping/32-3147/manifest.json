@@ -1,0 +1,28 @@
+{
+  "rootNodeId": "32-3147",
+  "rootName": "LoyaltyProgramTiers",
+  "rootBoundingBox": {
+    "x": -3186,
+    "y": 784,
+    "width": 1280,
+    "height": 1362
+  },
+  "rootLayoutMode": "NONE",
+  "sections": [
+    {
+      "nodeId": "32-3148",
+      "name": "PageContent",
+      "boundingBox": {
+        "x": 0,
+        "y": 23,
+        "width": 1280,
+        "height": 1524.257568359375
+      },
+      "layoutMode": "NONE",
+      "depth": 1,
+      "estimatedDescendants": 161
+    }
+  ],
+  "estimatedNodeCount": 163,
+  "isTruncated": true
+}

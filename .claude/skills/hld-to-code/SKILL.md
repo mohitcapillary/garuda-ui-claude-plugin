@@ -55,7 +55,7 @@ Convert an HLD document into production-ready garuda-ui code.
 |-------|-------------|
 | 0. Bootstrap | Creates `claudeOutput/build/<feature>/` state directory; loads prior checkpoints if resuming |
 | 1. Parse HLD | Extracts screens, recipes, routes, Redux domains, APIs, open questions. Halts on any `status:open` question |
-| 2. Resolve Recipes + Extract Design Tokens | Loads all 4 cache files per screen (`recipe.json` + `prop-spec-notes.json` + `metadata.xml` + `design-context.jsx`). Walks `design-context.jsx` to extract every width, padding, gap, font size, colour. Maps to Cap-UI tokens. Writes `layout-plan.json`. Route-vs-shell gate halts if the route won't provide the Cap shell sidebar. |
+| 2. Resolve Recipes + Extract Design Tokens | Loads all 4 cache files per screen (`recipe.json` + `prop-spec-notes.json` + `metadata.xml` + `design-context.jsx`). Walks `design-context.jsx` to extract every width, padding, gap, font size, colour. Maps to Cap-UI tokens. Writes `layout-plan.json` with a nested `layoutTree` (preserves parent-child hierarchy and cross-axis alignment). Route-vs-shell gate halts if the route won't provide the Cap shell sidebar. |
 | **2.5. Preview Gate** | **Writes `preview-wireframe.txt` + `preview-skeleton.jsx` and halts — user confirms layout matches Figma before 24+ files get written.** |
 | 3. APIs & Mocks | Splits confirmed vs ASSUMED endpoints. Prepares mock payloads. Halts on undefined field shapes |
 | 4. File Plan | Dry-run file tree mirroring `app/components/pages/PromotionList/`. No code written yet |

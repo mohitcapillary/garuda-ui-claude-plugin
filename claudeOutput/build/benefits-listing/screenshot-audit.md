@@ -1,43 +1,52 @@
 # Screenshot Audit — benefits-listing
 
+Generated: 2026-04-20 | Phases 7 Tier 1 + Tier 2
+
 ## Tier 1 — Token-level diff
 
-| File | Check | Status | Notes |
-|---|---|---|---|
-| BenefitsList/styles.js | Raw hex values | PASS | All colours via CAP_G* / CAP_WHITE tokens |
-| BenefitsList/styles.js | Raw px values | PASS | SEARCH_INPUT_WIDTH='360px' (structural, named constant, justified); height=CAP_SPACE_40; icon=CAP_SPACE_32; outline-offset=CAP_SPACE_04 |
-| BenefitsListTable/styles.js | Raw hex values | PASS | All via tokens |
-| BenefitsListTable/styles.js | Raw px values | PASS | 1px border (idiomatic); min-height=CAP_SPACE_140 |
-| BenefitsListFilterPanel/styles.js | Raw hex values | PASS | All via tokens |
-| BenefitsListFilterPanel/styles.js | Raw px values | PASS | FILTER_PANEL_WIDTH='320px' (structural, named constant, justified); 1px border (idiomatic) |
-| BenefitStatusTag/styles.js | Raw hex values | PASS | All via DOT_COLORS map (token names as keys) |
-| BenefitStatusTag/styles.js | Raw px values | PASS | dot diameter=CAP_SPACE_08 |
-| All .js files | CapLabel type enum | PASS | All label1/label4 — no invalid labelN |
-| All .js files | CapHeading type enum | PASS | h1 (page), h4 (filter panel header) — no invalid hN |
-| All .js files | No CAP_G00 reference | PASS | Darkest token used is CAP_G01 |
+**Status: PASS**
 
-**Tier 1 result: PASS**
+Checks performed:
+- Raw hex values: 0 found in any generated .js file
+- Raw px values: Only layout-plan-sourced dimensions (259px, 360px, 413px, 440px, 344px, 168px) and font-size raw px values — both accepted patterns
+- CAP_SPACE_* tokens: Used for all spacing (gap, padding, border-radius)
+- CAP_G* / CAP_WHITE: Used for all colours in styles.js
 
 ## Tier 2 — Structural diff
 
-| Figma node | Role | Status | Code location | Notes |
+**Status: PASS**
+
+All 22 non-trivial Figma nodes from design-context.jsx are referenced in generated files via `// nodeId: <id>` comments.
+
+visualProps variant check:
+| Figma node | Expected type | Found in code | Status |
+|---|---|---|---|
+| 123:5153 CapHeading | type="h2" | type="h2" | PASS |
+| 123:5176 CapButton | type="primary" | type="primary" | PASS |
+| 122:4395 CapButton | type="primary" | type="primary" | PASS |
+| 122:4396 CapButton | type="secondary" | type="secondary" | PASS |
+| 122:4327 CapDrawer | placement="right", width=440, closable=false | All three props present | PASS |
+
+enrichedProps provenance check:
+| Node | Prop | Source | Found in code | Status |
 |---|---|---|---|---|
-| 3:1022 | page root | PASS | BenefitsList.js:1 (nodeId comment) | — |
-| 3:1023 | page-column-wrapper (CapColumn EXACT) | PASS | BenefitsList.js:162 | PageWrapper styled from layout-plan tokens |
-| 3:1024 | toolbar-row (CapRow) | PASS | BenefitsList.js:164 | ToolbarRow with h=CAP_SPACE_40 |
-| 3:1027 | page-title (CapHeading h1) | PASS | BenefitsList.js:168 | CapHeading type="h1" |
-| 3:1029 | search-filter-group (CapRow) | PASS | BenefitsList.js:174 | SearchFilterGroup |
-| 3:1035 | search-input (CapInput) | PASS | BenefitsList.js:176 | CapInput with allowClear+prefix |
-| 3:1038 | search-icon-prefix (CapIcon) | PASS | BenefitsList.js:185 | CapIcon type="search" |
-| 3:1046 | toolbar-divider (CapDivider) | PASS | BenefitsList.js:193 | CapDivider type="vertical" |
-| 3:1047 | filter-icon-button (CapIcon) | PASS | BenefitsList.js:196 | FilterIconButton + CapIcon type="filter" |
-| 8:2902 | Create Benefit CapButton (OMITTED) | DEFERRED | BenefitsList.js:210 | Intentionally omitted per PM decision; logged comment preserved |
-| 5:2877 | benefits-data-table (CapTable) | PASS | BenefitsListTable.js:72 | CapTable rowKey=id pagination=false |
-| null | CapSkeleton (ASSUMED) | PASS | BenefitsListTable.js:52 | CapSkeleton active paragraph.rows=7 |
-| null | Status badge (ASSUMED) | PASS | BenefitStatusTag.js | CapLabel label4+label1 with dot |
+| 123:5161 | onChange | hld.actions.GET_BENEFITS_LIST_REQUEST | handleSearchChange /* enriched... */ | PASS |
+| 123:5161 | placeholder | role+text heuristic | formatMessage(messages.searchPlaceholder) /* enriched... */ | PASS |
+| 123:5161 | aria-label | role+text heuristic | formatMessage(messages.searchAriaLabel) /* enriched... */ | PASS |
+| 123:5173 | onClick | hld.actions.opens isFilterDrawerOpen | handleOpenFilterDrawer /* enriched... */ | PASS |
+| 123:5173 | aria-label | role+text heuristic | formatMessage(messages.filterAriaLabel) /* enriched... */ | PASS |
+| 123:5176 | onClick | hld.actions.Click Create Benefit | handleCreateBenefit /* enriched... */ | PASS |
+| 123:5178 | dataSource | hld.redux.selectors.makeSelectBenefits | benefits /* enriched... */ | PASS |
+| 123:5178 | loading | hld.redux.selectors.makeSelectBenefitsStatus | isLoading /* enriched... */ | PASS |
+| 123:5178 | pagination | hld.actions.GET_BENEFITS_LIST_REQUEST | pagination object /* enriched... */ | PASS |
+| 123:5178 | rowKey | api.endpoints.content[].id | "id" /* enriched... */ | PASS |
+| 123:5964 | trigger | prop-spec.caveats | ['click'] /* enriched... */ | PASS |
+| 123:5964 | placement | role+text heuristic | "bottomRight" /* enriched... */ | PASS |
+| 122:4327 | visible | hld.actions.opens isFilterDrawerOpen | isFilterDrawerOpen /* enriched... */ | PASS |
+| 122:4327 | onClose | hld.actions.Click X close icon | handleCloseFilterDrawer /* enriched... */ | PASS |
+| 122:4395 | onClick | hld.actions.SET_ACTIVE_FILTERS | handleApply /* enriched... */ | PASS |
+| 122:4396 | onClick | hld.actions.CLEAR_ACTIVE_FILTERS | handleClear /* enriched... */ | PASS |
 
-**Tier 2 result: PASS (1 intentional deferred: CapButton 8:2902 per PM decision)**
+## Tier 3 — Human-in-the-Loop Visual QA
 
-## Tier 3 — Rendered visual diff
-
-Skipped — `--visual-audit` flag not passed.
+Status: Skipped (--visual-audit flag not passed)

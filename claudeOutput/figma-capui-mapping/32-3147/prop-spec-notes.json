@@ -1,0 +1,31 @@
+{
+  "CapSelect": {
+    "antdComponent": "Select",
+    "antdProps": ["value","defaultValue","mode","onChange","onSelect"],
+    "wrapperProps": ["label","labelPosition","errorMessage","isRequired","inductiveText","options","size"],
+    "caveats": []
+  },
+  "CapButton": {
+    "antdComponent": "Button",
+    "antdProps": ["type","icon","shape","size","loading","children"],
+    "wrapperProps": ["type","isAddBtn","prefix","suffix"],
+    "caveats": ["type='primary' uses app theme color","isAddBtn adds + icon"]
+  },
+  "CapTable": {
+    "antdComponent": "Table",
+    "antdProps": ["dataSource","columns","rowKey","pagination","scroll","loading","bordered","showHeader"],
+    "wrapperProps": [],
+    "caveats": ["dataSource + columns required","NOT CapTab (tabbed nav)"]
+  },
+  "CapTab": {
+    "antdComponent": "Tabs",
+    "antdProps": ["activeKey","defaultActiveKey","onChange","onTabClick","size"],
+    "wrapperProps": ["panes"],
+    "caveats": ["Use panes prop (array of {key,tab,content})","NOT CapTable (data grid)"]
+  },
+  "CapLabel": {"antdComponent": null, "antdProps": [], "wrapperProps": ["type"], "caveats": []},
+  "CapCard": {"antdComponent": "Card", "antdProps": ["title","bordered","bodyStyle"], "wrapperProps": [], "caveats": []},
+  "CapRow": {"antdComponent": "Row", "antdProps": ["gutter","type","align","justify"], "wrapperProps": [], "caveats": ["ALWAYS pass type='flex'"]},
+  "CapColumn": {"antdComponent": "Col", "antdProps": ["span","offset"], "wrapperProps": [], "caveats": []},
+  "CapIcon": {"antdComponent": "Icon", "antdProps": ["type","onClick"], "wrapperProps": ["type","withBackground","allowSvg"], "caveats": []}
+}

@@ -3,6 +3,7 @@
 **Repo**: garuda-ui
 **cap-ui-library version**: 8.12.64
 **Generated**: 2026-04-08
+**Updated**: 2026-04-20 — added Rule 5 to CSS Styling (withStyles className scoping); added Rules 5–7 to Component Creation (CapSlideBox vs CapDrawer, getPopupContainer, CapMultiSelect onSelect)
 **Files scanned**: 1,369
 
 ## Status Summary

@@ -1,0 +1,88 @@
+TIER MANAGEMENT — PREVIEW WIREFRAME
+=====================================
+Route: /tiers/list
+Behavior: All 5 sections visible simultaneously (scrollable). Tabs scroll-to-section.
+API: NEW endpoint getTierListingData (not existing getTier)
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ LoyaltyProgramTiers (page) — 1280px                                        │
+│ padding: 0 32px; bg: CAP_WHITE                                             │
+│                                                                            │
+│ ┌──PageHeader (flex-row, space-between, h:36px)───────────────────────────┐ │
+│ │ [CapSelect: "Loyalty program 2025" ▼]     [+ Create tier] [+ Create…]  │ │
+│ │  w:189px  EXACT:32:3150                    EXACT:32:3158  EXACT:32:3159 │ │
+│ └────────────────────────────────────────────────────────────────────────-┘ │
+│                                          gap:12px                          │
+│ ┌──ContentArea (max-w:1214px, overflow:clip)──────────────────────────────┐ │
+│ │ ┌──CategoryTabs (CapTab, BESPOKE→CapTab:32:3741, h:30px)──────────────┐│ │
+│ │ │ [Basic details] [Eligibility criteria] [Renewal…] [Downgrade…] [Ben]││ │
+│ │ │  selected=underline CAP_G01                                         ││ │
+│ │ └────────────────────────────────────────────────────────────────────-─┘│ │
+│ │                                                                        │ │
+│ │ ┌──ComparisonGrid (border:1px CAP_G06, overflow:clip)─────────────────┐│ │
+│ │ │ ┌─RowLabels──┐ ┌─TierColumnsScrollable (overflow-x:auto)──────────┐││ │
+│ │ │ │ w:240px     │ │ tier-col w:303px each                            │││ │
+│ │ │ │ sticky-left │ │                                                  │││ │
+│ │ │ │             │ │ ┌─Bronze───┐ ┌─Silver───┐ ┌─Gold─────┐ ┌─Plat─┐ │││ │
+│ │ │ │ ╔═══════╗   │ │ │ 🟠Bronze │ │ ⚪Silver │ │ 🟡Gold   │ │ ⚪Pla│ │││ │
+│ │ │ │ ║Basic  ║bg │ │ │ [Active] │ │ [Active] │ │ [Active] │ │[Acti]│ │││ │
+│ │ │ │ ║details║G08│ │ │ [✏️edit] │ │          │ │          │ │      │ │││ │
+│ │ │ │ ╚═══════╝   │ │ ├──────────┤ ├──────────┤ ├──────────┤ ├──────┤ │││ │
+│ │ │ │ Description │ │ │ Entry lev│ │          │ │          │ │      │ │││ │
+│ │ │ │  h:81px     │ │ │ el tier w│ │          │ │          │ │      │ │││ │
+│ │ │ │             │ │ │ ith basic│ │          │ │          │ │      │ │││ │
+│ │ │ │ Duration    │ │ │ Jan 1, 20│ │          │ │          │ │      │ │││ │
+│ │ │ │  h:33px     │ │ │ 25 to Ind│ │          │ │          │ │      │ │││ │
+│ │ │ │ Members     │ │ │ 58.27K   │ │ 58.27K   │ │ 58.27K   │ │58.27K│ │││ │
+│ │ │ │  h:33px     │ │ │          │ │          │ │          │ │      │ │││ │
+│ │ │ │ ╔═══════╗   │ │ │          │ │          │ │          │ │      │ │││ │
+│ │ │ │ ║Eligib.║G08│ │ │ (empty)  │ │ (empty)  │ │ (empty)  │ │(empt)│ │││ │
+│ │ │ │ ╚═══════╝   │ │ │          │ │          │ │          │ │      │ │││ │
+│ │ │ │ Type        │ │ │ Activity │ │          │ │          │ │      │ │││ │
+│ │ │ │ Activities  │ │ │ Makes 100│ │          │ │          │ │      │ │││ │
+│ │ │ │ Duration    │ │ │ Indefinit│ │          │ │          │ │      │ │││ │
+│ │ │ │ Upgrade Sch │ │ │ Immediate│ │          │ │          │ │      │ │││ │
+│ │ │ │ Nudges      │ │ │ Welcome e│ │          │ │          │ │      │ │││ │
+│ │ │ │ ╔═══════╗   │ │ │          │ │          │ │          │ │      │ │││ │
+│ │ │ │ ║Renewal║G08│ │ │ (empty)  │ │ (empty)  │ │ (empty)  │ │(empt)│ │││ │
+│ │ │ │ ╚═══════╝   │ │ │          │ │          │ │          │ │      │ │││ │
+│ │ │ │ ...         │ │ │ ...      │ │ ...      │ │ ...      │ │ ...  │ │││ │
+│ │ │ │ ╔═══════╗   │ │ │          │ │          │ │          │ │      │ │││ │
+│ │ │ │ ║Downgr.║G08│ │ │ (empty)  │ │ (empty)  │ │ (empty)  │ │(empt)│ │││ │
+│ │ │ │ ╚═══════╝   │ │ │          │ │          │ │          │ │      │ │││ │
+│ │ │ │ ...         │ │ │ ...      │ │ ...      │ │ ...      │ │ ...  │ │││ │
+│ │ │ │ ╔═══════╗   │ │ │          │ │          │ │          │ │      │ │││ │
+│ │ │ │ ║Benefit║G08│ │ │ (empty)  │ │ (empty)  │ │ (empty)  │ │(empt)│ │││ │
+│ │ │ │ ╚═══════╝   │ │ │          │ │          │ │          │ │      │ │││ │
+│ │ │ │ Welcome Gift│ │ │          │ │ 500 pts  │ │ 1000 pts │ │2000pt│ │││ │
+│ │ │ │ Upgrade bon.│ │ │          │ │ 500 pts  │ │ 1000 pts │ │2000pt│ │││ │
+│ │ │ │ ... (11 cat)│ │ │ ...      │ │ ...      │ │ ...      │ │ ...  │ │││ │
+│ │ │ └─────────────┘ └─────────────────────────────────────────────────┘││ │
+│ │ └──────────────────────────────────────────────────────────────────────┘│ │
+│ └────────────────────────────────────────────────────────────────────────┘ │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+DESIGN TOKENS APPLIED:
+- Section headers: bg CAP_G08 (#FAFBFC), font 12px/500, h:41-44px
+- Data rows: bg white, alt rows bg CAP_G07 (#F4F5F7) in Downgrade+Benefits, font 12px/400, h:33px
+- Description row: h:81px (multi-line text)
+- Row label column: w:240px, left-pad 24px, sticky left
+- Tier column: w:303px, left-pad 12px
+- Borders: 1px solid CAP_G06 (#DFE2E7) — right+bottom on cells
+- Tier header: color dot 12x12 rounded-full + name (12px/500) + badge (bg #DAEBCA, 4px radius) + edit icon (16x16)
+- Tabs: 14px/500, selected=bottom border CAP_G01
+
+FILE PLAN (6 new files, 2 modified):
+  NEW: app/components/organisms/TierComparisonTable/TierComparisonTable.js
+  NEW: app/components/organisms/TierComparisonTable/styles.js
+  NEW: app/components/organisms/TierComparisonTable/index.js
+  NEW: app/components/molecules/TierColumnHeader/TierColumnHeader.js
+  NEW: app/components/molecules/TierColumnHeader/styles.js
+  NEW: app/components/molecules/TierColumnHeader/index.js
+  NEW: app/components/molecules/TierDataCell/TierDataCell.js
+  NEW: app/components/molecules/TierDataCell/index.js
+  NEW: app/components/molecules/TierSectionHeader/TierSectionHeader.js
+  NEW: app/components/molecules/TierSectionHeader/styles.js
+  NEW: app/components/molecules/TierSectionHeader/index.js
+  MOD: app/services/api.js — add getTierListingData()
+  MOD: app/components/pages/App/routes.js — add /tiers/list route

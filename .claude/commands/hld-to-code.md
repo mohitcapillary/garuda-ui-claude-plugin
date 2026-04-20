@@ -22,8 +22,12 @@ Use the **hld-to-code** skill to convert an HLD document into production-ready g
 # Resume a prior run (reuses checkpoints under claudeOutput/build/<feature>/)
 /hld-to-code claudeOutput/hld/hld-benefits-settings.md --resume
 
-# Full build with Phase 7 Tier 3 rendered visual diff (requires Node 12; agent runs nvm use 12)
+# Human-in-the-Loop visual QA loop (up to 5 iterations, user approves each fix batch)
+# Requires: npm install in tools/visual-qa/ + env vars FIGMA_ACCESS_TOKEN, GARUDA_USERNAME, GARUDA_PASSWORD
 /hld-to-code claudeOutput/hld/hld-benefits-settings.md --visual-audit
+
+# Re-run just the visual QA loop on an existing build (skips all codegen phases)
+/hld-to-code claudeOutput/hld/hld-benefits-settings.md --resume --visual-audit
 
 # Build only one screen
 /hld-to-code claudeOutput/hld/hld-benefits-settings.md --screen BenefitsSettings
@@ -44,7 +48,7 @@ Use the **hld-to-code** skill to convert an HLD document into production-ready g
 | 4. File Plan | Dry-run file tree |
 | 5. Codegen | Bottom-up: atoms → pages. Pre-emission validator (prop keys, enum values, token existence, no-raw-values) per file. Checkpoint after each |
 | 6. API Layer | Appends endpoints + service functions; writes `<feature>.mock.js`; wires swap flag |
-| 7. 3-Tier Audit | Tier 1 token diff, Tier 2 structural diff (both mandatory); Tier 3 rendered pixel diff when `--visual-audit` |
+| 7. 3-Tier Audit | Tier 1 token diff, Tier 2 structural diff (both mandatory); Tier 3 Human-in-the-Loop visual QA loop (screenshot → pixel diff → vision classify → user approval → fix, up to 5 iterations) when `--visual-audit` |
 | 8. Guideline Pass | Validates against all 17 GUIDELINES.md rules; runs `npm run lint` |
 | 9. Report | Writes `build-report.md` + one-line summary |
 
@@ -58,7 +62,9 @@ Use the **hld-to-code** skill to convert an HLD document into production-ready g
 | Mock data layer | `app/services/<feature>.mock.js` |
 | State & checkpoints | `claudeOutput/build/<feature>/` (13 files including `layout-plan.json`, `preview-*`) |
 | 3-tier audit report | `claudeOutput/build/<feature>/screenshot-audit.md` |
-| Rendered visual diff (opt-in) | `claudeOutput/build/<feature>/visual-diff/` |
+| Visual diff PNGs (opt-in) | `claudeOutput/build/<feature>/visual-diff/` |
+| Visual QA log (opt-in) | `claudeOutput/build/<feature>/visual-qa-log.jsonl` |
+| Visual QA report (opt-in) | `claudeOutput/build/<feature>/visual-qa-report.md` |
 
 ## Prerequisites
 
@@ -67,7 +73,7 @@ Use the **hld-to-code** skill to convert an HLD document into production-ready g
 - `tools/mapping-agent/src/registries/prop-spec.json` + `token-mappings.json` must exist
 - `app/services/api.js` and `app/config/endpoints.js` must exist
 - Input must be a real HLD (not an LLD or PRD)
-- For `--visual-audit`: Node 12 installed via nvm (`nvm install 12` once)
+- For `--visual-audit`: `npm install` run inside `tools/visual-qa/` (Node 16+); env vars `FIGMA_ACCESS_TOKEN`, `GARUDA_USERNAME`, `GARUDA_PASSWORD` set. Dev server still requires Node 12 via nvm.
 
 ## When NOT to use
 
