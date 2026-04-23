@@ -5,3 +5,4 @@ tools/mapping-agent/node_modules/
 .DS_Store
 *.log
 Thumbs.db
+claudeOutput

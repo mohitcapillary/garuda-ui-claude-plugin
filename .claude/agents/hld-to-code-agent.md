@@ -47,7 +47,9 @@ You are a senior frontend engineer building production-ready React + Redux-Saga 
 8b. **BESPOKE nodes are authored directly, not halted.** When a Component Recipe row has status `BESPOKE` (or Reviewer Override contains "(BESPOKE)"), hld-to-code builds the component from scratch using Cap* primitives (CapRow, CapColumn, CapLabel, etc.) plus styled-components. BESPOKE means "not in the library — build it custom". This is different from UNMAPPED (which means "couldn't find a match — ask the user"). Do NOT halt on BESPOKE.
 9. **Pre-emission validator is mandatory.** No file is written before Phase 5's prop-key + prop-value + token-existence + no-raw-values checks pass. Catches `heading1`/`CAP_G00`/`CapIcon type="pencil"` class bugs at the source.
 9a. **Cap* block-wrapper caveat.** `CapSelect`, `CapInput`, `CapDatePicker`, and `CapTextArea` are wrapped by `ComponentWithLabelHOC` which renders a `display: block` div at runtime. When placing these as direct children of a flex row alongside other elements, you MUST constrain their width. Either: (1) wrap in a `<div>` with fixed width in styles.js (preferred — avoids styled-component specificity issues), (2) pass explicit `style={{ width: '<N>px' }}` prop, or (3) use `CapRow/CapColumn` grid with `span` to control width fraction. Without this constraint, the block wrapper expands to 100% width and pushes sibling elements to the next line. Reference width from `design-context.jsx` node dimensions.
-9b. **`withStyles` className forwarding is mandatory.** Every component that uses `withStyles(Component, styles)` MUST: (1) destructure `className` from props, (2) apply it to the root DOM element (e.g., `` <div className={`my-class ${className}`}> ``), (3) declare `className: PropTypes.string` in propTypes, and (4) set `className: ''` in defaultProps. Without this, `styled-components` generates the CSS class but nothing in the DOM references it — **all styles from `styles.js` silently fail**. The `withStyles` HOC (from `@capillarytech/vulcan-react-sdk/utils`) uses `styled(WrappedComponent)` internally which injects `className`. Reference pattern: `PromotionList.js` (destructures `className` at line 61, applies at line 359).
+9b. **`withStyles` className forwarding — root element gets className ALONE.** Every component that uses `withStyles(Component, styles)` MUST: (1) destructure `className` from props, (2) apply it **ALONE** to the root DOM element (`<div className={className}>`), (3) put custom CSS class names on **DESCENDANT child elements** (`<div className={className}><div className="my-component">...</div></div>`), (4) declare `className: PropTypes.string` in propTypes, and (5) set `className: ''` in defaultProps. **Why:** `withStyles` uses `styled(Component)` which generates descendant selectors (`.sc-hash .yourClass { }`). The descendant combinator requires two separate DOM elements — if `.yourClass` and `.sc-hash` are on the SAME element, the selector never matches and all styles silently fail. **Anti-pattern:** `<div className={`my-class ${className}`}>` — `.my-class` styles will never apply. **Correct pattern:** `<div className={className}><div className="my-class">content</div></div>`. Reference: `PromotionList.js` (line 359: `<CapRow className={className}>` root → line 369: `<CapRow className="promotions-list">` descendant).
+9c. **No duplicate CSS class between parent and child.** When Phase 5a generates both an orchestrator (organism/page) and a child molecule, each CSS class must be applied by exactly ONE component. If the parent's render method wraps the child in `<div className="some-cell">`, the child component must NOT also render `<div className="some-cell">`. The child should return only its content (Cap* components). Before writing a molecule, check if the parent already provides a styled wrapper. Duplicate application causes double borders, double padding, and inner-div overflow.
+9d. **Figma artboard dimensions are not CSS constraints.** When extracting design tokens from `design-context.jsx` in Phase 2, root-level and page-container widths (e.g., 1280px, 1214px, 1440px) are Figma canvas sizes, not responsive layout constraints. Never emit `max-width` or fixed `width` from artboard-level or page-wrapper nodes. Page content should use `width: 100%` and let the parent layout (`PageTemplate` padding, sidebar offset) control boundaries. Only extract fixed widths from leaf-level components (buttons, inputs, table columns) where the Figma intent is a specific component size.
 10. **Structure-preview gate (Phase 2.5) must pass before Phase 5.** User confirms layout skeleton matches Figma before 24+ production files get written.
 10b. **PHASE 5a PRE-EMISSION GATE (hard checklist).** Before writing ANY `.js` file that contains JSX (`<Cap*`, `<div`, `styled(`), you MUST complete this checklist:
     - [ ] `layout-plan.json` exists in `claudeOutput/build/<feature>/` (design tokens extracted)
@@ -736,17 +738,26 @@ export default styles;
 
 **3. className scoping (CRITICAL — violation silently kills all CSS)**
 
-`withStyles` generates `.generatedClass .yourClass { }` (child selector). The `className` prop injected by `withStyles` MUST land on a DOM element you own — never on a Cap* component alongside a custom class.
+`withStyles` generates `.generatedClass .yourClass { }` (descendant selector). The `className` prop injected by `withStyles` MUST land **ALONE** on the root DOM element. Custom CSS classes go on **descendant** child elements. This is because `.generatedClass .yourClass` requires two separate DOM nodes — if both classes are on the same element, the selector never matches.
 
 ```jsx
-// ✅ CORRECT — outer div carries className; component classes are children
+// ✅ CORRECT — root div carries only className; custom class is on a descendant child
 return (
   <div className={className}>
+    <div className="my-component">
+      <CapSomeContainer ... />
+    </div>
+  </div>
+);
+
+// ❌ WRONG — both classes on same element; descendant selector never matches
+return (
+  <div className={`my-component ${className}`}>
     <CapSomeContainer ... />
   </div>
 );
 
-// ❌ WRONG — both classes on same element; child selectors never match
+// ❌ ALSO WRONG — same problem on a Cap* component
 return (
   <CapSomeContainer className={`my-component ${className}`} ... />
 );

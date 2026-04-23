@@ -55,7 +55,10 @@ function extractBoundingBox(attrs) {
  */
 function isXmlComplete(xml) {
     var _a, _b, _c, _d;
-    const trimmed = xml.trim();
+    // Strip trailing non-XML text appended by Figma's MCP server
+    // (e.g. "IMPORTANT: After you call this tool, you MUST call get_design_context...")
+    const lastClose = xml.lastIndexOf('>');
+    const trimmed = (lastClose === -1 ? xml : xml.slice(0, lastClose + 1)).trim();
     // Check 1 — must end with a closing angle bracket
     if (!trimmed.endsWith('>'))
         return false;

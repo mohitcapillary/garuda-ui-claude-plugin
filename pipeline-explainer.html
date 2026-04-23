@@ -438,6 +438,182 @@
     .hld-grid, .detail-flow { grid-template-columns: 1fr; }
     .visual-qa-split { grid-template-columns: 1fr; }
   }
+
+  /* ── THEME TOGGLE BUTTON ── */
+  .theme-toggle {
+    width: 32px; height: 32px; border-radius: 8px;
+    display: inline-flex; align-items: center; justify-content: center;
+    cursor: pointer; background: none; border: none; flex-shrink: 0;
+    margin-left: auto;
+    transition: background 0.15s;
+    font-size: 15px; line-height: 1;
+    color: var(--text-muted);
+  }
+  .theme-toggle:hover { background: var(--surface); }
+  .theme-toggle .tt-sun { display: none; }
+  .theme-toggle .tt-moon { display: inline; }
+  body.dark .theme-toggle .tt-sun { display: inline; }
+  body.dark .theme-toggle .tt-moon { display: none; }
+
+  /* ── DARK THEME ── */
+  body.dark {
+    --brand-light: #1F2A4E;
+    --accent-light: #0E2A22;
+    --warn-light: #2A1F0E;
+    --danger-light: #2A0F0F;
+    --info-light: #0E1F3A;
+    --text: #E2E8F0;
+    --text-muted: #94A3B8;
+    --border: #334155;
+    --surface: #0B1220;
+    --white: #111827;
+  }
+  body.dark .sidebar-hamburger:hover,
+  body.dark .theme-toggle:hover { background: #1E293B; }
+  body.dark .sidebar-hamburger span { background: #94A3B8; }
+
+  /* inline-style overrides for elements that hardcode white/surface backgrounds */
+  body.dark [style*="background:white"],
+  body.dark [style*="background: white"],
+  body.dark [style*="background:#fff"],
+  body.dark [style*="background:#FFF"],
+  body.dark [style*="background:#ffffff"],
+  body.dark [style*="background:#FFFFFF"] { background: var(--white) !important; color: var(--text); }
+  body.dark [style*="background:#F8FAFC"],
+  body.dark [style*="background:#F1F5F9"],
+  body.dark [style*="background:#FAFBFC"] { background: #1E293B !important; color: var(--text); }
+
+  /* tint backgrounds — soften for dark mode */
+  body.dark [style*="background:#EFF6FF"] { background: #0E1F3A !important; }
+  body.dark [style*="background:#F0FDF4"],
+  body.dark [style*="background:#ECFDF5"] { background: #0E2A22 !important; }
+  body.dark [style*="background:#FFF7ED"],
+  body.dark [style*="background:#FFFBEB"] { background: #2A1F0E !important; }
+  body.dark [style*="background:#FFF1F2"],
+  body.dark [style*="background:#FEF2F2"] { background: #2A0F0F !important; }
+  body.dark [style*="background:#EEF0FF"] { background: #1F2A4E !important; }
+  body.dark [style*="background:#FBE5EF"] { background: #2A0F22 !important; }
+
+  /* tables + common containers */
+  body.dark .hld-table { color: var(--text); background: transparent; }
+  body.dark .hld-table th { background: #1E293B; color: #CBD5E1; border-color: #334155; }
+  body.dark .hld-table td { border-color: #334155; background: var(--white); color: var(--text); }
+  body.dark .hld-table tr:nth-child(even) td { background: #172033; }
+  body.dark .hld-table tr { background: transparent; }
+
+  /* .md-block table (filtered-PRD excerpt etc.) */
+  body.dark .md-block { color: var(--text); }
+  body.dark .md-block th { background: #1E293B; color: #CBD5E1; border-color: #334155; }
+  body.dark .md-block td { border-color: #334155; color: var(--text); background: var(--white); }
+  body.dark .md-block tr:nth-child(even) td { background: #172033; }
+
+  /* Inline-styled highlight rows (red/amber/green) – keep tint but darken */
+  body.dark .hld-table tr[style*="background:#FFF1F2"] td,
+  body.dark .md-block  tr[style*="background:#FFF1F2"] td { background: #2A0F0F !important; }
+  body.dark .hld-table tr[style*="background:#FFF7ED"] td,
+  body.dark .md-block  tr[style*="background:#FFF7ED"] td { background: #2A1F0E !important; }
+  body.dark .hld-table tr[style*="background:#FFFBEB"] td,
+  body.dark .md-block  tr[style*="background:#FFFBEB"] td { background: #2A1F0E !important; }
+  body.dark .hld-table tr[style*="background:#F0FDF4"] td,
+  body.dark .md-block  tr[style*="background:#F0FDF4"] td { background: #0E2A22 !important; }
+
+  /* tabs, nav */
+  body.dark .hld-tab-btn { color: var(--text-muted); }
+  body.dark .hld-tab-btn.active { color: var(--brand); border-bottom-color: var(--brand); }
+
+  /* code-blocks are already dark — leave them. But soften contrast labels */
+  body.dark pre.code-block { box-shadow: 0 0 0 1px #334155 inset; }
+
+  /* info-boxes: the inline background styles from var(--*-light) already flip via variables */
+  body.dark .info-box.tip .ib-body { color: #86EFAC; }
+  body.dark .info-box.tip .ib-title { color: #BBF7D0; }
+  body.dark .info-box.warn .ib-body { color: #FCD34D; }
+  body.dark .info-box.warn .ib-title { color: #FDE68A; }
+  body.dark .info-box.info .ib-body { color: #93C5FD; }
+  body.dark .info-box.info .ib-title { color: #BFDBFE; }
+
+  /* flow-nodes soften */
+  body.dark .flow-node.input  { background: #0E1F3A; border-color: #1E3A8A; color: #93C5FD; }
+  body.dark .flow-node.process{ background: #1F2A4E; border-color: #4C1D95; color: #C4B5FD; }
+  body.dark .flow-node.output { background: #0E2A22; border-color: #065F46; color: #86EFAC; }
+  body.dark .flow-node.external{ background: #2A1F0E; border-color: #92400E; color: #FCD34D; }
+
+  /* wireframe, file tree */
+  body.dark .wireframe-toolbar { background: #1E293B; }
+  body.dark .wt-addr { background: var(--surface); color: var(--text); border-color: var(--border); }
+  body.dark .file-tree { color: #CBD5E1; }
+  body.dark .ft-dir { color: #93C5FD; }
+  body.dark .ft-file { color: var(--text); }
+
+  /* Mermaid wrap — extra padding survives the theme */
+  body.dark .mermaid-wrap { background: #1E293B; }
+
+  /* Class-based white backgrounds — flip to dark surface */
+  body.dark .flow-diagram,
+  body.dark .output-example,
+  body.dark .wireframe-container,
+  body.dark .tier-page-mock,
+  body.dark .qa-item,
+  body.dark .hld-card,
+  body.dark .flow-card { background: var(--white); color: var(--text); border-color: var(--border); }
+  body.dark .row-labels { background: var(--white); border-color: var(--border); }
+  body.dark .btn-outline { background: var(--white); color: var(--text); border-color: #475569; }
+  body.dark .sidebar { background: var(--white); border-color: var(--border); }
+
+  /* Sections set to white via inline style get flipped, but also make the base alternating section backgrounds behave */
+  body.dark section.section { border-color: var(--border); }
+
+  /* Mixed-theme cards (sidebar footer, hero-pipeline already dark) — leave alone */
+  body.dark .sidebar-footer { color: var(--text-muted); background: transparent; }
+
+  /* Headings and body text inside flipped cards */
+  body.dark .flow-diagram h3,
+  body.dark .flow-card h4,
+  body.dark .hld-card h4,
+  body.dark .output-example .title { color: var(--text); }
+  body.dark h2, body.dark h3, body.dark h4 { color: var(--text); }
+  body.dark p { color: var(--text); }
+  body.dark .section-header-text p { color: var(--text-muted); }
+
+  /* Output example headers (grey band) */
+  body.dark .output-example-header { background: #1E293B; border-color: var(--border); }
+
+  /* Alternating section bg: base .section inherits body surface, white ones override — cover both */
+  body.dark .section { background: var(--surface); }
+  body.dark .section[style*="background:white"],
+  body.dark .section[style*="background: white"] { background: var(--white) !important; }
+
+  /* ── Mermaid diagrams: invert the rendered SVG in dark mode ── */
+  /* Mermaid bakes light fills into the SVG via "style X fill:#EFF6FF" in the source.
+     A filter is the simplest way to re-theme without rewriting every diagram. */
+  body.dark pre.mermaid svg { filter: invert(0.88) hue-rotate(180deg); background: transparent !important; }
+  body.dark pre.mermaid svg foreignObject { filter: invert(1) hue-rotate(180deg); }
+  body.dark .dfc-viewport { background: #0B1220 !important; }
+  body.dark .dfc-controls { background: #1E293B; border-color: var(--border); }
+  body.dark .dfc-controls .dfc-zoom-btn {
+    background: #0B1220;
+    border-color: #334155;
+    color: #E2E8F0;
+  }
+  body.dark .dfc-controls .dfc-zoom-btn:hover {
+    background: #1F2A4E;
+    color: #C4B5FD;
+    border-color: #6366F1;
+  }
+  body.dark .dfc-controls .dfc-zoom-pct { color: #CBD5E1; }
+  body.dark .dfc-controls .dfc-sep { background: #334155; }
+  body.dark .dfc-controls .dfc-hint { color: #94A3B8; }
+
+  /* Other light-surface helpers that hardcode #F8FAFC / #FAFBFC etc. via class */
+  body.dark .wireframe-body { background: #0B1220; }
+  body.dark .section-hdr,
+  body.dark .tier-col-hdr { background: #1E293B; color: #CBD5E1; border-color: var(--border); }
+  body.dark .tier-cell.benefit { background: #172033; }
+  body.dark .status-inactive { background: #1E293B; color: #94A3B8; }
+
+  /* Inline <pre> snippets with #F8FAFC background inside flow-cards */
+  body.dark pre[style*="background:#F8FAFC"],
+  body.dark pre[style*="background: #F8FAFC"] { background: #111827 !important; color: #CBD5E1 !important; }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
 </head>
@@ -453,6 +629,10 @@
     <div class="sidebar-brand">
       <div class="logo-badge"><span>⚡</span> garuda-ui</div>
     </div>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode" title="Toggle dark mode">
+      <span class="tt-moon">🌙</span>
+      <span class="tt-sun">☀️</span>
+    </button>
   </div>
 
   <div class="sidebar-nav">
@@ -482,6 +662,28 @@
     <a class="nav-item" href="#step5" data-tooltip="/hld-to-code — generate production files">
       <span class="nav-icon"><span class="nav-step" style="background:#DC2626">5</span></span>
       <span class="nav-label-text">/hld-to-code</span>
+    </a>
+    <a class="nav-item" href="#step6" data-tooltip="/build-verify — webpack + runtime smoke">
+      <span class="nav-icon"><span class="nav-step" style="background:#059669">6</span></span>
+      <span class="nav-label-text">/build-verify</span>
+    </a>
+    <a class="nav-item" href="#step7" data-tooltip="/visual-qa — Figma vs localhost diff">
+      <span class="nav-icon"><span class="nav-step" style="background:#D97706">7</span></span>
+      <span class="nav-label-text">/visual-qa</span>
+    </a>
+    <a class="nav-item" href="#step8" data-tooltip="/write-tests — reducer · saga · component">
+      <span class="nav-icon"><span class="nav-step" style="background:#DB2777">8</span></span>
+      <span class="nav-label-text">/write-tests</span>
+    </a>
+    <a class="nav-item" href="#step9" data-tooltip="/test-eval — coverage gate">
+      <span class="nav-icon"><span class="nav-step" style="background:#7C3AED">9</span></span>
+      <span class="nav-label-text">/test-eval</span>
+    </a>
+    <div class="nav-divider"></div>
+    <div class="nav-label">Tools</div>
+    <a class="nav-item" href="#tools" data-tooltip="mapping-agent — Figma → Cap* recipe CLI">
+      <span class="nav-icon">🛠️</span>
+      <span class="nav-label-text">mapping-agent</span>
     </a>
     <div class="nav-divider"></div>
     <div class="nav-label">Output</div>
@@ -530,6 +732,26 @@
     <a class="pipeline-step-badge" href="#step5" style="border-color:rgba(248,113,113,0.5)">
       <span style="background:#DC2626;color:white;width:20px;height:20px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:800">5</span>
       /hld-to-code
+    </a>
+    <span class="pipeline-arrow">›</span>
+    <a class="pipeline-step-badge" href="#step6" style="border-color:rgba(52,211,153,0.5)">
+      <span style="background:#059669;color:white;width:20px;height:20px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:800">6</span>
+      /build-verify
+    </a>
+    <span class="pipeline-arrow">›</span>
+    <a class="pipeline-step-badge" href="#step7" style="border-color:rgba(251,191,36,0.5)">
+      <span style="background:#D97706;color:white;width:20px;height:20px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:800">7</span>
+      /visual-qa
+    </a>
+    <span class="pipeline-arrow">›</span>
+    <a class="pipeline-step-badge" href="#step8" style="border-color:rgba(244,114,182,0.5)">
+      <span style="background:#DB2777;color:white;width:20px;height:20px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:800">8</span>
+      /write-tests
+    </a>
+    <span class="pipeline-arrow">›</span>
+    <a class="pipeline-step-badge" href="#step9" style="border-color:rgba(167,139,250,0.5)">
+      <span style="background:#7C3AED;color:white;width:20px;height:20px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:800">9</span>
+      /test-eval
     </a>
     <span class="pipeline-arrow">›</span>
     <a class="pipeline-step-badge" href="#output" style="border-color:rgba(255,255,255,0.4);background:rgba(255,255,255,0.15)">
@@ -1550,92 +1772,186 @@ flowchart TD
     </div>
   </div>
 
-  <!-- Phase breakdown -->
-  <div class="flow-diagram">
-    <h3>5-phase code generation process</h3>
-    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px">
-      <div style="background:#EFF6FF;border:2px solid #BFDBFE;border-radius:10px;padding:14px;text-align:center">
-        <div style="font-size:20px;margin-bottom:6px">📖</div>
-        <div style="font-size:11px;font-weight:800;color:#1D4ED8;margin-bottom:4px">PHASE 1</div>
-        <div style="font-size:11px;font-weight:600;color:#1D4ED8">Read &amp; Plan</div>
-        <div style="font-size:10px;color:#3B82F6;margin-top:6px">Parse HLD, extract design tokens from design-context.jsx, validate all component recipes</div>
-      </div>
-      <div style="background:#FFF7ED;border:2px solid #FED7AA;border-radius:10px;padding:14px;text-align:center">
-        <div style="font-size:20px;margin-bottom:6px">🗂️</div>
-        <div style="font-size:11px;font-weight:800;color:#92400E;margin-bottom:4px">PHASE 2</div>
-        <div style="font-size:11px;font-weight:600;color:#92400E">File Plan</div>
-        <div style="font-size:10px;color:#B45309;margin-top:6px">List every file to create/modify; generate component-plan.json and repo-paths.json</div>
-      </div>
-      <div style="background:#FFF1F2;border:2px solid #FECDD3;border-radius:10px;padding:14px;text-align:center">
-        <div style="font-size:20px;margin-bottom:6px">🖼️</div>
-        <div style="font-size:11px;font-weight:800;color:#9F1239;margin-bottom:4px">PHASE 2.5</div>
-        <div style="font-size:11px;font-weight:600;color:#9F1239">Preview Gate ⛔</div>
-        <div style="font-size:10px;color:#BE185D;margin-top:6px">ASCII wireframe + skeleton JSX shown to user. <strong>Human must approve</strong> before code gen starts</div>
-      </div>
-      <div style="background:#F0FDF4;border:2px solid #BBF7D0;border-radius:10px;padding:14px;text-align:center">
-        <div style="font-size:20px;margin-bottom:6px">⚙️</div>
-        <div style="font-size:11px;font-weight:800;color:#166534;margin-bottom:4px">PHASE 3</div>
-        <div style="font-size:11px;font-weight:600;color:#166534">Code Generation</div>
-        <div style="font-size:10px;color:#15803D;margin-top:6px">Generate all files in dependency order: atoms → molecules → organisms → page → redux → route</div>
-      </div>
-      <div style="background:var(--brand-light);border:2px solid #C4B5FD;border-radius:10px;padding:14px;text-align:center">
-        <div style="font-size:20px;margin-bottom:6px">🔍</div>
-        <div style="font-size:11px;font-weight:800;color:var(--brand);margin-bottom:4px">PHASE 4</div>
-        <div style="font-size:11px;font-weight:600;color:var(--brand)">Audit</div>
-        <div style="font-size:10px;color:#7C3AED;margin-top:6px">3-tier design audit: guideline compliance, token usage, prop correctness</div>
-      </div>
+  <!-- Per-phase behavior DIAGRAM: fresh run vs --resume -->
+  <div class="mermaid-wrap">
+    <h3>Phase flow with <code>--resume</code> branches — visual view</h3>
+    <pre class="mermaid">
+flowchart TD
+    START([🚀 hld-to-code &lt;feature&gt;]) --> P0
+    P0["<b>Phase 0 — Bootstrap</b><br/>env checks · mkdir build dir"]
+    P0 --> CKPT{build-log.jsonl<br/>has entries?}
+    CKPT -- "NO<br/>(fresh run)" --> FRESH[Run every phase<br/>from Phase 1 → Phase 8]
+    CKPT -- "YES<br/>(--resume)" --> LOAD["Load checkpoint<br/>collect files with<br/>status=written<br/>→ file-level skip set"]
+    LOAD --> FORCE{--force?}
+    FORCE -- "YES" --> FRESH
+    FORCE -- "NO" --> RESUME[Skip per-file<br/>across all phases]
+
+    FRESH --> P1
+    RESUME --> P1
+
+    P1{{"<b>Phase 1 — Parse HLD</b><br/>hld-parsed.json"}}
+    P1 -->|"--resume + file exists"| P1S[skip, load from disk]
+    P1 -->|otherwise| P1R[parse HLD → write file]
+    P1S --> P2
+    P1R --> P2
+
+    P2{{"<b>Phase 2 — Recipes + tokens</b><br/>layout-plan.json"}}
+    P2 -->|"--resume + layoutTree schema"| P2S[load]
+    P2 -->|"legacy flat layout key"| P2M[migrate → rewrite tree]
+    P2 -->|fresh| P2R[read 4-file Figma cache<br/>regenerate if missing]
+    P2S --> P25
+    P2M --> P25
+    P2R --> P25
+
+    P25{{"<b>Phase 2.5 — Preview Gate ⛔</b><br/>human approval"}}
+    P25 -->|"--skip-preview-gate"| P3
+    P25 -->|otherwise| GATE[ASCII wireframe +<br/>Tier 1+2 audit on skeleton<br/>→ wait for user]
+    GATE --> P3
+
+    P3{{"<b>Phase 3 — APIs + Mock Layer</b><br/>api-contract.json"}}
+    P3 -->|"--resume + file exists"| P4
+    P3 -->|fresh or ASSUMED undef| P3W[write every API<br/>+ mockResponse]
+    P3W --> P4
+
+    P4{{"<b>Phase 4 — Directory plan</b><br/>file-plan.json"}}
+    P4 --> P45
+
+    P45{{"<b>Phase 4.5 — Prop Enrichment</b><br/>enrichedProps in layout-plan"}}
+    P45 -->|"--resume + enrichedProps present"| P5A
+    P45 -->|otherwise| P45R[enrich from hld.actions,<br/>api.endpoints, prop-spec]
+    P45R --> P5A
+
+    P5A{{"<b>Phase 5a — UI generation</b><br/>delegated to figma-to-component"}}
+    P5A -->|"build-log has phase:5a complete"| P5B
+    P5A -->|otherwise| P5AR["invoke figma-to-component<br/>in orchestration mode<br/>emit /* enriched: */ comments"]
+    P5AR --> P5B
+
+    P5B{{"<b>Phase 5b — Redux + infra</b><br/>actions / reducer / saga / …"}}
+    P5B --> P5C[per-file skip if written<br/>pre-emission validator<br/>append build-log.jsonl]
+    P5C --> P5CC
+
+    P5CC{{"<b>Phase 5c — Integration stitch</b><br/>wire UI → Redux (idempotent)"}}
+    P5CC --> P6
+
+    P6{{"<b>Phase 6 — Wire API Layer</b><br/>endpoints + api.js + .mock.js"}}
+    P6 --> P7
+
+    P7["<b>Phase 7 — Layered audit</b><br/>Tier 1+2 ALWAYS run · no skip<br/>Tier 3 only with --visual-audit"]
+    P7 --> P8
+
+    P8["<b>Phase 8 — Guidelines gate</b><br/>17 hard rules · never cached"]
+    P8 --> DONE([✅ Feature written<br/>checkpoints persisted])
+
+    style START fill:#EFF6FF,stroke:#93C5FD,color:#1E40AF
+    style DONE fill:#F0FDF4,stroke:#BBF7D0,color:#166534
+    style CKPT fill:#FFFBEB,stroke:#FCD34D,color:#78350F
+    style FORCE fill:#FFFBEB,stroke:#FCD34D,color:#78350F
+    style FRESH fill:#EEF0FF,stroke:#818CF8,color:#3730A3
+    style RESUME fill:#F0FDF4,stroke:#BBF7D0,color:#166534
+    style LOAD fill:#ECFDF5,stroke:#34D399,color:#065F46
+    style P25 fill:#FFF1F2,stroke:#FECDD3,color:#9F1239
+    style GATE fill:#FFF7ED,stroke:#FED7AA,color:#9A3412
+    style P7 fill:#FFF7ED,stroke:#FED7AA,color:#9A3412
+    style P8 fill:#FFF7ED,stroke:#FED7AA,color:#9A3412
+    style P1S fill:#F0FDF4,stroke:#BBF7D0,color:#166534
+    style P2S fill:#F0FDF4,stroke:#BBF7D0,color:#166534
+    style P2M fill:#EEF0FF,stroke:#818CF8,color:#3730A3
+    </pre>
+    <div style="font-size:11px;color:var(--text-muted);margin-top:8px;font-style:italic;line-height:1.6">
+      Green paths = skipped on <code>--resume</code> · orange = always runs · red = human gate · indigo = one-time migration or fresh compute. The same information, in detail, is in the table below.
     </div>
   </div>
 
-  <!-- FLOWCHART: Step 5 decision logic -->
-  <div class="mermaid-wrap">
-    <h3>Decision flowchart — Phase 2.5 human gate + per-file generation loop</h3>
-    <pre class="mermaid">
-flowchart TD
-    A([HLD + 4 Figma\ncached artifacts]) --> B[Extract pixel-precise\ndesign tokens from\ndesign-context.jsx]
-    B --> C[Generate ASCII wireframe\n+ skeleton JSX with\nnode-ID annotations]
-    C --> D[🧑‍💻 Show to developer\nPhase 2.5 approval gate]
-    D --> E{Developer\napproves\nlayout?}
-    E -- YES --> F[Generate files in order\natoms → molecules → organisms\n→ page → redux → routes]
-    E -- "NO - minor fix" --> G[Adjust skeleton\nlayout / tokens]
-    E -- "NO - major rethink" --> H[Re-read Figma\nget_design_context again\nRe-plan layout tree]
-    G & H --> D
-    F --> I{GUIDELINES.md\ncheck passes\nfor this file?}
-    I -- PASS --> J{Design token\nvalues match\nFigma exactly?}
-    I -- FAIL --> K[Fix violation in file\ne.g. wrong import path\nor missing PropTypes]
-    K --> I
-    J -- PASS --> L{Props correct\nfor Cap* recipe\nEXACT / PARTIAL?}
-    J -- FAIL --> M[Fix token values\ne.g. CAP_G08 not\nhardcoded #FAFBFC]
-    M --> J
-    L -- PASS --> N{More files\nto generate?}
-    L -- FAIL --> O[Fix prop values\nper prop-spec-notes.json]
-    O --> L
-    N -- YES --> F
-    N -- NO --> P([✅ Feature complete\n15 files written to garuda-ui])
-
-    style D fill:#FFF7ED,stroke:#FED7AA,color:#9A3412
-    style E fill:#FFFBEB,stroke:#FCD34D,color:#78350F
-    style P fill:#F0FDF4,stroke:#BBF7D0,color:#166534
-    style K fill:#FFF1F2,stroke:#FECDD3,color:#9F1239
-    style M fill:#FFF1F2,stroke:#FECDD3,color:#9F1239
-    style O fill:#FFF1F2,stroke:#FECDD3,color:#9F1239
-    style H fill:#EEF0FF,stroke:#818CF8,color:#3730A3
-    </pre>
-  </div>
-
-  <!-- Redux flow -->
-  <div style="background:white;border:1px solid var(--border);border-radius:16px;padding:24px;margin-bottom:24px">
-    <h3 style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);margin-bottom:20px">Redux-Saga data flow (generated)</h3>
-    <div class="redux-flow">
-      <div class="rf-node rf-user">👤 User<br/><span style="font-size:10px;font-weight:400">page load or program change</span></div>
-      <div class="rf-arrow">→</div>
-      <div class="rf-node rf-action">⚡ Action<br/><span style="font-size:10px;font-weight:400">GET_TIER_LISTING_REQUEST</span></div>
-      <div class="rf-arrow">→</div>
-      <div class="rf-node rf-saga">🔄 Saga<br/><span style="font-size:10px;font-weight:400">getTierListingSaga → API call</span></div>
-      <div class="rf-arrow">→</div>
-      <div class="rf-node rf-reducer">🗄️ Reducer<br/><span style="font-size:10px;font-weight:400">GET_TIER_LISTING_SUCCESS → store tiers</span></div>
-      <div class="rf-arrow">→</div>
-      <div class="rf-node rf-ui">🎨 UI<br/><span style="font-size:10px;font-weight:400">makeSelectTierListing → TierComparisonTable re-renders</span></div>
+  <!-- Per-phase behavior: fresh run vs --resume -->
+  <div style="background:white;border:1px solid var(--border);border-radius:16px;padding:24px 28px;margin-bottom:24px">
+    <div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);margin-bottom:6px">Phase-by-phase behaviour — fresh run vs <code>--resume</code></div>
+    <div style="font-size:12px;color:var(--text-muted);margin-bottom:16px;line-height:1.6">
+      <code>--resume</code> re-enters an existing <code>claudeOutput/build/&lt;feature&gt;/</code> directory and skips any work whose checkpoint artifacts already exist (file-level granularity via <code>build-log.jsonl</code>). The other flags (<code>--force</code>, <code>--skip-preview-gate</code>, <code>--visual-audit</code>) layer on top.
+    </div>
+    <div style="overflow-x:auto">
+      <table class="hld-table" style="min-width:720px">
+        <thead>
+          <tr>
+            <th style="width:24%">Phase</th>
+            <th style="width:38%">Fresh run (no checkpoints)</th>
+            <th style="width:38%"><code>--resume</code> (checkpoints present)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Phase 0 — Bootstrap</strong><br/><span style="font-size:10px;color:var(--text-muted)">validate env, create build dir</span></td>
+            <td>Verify <code>app/services/api.js</code> + <code>app/config/endpoints.js</code> exist, create <code>claudeOutput/build/&lt;feature&gt;/</code>, start empty <code>build-log.jsonl</code>.</td>
+            <td>Same env checks. Then load <code>build-log.jsonl</code>, collect every line with <code>"status":"written"</code>, and skip those files individually — even if the owning phase crashed mid-way.</td>
+          </tr>
+          <tr>
+            <td><strong>Phase 1 — Parse HLD</strong><br/><span style="font-size:10px;color:var(--text-muted)">→ <code>hld-parsed.json</code></span></td>
+            <td>Parse the 16-section HLD into <code>hld-parsed.json</code> (FRs, recipe table, Reviewer Overrides, APIs, actions, store shape).</td>
+            <td>If <code>hld-parsed.json</code> exists → load and continue. Otherwise re-parse.</td>
+          </tr>
+          <tr>
+            <td><strong>Phase 2 — Recipes + tokens</strong><br/><span style="font-size:10px;color:var(--text-muted)">→ <code>layout-plan.json</code></span></td>
+            <td>For every node in the recipe table: reuse the 4-file Figma cache (<code>recipe.json</code>, <code>prop-spec-notes.json</code>, <code>metadata.xml</code>, <code>design-context.jsx</code>) — regenerate via <code>figma-node-mapper</code> if any are missing. Build <code>layout-plan.json</code> with role/cap/text/visualProps/typography per node.</td>
+            <td>If <code>layout-plan.json</code> exists and uses the <code>layoutTree</code> schema → load as-is. If it still has the legacy flat <code>layout</code> key → re-run Phase 2 token extraction to migrate. Respect persisted <code>incompleteDesignContext</code> flag.</td>
+          </tr>
+          <tr style="background:#FFF7ED">
+            <td><strong>Phase 2.5 — Preview Gate</strong> ⛔<br/><span style="font-size:10px;color:var(--text-muted)">human approval before 24+ files</span></td>
+            <td>Render ASCII wireframe + skeleton JSX, run Tier 1+2 audit on skeleton, then wait for user: <em>(a) proceed</em> / <em>(b) edit layout-plan.json</em> / <em>(c) describe drift</em>. Phase 5 is blocked until the user answers (a).</td>
+            <td>Same gate runs unless <code>--skip-preview-gate</code> is set. Only use the skip flag when re-running a known-good layout; otherwise reconfirm because tokens or recipe may have drifted.</td>
+          </tr>
+          <tr>
+            <td><strong>Phase 3 — APIs + Mock Layer</strong><br/><span style="font-size:10px;color:var(--text-muted)">→ <code>api-contract.json</code></span></td>
+            <td>For every entry in <code>apis[]</code> (both <code>confirmed</code> and <code>ASSUMED</code>) record endpoint/method/payload and generate a <code>mockResponse</code>. Halt if an ASSUMED payload has undefined field names.</td>
+            <td>If <code>api-contract.json</code> exists → reuse. Sagas never see the difference because everything routes through <code>USE_MOCK_&lt;FEATURE&gt;</code>.</td>
+          </tr>
+          <tr>
+            <td><strong>Phase 4 — Directory plan</strong><br/><span style="font-size:10px;color:var(--text-muted)">→ <code>file-plan.json</code></span></td>
+            <td>Dry-run the file tree, cross-check each path against the real codebase, and add any missing route registration to <code>App/routes.js</code> as a <code>modify</code> entry.</td>
+            <td>Reuse <code>file-plan.json</code>. Individual files already marked <code>"status":"written"</code> in <code>build-log.jsonl</code> are filtered out of the work set.</td>
+          </tr>
+          <tr>
+            <td><strong>Phase 4.5 — Prop Enrichment</strong><br/><span style="font-size:10px;color:var(--text-muted)">writes <code>enrichedProps</code> into <code>layout-plan.json</code></span></td>
+            <td>For every node, propose additional props inferred from <code>hld.actions</code>, <code>api.endpoints</code>, and <code>prop-spec</code> caveats. Each prop cites its source (later verified in Phase 7).</td>
+            <td>If <code>enrichedProps</code> is already present on every screen → skip pass. Otherwise run only for screens missing the field.</td>
+          </tr>
+          <tr>
+            <td><strong>Phase 5a — UI generation</strong> (delegated)<br/><span style="font-size:10px;color:var(--text-muted)">→ figma-to-component-agent</span></td>
+            <td>Invoke figma-to-component-agent in <em>orchestration mode</em> per screen — passes <code>layout-plan.json</code> + <code>component-plan.json</code>. figma-to-component relaxes its STEP B to consume <code>enrichedProps</code> and emits <code>/* enriched: &lt;source&gt; */</code> comments.</td>
+            <td>If <code>build-log.jsonl</code> has a <code>"phase":"5a","status":"complete"</code> line → skip Phase 5a entirely (unless <code>--force</code>).</td>
+          </tr>
+          <tr>
+            <td><strong>Phase 5b — Redux + infra</strong><br/><span style="font-size:10px;color:var(--text-muted)">actions/reducer/saga/selectors/ constants/messages/Loadable/route</span></td>
+            <td>Author every infra file, run the pre-emission validator (prop-key + prop-value + token + no-raw-values) before each write, and append a <code>build-log.jsonl</code> line per file.</td>
+            <td>Any file already in <code>build-log.jsonl</code> as <code>"status":"written"</code> is skipped — preserves manual edits made after a partial crash.</td>
+          </tr>
+          <tr>
+            <td><strong>Phase 5c — Integration stitch</strong><br/><span style="font-size:10px;color:var(--text-muted)">wire UI → Redux</span></td>
+            <td>Re-read figma-to-component's manifest, resolve HANDLER slots (e.g. <code>onSortChange</code>) to dispatched actions, inject <code>connect()</code> + <code>injectReducer</code> + <code>injectSaga</code> HOCs.</td>
+            <td>Idempotent — re-reads the manifest and re-applies edits. Safe to re-run even without an explicit skip.</td>
+          </tr>
+          <tr>
+            <td><strong>Phase 6 — Wire API Layer</strong></td>
+            <td>Append endpoint constants to <code>endpoints.js</code>, add service functions to <code>api.js</code>, create <code>&lt;feature&gt;.mock.js</code>, default <code>USE_MOCK_&lt;FEATURE&gt; = true</code>.</td>
+            <td>Skipped file-by-file if already listed as written. Flag stays at whatever the previous run left it.</td>
+          </tr>
+          <tr>
+            <td><strong>Phase 7 — Layered audit</strong><br/><span style="font-size:10px;color:var(--text-muted)">Tier 1 + Tier 2 mandatory; Tier 3 via flag</span></td>
+            <td>Tier 1 = token diff (cheap). Tier 2 = prop/guideline check incl. <code>enrichedProps</code> provenance. Tier 3 = visual QA loop up to 5 iterations (only with <code>--visual-audit</code>, requires Node 16 + Figma tokens).</td>
+            <td>Audit re-runs every time — no skip on resume. Provenance check halts (does not auto-fix) if an <code>enrichedProps</code> entry is missing its <code>/* enriched: &lt;source&gt; */</code> comment.</td>
+          </tr>
+          <tr>
+            <td><strong>Phase 8 — Guidelines gate</strong><br/><span style="font-size:10px;color:var(--text-muted)">17 hard rules</span></td>
+            <td>Validate every written file against all 17 GUIDELINES.md rules. Any failure → halt and ask.</td>
+            <td>Runs on the full file set each time — a prior PASS is not cached because imports and Cap-UI registry may have changed.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="info-box info" style="margin-top:16px">
+      <span class="ib-icon">🛡️</span>
+      <div class="ib-content">
+        <div class="ib-title"><code>--force</code> overrides everything above</div>
+        <div class="ib-body">Setting <code>--force</code> ignores <code>build-log.jsonl</code> entirely and regenerates every phase + every file from scratch, even when checkpoints exist. Use it when the underlying HLD or Figma cache has materially changed.</div>
+      </div>
     </div>
   </div>
 
@@ -1783,6 +2099,619 @@ flowchart TD
           <div>Color dot — 12×12px</div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ STEP 6: /build-verify ═══════════════════════════════ -->
+<section id="step6" class="section">
+  <div class="section-header">
+    <div class="step-number" style="background:linear-gradient(135deg,#10B981,#059669)">6</div>
+    <div class="section-header-text">
+      <div style="display:flex;align-items:center;gap:10px">
+        <h2>/build-verify</h2>
+        <span class="cmd badge badge-green">/build-verify &lt;feature&gt;</span>
+      </div>
+      <p>Compiles the target garuda-ui project under Node 12 (via <code>nvm use 12</code>) after <code>/hld-to-code</code> has written generated code. Categorizes every webpack error as <em>generated-code</em> (AI-authored) vs <em>pre-existing</em> (environment), auto-fixes the former up to 3 times, then runs a Playwright runtime smoke check to catch lazy-load crashes that webpack missed.</p>
+    </div>
+  </div>
+
+  <div class="flow-diagram">
+    <h3>How it works — data flow</h3>
+    <div class="flow-row">
+      <div class="flow-node input">
+        <span class="fn-icon">📒</span>
+        build-log.jsonl<br/>
+        <span class="flow-label">24 generated files tracked</span>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node process">
+        <span class="fn-icon">⚙️</span>
+        nvm use 12<br/>
+        <span class="flow-label">Resolve GARUDA_UI_PATH</span>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node process">
+        <span class="fn-icon">🔨</span>
+        webpack (attempt 1-3)<br/>
+        <span class="flow-label">Parse → classify → auto-fix</span>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node external">
+        <span class="fn-icon">🌐</span>
+        Playwright runtime<br/>
+        <span class="flow-label">Navigate route + console capture</span>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node output">
+        <span class="fn-icon">📊</span>
+        build-report.json<br/>
+        <span class="flow-label">schema-validated (D.7)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="detail-flow three">
+    <div class="flow-card">
+      <h4><span class="badge badge-green">Auto-fix</span> Up to 3 surgical attempts</h4>
+      <p>Each webpack error is classified: <code>import_resolution</code>, <code>syntax</code>, <code>module_not_found</code>, <code>type_error</code>, or <code>other</code>. Only errors where <code>is_generated_code: true</code> get auto-fixed via <code>Edit</code> (surgical), never <code>Write</code> (full rewrite).</p>
+      <br/><p style="font-size:11px;color:#059669"><strong>Typical fixes:</strong> wrong import casing, missing <code>/index.js</code>, barrel imports (→ individual Cap* paths per FG-01), missing propType import.</p>
+    </div>
+    <div class="flow-card">
+      <h4><span class="badge badge-orange">Runtime check</span> Catches lazy-load crashes</h4>
+      <p>Webpack compiling ≠ page rendering. Components are <code>loadable()</code>-lazy — broken imports inside a lazy chunk pass webpack but crash at runtime. Playwright navigates the actual route and captures console errors: <code>ChunkLoadError</code>, <code>Cannot read properties of undefined</code>, <code>Failed to load chunk</code>.</p>
+      <br/><p style="font-size:11px;color:#D97706"><strong>Page states detected:</strong> <code>rendered</code> (✓) | <code>error_boundary</code> | <code>spinner_stuck</code> | <code>blank</code> | <code>login_page</code>.</p>
+    </div>
+    <div class="flow-card">
+      <h4><span class="badge badge-red">Hard halt</span> Schema validation (D.7)</h4>
+      <p>Before <code>build-report.json</code> is considered written, it must validate against <code>.claude/schemas/build_report.schema.json</code>. Any mismatch → the pipeline stops; no silent drop of fields. This is decision D.7 — "schema enforcement: hard halt on failure."</p>
+      <br/><p style="font-size:11px;color:#991B1B"><strong>Why:</strong> schemas that are only "advisory" become decorative. Hard halt keeps them load-bearing.</p>
+    </div>
+  </div>
+
+  <div class="output-example">
+    <div class="output-example-header">
+      <span class="title"><span>💻</span> Example terminal</span>
+      <span class="badge badge-green">Pass</span>
+    </div>
+    <pre class="code-block"><span class="code-tag">$</span> <span class="code-attr">/build-verify</span> <span class="code-value">benefits-listing</span>
+<span class="code-comment">Reading build-log.jsonl — 24 generated files tracked</span>
+<span class="code-comment">nvm use 12…</span>
+<span class="code-comment">Attempt 1: npx webpack --mode development</span>
+<span style="color:#F87171">✗ Module not found: Can't resolve './services/api' (saga.js:5)</span>
+<span style="color:#FBBF24">  is_generated_code: true — attempting auto-fix</span>
+<span class="code-comment">  Fix: changed import path './services/api' → 'app/services/api'</span>
+<span class="code-comment">Attempt 2: rebuild…</span>
+<span class="code-value">✓ Compile OK (12.5s)</span>
+<span class="code-comment">Runtime check: http://localhost:8000/loyalty/ui/v3/benefits</span>
+<span class="code-comment">  Playwright: screenshot captured + console errors collected</span>
+<span class="code-value">  ✓ Page rendered (page_state: "rendered", 0 console errors)</span>
+<span class="code-value">✓ build-report.json passed schema validation.</span></pre>
+  </div>
+
+  <div class="info-box info">
+    <span class="ib-icon">🤖</span>
+    <div class="ib-content">
+      <div class="ib-title">Agent &amp; skills used</div>
+      <div class="ib-body">
+        <strong>Agent:</strong> <code>build-verifier</code> &nbsp;·&nbsp;
+        <strong>Skills:</strong> <code>shared-rules</code> (Cap* imports, saga patterns), <code>config.md</code> (<code>max_code_gen_retries=3</code>, <code>dev_port=8000</code>) &nbsp;·&nbsp;
+        <strong>Tools:</strong> <code>nvm</code>, <code>webpack</code>, <code>tools/visual-qa/screenshot.js</code>, <code>login.js</code> (if auth-gated) &nbsp;·&nbsp;
+        <strong>Schema:</strong> <code>build_report.schema.json</code> (hard halt on fail)
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ STEP 7: /visual-qa ═══════════════════════════════════ -->
+<section id="step7" class="section" style="background:white">
+  <div class="section-header">
+    <div class="step-number" style="background:linear-gradient(135deg,#F59E0B,#D97706)">7</div>
+    <div class="section-header-text">
+      <div style="display:flex;align-items:center;gap:10px">
+        <h2>/visual-qa</h2>
+        <span class="cmd badge badge-orange">/visual-qa &lt;feature&gt;</span>
+      </div>
+      <p>Screenshots localhost + downloads the Figma reference → <code>pixelmatch</code> diff → Claude vision classifies mismatches into CRITICAL / MAJOR / MINOR with a mandatory positional scan (left-to-right element order). <strong>Nothing is edited without explicit user approval.</strong> Max 5 iterations. Runs <em>before</em> <code>/write-tests</code> so we don't chase a layout you'll reject.</p>
+    </div>
+  </div>
+
+  <div class="flow-diagram">
+    <h3>How it works — 5-iteration user-approval loop</h3>
+    <div class="flow-row">
+      <div class="flow-node input">
+        <span class="fn-icon">📊</span>
+        build-log + layout-plan<br/>
+        <span class="flow-label">Route URL + Figma node ID</span>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node external">
+        <span class="fn-icon">🔐</span>
+        login.js (Playwright)<br/>
+        <span class="flow-label">FIGMA_ACCESS_TOKEN env</span>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node process">
+        <span class="fn-icon">📸</span>
+        screenshot + figma-download<br/>
+        <span class="flow-label">+ diff.js (pixelmatch)</span>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node process">
+        <span class="fn-icon">🧠</span>
+        Claude vision classify<br/>
+        <span class="flow-label">Positional scan mandatory</span>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node output">
+        <span class="fn-icon">✅</span>
+        User approves fix plan<br/>
+        <span class="flow-label">Iterate or done</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="detail-flow three">
+    <div class="flow-card">
+      <h4><span class="badge badge-orange">Classification</span> CRITICAL · MAJOR · MINOR</h4>
+      <p>Each mismatch is scored by severity. CRITICAL = wrong component used, broken layout, missing content. MAJOR = wrong tokens (CAP_SPACE, CAP_G*, FONT_SIZE_*), wrong variant, position off. MINOR = 1-2px nudges or subtle color shifts within visual tolerance.</p>
+      <br/><p style="font-size:11px;color:#D97706"><strong>Exit rule:</strong> loop exits when 0 CRITICAL &amp; 0 MAJOR remain (MINORs may persist).</p>
+    </div>
+    <div class="flow-card">
+      <h4><span class="badge badge-purple">Positional scan</span> Presence ≠ correct position</h4>
+      <p>Before classifying, the agent walks each row of the Figma frame left-to-right and compares order against the actual screenshot. An element that exists but in the wrong position is a MAJOR issue — not a pass. Every mismatch records <code>figmaPosition</code> and <code>actualPosition</code> fields.</p>
+      <br/><p style="font-size:11px;color:#7C3AED"><strong>Scope:</strong> compares Figma-scope only — platform nav bars and sidebars are ignored.</p>
+    </div>
+    <div class="flow-card">
+      <h4><span class="badge badge-blue">User controls</span> Per-iteration choices</h4>
+      <p>Each iteration surfaces findings + proposed fixes, then waits for user input. No edits happen without an explicit <code>approve</code>. Options compose freely:</p>
+      <ul style="font-size:11.5px">
+        <li><code>approve</code> — apply all planned fixes</li>
+        <li><code>approve with feedback: &lt;notes&gt;</code> — apply + extra guidance</li>
+        <li><code>exclude N</code> — skip specific issue IDs</li>
+        <li><code>mark interaction-state: &lt;area&gt;</code> — persist as interaction state</li>
+        <li><code>stop</code> — end loop now</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="output-example">
+    <div class="output-example-header">
+      <span class="title"><span>💻</span> Iteration 1 → Iteration 2 → done</span>
+      <span class="badge badge-green">Fidelity: HIGH</span>
+    </div>
+    <pre class="code-block"><span class="code-tag">$</span> <span class="code-attr">/visual-qa</span> <span class="code-value">benefits-listing</span>
+<span class="code-comment">Auth → running tools/visual-qa/login.js</span>
+<span class="code-comment">Screenshot → captured localhost view</span>
+<span class="code-comment">Figma download → cached reference for node 123-5146</span>
+<span class="code-key">Iteration 1 of 5 — pixelmatch diff:</span>
+<span style="color:#FBBF24">  ■ 8.2% pixel mismatch</span>
+<span style="color:#FBBF24">  [1] CRITICAL — BenefitCard background #E5E7EB ≠ Figma CAP_G03</span>
+<span style="color:#FBBF24">  [2] MAJOR — Row gap 12px ≠ Figma CAP_SPACE_24</span>
+<span style="color:#FBBF24">  [3] MAJOR — Heading FONT_SIZE_L ≠ Figma FONT_SIZE_VL</span>
+<span class="code-comment">&gt; approve with feedback: use CAP_SPACE_24 for row gaps</span>
+<span class="code-key">Iteration 2 of 5 — re-screenshot + re-diff:</span>
+<span class="code-value">  ✓ 1.8% pixel mismatch, 0 CRITICAL, 0 MAJOR</span>
+<span class="code-value">✓ Fidelity: HIGH. Wrote visual-qa-report.md.</span></pre>
+  </div>
+
+  <div class="info-box tip">
+    <span class="ib-icon">💰</span>
+    <div class="ib-content">
+      <div class="ib-title">Token optimization — cached Figma reference</div>
+      <div class="ib-body">The Figma reference image is downloaded once per feature and cached at <code>claudeOutput/build/&lt;feature&gt;/visual-diff/</code>. Iterations 2 through N reuse the cache — no repeat Figma API hits. Auth tokens are cached too (gitignored). User decisions (<code>exclude N</code>, <code>mark interaction-state</code>) persist across iterations via <code>visual-qa-log.jsonl</code>.</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ STEP 8: /write-tests ════════════════════════════════ -->
+<section id="step8" class="section">
+  <div class="section-header">
+    <div class="step-number" style="background:linear-gradient(135deg,#EC4899,#DB2777)">8</div>
+    <div class="section-header-text">
+      <div style="display:flex;align-items:center;gap:10px">
+        <h2>/write-tests</h2>
+        <span class="cmd badge badge-purple" style="background:#FBE5EF;color:#9F1239">/write-tests &lt;feature&gt;</span>
+      </div>
+      <p>Three sequential batches — <code>reducer.test.js</code> → <code>saga.test.js</code> → <code>Component.test.js</code>. Halts between batches on failure to prevent downstream waste. Every reducer switch case, every saga worker × 3 paths (success/failure/error), and every interaction handler gets a test. Always imports from <code>app/utils/test-utils</code> — never <code>@testing-library/react</code> directly.</p>
+    </div>
+  </div>
+
+  <div class="flow-diagram">
+    <h3>How it works — 3 batches with halt-on-fail</h3>
+    <div class="flow-row">
+      <div class="flow-node input">
+        <span class="fn-icon">🧱</span>
+        Organism 10-file anatomy<br/>
+        <span class="flow-label">+ HLD + build-log</span>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node process" style="background:#FBE5EF;border-color:#F472B6;color:#9F1239">
+        <span class="fn-icon">1️⃣</span>
+        reducer.test.js<br/>
+        <span class="flow-label">100% branch (switch cases)</span>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node process" style="background:#FBE5EF;border-color:#F472B6;color:#9F1239">
+        <span class="fn-icon">2️⃣</span>
+        saga.test.js<br/>
+        <span class="flow-label">100% worker × 3 paths</span>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node process" style="background:#FBE5EF;border-color:#F472B6;color:#9F1239">
+        <span class="fn-icon">3️⃣</span>
+        Component.test.js<br/>
+        <span class="flow-label">≥80% (render + handlers)</span>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node output">
+        <span class="fn-icon">📝</span>
+        test-write-log.jsonl<br/>
+        <span class="flow-label">Files emitted to target</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="detail-flow three">
+    <div class="flow-card">
+      <h4><span class="badge badge-purple" style="background:#FBE5EF;color:#9F1239">Batch 1</span> reducer.test.js</h4>
+      <p>One <code>it()</code> per switch case. Tests initial state + unknown action. ImmutableJS-aware assertions (<code>.get()</code>, <code>.toJS()</code>). Target: <strong>100% branch coverage</strong> per <code>config.md</code>.</p>
+      <br/><pre style="font-size:10px;background:#F8FAFC;padding:8px;border-radius:6px;line-height:1.5;overflow-x:auto;color:#334155">
+it('handles FETCH_SUCCESS', () =&gt; {
+  const result = reducer(initialState,
+    { type: FETCH_SUCCESS, payload: mockData });
+  expect(result.get('data').toJS())
+    .toEqual(mockData);
+});</pre>
+    </div>
+    <div class="flow-card">
+      <h4><span class="badge badge-purple" style="background:#FBE5EF;color:#9F1239">Batch 2</span> saga.test.js</h4>
+      <p>Uses <code>expectSaga</code> from <code>redux-saga-test-plan</code>. Each worker tested × 3 paths: <code>success</code>, <code>res.success=false</code>, <code>throwError</code>. Every test mocks <code>utils/bugsnag</code>. Target: <strong>100% worker coverage</strong>.</p>
+      <br/><pre style="font-size:10px;background:#F8FAFC;padding:8px;border-radius:6px;line-height:1.5;overflow-x:auto;color:#334155">
+expectSaga(worker, action)
+  .provide([[matchers.call.fn(Api.fetch),
+    throwError(new Error('Net'))]])
+  .put(failureAction(expect.any(Error)))
+  .run();</pre>
+    </div>
+    <div class="flow-card">
+      <h4><span class="badge badge-purple" style="background:#FBE5EF;color:#9F1239">Batch 3</span> Component.test.js</h4>
+      <p>Uses <code>renderWithProvider</code> / <code>renderWithRouter</code> from <code>app/utils/test-utils</code>. Tests render + loading + data + error + empty states + every interaction handler. Target: <strong>≥80%</strong>.</p>
+      <br/><pre style="font-size:10px;background:#F8FAFC;padding:8px;border-radius:6px;line-height:1.5;overflow-x:auto;color:#334155">
+renderWithProvider(
+  &lt;Organism {...defaultProps} /&gt;,
+  initialState.set('loading', true)
+);
+expect(screen.getByTestId('spin'))
+  .toBeInTheDocument();</pre>
+    </div>
+  </div>
+
+  <div class="info-box warn">
+    <span class="ib-icon">🛡</span>
+    <div class="ib-content">
+      <div class="ib-title">Guardrails enforced (inline during test generation)</div>
+      <div class="ib-body">
+        <strong>FG-08</strong> — imports come from <code>app/utils/test-utils</code>, never <code>@testing-library/react</code>. &nbsp;·&nbsp;
+        <strong>FG-05</strong> — no Enzyme in new tests (React Testing Library only). &nbsp;·&nbsp;
+        Every test file mocks <code>utils/bugsnag</code> (<code>notifyHandledException</code>) at the top. &nbsp;·&nbsp;
+        Sequential halt: Batch N+1 only runs if Batch N asserts. Saves ~60% of the work on a broken feature.
+      </div>
+    </div>
+  </div>
+
+  <div class="info-box info">
+    <span class="ib-icon">🤖</span>
+    <div class="ib-content">
+      <div class="ib-title">Agent, skills &amp; reference knowledge</div>
+      <div class="ib-body">
+        <strong>Agent:</strong> <code>test-writer</code> &nbsp;·&nbsp;
+        <strong>Skills:</strong> <code>shared-rules</code> Section 8 (test imports) + Section 9 (coverage), <code>coding-dna/testing/ref-mocking</code> (MSW + jest.mock patterns), <code>coding-dna/testing/ref-test-data</code> (mockData factories), <code>cap-ui-library/_index</code> (look up Cap* component props to mock) &nbsp;·&nbsp;
+        <strong>Reads only the organism's 10 files + HLD</strong> — not the whole repo.
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ STEP 9: /test-eval ════════════════════════════════ -->
+<section id="step9" class="section" style="background:white">
+  <div class="section-header">
+    <div class="step-number" style="background:linear-gradient(135deg,#A855F7,#7C3AED)">9</div>
+    <div class="section-header-text">
+      <div style="display:flex;align-items:center;gap:10px">
+        <h2>/test-eval</h2>
+        <span class="cmd badge badge-purple">/test-eval &lt;feature&gt;</span>
+      </div>
+      <p>Runs <code>jest --coverage</code>, compares against thresholds in <code>skills/config.md</code>, classifies failures. On <em>PARTIAL</em> / <em>FAIL</em> writes <code>gaps.json</code> so <code>/write-tests --gaps</code> can fill the hole. <strong>One</strong> auto-loop cap — second shortfall halts for human review. Never auto-fixes source or tests; reports only.</p>
+    </div>
+  </div>
+
+  <div class="flow-diagram">
+    <h3>How it works — coverage gate</h3>
+    <div class="flow-row">
+      <div class="flow-node input">
+        <span class="fn-icon">🧪</span>
+        test-write-log.jsonl<br/>
+        <span class="flow-label">organism tests/</span>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node process">
+        <span class="fn-icon">📊</span>
+        jest --coverage<br/>
+        <span class="flow-label">--no-cache --forceExit</span>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node process">
+        <span class="fn-icon">📏</span>
+        Compare to config.md<br/>
+        <span class="flow-label">Lines · Branches · Workers · Component</span>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node process">
+        <span class="fn-icon">🚦</span>
+        PASS · PARTIAL · FAIL<br/>
+        <span class="flow-label">gaps.json on shortfall</span>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node output">
+        <span class="fn-icon">📋</span>
+        test-report.json<br/>
+        <span class="flow-label">schema-validated</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="detail-flow three">
+    <div class="flow-card">
+      <h4><span class="badge badge-green">Coverage targets</span> From config.md</h4>
+      <table class="hld-table" style="margin-top:10px">
+        <tr><th>Metric</th><th>Target</th></tr>
+        <tr><td>Lines</td><td><strong>85%</strong></td></tr>
+        <tr><td>Reducer branches</td><td><strong>100%</strong></td></tr>
+        <tr><td>Saga workers</td><td><strong>100%</strong></td></tr>
+        <tr><td>Component</td><td><strong>80%</strong></td></tr>
+        <tr><td>Partial floor</td><td>70%</td></tr>
+      </table>
+    </div>
+    <div class="flow-card">
+      <h4><span class="badge badge-orange">Failure taxonomy</span> 3 categories</h4>
+      <ul style="font-size:12px">
+        <li><code>failing_in_generated_test</code> — test file has a bug (bad mock, wrong assertion). Recommendation: review test.</li>
+        <li><code>failing_in_existing_test</code> — pre-existing test broke due to our changes. Recommendation: check regression.</li>
+        <li><code>failing_in_source</code> — generated source has a bug. Recommendation: review source at <code>file:line</code>.</li>
+      </ul>
+      <br/><p style="font-size:11px;color:#D97706"><strong>Never auto-fixes</strong> — user or upstream stage decides.</p>
+    </div>
+    <div class="flow-card">
+      <h4><span class="badge badge-red">Loop cap</span> One auto-suggestion, then halt</h4>
+      <p>On <code>PARTIAL</code> or <code>FAIL</code> with <code>loop_count=0</code>: writes <code>gaps.json</code> and suggests <code>/write-tests &lt;feature&gt; --gaps &lt;path&gt;</code>. If the second <code>/test-eval</code> still fails (<code>loop_count≥1</code>), halts via <code>AskUserQuestion</code> — prevents infinite loops.</p>
+      <br/><p style="font-size:11px;color:#991B1B"><strong>User call:</strong> accept the lower coverage or intervene manually.</p>
+    </div>
+  </div>
+
+  <div class="output-example">
+    <div class="output-example-header">
+      <span class="title"><span>💻</span> Example terminal — PASS</span>
+      <span class="badge badge-green">Assessment: PASS</span>
+    </div>
+    <pre class="code-block"><span class="code-tag">$</span> <span class="code-attr">/test-eval</span> <span class="code-value">benefits-listing</span>
+<span class="code-comment">Running: npx jest BenefitsList/tests/ --coverage --no-cache</span>
+<span class="code-comment">  Tests:  12 passed, 0 failed, 0 skipped (3.2s)</span>
+<span class="code-key">Coverage:</span>
+<span class="code-value">  ✓ Lines         91.2%  ≥ 85 target</span>
+<span class="code-value">  ✓ Reducer       100%   = 100 target</span>
+<span class="code-value">  ✓ Saga workers  100%   = 100 target</span>
+<span class="code-value">  ✓ Component     86.5%  ≥ 80 target</span>
+<span class="code-value">✓ Assessment: PASS</span>
+<span class="code-comment">✓ test-report.json passed schema validation.</span>
+<span class="code-value">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>
+<span class="code-value">✓ Pipeline complete: PRD → tested, verified code</span></pre>
+  </div>
+
+  <div class="info-box tip">
+    <span class="ib-icon">🎯</span>
+    <div class="ib-content">
+      <div class="ib-title">End of the per-feature pipeline</div>
+      <div class="ib-body">
+        <code>/test-eval</code> is the final automated gate before a feature is considered ready. After this: <code>/publish-confluence</code> (explicit, no auto-publish), <code>gh pr create</code>, or <code>/create-pr</code> (Phase 4 — not yet shipped in v1.0.0-alpha).
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ TOOLS: mapping-agent ═════════════════════════════════ -->
+<section id="tools" class="section">
+  <div class="section-header">
+    <div class="step-number" style="background:linear-gradient(135deg,#0EA5E9,#38BDF8)">🛠️</div>
+    <div class="section-header-text">
+      <div style="display:flex;align-items:center;gap:10px">
+        <h2>Tools — <code>mapping-agent</code></h2>
+        <span class="cmd badge badge-blue">tools/mapping-agent</span>
+      </div>
+      <p>A deterministic + AI-assisted CLI (<code>blazemap</code>) that converts a Figma node tree into a structured <strong>recipe.json</strong> — telling the downstream agents exactly which <code>Cap*</code> component to render for every layer, with props, slots, css tokens, and layout direction. Without it, Claude re-reasons every conversation and pays full API cost each time; with it, decisions become <em>permanent, free, and instant</em> on repeat runs.</p>
+    </div>
+  </div>
+
+  <!-- Transformation overview -->
+  <div class="flow-diagram">
+    <h3>Transformation — Figma metadata + screenshot → recipe.json</h3>
+    <div class="flow-row">
+      <div class="flow-node input">
+        <span class="fn-icon">🗂️</span>
+        Figma metadata.xml<br/>
+        <span class="flow-label">node tree + bounding boxes</span>
+      </div>
+      <div class="flow-arrow">+</div>
+      <div class="flow-node input">
+        <span class="fn-icon">🖼️</span>
+        Figma screenshot.png<br/>
+        <span class="flow-label">full-page visual (optional)</span>
+      </div>
+      <div class="flow-arrow">+</div>
+      <div class="flow-node input">
+        <span class="fn-icon">📚</span>
+        Registries<br/>
+        <span class="flow-label">component + token mappings</span>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node process">
+        <span class="fn-icon">⚙️</span>
+        4-stage resolver<br/>
+        <span class="flow-label">parser → resolver → vision → learn</span>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node output">
+        <span class="fn-icon">📄</span>
+        recipe.json<br/>
+        <span class="flow-label">+ prop-spec-notes · grows registry</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stages diagram -->
+  <div class="mermaid-wrap">
+    <h3>How it works — parser + 4 deterministic fallback strategies per node</h3>
+    <pre class="mermaid">
+flowchart TD
+    IN1[["📥 Figma MCP<br/>get_metadata (XML)"]]
+    REG[["📚 Registries<br/>component-mappings.json<br/>token-mappings.json<br/>typography-matrix (33 label types)"]]
+
+    IN1 --> S1
+    S1["<b>Stage 1 — XML Parser</b><br/>metadata-parser.ts<br/>• XML → FigmaNode tree<br/>• Infer layoutMode from<br/>  child geometry (H/V)<br/>• Extract bounding box<br/>  per node"]
+
+    S1 --> S2
+    REG -.-> S2
+
+    subgraph S2 ["<b>Stage 2 — Resolver (per node, 4 strategies in order)</b>"]
+        direction TB
+        R1["1 · Registry lookup<br/>name glob + variant props<br/>→ EXACT / PARTIAL<br/>source: registry"]
+        R2["2 · Layout inference<br/>layoutMode HORIZ → CapRow<br/>layoutMode VERT → CapColumn<br/>source: layout-inferred"]
+        R3["3 · Typography<br/>fontSize + weight<br/>→ CapLabel type=labelN<br/>source: typography"]
+        R4["4 · Colour token map<br/>nearest RGB → $cap-var<br/>populates cssVariables"]
+        UN["❓ UNMAPPED<br/>+ structural fingerprint<br/>→ LLM composition fallback<br/>  downstream"]
+        R1 -- miss --> R2
+        R2 -- miss --> R3
+        R3 -- miss --> R4
+        R4 -- still no match --> UN
+    end
+
+    S2 --> MERGE
+
+    MERGE["<b>recipe-merger.ts</b><br/>merge resolved nodes into tree<br/>preserve parent/child order"]
+    MERGE --> OUT1[["📄 recipe.json<br/>per Figma node:<br/>• targetComponent (CapX)<br/>• importPath<br/>• props · slots · cssVariables<br/>• source · mappingStatus<br/>  (EXACT / PARTIAL / UNMAPPED)"]]
+    MERGE --> OUT2[["📝 prop-spec-notes.json<br/>per-node caveats,<br/>allowed enum values,<br/>styled-component fallbacks"]]
+
+    OUT1 --> CONSUMER
+    OUT2 --> CONSUMER
+    CONSUMER[["🤖 LLM consumers<br/>/generate-hld · /hld-to-code ·<br/>figma-to-component-agent<br/>read recipe → emit JSX<br/>zero raw HTML — every node<br/>becomes a Cap* component"]]
+
+    style IN1 fill:#EFF6FF,stroke:#93C5FD,color:#1E40AF
+    style REG fill:#EEF0FF,stroke:#818CF8,color:#3730A3
+    style S1 fill:#FFF7ED,stroke:#FED7AA,color:#9A3412
+    style S2 fill:#F0FDF4,stroke:#BBF7D0,color:#166534
+    style UN fill:#FFF1F2,stroke:#FECDD3,color:#9F1239
+    style MERGE fill:#ECFDF5,stroke:#34D399,color:#065F46
+    style OUT1 fill:#F0FDF4,stroke:#BBF7D0,color:#166534
+    style OUT2 fill:#F0FDF4,stroke:#BBF7D0,color:#166534
+    style CONSUMER fill:#EEF0FF,stroke:#818CF8,color:#3730A3
+    </pre>
+  </div>
+
+  <!-- Outputs + commands grid -->
+  <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:20px;margin-bottom:24px">
+    <div style="background:white;border:1px solid var(--border);border-radius:16px;padding:24px">
+      <h3 style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);margin-bottom:16px">What it produces</h3>
+      <table class="hld-table">
+        <thead>
+          <tr><th>Output</th><th>Lives at</th><th>Consumed by</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>recipe.json</strong><br/><span style="font-size:10px;color:var(--text-muted)">one per Figma node</span></td>
+            <td style="font-size:11px"><code>.claude/output/figma-capui-mapping/&lt;nodeId&gt;.recipe.json</code></td>
+            <td style="font-size:11px">/generate-hld · /hld-to-code · figma-to-component-agent</td>
+          </tr>
+          <tr>
+            <td><strong>prop-spec-notes.json</strong><br/><span style="font-size:10px;color:var(--text-muted)">per-node caveats</span></td>
+            <td style="font-size:11px"><code>.../figma-capui-mapping/&lt;nodeId&gt;/prop-spec-notes.json</code></td>
+            <td style="font-size:11px">pre-emission validator in hld-to-code Phase 5</td>
+          </tr>
+          <tr style="background:#FFFBEB">
+            <td><strong>component-mappings.json</strong> ✍️<br/><span style="font-size:10px;color:var(--text-muted)">registry (updated by <code>--learn</code>)</span></td>
+            <td style="font-size:11px"><code>src/registries/component-mappings.json</code></td>
+            <td style="font-size:11px">next CLI run — Stage 2 cache, saves API calls</td>
+          </tr>
+          <tr>
+            <td><strong>token-mappings.json</strong><br/><span style="font-size:10px;color:var(--text-muted)">hex → $cap-var</span></td>
+            <td style="font-size:11px"><code>src/registries/token-mappings.json</code></td>
+            <td style="font-size:11px">Stage 2.4 colour resolver (nearest-RGB match)</td>
+          </tr>
+          <tr>
+            <td><strong>mappingStatus tag</strong><br/><span style="font-size:10px;color:var(--text-muted)">inside recipe.json</span></td>
+            <td style="font-size:11px"><code>"EXACT"</code> · <code>"PARTIAL"</code> · <code>"UNMAPPED"</code></td>
+            <td style="font-size:11px">HLD Recipe Table — feeds Reviewer Override column</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="background:white;border:1px solid var(--border);border-radius:16px;padding:24px">
+      <h3 style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);margin-bottom:16px">CLI modes</h3>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div style="border-left:3px solid #BBF7D0;padding:10px 12px;background:#F0FDF4;border-radius:6px">
+          <div style="font-size:11px;font-weight:700;color:#166534;margin-bottom:4px">REGISTRY ONLY · fast, free</div>
+          <pre class="code-block" style="font-size:10px;margin:0;background:transparent;color:#166534;border:none;padding:0">blazemap resolve-metadata \
+  --registry src/registries \
+  --output .claude/output/figma-capui-mapping</pre>
+        </div>
+        <div style="border-left:3px solid #FECDD3;padding:10px 12px;background:#FFF1F2;border-radius:6px">
+          <div style="font-size:11px;font-weight:700;color:#9F1239;margin-bottom:4px">+ VISION · resolve UNMAPPED via Claude</div>
+          <pre class="code-block" style="font-size:10px;margin:0;background:transparent;color:#9F1239;border:none;padding:0">blazemap resolve-metadata \
+  --registry src/registries \
+  --output .claude/output/figma-capui-mapping \
+  --screenshot /tmp/figma-screenshot.png</pre>
+        </div>
+        <div style="border-left:3px solid #FCD34D;padding:10px 12px;background:#FFFBEB;border-radius:6px">
+          <div style="font-size:11px;font-weight:700;color:#78350F;margin-bottom:4px">+ LEARN · persist decisions to registry</div>
+          <pre class="code-block" style="font-size:10px;margin:0;background:transparent;color:#78350F;border:none;padding:0">blazemap resolve-metadata \
+  --registry src/registries \
+  --output .claude/output/figma-capui-mapping \
+  --screenshot /tmp/figma-screenshot.png \
+  --learn</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Why better than raw LLM -->
+  <div style="background:white;border:1px solid var(--border);border-radius:16px;padding:24px;margin-bottom:24px">
+    <h3 style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);margin-bottom:16px">Why not just ask Claude directly?</h3>
+    <table class="hld-table">
+      <thead>
+        <tr><th style="width:34%">Concern</th><th style="width:33%">Raw Claude call</th><th style="width:33%">mapping-agent</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Input granularity</td><td>one full screenshot per call</td><td><strong>cropped per node</strong> — pixel-perfect region</td></tr>
+        <tr><td>Consistency across runs</td><td>re-reasons each conversation</td><td>deterministic after first <code>--learn</code></td></tr>
+        <tr><td>API cost</td><td>every node, every run</td><td>once per pattern, then free forever</td></tr>
+        <tr><td>Typography → CapLabel</td><td>best guess</td><td>exact 33-type matrix lookup</td></tr>
+        <tr><td>Colour → CSS token</td><td>best guess</td><td>nearest-RGB match in token registry</td></tr>
+        <tr><td>Layout (Row vs Column)</td><td>visual inference</td><td>structural geometry of child positions</td></tr>
+        <tr><td>Grows over time</td><td>no memory</td><td><code>--learn</code> writes back to registry — hit rate climbs</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="info-box info">
+    <span class="ib-icon">🔁</span>
+    <div class="ib-content">
+      <div class="ib-title">Where it fits in the pipeline</div>
+      <div class="ib-body">The <code>figma-node-mapper</code> skill wraps this CLI. <code>/generate-hld</code> invokes it to build the Component Recipe table (§4). <code>/hld-to-code</code> reuses the cached <code>recipe.json</code> + <code>prop-spec-notes.json</code> in Phase 2 — it regenerates via <code>figma-node-mapper</code> only if any of the 4 cache files are missing.</div>
     </div>
   </div>
 </section>
@@ -2102,8 +3031,8 @@ Behavior: All 5 sections visible simultaneously. Tabs scroll-to-section.
 </main>
 
 <script>
-  /* ── Mermaid init ── */
-  mermaid.initialize({
+  /* ── Mermaid theme configs ── */
+  const MERMAID_THEME_LIGHT = {
     startOnLoad: false,
     theme: 'base',
     flowchart: { curve: 'basis', padding: 20, useMaxWidth: false },
@@ -2113,7 +3042,22 @@ Behavior: All 5 sections visible simultaneously. Tabs scroll-to-section.
       fontFamily: 'Inter,-apple-system,sans-serif', fontSize: '12px',
       edgeLabelBackground: '#F8FAFC', nodeBorder: '#818CF8'
     }
-  });
+  };
+  const MERMAID_THEME_DARK = {
+    startOnLoad: false,
+    theme: 'base',
+    flowchart: { curve: 'basis', padding: 20, useMaxWidth: false },
+    themeVariables: {
+      primaryColor: '#1F2A4E', primaryTextColor: '#E0E7FF', primaryBorderColor: '#6366F1',
+      lineColor: '#64748B', secondaryColor: '#0E2A22', tertiaryColor: '#2A1F0E',
+      fontFamily: 'Inter,-apple-system,sans-serif', fontSize: '12px',
+      edgeLabelBackground: '#1E293B', nodeBorder: '#6366F1',
+      mainBkg: '#1E293B', nodeTextColor: '#E2E8F0',
+      clusterBkg: '#0B1220', clusterBorder: '#334155',
+      titleColor: '#E2E8F0', textColor: '#CBD5E1'
+    }
+  };
+  mermaid.initialize(MERMAID_THEME_LIGHT);
 
   /* ── Zoom + Pan for each diagram ── */
   function initDiagramControls() {
@@ -2260,8 +3204,52 @@ Behavior: All 5 sections visible simultaneously. Tabs scroll-to-section.
     btn.classList.add('active');
   }
 
-  /* ── Boot: render Mermaid then attach zoom ── */
+  /* ── Mermaid source cache + re-render helper ── */
+  function cacheMermaidSources() {
+    document.querySelectorAll('pre.mermaid').forEach(pre => {
+      if (!pre.dataset.source) pre.dataset.source = pre.textContent;
+    });
+  }
+  async function renderMermaid() {
+    cacheMermaidSources();
+    // Restore source (remove previous SVG), reset processed flag
+    document.querySelectorAll('pre.mermaid').forEach(pre => {
+      pre.innerHTML = pre.dataset.source;
+      pre.removeAttribute('data-processed');
+    });
+    // Also remove old zoom-wrappers built by initDiagramControls
+    document.querySelectorAll('.dfc-controls, .dfc-viewport').forEach(el => el.remove());
+    await mermaid.run({ querySelector: '.mermaid' });
+    initDiagramControls();
+  }
+
+  /* ── Theme toggle ── */
+  function applyTheme(mode) {
+    if (mode === 'dark') {
+      document.body.classList.add('dark');
+      mermaid.initialize(MERMAID_THEME_DARK);
+    } else {
+      document.body.classList.remove('dark');
+      mermaid.initialize(MERMAID_THEME_LIGHT);
+    }
+  }
+  async function toggleTheme() {
+    const isDark = document.body.classList.contains('dark');
+    const next = isDark ? 'light' : 'dark';
+    applyTheme(next);
+    try { localStorage.setItem('pipeline-theme', next); } catch (e) {}
+    await renderMermaid();
+  }
+
+  /* ── Boot: load saved theme, render Mermaid, attach zoom ── */
   document.addEventListener('DOMContentLoaded', async () => {
+    let saved = null;
+    try { saved = localStorage.getItem('pipeline-theme'); } catch (e) {}
+    if (!saved && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      saved = 'dark';
+    }
+    applyTheme(saved === 'dark' ? 'dark' : 'light');
+    cacheMermaidSources();
     await mermaid.run({ querySelector: '.mermaid' });
     initDiagramControls();
   });

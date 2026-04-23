@@ -6763,12 +6763,12 @@
         "required": true,
         "source": "wrapper"
       },
-      "size": {
+      "placement": {
         "type": "string",
         "required": false,
         "source": "wrapper"
       },
-      "position": {
+      "size": {
         "type": "string",
         "required": false,
         "source": "wrapper"

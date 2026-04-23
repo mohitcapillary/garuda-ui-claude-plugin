@@ -19,6 +19,25 @@ An autonomous agent that converts a Figma design node into a blaze-ui React comp
 
 ---
 
+## Orchestration Mode Quick Reference
+
+When invoked by `hld-to-code-agent` (Phase 5a), this agent runs in **orchestration mode**. The orchestrator calls this agent via the **Skill tool**:
+
+```
+Skill tool:
+  skill: "figma-to-component"
+  args: "<figma-url> --target-path <dir> --target-component-name <Name> --target-library cap-ui-library --decomposition <json> --component-plan <json> --omit-redux-wiring --omit-route-registration --emit-callback-stubs --skip-plan-confirmation"
+```
+
+**Key behaviors in orchestration mode:**
+- Phases 1-2 run **silently** (no interactive narration)
+- Phase 3 user confirmation is **skipped** (orchestrator confirmed in its Phase 2.5)
+- `--component-plan` carries HLD Reviewer Overrides — these are **authoritative over recipe.json**
+- **Manifest emission is mandatory**: write `<target-path>/ui-generation-manifest.json` at end of Phase 4
+- The manifest is the **contract** — hld-to-code Phase 5c depends on `filesWritten`, `callbackSlots`, `stringSlots`, and `propsRequired`
+
+---
+
 ## 1. Input Contract
 
 **Arguments**:
@@ -700,6 +719,25 @@ After user confirmation, generate the component file.
 - Imports use canonical paths: `import CapX from '@capillarytech/cap-ui-library/CapX'`
 - Each blaze-ui component imported exactly once
 - No unused imports
+- **`styles.js` MUST export a `css` template literal — NEVER a function wrapper (CRITICAL)**:
+  `withStyles(Component, styles)` from `@capillarytech/vulcan-react-sdk/utils` interpolates `styles` directly into a tagged template literal: `` styled(Component)`${styles}` ``. If `styles` is a function, JavaScript coerces it to the string `"[object Object]"`, and styled-components crashes with **"Cannot create styled-component for component: [object Object]"** at runtime.
+
+  ```js
+  // ✅ CORRECT — always use css`` template literal
+  import { css } from 'styled-components';
+  export default css`
+    .my-component { … }
+  `;
+  ```
+
+  ```js
+  // ❌ CRASH — withStyles receives a function, coerced to "[object Object]"
+  const styles = (Component) => styled(Component)`…`;
+  export default styles;
+  ```
+
+  The CSS body stays the same — only the wrapping changes. Reference: `app/components/pages/PromotionList/styles.js`.
+
 - **`withStyles` className scoping — CRITICAL**: `withStyles` from `@capillarytech/vulcan-react-sdk/utils` injects CSS by prepending the generated class to every selector in `styles.js`. A styles.js that exports `.my-component { .child { … } }` becomes `.generatedCls .my-component .child { … }` at runtime. This means **`.my-component` must be a descendant of the root element — never on the root element itself**. Putting both classes on the root (`className={`my-component ${className}`}`) makes the selector look for `.my-component` inside `.generatedCls`, which never matches since they are on the same element — **all styles silently fail**.
 
   **Always use this pattern (mirrors PromotionList):**
@@ -732,13 +770,37 @@ After user confirmation, generate the component file.
 
   Also destructure `className` from props, add `className: PropTypes.string` and `className: ''` in defaultProps.
 
+- **`className` from `withStyles` MUST be on an element you own — NEVER passed into a Cap* component alongside a component class (CRITICAL)**:
+  `withStyles` scopes CSS as `.generatedClass .your-class { … }` (child selector). Passing `className={\`my-component ${className}\`}` to a Cap* component puts both classes on the **same** element — the child selector never matches and all CSS silently fails.
+
+  - **Default** (component root is a Cap* or 3rd-party container): wrap with `<div className={className}><CapXxx ... /></div>`. Your CSS classes go on children.
+  - **Simple atom** (2–3 rules, no nested selectors): use `className={className}` on the component AND hoist CSS in styles.js (remove the `.my-component { }` wrapper so rules scope directly to the generated class).
+  - **Never**: `className={\`my-component ${className}\`}` on any Cap* component.
+
+- **prop-spec.json is the validator gate — but the working codebase is the ground truth (CRITICAL)**:
+  The pre-emission validator (Step B) accepts only props listed in `prop-spec.json`. However, `prop-spec.json` can be stale (e.g. `position` instead of `placement` for CapSlideBox). Before generating any Cap* component:
+
+  1. Cross-check the intended prop name against a working codebase usage: `grep -r "CapXxx" app/components --include="*.js" -l` → read the first match and verify prop names used there.
+  2. If the working codebase example uses a prop **not in prop-spec**, or uses a **different name** than prop-spec: **halt and update `prop-spec.json` first**, then proceed with the corrected prop name.
+  3. Prop names that control layout or positioning (`placement` vs `position`, `show` vs `visible`, `onSelect` vs `onChange`) silently fail with no runtime error — always verify against the working codebase.
+
+- **Do NOT re-implement what a container's named slot already provides (CRITICAL)**:
+  Cap* container components (CapSlideBox, CapModal, CapCard) provide built-in behaviour for their named slots (`header`, `footer`, `content`). When populating a named slot:
+  - Pass **only the content the slot is designed for** (e.g. a title string/element for `header`).
+  - **Never** re-build what the container already provides: close/back buttons, slot padding, footer row structure.
+  - If unsure what a slot already renders: read `node_modules/@capillarytech/cap-ui-library/<ComponentName>/index.js` and inspect the JSX around the slot interpolation before writing content for it.
+
 - **Slide-out panels — ALWAYS use `CapSlideBox`, NEVER `CapDrawer`**: `CapDrawer` (raw Ant Design) is not integrated with the garuda-ui shell layout and renders as a sliver. `CapSlideBox` is the correct component for all slide-out panels (`show`, `handleClose`, `content`/`header`/`footer`, `size="size-m"`, `placement="right"`). If a Figma node maps to a drawer/panel, emit `CapSlideBox`.
+
+- **Audit-before-override — GUIDELINE Rule 01-7 (HARD GATE)**: Before emitting ANY CSS property (`border`, `padding`, `box-shadow`, `background`, `height`) for a Cap* component, run the 3-step audit: (1) check what the component already provides internally for that property, (2) calculate the delta between Figma target and library default, (3) write only the delta. CapSlideBox/CapModal slot containers already apply horizontal padding (`0 48px` for size-m/l, `0 24px` for size-s) — do NOT add horizontal padding to content passed into their `header`/`content`/`footer` props. After any component swap (e.g. CapDrawer → CapSlideBox), re-run the audit — the new component's internal CSS model differs from the old one.
+
+- **Ant Design DOM hierarchy — GUIDELINE Rule 01-6 (HARD GATE)**: Before writing ANY CSS property on an Ant Design class selector, consult the known DOM tree for that component (Rule 01-6 table in GUIDELINES.md). Apply at exactly one DOM level; suppress the library value at all other levels with `border: none` / `box-shadow: none` / `padding: 0` as needed. Outermost classes: CapInput.Search → `.ant-input-search`; CapMultiSelect/CapSelect → `.ant-select`; CapDateRangePicker → `.ant-picker-range`.
 
 - **Popup components inside `CapSlideBox` must have `getPopupContainer`**: Any `CapMultiSelect`, `CapSelect`, `CapDateRangePicker`, or similar Ant Design popup-based component rendered inside a `CapSlideBox` (or `CapModal`) MUST include `getPopupContainer={(trigger) => trigger.parentElement}`. Without it the popup renders into `document.body` and may appear hidden behind the panel overlay.
 
 - **`CapMultiSelect` callback is `onSelect` not `onChange`**: Always use `onSelect` for `CapMultiSelect`. `onChange` is not a valid prop and silently does nothing.
 
-- **New page components must apply standard horizontal padding** (Figma artboards do not encode this — add it regardless of what the design shows): Listing pages → `padding: ${CAP_SPACE_20} ${CAP_SPACE_72} 0 ${CAP_SPACE_72}` on root content div. Config/Edit pages → `margin: ${CAP_SPACE_24} ${CAP_SPACE_72}` on inner `CapRow` wrapper. Do NOT retrofit existing pages.
+- **New page components — conditional standard horizontal padding**: Check `design-context.jsx` for padding on the root frame and its direct content children. If Figma provides **zero padding** (no `px-[Npx]` or `p-[Npx]` on root/content nodes), apply platform defaults: Listing pages → `padding: ${CAP_SPACE_20} ${CAP_SPACE_72} 0 ${CAP_SPACE_72}` on root content div; Config/Edit pages → `margin: ${CAP_SPACE_24} ${CAP_SPACE_72}` on inner `CapRow` wrapper. If Figma **already provides padding values** (e.g. `px-[32px]` on the header row), use those Figma-sourced values instead — do NOT add `CAP_SPACE_72` on top, as it creates double-stacked padding. Do NOT retrofit existing pages.
 
 - **`CapTable` must use infinite scroll by default**: Unless the HLD explicitly requires pagination, always set `infinteScroll={true}` (⚠️ cap-ui-library typo — `infin**te**Scroll`, not `infiniteScroll`). Required companion props: `showLoader`, `setPagination`, `loadMoreData`. Paginated mode only if product spec explicitly says so.
 
@@ -989,6 +1051,28 @@ On pass: log `✓ prop-spec: <ComponentName> — OK`
 On fail: log `PROP-SPEC VIOLATION: <file> — <ComponentName> uses prop <propName> not in spec` then HALT.
 
 **Do NOT write the manifest until all files show `✓ prop-spec: … — OK`.**
+
+**Check 5 — Ant Design inner-wrapper border check (Rule 01-6)**:
+
+```bash
+# Flag any non-none border on known inner-wrapper classes
+grep -n 'ant-input-affix-wrapper\|ant-select-selector\|ant-picker-input' "$OUTPUT_FILE" | \
+  grep -v 'border: none\|border:none\|box-shadow: none'
+```
+
+If matches found → flag as potential double-border violation (Rule 01-6). Verify outer wrapper suppresses the library default. Log `RULE-01-6 VIOLATION: <file>:<line> — non-none border on inner wrapper class` and HALT.
+
+**Check 6 — CapSlideBox/CapModal slot double-padding check (Rule 01-7)**:
+
+If the generated file uses `CapSlideBox` or `CapModal`, grep the slot content styled-components for non-zero horizontal padding:
+
+```bash
+# Check for horizontal padding inside slot content when CapSlideBox is used
+grep -n 'CapSlideBox\|CapModal' "$OUTPUT_FILE" | grep -q '.' && \
+  grep -n 'padding.*CAP_SPACE\|padding:.*px' "$OUTPUT_FILE" | grep -v 'padding-top\|padding-bottom\|padding: 0'
+```
+
+If styled components passed to `header`/`content`/`footer` props have horizontal padding — flag as likely double-padding violation (Rule 01-7). Log `RULE-01-7 VIOLATION: <file> — slot content has horizontal padding; CapSlideBox slot already provides 0 48px` and HALT.
 
 ---
 

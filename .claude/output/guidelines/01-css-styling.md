@@ -62,6 +62,96 @@ export default withStyles(MyComponent, styles);
 
 **Why**: Discovered after `BenefitsListing` codegen — 6 components had this bug and all `withStyles` CSS was silently unapplied.
 
+### Rule 6: Know the full DOM hierarchy of a Cap* component before writing any CSS override
+
+Ant Design (and cap-ui-library) compound components render **multiple nested DOM elements**. The library stylesheet applies `border`, `padding`, `box-shadow`, `background`, and `focus` styles at **specific levels** of this tree. If you target a class at the wrong level — even with correct values — you duplicate what the library already applies at another level.
+
+**Rule**: Before writing any CSS override (`border`, `padding`, `box-shadow`, `background`, `height`, focus ring) on an Ant Design class selector, identify the **complete rendered DOM tree** of the component and check which levels already carry that property from the library stylesheet. Apply your override at exactly one level; suppress the library value at all other levels with `property: none / initial / unset` as needed.
+
+Common DOM trees for Cap* components used in garuda-ui:
+
+| Component | Rendered DOM (outermost → innermost) | Library-styled levels |
+|-----------|--------------------------------------|-----------------------|
+| CapInput.Search | `.ant-input-search` → `.ant-input-affix-wrapper` → `.ant-input` | border on both `.ant-input-search` and `.ant-input-affix-wrapper` |
+| CapInput / CapInput.TextArea | `.ant-input-affix-wrapper` → `.ant-input` | border on `.ant-input-affix-wrapper` |
+| CapSelect / CapMultiSelect | `.ant-select` → `.ant-select-selector` → `.ant-select-selection-item` | border on `.ant-select-selector` |
+| CapDateRangePicker | `.ant-picker-range` → `.ant-picker-input` | border on `.ant-picker-range` |
+| CapButton | `.ant-btn` | border + background on `.ant-btn` |
+
+Common violation patterns (not limited to borders):
+
+| Property | Symptom when applied at wrong level | Root cause |
+|----------|-------------------------------------|------------|
+| `border` | Double border ring visible to user | Applied to inner wrapper; outer wrapper still has library border |
+| `padding` | Content shifted or clipped | Applied to inner element; outer wrapper already has matching padding |
+| `box-shadow` | Double glow on focus | Applied to root; library also applies on focused inner element |
+| `background` | Background bleeds through or layered | Parent and child both paint background at different nesting levels |
+| `height` / `line-height` | Component taller than designed | Set on container AND inner input row simultaneously |
+
+```jsx
+// ✅ CORRECT — border on outermost wrapper, suppressed on inner wrapper
+const SearchInputWrapper = styled.div`
+  .ant-input-search {
+    border: 1px solid ${CAP_G08};
+    border-radius: ${CAP_SPACE_04};
+  }
+  .ant-input-affix-wrapper {
+    border: none;      /* suppress library default at inner level */
+    box-shadow: none;
+  }
+`;
+```
+
+```jsx
+// ❌ WRONG — targets inner wrapper only; outer .ant-input-search still has library border
+const SearchInputWrapper = styled.div`
+  .ant-input-affix-wrapper {
+    border: 1px solid ${CAP_G08};  /* produces double border ring */
+  }
+`;
+```
+
+**How to discover the DOM tree**: open the component in the running app → DevTools → inspect rendered HTML. Ant Design v3 class names follow the `ant-[component]-[part]` convention consistently.
+
+**Why**: Cap-ui-library is built on Ant Design v3 and its global stylesheet ships with styles pre-applied at specific DOM levels. Since the pipeline generates code without running the browser, it cannot observe the real DOM hierarchy — this rule must be followed from the component's known class tree. Discovered during BenefitsListing when `BenefitsSearchInput` rendered with two concentric borders.
+
+### Rule 7: Audit internal component styles before applying Figma values — write only the delta
+
+**Figma values are targets, not additive layers.** Every Cap* component already ships with internal CSS — borders, padding, shadows, backgrounds, heights — applied at specific levels. If you extract a value from Figma and write it directly into `styles.js` without checking what the component already provides, you stack both values and produce a visual bug.
+
+**Rule**: Before writing any CSS property for a Cap* component, follow this 3-step audit:
+1. **Check internal styles** — what does the component already apply for this property? (Use the DOM tree table in Rule 6 for Ant Design components; use the slot padding table below for cap-ui-library slot containers)
+2. **Calculate the delta** — what is the difference between the Figma target and the library default?
+3. **Write only the delta** — if the library already provides the full value, write nothing (or `none`/`0` only if you need to override it)
+
+Cap-UI slot containers and their built-in padding:
+
+| Component | Slot | Built-in padding |
+|-----------|------|-----------------|
+| CapSlideBox (size-m / size-l) | header, content, footer | `0 48px` (horizontal only) |
+| CapSlideBox (size-s) | header, content, footer | `0 24px` (horizontal only) |
+| CapModal | body | `24px` all sides |
+
+```jsx
+// Figma target: content padding = 24px top/bottom, 48px left/right
+// CapSlideBox content slot already provides: 0 48px horizontal
+// Delta: only 24px vertical is missing
+
+// ✅ CORRECT — write only the delta
+export const FilterFieldsContainer = styled.div`
+  padding: ${CAP_SPACE_24} 0;   /* horizontal already provided by CapSlideBox slot */
+`;
+
+// ❌ WRONG — full Figma value applied additively → 96px total horizontal padding
+export const FilterFieldsContainer = styled.div`
+  padding: ${CAP_SPACE_24} ${CAP_SPACE_48};   /* stacks on top of slot's 48px */
+`;
+```
+
+**Component migration corollary**: When swapping one component for another (e.g. `CapDrawer` → `CapSlideBox`), re-run this audit. The new component may own a different set of CSS properties — styles written for the old component are not automatically valid for the new one.
+
+**Why**: Two bugs in BenefitsListing traced to this — double-border on `BenefitsSearchInput` (Rule 6) and double-padding on `BenefitsFilterDrawer` after CapDrawer → CapSlideBox migration. Both caused by applying Figma values without first checking what the component already provides internally.
+
 ## Good Examples
 
 ### PromotionSettings/style.js
