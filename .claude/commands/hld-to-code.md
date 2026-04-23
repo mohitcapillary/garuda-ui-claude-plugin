@@ -1,7 +1,7 @@
 ---
 description: Convert an HLD into production-ready garuda-ui code — extracts pixel-perfect layout from cached design-context.jsx, runs a 2.5-phase preview gate before codegen, validates every prop/token before emission, and runs a 3-tier design audit. Honors Reviewer Override and halts on any ambiguity
 argument-hint: "<hld-path> [--resume] [--force] [--screen <name>] [--visual-audit] [--skip-preview-gate]"
-allowed-tools: Read, Glob, Grep, Bash, Write, Edit, Agent, AskUserQuestion, mcp__claude_ai_Figma__get_design_context, mcp__claude_ai_Figma__get_screenshot, mcp__claude_ai_Figma__get_metadata
+allowed-tools: Read, Glob, Grep, Bash, Write, Edit, Agent, Skill, AskUserQuestion, mcp__claude_ai_Figma__get_design_context, mcp__claude_ai_Figma__get_screenshot, mcp__claude_ai_Figma__get_metadata
 ---
 
 Use the **hld-to-code** skill to convert an HLD document into production-ready garuda-ui code.
@@ -46,7 +46,9 @@ Use the **hld-to-code** skill to convert an HLD document into production-ready g
 | **2.5. Preview Gate** | **Writes `preview-wireframe.txt` + `preview-skeleton.jsx`; halts for user to confirm layout matches Figma** |
 | 3. API Contract | Splits confirmed vs ASSUMED; prepares mock payloads; halts on undefined shapes |
 | 4. File Plan | Dry-run file tree |
-| 5. Codegen | Bottom-up: atoms → pages. Pre-emission validator (prop keys, enum values, token existence, no-raw-values) per file. Checkpoint after each |
+| **5a. UI gen (DELEGATED)** | **Invokes `figma-to-component` skill in orchestration mode for all JSX + styles.js. Returns `ui-generation-manifest.json`. hld-to-code does NOT write UI code.** |
+| 5b. Redux + infra | constants / actions / reducer / selectors / saga / messages / Loadable / index — NO JSX. Pre-emission validator per file |
+| 5c. Integration | Edits figma-to-component's output: adds Redux wiring, fills `/* HANDLER: … */` callback slots, i18n, PropTypes |
 | 6. API Layer | Appends endpoints + service functions; writes `<feature>.mock.js`; wires swap flag |
 | 7. 3-Tier Audit | Tier 1 token diff, Tier 2 structural diff (both mandatory); Tier 3 Human-in-the-Loop visual QA loop (screenshot → pixel diff → vision classify → user approval → fix, up to 5 iterations) when `--visual-audit` |
 | 8. Guideline Pass | Validates against all 17 GUIDELINES.md rules; runs `npm run lint` |
@@ -74,6 +76,12 @@ Use the **hld-to-code** skill to convert an HLD document into production-ready g
 - `app/services/api.js` and `app/config/endpoints.js` must exist
 - Input must be a real HLD (not an LLD or PRD)
 - For `--visual-audit`: `npm install` run inside `tools/visual-qa/` (Node 16+); env vars `FIGMA_ACCESS_TOKEN`, `GARUDA_USERNAME`, `GARUDA_PASSWORD` set. Dev server still requires Node 12 via nvm.
+
+## Layout overrides (always applied)
+
+- **Page-content width:** Ignore any `max-width` Figma sets on the outermost page/template-level content wrapper. Emit `width: 100%` instead. This applies only to the page/template container, not to nested cards, tables, or sub-sections.
+- **Default page padding:** If Figma does not specify padding on the page-content wrapper, apply the garuda-ui default page padding on **left, right, and top**. If Figma specifies padding, honor it.
+- Record the override in `layout-plan.json` under `overrides[]` so Phase 7 Tier 1/2 audits do not flag it as a token diff.
 
 ## When NOT to use
 

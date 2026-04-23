@@ -14,7 +14,7 @@ Use the **prd-clarifier-agent** to generate a focused clarifications document fr
 The agent will:
 1. Read the raw PRD plus `.claude/output/architecture.md`, the system map, and `app/config/endpoints.js`
 2. Run one lightweight Figma pass per referenced node (design-context + screenshot; cached for downstream reuse)
-3. Sweep the PRD through 14 internal gap triggers, then **cluster aggressively** (one question per decision, not per symptom) — but raise as many distinct questions as the PRD genuinely warrants
+3. Sweep the PRD through 17 internal gap triggers, then **cluster aggressively** (one question per decision, not per symptom) — but raise as many distinct questions as the PRD genuinely warrants
 4. Write `claudeOutput/clarifications/<feature-name>-clarifications.md` — one short block per question, with an empty `Answer:` field
 
 ## Workflow

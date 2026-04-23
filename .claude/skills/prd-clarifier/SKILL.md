@@ -24,7 +24,7 @@ The output is a review document for a Product Manager. It must be **precise enou
 - **No PRD embedding.** The PM already has the source — reference it by path, don't duplicate it.
 - **No research-notes dump.** Only a short traceability appendix at the bottom.
 - **Question form, not observation form.** Every block must phrase the blocker as a question the reviewer can answer in one line.
-- **Five PM-facing categories only** (mapped from 14 internal triggers below).
+- **Five PM-facing categories only** (mapped from 17 internal triggers below).
 - **Design is authoritative for UI.** If Figma and PRD conflict, the `If unanswered:` default must point to Figma (matches existing "Figma over spec" rule).
 - **One question per decision, not per symptom.** Clustering rules below are mandatory — they exist to prevent noise, not to hit a count target.
 
@@ -78,6 +78,9 @@ Walk the PRD and the cached Figma artifacts. For each trigger below, note any fi
 | FIGMA_PRD_CONFLICT | Direct contradiction between design and PRD |
 | MISSING_API_CONTRACT | Data flow implied but no endpoint named |
 | MISSING_API_PAYLOAD | Endpoint named but no request/response shape |
+| FIGMA_FIELD_NOT_IN_BE | Field rendered in Figma UI has no matching field in the documented API request/response payload |
+| BE_FIELD_NOT_IN_FIGMA | Field present in documented BE payload has no corresponding element rendered in any Figma screen |
+| MISSING_PAGINATION | Figma shows a table, list, or grid of items but the BE endpoint has no pagination/offset/cursor/page-size parameters documented |
 | MISSING_VALIDATION | Form fields without rules |
 | MISSING_ERROR_STATES | No error copy/retry/fallback |
 | MISSING_EMPTY_STATES | No empty/loading state |
@@ -93,9 +96,10 @@ Reduce findings into distinct questions. No quantity cap — surface every real 
 
 1. **Per decision, not per symptom.** If six form fields are missing validation, that's *one* question: "Do we need validation rules for the create-benefit form? (Listing: name, external ID, dates, etc.)" — not six separate questions.
 2. **Collapse related Figma gaps.** If Figma has three elements PRD misses and they all belong to the same screen (filter panel + sort + column picker), that's *one* question.
-3. **Merge conflicts with their root cause.** If a Figma-vs-PRD conflict exists because the PRD is ambiguous, ask the ambiguity, not the conflict.
-4. **Drop questions the reviewer can't change the answer on.** Missing i18n keys for a brand-new feature is obvious — don't ask; bake it into the default. Only raise i18n if there's a real choice (new Locize namespace? reuse existing?).
-5. **Drop low-signal questions.** "Should there be a loading state?" — yes, obviously. Bake into default. Only ask if there's a material choice.
+3. **Cluster field-level mismatches per screen/endpoint pair.** If five Figma fields are missing from one BE response, that is *one* `Backend` question listing all five — not five questions. Similarly, multiple orphaned BE fields on the same endpoint are one question.
+4. **Merge conflicts with their root cause.** If a Figma-vs-PRD conflict exists because the PRD is ambiguous, ask the ambiguity, not the conflict.
+5. **Drop questions the reviewer can't change the answer on.** Missing i18n keys for a brand-new feature is obvious — don't ask; bake it into the default. Only raise i18n if there's a real choice (new Locize namespace? reuse existing?).
+6. **Drop low-signal questions.** "Should there be a loading state?" — yes, obviously. Bake into default. Only ask if there's a material choice.
 
 Do not trim to hit a target count. A complex PRD with 20 genuine decisions is better than one with 8 conflated ones. If after clustering you have 3 questions, ship 3. If you have 25, ship 25 — but verify each one passes the clustering rules above.
 
@@ -107,7 +111,7 @@ Map internal triggers to PM-facing categories:
 |---------------|--------------------------|
 | `Design` | FIGMA_NOT_IN_PRD, PRD_NOT_IN_FIGMA, FIGMA_PRD_CONFLICT |
 | `Spec Gap` | PRD_AMBIGUITY, INTERACTION_UNCLEAR, DATA_LIFECYCLE |
-| `Backend` | MISSING_API_CONTRACT, MISSING_API_PAYLOAD |
+| `Backend` | MISSING_API_CONTRACT, MISSING_API_PAYLOAD, FIGMA_FIELD_NOT_IN_BE, BE_FIELD_NOT_IN_FIGMA, MISSING_PAGINATION |
 | `Rules` | MISSING_VALIDATION, MISSING_ERROR_STATES, MISSING_EMPTY_STATES, MISSING_PERMISSIONS, MISSING_I18N |
 | `Architecture` | ARCH_MISALIGN |
 

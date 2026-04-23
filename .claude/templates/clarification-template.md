@@ -20,7 +20,7 @@ figma-nodes: {{FIGMA_NODE_LIST}}
 <!-- Category tags (PM-facing):
      - Design       = Figma vs PRD mismatch or design-only elements
      - Spec Gap     = vague, missing, or underspecified PRD content
-     - Backend      = missing API contract or payload
+     - Backend      = missing API contract or payload; field-level mismatch between Figma UI fields and BE payload fields (both directions)
      - Rules        = validation, permissions, error/empty states
      - Architecture = conflicts with existing garuda-ui patterns
 -->

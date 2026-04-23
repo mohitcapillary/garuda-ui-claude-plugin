@@ -46,13 +46,15 @@ The persisted path is the value used for `source:` in the clarifications frontma
 - **No PRD embedding.** Reference the source path; do not copy the PRD into the output.
 - **No research-notes dump.** Only a short traceability appendix at the bottom.
 - **Question form, not observation form.** Every block is a question answerable in one line.
-- **Five PM-facing categories only:** `Design`, `Spec Gap`, `Backend`, `Rules`, `Architecture`. Internal 14-trigger codes stay internal.
+- **Five PM-facing categories only:** `Design`, `Spec Gap`, `Backend`, `Rules`, `Architecture`. Internal 17-trigger codes stay internal.
 - **Figma is authoritative for UI.** When design and PRD conflict, the `If unanswered:` default uses Figma.
 - **Architecture findings are notes, not blockers.** Default = follow existing convention.
 - **No code recommendations.** Questions are about product intent, not implementation.
 - **Do not skip the Figma pass.** One `get_design_context` + one `get_screenshot` per node. No recipe pipeline — that is the HLD agent's job.
 - **Figma data validation.** After each `get_design_context` call, verify the response contains real node/frame data (not a "too large" summary or placeholder). If it returned a sparse summary, call `get_design_context` on child nodes individually. If still incomplete → **STOP** and tell the user.
 - **No UI behavior assumptions.** If the Figma screenshot shows behavior different from the PRD text (e.g., all sections visible simultaneously vs tab-filtered, different number of items), raise it as a clarification question. Do not silently pick one interpretation.
+- **Field-level Figma ↔ BE cross-check.** For every named endpoint with a documented payload, compare payload fields against fields visible in Figma screens that consume that endpoint. Raise mismatches in both directions: Figma fields absent from the payload (`FIGMA_FIELD_NOT_IN_BE`), and payload fields absent from Figma (`BE_FIELD_NOT_IN_FIGMA`). Cluster per endpoint — one question per direction per endpoint, listing all mismatched fields.
+- **Pagination check for tables/lists/grids.** Whenever Figma shows a table, list, or grid of items, verify the corresponding BE endpoint documents pagination (offset/limit, page/pageSize, or cursor). If no pagination is specified, raise a `Backend` question (`MISSING_PAGINATION`) — default: assume pagination is required and BE must add it before FE build.
 
 ## Execution
 
@@ -60,7 +62,7 @@ Follow `.claude/skills/prd-clarifier/SKILL.md` end to end. Summary:
 
 1. **Load** PRD + `.claude/output/architecture.md` + system map + endpoints + component inventory.
 2. **Figma pass** — one design-context + one screenshot per node, cached to `claudeOutput/figma-capui-mapping/<nodeId>/`.
-3. **Internal gap sweep** — walk the PRD through all 14 internal triggers, record findings.
+3. **Internal gap sweep** — walk the PRD through all 17 internal triggers, record findings.
 4. **Cluster** — per decision, not per symptom. Drop low-signal questions. No quantity cap — ship as many distinct questions as the PRD genuinely warrants.
 5. **Categorise** each surviving question under one of the 5 PM-facing tags.
 6. **Write question blocks** — 5 lines each: title, Context (≤2 lines), `If unanswered`, Owner, `Answer:` placeholder.

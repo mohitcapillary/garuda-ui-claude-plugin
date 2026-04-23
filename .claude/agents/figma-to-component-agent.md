@@ -48,6 +48,7 @@ An autonomous agent that converts a Figma design node into a blaze-ui React comp
 - `--omit-route-registration` — do NOT modify `app/components/pages/App/routes.js`. The orchestrator owns routing.
 - `--emit-callback-stubs` — wherever an interactive element (button `onClick`, table `onChange`, input `onChange`, modal `onOk`/`onCancel`) needs a handler, emit a stub: `onClick={/* HANDLER: New custom field CTA */}`. The orchestrator greps these markers and fills them. Without this flag, the agent emits inline stub functions.
 - `--skip-plan-confirmation` — bypass the Phase 3 "Confirm? (y/n)" gate. The orchestrator has already confirmed layout in its own preview gate. This flag ALSO causes the agent to emit a **manifest** at the end of Phase 4.
+- `--component-plan <path>` — absolute path to `component-plan.json` from the orchestrator's Phase 2 §5.5. When set, the agent loads it in Phase 1e, builds a `Map<nodeId, targetComponent>`, and treats each entry as **authoritative over `recipe[nodeId].targetComponent`** (see Phase 2 STEP 2.0). This is how HLD Reviewer Overrides and typography-rule decisions reach code generation. When NOT set (standalone invocation), the agent uses `recipe.json` values as-is. Also sets the `COMPONENT_PLAN_PATH` env var (mirrors existing `LAYOUT_PLAN_PATH` pattern).
 
 **When any orchestration flag is set**, the agent:
 1. Runs Phase 1–2 silently (no interactive narration).
@@ -193,6 +194,22 @@ if [ -n "$LP_CANDIDATE" ]; then
 fi
 ```
 
+**Check for pre-built component-plan.json** (written by hld-to-code Phase 2 §5.5 — carries Reviewer Overrides that must win over recipe.json):
+```bash
+COMPONENT_PLAN_PATH=""
+# Prefer explicit --component-plan flag when passed by orchestrator. Otherwise auto-discover
+# by sibling-lookup next to the layout-plan.json we just located (same feature dir).
+if [ -n "$CLI_COMPONENT_PLAN" ]; then
+  COMPONENT_PLAN_PATH="$CLI_COMPONENT_PLAN"
+elif [ -n "$LAYOUT_PLAN_PATH" ]; then
+  CP_CANDIDATE="$(dirname "$LAYOUT_PLAN_PATH")/component-plan.json"
+  [ -f "$CP_CANDIDATE" ] && COMPONENT_PLAN_PATH="$CP_CANDIDATE"
+fi
+if [ -n "$COMPONENT_PLAN_PATH" ]; then
+  echo "▶ component-plan.json found at $COMPONENT_PLAN_PATH — Phase 2 STEP 2.0 will apply reviewer overrides"
+fi
+```
+
 **If ANY is missing**:
 - Set `CACHE_HIT=false`
 - Proceed with Phases 1b, 1c, 1d normally (MCP calls required)
@@ -276,6 +293,28 @@ console.log('SPACING:', JSON.stringify(lp.spacingTokenMap, null, 2));
 Print: `▶ Token map loaded from layout-plan.json (hld-to-code pre-built) — skipping re-extraction`
 
 Build the Design Token Map from those values and skip Steps 1–2 below. Go directly to Step 3.
+
+---
+
+**If `COMPONENT_PLAN_PATH` is set** (invoked from hld-to-code — component-plan.json written by Phase 2 §5.5):
+
+Build an in-memory `componentPlanMap: Map<nodeId, targetComponent>` by reading every entry in `component-plan.json`:
+
+```bash
+node -e "
+const cp = require(process.env.COMPONENT_PLAN_PATH);
+const rows = Array.isArray(cp) ? cp : (cp.entries || Object.values(cp.screens || {}).flatMap(s => s.entries || []));
+const map = {};
+for (const r of rows) {
+  if (r && r.nodeId && r.targetComponent) map[r.nodeId] = r.targetComponent;
+}
+process.stdout.write(JSON.stringify(map));
+" > /tmp/component-plan-map.json
+```
+
+Print: `▶ component-plan.json loaded — N overrides available for Phase 2 STEP 2.0` (where N = number of entries).
+
+This map is consulted in Phase 2 STEP 2.0 to override `recipe[nodeId].targetComponent` whenever the component-plan value differs. This is how HLD Reviewer Overrides and typography-rule decisions reach code generation.
 
 ---
 
@@ -373,6 +412,32 @@ State before proceeding:
 ## Phase 2 — Map (NO code generation)
 
 Walk every node in the recipe and ensure each has a resolution. Prefer Cap* components, compose from primitives when needed, use styled HTML as last resort.
+
+### STEP 2.0 — Reviewer Override lookup (runs FIRST, only when `COMPONENT_PLAN_PATH` is set)
+
+Before consulting `recipe[nodeId].disambiguation` or `recipe[nodeId].targetComponent` for any node, check the `componentPlanMap` built in Phase 1e. This step exists because the HLD **Reviewer Override** column and the typography-size rule are both resolved upstream by `hld-to-code-agent` and persisted into `component-plan.json`. `recipe.json` is a shared cache across features and is never mutated — so overrides cannot live there.
+
+**Rule:** For each Figma node the agent is about to resolve:
+
+1. Let `cpVal = componentPlanMap.get(nodeId)`.
+2. Let `recipeVal = recipe[nodeId].targetComponent` (or derived default for UNMAPPED).
+3. If `cpVal` is set AND `cpVal !== recipeVal`, use `cpVal` as the final `targetComponent`. Record this decision in the build log:
+   ```
+   ▶ Override applied for <nodeId>: recipe=<recipeVal> → component-plan=<cpVal>
+   ```
+4. If `cpVal` is unset, fall through to existing precedence (`recipe.disambiguation` → `recipe.targetComponent`).
+
+**Authoritative precedence** (top wins):
+
+```
+1. component-plan[nodeId].targetComponent   (when COMPONENT_PLAN_PATH is set) ← NEW
+2. recipe[nodeId].disambiguation            (existing)
+3. recipe[nodeId].targetComponent           (existing default)
+```
+
+**Why component-plan wins:** it is the feature-scoped decision ledger written by hld-to-code §5.5 after applying Reviewer Override (Rule 2 of hld-to-code) and the typography size rule (§5.3). `recipe.json` is intentionally pristine for cross-feature cache reuse.
+
+**Do NOT** mutate `recipe.json` to reflect overrides — it is a read-only shared cache.
 
 ### 2a. Ensure mapping agent is built
 
@@ -817,6 +882,30 @@ If the generated file would exceed **450 lines**, split into sub-component files
 ## Phase 5 — Audit (automated verification)
 
 After generating, run these checks. Replace `$OUTPUT_FILE` with the actual path.
+
+**Check 0: Reviewer Override propagation** (MANDATORY when `COMPONENT_PLAN_PATH` is set):
+
+For every nodeId in `componentPlanMap` whose `targetComponent` differs from `recipe[nodeId].targetComponent`, verify the generated JSX emits the component-plan value (not the recipe value). Each generated node is tagged with a `// nodeId: <id>` comment (from Phase 4), so grep the file for each override's `nodeId` and confirm the preceding Cap* tag matches `componentPlanMap.get(nodeId)`.
+
+```bash
+# Pseudo-check. For each (nodeId, expectedCap, recipeCap) where expectedCap !== recipeCap:
+#   1. Locate `// nodeId: <id>` in any file under <target-path>
+#   2. Inspect the JSX element preceding/enclosing that comment
+#   3. Confirm it is `<expectedCap …>` — NOT `<recipeCap …>`
+```
+
+If ANY override-mismatched node emits the recipe value instead of the component-plan value → **HALT** the audit and fail the run. Silent divergence defeats the purpose of Reviewer Overrides (Rule 2 of hld-to-code-agent.md).
+
+Expected output table on pass:
+
+```
+| nodeId   | recipe       | component-plan | emitted      | status |
+|----------|--------------|----------------|--------------|--------|
+| 24:2784  | CapButton    | CapLinkButton  | CapLinkButton| ✅     |
+| 24:2783  | CapLabel     | CapHeading     | CapHeading   | ✅     |
+```
+
+Any row where `emitted !== component-plan` is a hard fail.
 
 **Check 1: Raw (unstyled) HTML tags** — these should NEVER appear in JSX:
 ```bash

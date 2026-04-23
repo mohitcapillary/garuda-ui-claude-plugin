@@ -22,7 +22,7 @@
     --border: #E2E8F0;
     --surface: #F8FAFC;
     --white: #FFFFFF;
-    --sidebar-w: 260px;
+    --sidebar-w: 56px;
     --step1: #7C3AED;
     --step2: #2563EB;
     --step3: #059669;
@@ -34,51 +34,140 @@
   body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; color: var(--text); background: var(--surface); display: flex; min-height: 100vh; }
 
   /* ── SIDEBAR ── */
+  :root {
+    --sidebar-collapsed: 56px;
+    --sidebar-expanded: 260px;
+  }
   .sidebar {
-    width: var(--sidebar-w);
+    width: var(--sidebar-collapsed);
     min-height: 100vh;
     background: var(--white);
     border-right: 1px solid var(--border);
     position: fixed;
     top: 0; left: 0;
     display: flex; flex-direction: column;
-    overflow-y: auto;
+    overflow: hidden;
     z-index: 100;
+    transition: width 0.22s cubic-bezier(0.4,0,0.2,1);
   }
-  .sidebar-logo {
-    padding: 20px 20px 12px;
+  .sidebar.expanded { width: var(--sidebar-expanded); overflow-y: auto; }
+
+  /* hamburger header */
+  .sidebar-header {
+    display: flex; align-items: center; gap: 10px;
+    padding: 0 12px;
+    height: 56px;
     border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+    overflow: hidden;
   }
-  .sidebar-logo .logo-badge {
-    display: inline-flex; align-items: center; gap: 8px;
+  .sidebar-hamburger {
+    width: 32px; height: 32px; border-radius: 8px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+    cursor: pointer; background: none; border: none; flex-shrink: 0;
+    transition: background 0.15s;
+  }
+  .sidebar-hamburger:hover { background: var(--surface); }
+  .sidebar-hamburger span {
+    display: block; width: 16px; height: 2px;
+    background: var(--text-muted); border-radius: 1px;
+    transition: all 0.2s;
+  }
+  .sidebar-brand {
+    display: flex; align-items: center; gap: 8px;
+    white-space: nowrap; overflow: hidden;
+    opacity: 0; transition: opacity 0.15s 0.05s;
+    pointer-events: none;
+  }
+  .sidebar.expanded .sidebar-brand { opacity: 1; pointer-events: auto; }
+  .sidebar-brand .logo-badge {
+    display: inline-flex; align-items: center; gap: 6px;
     background: var(--brand); color: white;
     padding: 4px 10px; border-radius: 6px;
     font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+    white-space: nowrap;
   }
-  .sidebar-logo h1 { font-size: 13px; color: var(--text-muted); margin-top: 8px; font-weight: 500; }
-  .sidebar-nav { padding: 16px 0; flex: 1; }
-  .nav-label { font-size: 10px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--text-muted); padding: 0 20px 8px; }
+
+  /* nav */
+  .sidebar-nav { padding: 8px 0; flex: 1; }
+  .nav-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 8px 0 4px 18px;
+    white-space: nowrap; overflow: hidden;
+    opacity: 0; height: 0; transition: opacity 0.1s, height 0.2s;
+  }
+  .sidebar.expanded .nav-label { opacity: 1; height: 28px; }
+  .nav-divider { height: 1px; background: var(--border); margin: 6px 12px; }
+
   .nav-item {
-    display: flex; align-items: center; gap: 10px;
-    padding: 10px 20px; cursor: pointer;
+    position: relative;
+    display: flex; align-items: center;
+    height: 40px;
+    padding: 0 12px;
+    gap: 10px;
+    cursor: pointer;
     text-decoration: none; color: var(--text);
     font-size: 13px; font-weight: 500;
     border-left: 3px solid transparent;
-    transition: all 0.15s;
+    white-space: nowrap; overflow: hidden;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
   }
   .nav-item:hover { background: var(--surface); color: var(--brand); }
   .nav-item.active { background: var(--brand-light); color: var(--brand); border-left-color: var(--brand); }
-  .nav-step { width: 22px; height: 22px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; color: white; flex-shrink: 0; }
-  .nav-divider { height: 1px; background: var(--border); margin: 8px 20px; }
-  .sidebar-footer { padding: 16px 20px; border-top: 1px solid var(--border); font-size: 11px; color: var(--text-muted); }
+
+  /* icon slot — always visible */
+  .nav-icon {
+    width: 28px; height: 28px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px;
+  }
+  .nav-step {
+    width: 24px; height: 24px; border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 10px; font-weight: 700; color: white; flex-shrink: 0;
+  }
+
+  /* label — hidden when collapsed */
+  .nav-label-text {
+    opacity: 0; flex: 1;
+    transition: opacity 0.12s;
+    overflow: hidden; text-overflow: ellipsis;
+  }
+  .sidebar.expanded .nav-label-text { opacity: 1; }
+
+  /* tooltip when collapsed */
+  .nav-item::after {
+    content: attr(data-tooltip);
+    position: fixed;
+    left: calc(var(--sidebar-collapsed) + 10px);
+    background: #1E293B; color: white;
+    font-size: 12px; font-weight: 500;
+    padding: 5px 10px; border-radius: 6px;
+    white-space: nowrap; pointer-events: none;
+    opacity: 0; transition: opacity 0.15s;
+    z-index: 200;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+  .sidebar:not(.expanded) .nav-item:hover::after { opacity: 1; }
+
+  /* footer */
+  .sidebar-footer {
+    padding: 12px 14px; border-top: 1px solid var(--border);
+    font-size: 11px; color: var(--text-muted);
+    white-space: nowrap; overflow: hidden;
+    opacity: 0; height: 0; transition: opacity 0.1s, height 0.2s;
+  }
+  .sidebar.expanded .sidebar-footer { opacity: 1; height: auto; }
 
   /* ── MAIN ── */
-  .main { margin-left: var(--sidebar-w); flex: 1; }
+  .main { margin-left: var(--sidebar-collapsed); flex: 1; min-width: 0; overflow-x: hidden; transition: margin-left 0.22s cubic-bezier(0.4,0,0.2,1); }
 
   /* ── HERO ── */
   .hero {
     background: linear-gradient(135deg, #1E1B4B 0%, #312E81 50%, #4C1D95 100%);
     color: white; padding: 64px 60px 56px;
+    overflow-x: hidden; max-width: 100%;
   }
   .hero-tag { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.25); border-radius: 100px; padding: 4px 12px; font-size: 12px; font-weight: 500; margin-bottom: 20px; }
   .hero h1 { font-size: 40px; font-weight: 800; line-height: 1.15; margin-bottom: 16px; }
@@ -98,7 +187,7 @@
   .pipeline-arrow { color: rgba(255,255,255,0.4); font-size: 20px; padding: 0 6px; }
 
   /* ── SECTION ── */
-  .section { padding: 60px; border-bottom: 1px solid var(--border); }
+  .section { padding: 60px; border-bottom: 1px solid var(--border); max-width: 100%; overflow-x: hidden; }
   .section:last-child { border-bottom: none; }
   .section-header { display: flex; align-items: flex-start; gap: 20px; margin-bottom: 40px; }
   .step-number {
@@ -111,7 +200,9 @@
   .section-header-text p { font-size: 14px; color: var(--text-muted); margin-top: 8px; line-height: 1.6; max-width: 700px; }
 
   /* ── FLOW DIAGRAM ── */
-  .flow-diagram { background: white; border: 1px solid var(--border); border-radius: 16px; padding: 32px; margin-bottom: 32px; overflow-x: auto; }
+  .flow-diagram { background: white; border: 1px solid var(--border); border-radius: 16px; padding: 32px; margin-bottom: 32px; overflow-x: auto; max-width: 100%; }
+  .flow-diagram::-webkit-scrollbar { height: 6px; }
+  .flow-diagram::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
   .flow-diagram h3 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 24px; }
   .flow-row { display: flex; align-items: center; gap: 0; flex-wrap: nowrap; min-width: fit-content; }
   .flow-node {
@@ -156,8 +247,10 @@
   pre.code-block {
     background: #0F172A; color: #E2E8F0; font-family: 'SF Mono', 'Fira Code', monospace;
     font-size: 12px; line-height: 1.7; padding: 24px; overflow-x: auto;
-    margin: 0;
+    margin: 0; max-width: 100%;
   }
+  pre.code-block::-webkit-scrollbar { height: 6px; }
+  pre.code-block::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
   .code-comment { color: #64748B; }
   .code-key { color: #7DD3FC; }
   .code-value { color: #86EFAC; }
@@ -339,7 +432,7 @@
 
   @media (max-width: 1024px) {
     .sidebar { display: none; }
-    .main { margin-left: 0; }
+    .main { margin-left: 0 !important; }
     .section { padding: 40px 24px; }
     .hero { padding: 40px 24px; }
     .hld-grid, .detail-flow { grid-template-columns: 1fr; }
@@ -351,43 +444,55 @@
 <body>
 
 <!-- ═══════════════════════════════════════════════════ SIDEBAR -->
-<nav class="sidebar">
-  <div class="sidebar-logo">
-    <div class="logo-badge">
-      <span>⚡</span> garuda-ui
+<nav class="sidebar" id="sidebar">
+  <!-- Hamburger header -->
+  <div class="sidebar-header">
+    <button class="sidebar-hamburger" onclick="toggleSidebar()" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="sidebar-brand">
+      <div class="logo-badge"><span>⚡</span> garuda-ui</div>
     </div>
-    <h1>AI Pipeline Documentation</h1>
   </div>
+
   <div class="sidebar-nav">
     <div class="nav-label">Overview</div>
-    <a class="nav-item active" href="#hero">
-      <span>🗺️</span> Pipeline Overview
+    <a class="nav-item active" href="#hero" data-tooltip="Pipeline Overview">
+      <span class="nav-icon">🗺️</span>
+      <span class="nav-label-text">Pipeline Overview</span>
     </a>
     <div class="nav-divider"></div>
     <div class="nav-label">Pipeline Steps</div>
-    <a class="nav-item" href="#step1">
-      <span class="nav-step" style="background:#7C3AED">1</span> /clarify-prd
+    <a class="nav-item" href="#step1" data-tooltip="/clarify-prd — surface PRD ambiguities">
+      <span class="nav-icon"><span class="nav-step" style="background:#7C3AED">1</span></span>
+      <span class="nav-label-text">/clarify-prd</span>
     </a>
-    <a class="nav-item" href="#step2">
-      <span class="nav-step" style="background:#2563EB">2</span> /filter-prd
+    <a class="nav-item" href="#step2" data-tooltip="/filter-prd — structured requirements">
+      <span class="nav-icon"><span class="nav-step" style="background:#2563EB">2</span></span>
+      <span class="nav-label-text">/filter-prd</span>
     </a>
-    <a class="nav-item" href="#step3">
-      <span class="nav-step" style="background:#059669">3</span> /generate-hld
+    <a class="nav-item" href="#step3" data-tooltip="/generate-hld — high-level design">
+      <span class="nav-icon"><span class="nav-step" style="background:#059669">3</span></span>
+      <span class="nav-label-text">/generate-hld</span>
     </a>
-    <a class="nav-item" href="#step4">
-      <span class="nav-step" style="background:#D97706">4</span> /figma-rename
+    <a class="nav-item" href="#step4" data-tooltip="/figma-rename — normalise node names">
+      <span class="nav-icon"><span class="nav-step" style="background:#D97706">4</span></span>
+      <span class="nav-label-text">/figma-rename</span>
     </a>
-    <a class="nav-item" href="#step5">
-      <span class="nav-step" style="background:#DC2626">5</span> /hld-to-code
+    <a class="nav-item" href="#step5" data-tooltip="/hld-to-code — generate production files">
+      <span class="nav-icon"><span class="nav-step" style="background:#DC2626">5</span></span>
+      <span class="nav-label-text">/hld-to-code</span>
     </a>
     <div class="nav-divider"></div>
     <div class="nav-label">Output</div>
-    <a class="nav-item" href="#output">
-      <span>🎨</span> Tier Listing Page
+    <a class="nav-item" href="#output" data-tooltip="Tier Listing Page — final output">
+      <span class="nav-icon">🎨</span>
+      <span class="nav-label-text">Tier Listing Page</span>
     </a>
   </div>
+
   <div class="sidebar-footer">
-    Example feature: <strong>Tier Management</strong><br/>
+    Example: <strong>Tier Management</strong><br/>
     Figma node: <code>32:3147</code>
   </div>
 </nav>
@@ -496,8 +601,8 @@
       <br/><p style="font-size:11px;color:#D97706"><strong>Example found:</strong> PRD listed status filters but gave no placement — filter bar? Dropdown? Pills? Designer had to decide.</p>
     </div>
     <div class="flow-card">
-      <h4><span class="badge badge-blue">Backend</span> Missing API contracts</h4>
-      <p>Checks whether API endpoints for all data requirements are documented. If not, raises questions about payload shape, pagination, and whether data comes from one call or many.</p>
+      <h4><span class="badge badge-blue">Backend</span> Missing API contracts &amp; field mismatches</h4>
+      <p>Checks whether API endpoints for all data requirements are documented, then cross-references payload fields against Figma screens in <strong>both directions</strong>: fields shown in Figma but missing from BE payload, and fields in BE payload with no Figma rendering. Also flags any table, list, or grid whose endpoint lacks pagination (offset/limit, page/pageSize, or cursor).</p>
       <br/><p style="font-size:11px;color:#2563EB"><strong>Example found:</strong> No tier listing or benefit endpoints documented. Team decided to use dummy data until BE provides contract.</p>
     </div>
   </div>
@@ -515,14 +620,17 @@ flowchart LR
     F -- NO --> G["📋 Spec Gap Q\nUndefined behavior\nor placement"]
     F -- YES --> H{API endpoints\ndocumented?}
     H -- NO --> I["⚡ Backend Q\nMissing endpoint\nor payload shape"]
-    H -- YES --> J{Fits garuda-ui\narchitecture?}
+    H -- YES --> H2{Payload fields\nmatch Figma?\n+ pagination if\ntable/list?}
+    H2 -- NO --> I2["⚡ Backend Q\nField mismatch or\nmissing pagination"]
+    H2 -- YES --> J{Fits garuda-ui\narchitecture?}
     J -- NO --> K["🏛️ Architecture Q\nNew pattern or\nextend existing?"]
     J -- YES --> L([✅ No question\nneeded])
-    C & E & G & I & K --> M([📝 Added to\nclarifications.md\nwith owner tag])
+    C & E & G & I & I2 & K --> M([📝 Added to\nclarifications.md\nwith owner tag])
     style C fill:#EEF0FF,stroke:#818CF8,color:#3730A3
     style E fill:#EEF0FF,stroke:#818CF8,color:#3730A3
     style G fill:#FFF7ED,stroke:#FED7AA,color:#9A3412
     style I fill:#EFF6FF,stroke:#93C5FD,color:#1E40AF
+    style I2 fill:#EFF6FF,stroke:#93C5FD,color:#1E40AF
     style K fill:#FFF1F2,stroke:#FECDD3,color:#9F1239
     style L fill:#F0FDF4,stroke:#BBF7D0,color:#166534
     style M fill:#1E293B,stroke:#1E293B,color:#fff
@@ -737,9 +845,50 @@ flowchart TD
     </div>
   </div>
 
+  <div class="flow-diagram">
+    <h3>Transformation — filtered PRD + design + conventions → 16-section HLD</h3>
+    <div class="flow-row">
+      <div class="flow-node input">
+        <span class="fn-icon">📑</span>
+        Filtered PRD Spec<br/>
+        <span class="flow-label">from Step 2 · 21 FRs, traceable</span>
+      </div>
+      <div class="flow-arrow">+</div>
+      <div class="flow-node input">
+        <span class="fn-icon">🎨</span>
+        Figma Design<br/>
+        <span class="flow-label">get_design_context · nodes + tokens</span>
+      </div>
+      <div class="flow-arrow">+</div>
+      <div class="flow-node input">
+        <span class="fn-icon">🏛️</span>
+        Architecture + Guidelines<br/>
+        <span class="flow-label">Architecture.md · 17 GUIDELINES rules</span>
+      </div>
+      <div class="flow-arrow">+</div>
+      <div class="flow-node input">
+        <span class="fn-icon">🗺️</span>
+        System Map + Cap-UI Registry<br/>
+        <span class="flow-label">existing patterns · EXACT/PARTIAL/BESPOKE</span>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node process">
+        <span class="fn-icon">🤖</span>
+        HLD Synthesis<br/>
+        <span class="flow-label">Ingest → Analyse → Apply guardrails</span>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-node output">
+        <span class="fn-icon">📄</span>
+        16-Section HLD<br/>
+        <span class="flow-label">+ recipe.json + open-questions</span>
+      </div>
+    </div>
+  </div>
+
   <!-- Detailed 3-phase flow as Mermaid -->
   <div class="mermaid-wrap">
-    <h3>Full generation process — 3 phases, 5 sources, 16 HLD sections</h3>
+    <h3>Full generation process — ingest sources → analyse → apply guardrails → 16-section HLD</h3>
     <pre class="mermaid">
 flowchart TD
     subgraph INGEST ["📥  PHASE 1 — Ingest  (5 sources read in parallel)"]
@@ -760,37 +909,44 @@ flowchart TD
         B5["Identify reuse candidates\nfrom Architecture.md + System Map\n'CapSelect, CapTab, CapSpin,\n SomethingWentWrong already exist'"]
     end
 
-    subgraph WRITE ["✍️  PHASE 3 — Write 16 HLD sections (in order)"]
+    subgraph APPLY ["✍️  PHASE 3 — Apply guardrails & synthesise HLD"]
         direction TB
-        C1["§1 Feature Overview\nBusiness purpose, target users,\nin-scope list, out-of-scope list"]
-        C2["§2 Technical Objective\nNumbered tech goals, architecture fit\npattern references to existing pages"]
-        C3["§3 Impact Analysis\nNew components table, modified files,\nnew Redux domain, new route entry"]
-        C4["§4 UI/UX Changes\nScreen flow, component boundaries,\nrecipe table with Reviewer Override,\nuser→action map, ASCII arch diagram"]
-        C5["§5 Directory Structure\nFull file tree, PascalCase naming,\naction type constants, selector names,\nsaga + watcher naming"]
-        C6["§6 API Structure\nEndpoint URL, method, auth, full\nassumed JSON payload, validation\nrules, 5 HTTP error states"]
-        C7["§7 State Management\nfromJS() store shape, all 6 actions\n+ creators, all 6 selectors + paths,\nsaga pattern, local-vs-Redux table"]
-        C8["§8–§10  Validation · Patterns · Deps\nClient rules, server error strategy,\n13 reuse candidates, new patterns,\ninternal + external dependency audit"]
-        C9["§11–§13  Risks · NFRs · Testing\nRisk table with severity + mitigation,\nReact.memo/Reselect strategy,\n10 named test scenarios"]
-        C10["§14 Architecture Alignment\n10-point checklist vs architecture.md\nsaga flow pattern cross-reference\njustified deviations documented"]
-        C11["§15 Open Questions\nRemaining Figma-vs-spec conflicts\nwith owner + resolution needed"]
-        C12["§16 Figma Naming Improvements\nRename table for 8 frames\n→ consumed by /figma-rename in Step 4"]
+        G1["🏛️ Architecture.md guardrails\n──────────────────\n• Atomic Design placement\n  (atom / molecule / organism /\n   template / page)\n• Redux co-location per slice\n• ESLint 500-line file ceiling\n• injectReducer + injectSaga HOCs\n• withCustomAuth / withPermissions"]
+        G2["📜 GUIDELINES.md — 17 hard rules\n──────────────────\n• Cap* type-enum checks\n• withStyles className forwarding\n• i18n key format (snake_case)\n• No raw hex / no raw px values\n• Immutable.js selector paths\n• No inline arrow-fn props\n• …11 more"]
+        G3["🗺️ System-map reuse audit\n──────────────────\n• Prefer existing sagas & selectors\n  over authoring new ones\n• Reuse SomethingWentWrong molecule\n  for 5xx error states\n• Honour current route shell\n• Inherit auth HOC pattern"]
+        G4["❓ Clarifier questionnaire\n──────────────────\nprd-clarifier open items\nflow in as Section 15 seeds:\n• Figma-vs-PRD conflicts\n• Undefined API fields\n• Missing ACs per scenario\n→ each carries owner + blocker flag"]
+        G5["⚖️ Risk & deviation audit\n──────────────────\n• Flag BESPOKE overrides\n  (e.g. CapTable incompatible)\n• Score severity + mitigation (§11)\n• Cross-check §14 alignment\n  checklist (10 points)\n• Document every justified deviation"]
+        G6["🏷️ Figma naming audit\n──────────────────\nScan frame names for auto-\ngenerated placeholders\n→ propose PascalCase renames\n→ §16 rename table feeds\n  /figma-rename in Step 4"]
+
+        OUT["📄 16-section HLD.md\n+ recipe.json per Figma node\n+ open-questions list\n(detail: grid &amp; tabs below)"]
     end
 
     INGEST --> ANALYSE
     B1 --> B2 --> B3 --> B4 --> B5
-    ANALYSE --> WRITE
-    C1 --> C2 --> C3 --> C4 --> C5 --> C6 --> C7 --> C8 --> C9 --> C10 --> C11 --> C12
+    ANALYSE --> APPLY
+    G1 --> OUT
+    G2 --> OUT
+    G3 --> OUT
+    G4 --> OUT
+    G5 --> OUT
+    G6 --> OUT
 
     style INGEST fill:#EFF6FF,stroke:#93C5FD,color:#1E40AF
     style ANALYSE fill:#FFF7ED,stroke:#FED7AA,color:#9A3412
-    style WRITE fill:#F0FDF4,stroke:#BBF7D0,color:#166534
+    style APPLY fill:#F0FDF4,stroke:#BBF7D0,color:#166534
     style A1 fill:#EFF6FF,stroke:#93C5FD,color:#1E40AF
     style A2 fill:#FFF1F2,stroke:#FECDD3,color:#9F1239
     style A3 fill:#EEF0FF,stroke:#818CF8,color:#3730A3
     style A4 fill:#EEF0FF,stroke:#818CF8,color:#3730A3
     style A5 fill:#FFF7ED,stroke:#FED7AA,color:#9A3412
     style B3 fill:#FFF1F2,stroke:#FECDD3,color:#9F1239
-    style C12 fill:#FFF7ED,stroke:#FED7AA,color:#9A3412
+    style G1 fill:#EEF0FF,stroke:#818CF8,color:#3730A3
+    style G2 fill:#EEF0FF,stroke:#818CF8,color:#3730A3
+    style G3 fill:#EEF0FF,stroke:#818CF8,color:#3730A3
+    style G4 fill:#FFF1F2,stroke:#FECDD3,color:#9F1239
+    style G5 fill:#FFF1F2,stroke:#FECDD3,color:#9F1239
+    style G6 fill:#FFF7ED,stroke:#FED7AA,color:#9A3412
+    style OUT fill:#ECFDF5,stroke:#34D399,color:#065F46
     </pre>
   </div>
 
@@ -2086,6 +2242,14 @@ Behavior: All 5 sections visible simultaneously. Tabs scroll-to-section.
         }
       });
     });
+  }
+
+  /* ── Sidebar hamburger toggle ── */
+  function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    const main = document.querySelector('.main');
+    const expanded = sidebar.classList.toggle('expanded');
+    main.style.marginLeft = expanded ? 'var(--sidebar-expanded)' : 'var(--sidebar-collapsed)';
   }
 
   /* ── HLD tab switcher ── */

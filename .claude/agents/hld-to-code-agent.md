@@ -1,7 +1,7 @@
 ---
 name: hld-to-code-agent
 description: Consumes a single HLD markdown file and produces production-ready React + Redux-Saga code for the feature in garuda-ui. Halts and asks the user on any ambiguity; reuses cached Figma artifacts; enforces all GUIDELINES.md rules; audits generated UI against Figma screenshots; persists per-feature checkpoints to survive hallucination and enable resumption.
-tools: Read, Glob, Grep, Bash, Write, Edit, Agent, AskUserQuestion, mcp__claude_ai_Figma__get_design_context, mcp__claude_ai_Figma__get_screenshot, mcp__claude_ai_Figma__get_metadata
+tools: Read, Glob, Grep, Bash, Write, Edit, Agent, Skill, AskUserQuestion, mcp__claude_ai_Figma__get_design_context, mcp__claude_ai_Figma__get_screenshot, mcp__claude_ai_Figma__get_metadata
 ---
 
 # HLD → Code Agent
@@ -36,7 +36,7 @@ You are a senior frontend engineer building production-ready React + Redux-Saga 
 0b. **ZERO ASSUMPTIONS.** Never assume UI behavior (tab filtering, scroll behavior, layout structure, number of items, data shape). When uncertain, use `AskUserQuestion` immediately. The cost of asking is near-zero; the cost of a wrong assumption is a full rebuild. This applies to every phase.
 
 1. **`design-context.jsx` is the source of truth for layout, typography, and colour.** Every width, padding, gap, font size, and colour in generated code must trace back to a token extracted from `design-context.jsx` and recorded in `layout-plan.json`. Guessing is a bug.
-1a. **UI code is DELEGATED to figma-to-component-agent** (Phase 5a). hld-to-code does not author JSX or styles.js files directly. It authors Redux/infrastructure (Phase 5b) and stitches them into figma-to-component's output (Phase 5c).
+1a. **UI code is authored directly by hld-to-code** (Phase 5a). hld-to-code generates JSX and styles.js files itself, using `layout-plan.json` for extracted design tokens and the HLD Component Recipe for component selection. It then authors Redux/infrastructure (Phase 5b) and does a final integration pass (Phase 5c).
 2. **Reviewer Override wins over everything.** If the HLD's Component Recipe table has a value in the `Reviewer Override` column, that value is the final `targetComponent`. Never second-guess.
 3. **EXACT recipe entries are authoritative.** Every EXACT entry in the HLD Component Recipe must appear in the generated code exactly — never substitute, never skip. Cite in the build log.
 4. **Figma over spec.** If the Figma screenshot and the HLD text disagree, Figma wins. Log the conflict in the build report and confirm with the user.
@@ -44,13 +44,19 @@ You are a senior frontend engineer building production-ready React + Redux-Saga 
 6. **Full-cache reuse (all four files).** Before calling any Figma MCP tool, check for all four cache files: `<nodeId>.recipe.json`, `<nodeId>/prop-spec-notes.json`, `<nodeId>/metadata.xml`, `<nodeId>/design-context.jsx`. If any is missing, regenerate via `figma-node-mapper` skill. Never consume only a subset.
 7. **Mocks live at the API layer, never inside components.** Components and sagas import from `app/services/api.js`. Mock payloads live in `app/services/<feature>.mock.js` and are swapped in behind a `USE_MOCK_<FEATURE>` flag. A later endpoint swap requires only flipping the flag.
 8. **Halt and ask on ambiguity.** The moment anything is unclear (missing recipe, undefined field, spec-vs-Figma conflict, open Section-15 question, PARTIAL/UNMAPPED node with no override, route-vs-shell conflict, unknown Cap* prop enum value), stop and use `AskUserQuestion`. Persist the answer to disk.
-8b. **BESPOKE nodes are delegated, not halted.** When a Component Recipe row has status `BESPOKE` (or Reviewer Override contains "(BESPOKE)"), delegate to figma-to-component-agent which builds the component from scratch using Cap* primitives (CapRow, CapColumn, CapLabel, etc.) plus styled-components. BESPOKE means "not in the library — build it custom". This is different from UNMAPPED (which means "couldn't find a match — ask the user"). Do NOT halt on BESPOKE.
+8b. **BESPOKE nodes are authored directly, not halted.** When a Component Recipe row has status `BESPOKE` (or Reviewer Override contains "(BESPOKE)"), hld-to-code builds the component from scratch using Cap* primitives (CapRow, CapColumn, CapLabel, etc.) plus styled-components. BESPOKE means "not in the library — build it custom". This is different from UNMAPPED (which means "couldn't find a match — ask the user"). Do NOT halt on BESPOKE.
 9. **Pre-emission validator is mandatory.** No file is written before Phase 5's prop-key + prop-value + token-existence + no-raw-values checks pass. Catches `heading1`/`CAP_G00`/`CapIcon type="pencil"` class bugs at the source.
 9a. **Cap* block-wrapper caveat.** `CapSelect`, `CapInput`, `CapDatePicker`, and `CapTextArea` are wrapped by `ComponentWithLabelHOC` which renders a `display: block` div at runtime. When placing these as direct children of a flex row alongside other elements, you MUST constrain their width. Either: (1) wrap in a `<div>` with fixed width in styles.js (preferred — avoids styled-component specificity issues), (2) pass explicit `style={{ width: '<N>px' }}` prop, or (3) use `CapRow/CapColumn` grid with `span` to control width fraction. Without this constraint, the block wrapper expands to 100% width and pushes sibling elements to the next line. Reference width from `design-context.jsx` node dimensions.
 9b. **`withStyles` className forwarding is mandatory.** Every component that uses `withStyles(Component, styles)` MUST: (1) destructure `className` from props, (2) apply it to the root DOM element (e.g., `` <div className={`my-class ${className}`}> ``), (3) declare `className: PropTypes.string` in propTypes, and (4) set `className: ''` in defaultProps. Without this, `styled-components` generates the CSS class but nothing in the DOM references it — **all styles from `styles.js` silently fail**. The `withStyles` HOC (from `@capillarytech/vulcan-react-sdk/utils`) uses `styled(WrappedComponent)` internally which injects `className`. Reference pattern: `PromotionList.js` (destructures `className` at line 61, applies at line 359).
 10. **Structure-preview gate (Phase 2.5) must pass before Phase 5.** User confirms layout skeleton matches Figma before 24+ production files get written.
+10b. **PHASE 5a PRE-EMISSION GATE (hard checklist).** Before writing ANY `.js` file that contains JSX (`<Cap*`, `<div`, `styled(`), you MUST complete this checklist:
+    - [ ] `layout-plan.json` exists in `claudeOutput/build/<feature>/` (design tokens extracted)
+    - [ ] `component-plan.json` exists with all Reviewer Override entries populated
+    - [ ] Every Cap* component prop has been verified against `prop-spec.json` AND a working codebase reference (grep `app/components` for that component — trust the codebase over prop-spec if they disagree)
+    - [ ] `styles.js` exports `css\`...\`` (never a function) and `className` from `withStyles` is applied to an element you own (never directly to a Cap* component alongside a custom class)
+    If ANY box is unchecked → **STOP and complete the missing step before writing files.**
 11. **Checkpoint after every component.** Append a line to `build-log.jsonl` immediately after each component is written.
-12. **All 17 GUIDELINES.md rules are hard constraints.** See Phase 8.
+12. **All 19 GUIDELINES.md rules are hard constraints.** See Phase 8.
 13. **Node 12 for dev server.** Any `npm start` / `npm run build` command in this repo requires `nvm use 12` first. Never run webpack with Node 14+ / 16+ / 18+ / 20+.
 14. **Target repo is garuda-ui, NOT the plugin repo.** All generated application code (`app/components/`, `app/services/`, `app/config/`, `app/utils/`) MUST be written to the **garuda-ui repo**, NOT to the plugin repo (`garuda-ui-claude-plugin`). The plugin repo only stores HLDs, PRDs, Figma cache, build checkpoints, and agent definitions under `claudeOutput/`. At Phase 0, resolve **both** repo paths — `GARUDA_UI_PATH` (for app code) and `PLUGIN_PATH` (for `claudeOutput/` and all build state). Use this priority order:
     1. **Current repo IS garuda-ui** — If the current working directory (or its repo root) contains `app/components/`, `app/services/`, and `package.json`, set `GARUDA_UI_PATH` = current repo root. Then resolve `PLUGIN_PATH`: look for sibling `../garuda-ui-claude-plugin/`, then up to 2 parent levels for a directory named `garuda-ui-claude-plugin`. If not found → create `claudeOutput/` inside `GARUDA_UI_PATH` as a fallback (but warn the user that plugin repo was not found).
@@ -130,9 +136,9 @@ Read the HLD in full using `Read` (chunk if >10k tokens). Extract and write `cla
 | `<nodeId-dash>/prop-spec-notes.json` | Valid antd/wrapper props per Cap* | Prop *keys* |
 | `<nodeId-dash>/metadata.xml` | Figma node tree with geometry + auto-layout | Tree *structure* |
 | `<nodeId-dash>/design-context.jsx` | Pixel-perfect Tailwind JSX from Figma MCP `get_design_context` | Layout, typography, colour **values** |
-| `<nodeId-dash>/prop-table.json` | Derived per-component antdProps/wrapperProps/caveats/styledPattern — written by figma-to-component Phase 2c (optional; fall back to prop-spec.json on miss or stale hash) | Prop validation *source of truth* |
+| `<nodeId-dash>/prop-table.json` | Derived per-component antdProps/wrapperProps/caveats/styledPattern (optional; fall back to prop-spec.json on miss or stale hash) | Prop validation *source of truth* |
 
-**All four primary cache files must be loaded** for every screen. If any is missing, call `figma-node-mapper` skill once — it regenerates all four. `prop-table.json` is an optional accelerator written by figma-to-component; Step 6b handles its absence gracefully.
+**All four primary cache files must be loaded** for every screen. If any is missing, call `figma-node-mapper` skill once — it regenerates all four. `prop-table.json` is an optional accelerator; Step 6b handles its absence gracefully.
 
 **Validation gate — two levels:**
 
@@ -195,7 +201,7 @@ If `get_design_context` on a child node also returns metadata-only (rare for sma
 
 1. `recipeTable[row].reviewerOverride` non-empty → use it as `targetComponent`.
 2. `recipeTable[row].recipeStatus === "EXACT"` → use `recipeTable[row].capComponent`.
-2b. `recipeTable[row].recipeStatus === "BESPOKE"` or `recipeTable[row].reviewerOverride` contains `"(BESPOKE)"` → this node has no Cap* equivalent. Do NOT halt. Delegate to figma-to-component-agent which will create a standalone custom component from scratch using Cap* primitives (Phase 2d Path C → Phase 4). The component name is derived from the Figma node name in PascalCase, or from the Reviewer Override value if present (e.g., `TierComparisonTable (BESPOKE)` → component name `TierComparisonTable`).
+2b. `recipeTable[row].recipeStatus === "BESPOKE"` or `recipeTable[row].reviewerOverride` contains `"(BESPOKE)"` → this node has no Cap* equivalent. Do NOT halt. hld-to-code will build a standalone custom component from scratch using Cap* primitives (CapRow, CapColumn, CapLabel, etc.) in Phase 5a. The component name is derived from the Figma node name in PascalCase, or from the Reviewer Override value if present (e.g., `TierComparisonTable (BESPOKE)` → component name `TierComparisonTable`).
 3. Cached recipe: walk `<nodeId-dash>.recipe.json`. Match the node by section name or fingerprint. Use its `targetComponent`.
 4. No cached recipe: call `figma-node-mapper` skill. Foreground only.
 5. If steps 1–4 still leave `targetComponent` null, or if recipe's `mappingStatus` is `UNMAPPED` with no reviewer override → **halt and use `AskUserQuestion`**. NOTE: `BESPOKE` is NOT the same as `UNMAPPED` — BESPOKE nodes are handled in step 2b, not here. Do not halt on BESPOKE.
@@ -254,7 +260,21 @@ Persist the answer in `resolved-questions.md`. The choice drives whether Phase 5
 
 ### 5.5 Write `component-plan.json` + `layout-plan.json`
 
-`component-plan.json` records Cap* choices (unchanged shape).
+**⚠️ IMMEDIATE DISK WRITE REQUIRED — use the Write tool NOW before proceeding to Phase 2.5.**
+
+Construct the `component-plan.json` object (schema below) and write it to:
+`<PLUGIN_PATH>/claudeOutput/build/<feature>/component-plan.json`
+
+Do NOT proceed to Phase 2.5 until the Write tool confirms the file was saved.
+This file MUST exist on disk before Phase 5a — hld-to-code reads it to determine the final `targetComponent` for every node before generating JSX.
+
+**Override propagation contract:** The `targetComponent` field on each entry is the FINAL resolved Cap* component after applying (in order) Reviewer Override (Rule 2), EXACT recipe, cached `recipe.json`, and the typography size rule (§5.3). hld-to-code reads `component-plan.json` in Phase 5a and treats each `targetComponent` as **authoritative**. `recipe.json` is never mutated — it stays a read-only, feature-agnostic cache — so overrides MUST live in `component-plan.json`.
+
+**RECONCILIATION RULE (mandatory during Phase 2 write):** For every component entry in `component-plan.json`, after determining `targetComponent` via §5.1 precedence, apply this final check:
+- If the entry's `reviewerOverride` field is non-empty → `targetComponent` MUST be set to the override value.
+- NEVER write an entry where `targetComponent ≠ reviewerOverride` when the override is populated.
+- Example: if `reviewerOverride = "CapSelect"` but the recipe says `CapMultiSelect`, set `targetComponent = "CapSelect"` (not `CapMultiSelect`).
+- The same reconciliation applies to `layout-plan.json`: when writing a node's `cap` field, if that node has a reviewer override in component-plan, use the override value in `layout-plan.json` as well.
 
 **NEW** — `layout-plan.json` records the extracted layout as a **tree** (not a flat array). The tree preserves parent-child relationships and cross-axis alignment so that codegen can correctly handle siblings with different widths (e.g. a full-width header above a narrower centered table).
 
@@ -329,80 +349,14 @@ Persist the answer in `resolved-questions.md`. The choice drives whether Phase 5
 - Parent nodes MUST include `alignItems` when set in Figma (e.g. `"center"`, `"flex-start"`). This is critical — it determines how children of different widths are positioned relative to each other.
 - Parent `width` + child `width` must be visible in the same subtree so the LLM can detect width differences between siblings (e.g. a `w-full` header next to a `w-1214px` table under an `items-center` parent).
 - Only include nodes that are structurally significant (containers with layout properties, Cap* components). Skip pure wrapper divs that add no layout information.
+- **No ad-hoc prop fields.** Field names on a `layoutTree` node or `visualProps[nodeId]` entry must be either: (a) a structural key (`nodeId`, `role`, `cap`, `width`, `height`, `display`, `direction`, `alignItems`, `justifyContent`, `gap`, `padding`, `margin`, `position`, `background`, `border*`, `borderRadius`, `children`, `text`, `fontSize`, `fontWeight`, `color`, `typography`, `props`), or (b) a key in `prop-spec[cap].antdProps ∪ wrapperProps`. Do NOT invent fields like `searchIconColor`, `placeholderText`, `iconColor` on a parent — slot contents belong to Phase 4.5's `enrichedProps`, not Phase 2's layoutTree.
+- **Do NOT write `"enrichedProps": {}`** as a placeholder during Phase 2. Omit the key entirely; Phase 4.5 creates it.
 
 **Migration (--resume):** On `--resume`, if `layout-plan.json` contains a flat `layout` key instead of `layoutTree`, re-run Phase 2 token extraction to produce the tree format. Do not attempt to consume the stale flat format.
 
 Every entry in `layout-plan.json` must map to **a real Figma node ID** in `design-context.jsx`. No entry is invented.
 
 **`incompleteDesignContext` persistence (mandatory):** When `INCOMPLETE_DESIGN_CONTEXT` is set to `true` (triggered by the Level B check in §5), write `"incompleteDesignContext": true` at the root of `layout-plan.json`. On `--resume`, read this field after loading `layout-plan.json` and restore the in-memory flag before Phase 5a begins. If the field is absent in a resumed run, treat it as `false` (assume drilling was completed).
-
----
-
-### 5.6 Prop Enrichment Pass (writes `enrichedProps` into `layout-plan.json`)
-
-**Purpose.** The registry (`component-mappings.json`) only covers the props its author pre-mapped — typically variants like `type`, `size`, `disabled`. Every other legal prop on a Cap* component (`onClick`, `loading`, `prefixIcon`, `block`, `dataSource`, `columns`, `onChange`, …) is invisible to downstream codegen, which has been explicitly forbidden (see `figma-to-component-agent.md` STEP B) from inventing props on its own. This pass closes that gap by running one focused LLM call per screen that consults the **full legal prop menu from `prop-spec.json`** alongside HLD actions and Figma semantics, and records its proposals into `layout-plan.json` as `enrichedProps`. Phase 5a then treats those proposals as first-class: `figma-to-component-agent` is allowed to emit any prop listed in `enrichedProps[nodeId]` as long as it also exists in `prop-table[ComponentName]`.
-
-This pass runs **after §5.5 and before Phase 2.5** (structure preview gate). It does not alter recipe.json, does not re-fetch Figma, and does not touch files outside `layout-plan.json`.
-
-#### Inputs (all already on disk)
-
-| File | Why it's needed |
-|------|-----------------|
-| `claudeOutput/build/<feature>/layout-plan.json` | `role`, `cap`, `text`, `visualProps`, `typography` per node — the enrichment target |
-| `claudeOutput/build/<feature>/hld-parsed.json` | Action handlers, states, user interactions per screen → drives behavioral props |
-| `claudeOutput/build/<feature>/api-contract.json` | Endpoints + payload shape → drives data props (`dataSource`, `columns`, `options`) |
-| `<GARUDA_UI_PATH>/tools/mapping-agent/src/registries/prop-spec.json` | Full legal prop menu per Cap* component (the "menu" the LLM picks from) |
-| `claudeOutput/figma-capui-mapping/<nodeDashId>.recipe.json` | Recipe `status` — EXACT/PARTIAL nodes get enrichment; UNMAPPED nodes are skipped |
-
-#### Algorithm (one LLM call per screen, not per node)
-
-1. **Gather**. Load the five inputs above. Collect every layout node whose `cap` is set and whose recipe status is EXACT or PARTIAL. Skip `inline: true` shell nodes.
-2. **Build the prompt**. For each candidate node, pass:
-   - `{nodeId, role, cap, text, visualProps[nodeId], typography}` from layout-plan
-   - `prop-spec[cap].antdProps` + `prop-spec[cap].wrapperProps` + `prop-spec[cap].caveats` (the full menu)
-   - The relevant HLD action/handler list for the screen (only actions, not narrative)
-   - The relevant API contract endpoints (only endpoint + response shape, not payload examples)
-3. **LLM task**. Single instruction:
-   > "For each node, propose additional props from `prop-spec` that the `role`, `text`, and HLD/API context **imply**. Every proposal must cite its source (`hld.actions.*`, `api.endpoints.*`, `prop-spec.caveats`, or `role+text heuristic`). Do not propose a prop that is not in `prop-spec[cap]`. Do not propose values that conflict with `visualProps[nodeId]`. If no enrichment applies, emit `{}` for that node."
-4. **Shape**. Model returns:
-   ```json
-   {
-     "<nodeId>": {
-       "<propKey>": { "value": "<expression>", "source": "<citation>" }
-     }
-   }
-   ```
-5. **Validate before persisting**. For every `(nodeId, propKey)`:
-   - `propKey` must appear in `prop-spec[cap].antdProps ∪ prop-spec[cap].wrapperProps`. If not → drop and log.
-   - `propKey` must NOT collide with a key already present in `layout-plan[nodeId].props` or `visualProps[nodeId]` (those win). If collision → drop and log.
-   - `source` must be one of the four citation classes listed above. If missing → drop and log.
-6. **Persist**. Write the validated map to `layout-plan.json` at `screens.<screenName>.enrichedProps`. Append a `build-log.jsonl` entry:
-   ```json
-   {"phase":"5.6","screen":"<name>","nodesEnriched":N,"propsAdded":M,"propsDropped":K,"ts":"<ISO8601>"}
-   ```
-
-#### Halt rules
-
-- If `prop-spec.json` is missing or unreadable → halt; cannot run enrichment without the menu.
-- If `hld-parsed.json` has no actions section for this screen → proceed, but only data/visual heuristics fire; log `"enrichmentDegraded": true` in the build log.
-- If the LLM returns a prop value that references an undefined handler (e.g. `onClick: "handleFoo"` but `handleFoo` is not in HLD actions) → drop with log entry; do not invent the handler.
-
-#### Phase 5a contract update
-
-`figma-to-component-agent` is invoked from Phase 5a with `layout-plan.json` already readable. Its STEP B (allowed props) is relaxed as follows:
-
-- A prop may be emitted if **either** (a) it is already present in `layout-plan[nodeId].props` / `visualProps[nodeId]`, **or** (b) it appears in `layout-plan[nodeId].enrichedProps` AND its key is in `prop-table[cap].antdProps ∪ wrapperProps`.
-- The "do not invent props" rule still applies to any prop not sourced from one of those three buckets.
-
-Every enriched prop emitted in generated JSX gets a trailing source comment so the Phase 7 audit can verify provenance:
-```jsx
-<CapButton type="secondary" onClick={handleCreateCustomField} /* enriched: hld.actions.createCustomField */>
-```
-
-#### Skipped when
-
-- `--resume` finds `enrichedProps` already present on every screen in `layout-plan.json` → skip pass.
-- User passes `--skip-prop-enrichment` (debug flag) → write empty `enrichedProps: {}` per screen and proceed.
 
 ---
 
@@ -505,8 +459,10 @@ For each entry in `apis[]`:
 
 | Status | Action |
 |---|---|
-| `confirmed` | Record real endpoint + method + payloads. No mock. |
-| `ASSUMED` | Record the assumed shape verbatim. Generate mock data that conforms to the `responsePayload` schema. |
+| `confirmed` | Record the real endpoint + method + payloads from the HLD/backend contract. Generate mock data that conforms to the confirmed `responsePayload`. |
+| `ASSUMED` | Record the assumed shape verbatim. Generate mock data that conforms to the assumed `responsePayload`. Mock payload carries the same uncertainty as the shape. |
+
+In both cases the real endpoint is wired, the mock is written, and traffic is routed through `USE_MOCK_<FEATURE>`. The flag defaults to `true` (local-dev friendly); flip to `false` to hit the real backend.
 
 **Gate**: If an ASSUMED API has a `responsePayload` or `requestPayload` that leaves field names/types undefined, **halt and ask the user**. Never invent field names — they become load-bearing downstream and hide real backend surprises.
 
@@ -531,6 +487,8 @@ Write `claudeOutput/build/<feature>/api-contract.json`:
   "mockFlagDefault": true
 }
 ```
+
+Every entry carries a `mockResponse`, irrespective of `status`. For `confirmed` APIs the `mockResponse` mirrors the real contract; for `ASSUMED` APIs it mirrors the assumed shape.
 
 ---
 
@@ -563,90 +521,334 @@ Write `claudeOutput/build/<feature>/file-plan.json`:
 
 ---
 
-## 8. Phase 5 — Code Generation (delegated UI + authored Redux + integration)
+## 7bis. Phase 4.5 — Prop Enrichment Pass (writes `enrichedProps` into `layout-plan.json`)
 
-**Critical architecture note**: Phase 5 is split into three sub-phases. hld-to-code **does not author UI code directly**. All JSX and styles.js files are generated by `figma-to-component-agent` invoked in orchestration mode. hld-to-code authors only the Redux/infrastructure files and then stitches them into figma-to-component's output.
+**Purpose.** The registry (`component-mappings.json`) only covers the props its author pre-mapped — typically variants like `type`, `size`, `disabled`. Every other legal prop on a Cap* component (`onClick`, `loading`, `prefixIcon`, `block`, `dataSource`, `columns`, `onChange`, …) needs to be determined before codegen. This pass runs one focused LLM call per screen that consults the **full legal prop menu from `prop-spec.json`** alongside HLD actions and Figma semantics, and records its proposals into `layout-plan.json` as `enrichedProps`. Phase 5a uses those proposals as first-class: any prop listed in `enrichedProps[nodeId]` that also exists in `prop-table[ComponentName]` may be emitted.
 
-**Rationale**: `figma-to-component-agent` achieves ~90% first-iteration visual fidelity by tree-walking `design-context.jsx` node-by-node. hld-to-code cannot replicate that fidelity while also authoring Redux, sagas, APIs, i18n, routes, and tests — the attention splits too thin. Delegate UI; orchestrate the rest.
+This pass runs **after Phase 4 (directory plan) and before Phase 5 (code generation)**. By this point, `component-plan.json` + `layout-plan.json` (Phase 2), `hld-parsed.json` (Phase 1), `api-contract.json` (Phase 3), and `file-plan.json` (Phase 4) all exist on disk. It does not alter recipe.json, does not re-fetch Figma, and does not touch files outside `layout-plan.json`.
 
-### Phase 5a — UI generation (delegated to figma-to-component-agent)
+#### Inputs (all already on disk)
 
-For each screen in `layout-plan.json`:
+| File | Produced by | Why it's needed |
+|------|-------------|-----------------|
+| `claudeOutput/build/<feature>/layout-plan.json` | Phase 2 §5.5 | `role`, `cap`, `text`, `visualProps`, `typography` per node — the enrichment target |
+| `claudeOutput/build/<feature>/hld-parsed.json` | Phase 1 | Action handlers, states, user interactions per screen → drives behavioral props |
+| `claudeOutput/build/<feature>/api-contract.json` | Phase 3 | Endpoints + payload shape → drives data props (`dataSource`, `columns`, `options`) |
+| `<GARUDA_UI_PATH>/tools/mapping-agent/src/registries/prop-spec.json` | static | Full legal prop menu per Cap* component (the "menu" the LLM picks from) |
+| `claudeOutput/figma-capui-mapping/<nodeDashId>.recipe.json` | figma-node-mapper | **Authoritative `props` and `slots` per node.** Stage A reads these verbatim and promotes them to `enrichedProps`. Stage B additionally consumes the recipe **subtree** (EXACT/PARTIAL descendants with `figmaComponentName`, `targetComponent`, `props`) to infer slot props when `recipe.slots` is empty. `mappingStatus` gates eligibility (EXACT/PARTIAL eligible; UNMAPPED skipped). |
 
-1. **Build the decomposition JSON** from HLD Section 3 (New Components) and Section 4 (Component Boundaries). Write to `claudeOutput/build/<feature>/decomposition.json` — **one file per feature** (not per screen). When a feature has multiple screens that share organisms, the same file covers all; each entry's `figmaNodeIds` scopes figma-to-component's tree-walk to the nodes belonging to that entry's screen recipe.
+#### Algorithm (deterministic Stage A, then one LLM call per screen in Stage B)
 
-   **Required schema** (must match the `--decomposition` flag accepted by `figma-to-component-agent`):
+**Stage A — Deterministic promotion from recipe (no LLM).** Collect every layout node whose `cap` is set and whose `recipe[nodeId].mappingStatus ∈ {EXACT, PARTIAL}`. Skip `inline: true` shell nodes. For each such node `n`:
 
+1. **Promote `recipe[n.nodeId].props` verbatim.** For each `(propKey, value)`:
+   - If `propKey ∈ prop-spec[n.cap].antdProps ∪ wrapperProps` AND `propKey` is not already in `layout-plan[n].props` / `visualProps[n]` → emit `enrichedProps[n][propKey] = { value, source: "recipe.props" }`.
+   - Else drop and log (collision or prop not in spec).
+
+2. **Promote populated `recipe[n.nodeId].slots` verbatim.** For each `(slotName, slotValue)` with non-empty slotValue:
+   - If `slotName ∉ prop-spec[n.cap]` → drop and log.
+   - If `slotValue` is a literal (string / number / boolean) → emit `enrichedProps[n][slotName] = { value: slotValue, source: "recipe.slots" }`.
+   - If `slotValue` references a descendant `d` (by `$ref` / nested recipe object / figma node id) → render `d` as JSX using `d.targetComponent` + `d.props`, recursing into `d.slots.children` if present. Emit `enrichedProps[n][slotName] = { value: "<Rendered JSX string>", source: "recipe.slots.<slotName> → <d.figmaNodeId>" }`.
+
+Stage A is best-effort. If `recipe.slots` is empty, proceed silently to Stage B. Do NOT halt, do NOT apply wrapper-name heuristics in Stage A.
+
+**Stage B — LLM pass for behavioural props AND nested-child slot inference.** One call per screen. For each candidate node `n`, pass:
+
+- `{nodeId, role, cap, text, enrichedProps[n] (from Stage A), visualProps[n], typography}` from layout-plan
+- `prop-spec[n.cap].antdProps ∪ wrapperProps ∪ caveats` — the legal prop menu
+- **The recipe subtree under `n`** — each descendant with `mappingStatus ∈ {EXACT, PARTIAL}` NOT already consumed by Stage A slot resolution, including `figmaNodeId`, `figmaComponentName` (wrapper name hint), `figmaNodeType`, `targetComponent`, `props`, and relative geometry from metadata.xml when available
+- HLD actions for the screen
+- API contract endpoints + response shape
+
+LLM instruction (single):
+
+> For each node, propose additional props from `prop-spec[cap]`. Two categories:
+>
+> **(i) Nested-child slot inference.** For each recipe descendant not already covered by Stage A, pick the prop-spec slot prop on the parent that best fits. Evidence: recipe wrapper `figmaComponentName` (e.g. `"Icon left"` → `prefixIcon`), relative x/y position from parent, text content, prop-spec caveats. Render the descendant's JSX using its `targetComponent` + `props`. Cite evidence as `"recipe descendant <id> <targetComponent> <status> + wrapper name '<name>' + <position> → <slotName>"`. If the parent's prop-spec has no slot that fits → omit; do not force.
+>
+> **(ii) Behavioural props.** Handlers (`onClick`, `onChange`, `onSubmit`), async flags (`loading`), data props (`dataSource`, `columns`, `options`) implied by HLD actions or API contract. Cite source as `hld.actions.<name>` / `api.endpoints.<name>` / `prop-spec.caveats`.
+>
+> Do NOT propose a prop already in `enrichedProps[n]` (Stage A wins). Do NOT propose variant/visual props already in `visualProps[n]`. Do NOT propose a prop not in `prop-spec[cap]`. If nothing applies, return `{}` for that node.
+
+Stage B output merges into `enrichedProps` without overwriting Stage A entries.
+
+4. **Shape**. Model returns (same shape for Stage B; Stage A writes the same shape directly):
    ```json
-   [
-     {
-       "role": "sidebar",
-       "name": "CapSideBar",
-       "inline": true
-     },
-     {
-       "role": "page-title",
-       "name": "PageHeading",
-       "inline": true
-     },
-     {
-       "role": "section:<slug>",
-       "name": "<OrganismName>",
-       "tier": "organism",
-       "targetPath": "app/components/organisms/<OrganismName>/",
-       "figmaNodeIds": ["<nodeId1>", "<nodeId2>"]
-     },
-     {
-       "role": "modal:<slug>",
-       "name": "<MoleculeName>",
-       "tier": "molecule",
-       "targetPath": "app/components/molecules/<MoleculeName>/",
-       "figmaNodeIds": ["<nodeId3>"]
+   {
+     "<nodeId>": {
+       "<propKey>": { "value": "<expression>", "source": "<citation>" }
      }
-   ]
+   }
    ```
-
-   **Field rules:**
-   - `role`: `"sidebar"` | `"page-title"` | `"section:<slug>"` | `"modal:<slug>"` | `"table:<slug>"`. Use slugs matching HLD Section 3 names.
-   - `inline: true`: rendered directly inside the page component — no separate file. Only for shell-provided or trivially small roles.
-   - `tier`: required when `inline` is absent. One of `"organism"` | `"molecule"` | `"atom"`.
-   - `targetPath`: directory where figma-to-component writes the component. Must end with `/`. Must be under `<GARUDA_UI_PATH>/`.
-   - `figmaNodeIds`: Figma node IDs from `<nodeId-dash>.recipe.json` that belong to this entry.
-
-   **Validation before passing to figma-to-component:**
-   - Every EXACT or PARTIAL recipe node from `component-plan.json` must appear in at least one entry's `figmaNodeIds`, or be `inline: true`.
-   - No two entries may share the same `name`.
-   - Every `targetPath` must be a new directory — grep to confirm it does not already exist.
-   - `inline: true` entries must NOT have `tier` or `targetPath`.
-
-2. **Invoke figma-to-component-agent as a sub-skill** (foreground — Figma MCP permission required):
-
+5. **Validate before persisting**. For every `(nodeId, propKey)` from both stages:
+   - `propKey` must appear in `prop-spec[cap].antdProps ∪ prop-spec[cap].wrapperProps`. If not → drop and log.
+   - `propKey` must NOT collide with a key already present in `layout-plan[nodeId].props` or `visualProps[nodeId]` (those win). If collision → drop and log.
+   - `source` must be one of: `recipe.props`, `recipe.slots`, `recipe.slots.<slotName> → <nodeId>`, `recipe descendant <id> <target> <status> + <evidence>`, `hld.actions.<name>`, `api.endpoints.<name>`, `prop-spec.caveats`. If missing or invalid → drop and log.
+6. **Persist**. Write the validated map to `layout-plan.json` at `screens.<screenName>.enrichedProps`. **Always** append a `build-log.jsonl` entry per screen, including no-op and skipped runs:
+   ```json
+   {"phase":"4.5","screen":"<name>","status":"complete|skipped|halted|degraded",
+    "skipReason":"<resume-with-data|user-flag|no-eligible-nodes|null>",
+    "stageA":{"nodesPromoted":N,"propsFromProps":P,"propsFromSlots":S},
+    "stageB":{"nodesProposed":N,"propsAdded":M,"propsDropped":K},
+    "ts":"<ISO8601>"}
    ```
-   Skill: figma-to-component
-   Arguments:
-     https://www.figma.com/design/<fileKey>/...?node-id=<nodeId>
-     --target-path <absolute-path-to-page-folder>
-     --target-component-name <ScreenName>
-     --target-library cap-ui-library
-     --decomposition <absolute-path-to-decomposition.json>
-     --omit-redux-wiring
-     --omit-route-registration
-     --emit-callback-stubs
-     --skip-plan-confirmation
+   Absence of any `"phase":"4.5"` entry after Phase 4 completes is a spec violation. Phase 5 pre-flight asserts this entry exists for every screen in `component-plan.json`.
+
+#### Halt rules
+
+- If `prop-spec.json` is missing or unreadable → halt; cannot run enrichment without the menu.
+- If `hld-parsed.json` has no actions section for this screen → proceed, but only data/visual heuristics fire; log `"enrichmentDegraded": true` in the build log.
+- If `api-contract.json` is missing for a screen whose HLD declares APIs → halt; Phase 3 did not complete. Do not degrade silently to heuristics — rerun Phase 3.
+- If the LLM returns a prop value that references an undefined handler (e.g. `onClick: "handleFoo"` but `handleFoo` is not in HLD actions) → drop with log entry; do not invent the handler.
+
+#### Phase 5a contract update
+
+hld-to-code reads `layout-plan.json` in Phase 5a. For each node, props may be emitted from two buckets:
+- (a) props already present in `layout-plan[nodeId].props` / `visualProps[nodeId]`
+- (b) props in `layout-plan[nodeId].enrichedProps` whose key also exists in `prop-table[cap].antdProps ∪ wrapperProps`
+
+The "do not invent props" rule still applies to any prop not sourced from one of those two buckets.
+
+When `enrichedProps[nodeId][slotName].value` is a JSX-string (produced from `recipe.slots.<slotName> → <descendantId>` in Stage A, or from Stage B's nested-child slot inference), Phase 5a emits it verbatim as the JSX attribute value, wrapping message-like string literals in `<FormattedMessage />` per the i18n rule.
+
+Every enriched prop emitted in generated JSX gets a trailing source comment so the Phase 7 audit can verify provenance:
+```jsx
+<CapButton type="secondary" onClick={handleCreateCustomField} /* enriched: hld.actions.createCustomField */>
+<CapInput prefixIcon={<CapIcon type="search" />} /* enriched: recipe.slots.prefixIcon → 123:5165 */ />
+```
+
+#### Skipped when
+
+- `--resume` finds `enrichedProps` **present AND non-empty for at least one eligible node** on every screen → skip pass. An empty-object placeholder (`{}`) does NOT count as "already run" — treat it as "not yet run" and execute the pass. Phase 2 MUST NOT write a `{}` placeholder (see §5.5 `layoutTree` rules); if a legacy layout-plan contains one, Phase 4.5 overwrites it on first run.
+- User passes `--skip-prop-enrichment` (debug flag) → write empty `enrichedProps: {}` per screen and proceed.
+
+---
+
+## 8. Phase 5 — Code Generation (UI + Redux + integration)
+
+**Architecture note**: Phase 5 is split into three sub-phases. hld-to-code authors ALL files directly — JSX, styles.js, Redux, infrastructure, and the final integration pass. Design tokens come from `layout-plan.json` (pre-extracted in Phase 2); component selection comes from the HLD Component Recipe table (Reviewer Override is final).
+
+**Rationale**: Direct authoring with garuda-ui institutional knowledge produces cleaner output with correct `withStyles` patterns, correct Cap* prop names, and correct Redux composition than delegating to a general-purpose visual agent that lacks this institutional knowledge.
+
+### Phase 5a — UI generation (JSX + styles.js, authored directly by hld-to-code)
+
+For each component in `component-plan.json` (pages, organisms, molecules, atoms):
+
+#### Pre-flight checks (MANDATORY — complete before writing any UI file)
+
+```bash
+# 1. layout-plan.json must exist (design tokens extracted in Phase 2)
+test -f "<PLUGIN_PATH>/claudeOutput/build/<feature>/layout-plan.json" && \
+  echo "✓ layout-plan.json" || echo "❌ MISSING — halt and run Phase 2 first"
+
+# 2. component-plan.json must exist with Reviewer Overrides populated
+test -f "<PLUGIN_PATH>/claudeOutput/build/<feature>/component-plan.json" && \
+  echo "✓ component-plan.json" || echo "❌ MISSING — halt and write it now"
+
+# 3. Phase 4.5 must have logged for every screen in layout-plan.json
+for screen in $(jq -r '.screens | keys[]' \
+    "<PLUGIN_PATH>/claudeOutput/build/<feature>/layout-plan.json"); do
+  grep -q "\"phase\":\"4.5\".*\"screen\":\"$screen\"" \
+    "<PLUGIN_PATH>/claudeOutput/build/<feature>/build-log.jsonl" || \
+    echo "❌ MISSING Phase 4.5 log for screen $screen — halt and run it"
+done
+```
+
+If `component-plan.json` is present but `reviewerOverrides` is `{}` AND the HLD has Reviewer Override entries → **HALT**. Re-derive overrides from HLD and rewrite the file before continuing.
+
+#### For each component file, follow these rules:
+
+**0. BESPOKE/UNMAPPED Node Resolution (before writing any JSX)**
+
+The mapping tool has already resolved every node before this agent runs. Two statuses require special handling:
+
+**0a. Resolution algorithm:**
+
+1. **UNMAPPED** — the mapping tool found a Cap* match via structural heuristics. Use `fallback.nearestComponent` directly:
    ```
+   [nodeId] [nodeName] → <nearestComponent>  (from recipe, pre-resolved)
+   ```
+   Wrap with `styled(<nearestComponent>)` + design tokens from `layout-plan.json`.
 
-3. **Read the manifest** figma-to-component writes to `<target-path>/ui-generation-manifest.json`. Copy it to `claudeOutput/build/<feature>/ui-generation-manifest.json` for state persistence.
+2. **BESPOKE (mappingStatus: "BESPOKE")** — no Cap* equivalent exists; the mapping tool determined this node requires a **standalone custom component file**. Do NOT generate it inline:
 
-4. **Validate the manifest** against `layout-plan.json`:
-   - Every node in `layout-plan.json[screens][*].layoutTree` (recursive walk) with a `cap` field should appear in `manifest.filesWritten`.
-   - Every EXACT recipe citation from `component-plan.json` should be present as a `// recipe: …` comment in the written files (grep-check).
-   - `manifest.tokensUsed` must be a subset of the tokens recorded in `layout-plan.json`. Any extra token → halt and ask.
+   - Derive component name from Figma node name in PascalCase (e.g. "Tier Badge" → `TierBadge`)
+   - Identify props by examining children and fills:
+     - TEXT child → `label: string` prop
+     - Fills on node → `color: string` prop (look up colorTokenMap from `layout-plan.json`)
+     - INSTANCE child with icon pattern → `icon: string` prop
+   - Record: `[nodeId] [nodeName] → <BespokeName> (BESPOKE — standalone file, Phase 5a will write it)`
 
-5. **Run Phase 7 Tier 1 + Tier 2 audit** against the generated files (yes — audit happens before wiring so bad UI is caught immediately). If any ❌/⚠️, halt and ask the user whether to patch or abort.
+**0b. BESPOKE standalone file template:**
 
-**Checkpoint**: append to `build-log.jsonl`:
+For BESPOKE nodes, emit a **separate file**:
+
+```jsx
+// app/components/atoms/TierBadge/TierBadge.js
+import styled from 'styled-components';
+import CapLabel from '@capillarytech/cap-ui-library/CapLabel';
+import CapIcon from '@capillarytech/cap-ui-library/CapIcon';
+import * as styledVars from '@capillarytech/cap-ui-library/styled/variables';
+
+const { CAP_G01, CAP_SPACE_04, CAP_SPACE_12, CAP_SPACE_16 } = styledVars;
+
+const StyledTierBadge = styled.div`
+  display: inline-flex;
+  align-items: center;
+  gap: ${CAP_SPACE_08};
+  padding: ${CAP_SPACE_04} ${CAP_SPACE_12};
+  border-radius: 4px;
+  background-color: ${props => props.color || CAP_G01};
+`;
+
+const TierBadge = ({ label, color, icon }) => (
+  <StyledTierBadge color={color}>
+    {icon && <CapIcon type={icon} />}
+    <CapLabel>{label}</CapLabel>
+  </StyledTierBadge>
+);
+
+export default TierBadge;
+```
+
+Parent component imports it:
+```jsx
+import TierBadge from './TierBadge';
+// <TierBadge label="Gold" color={CAP_COLOR_GOLD} icon="star" />
+```
+
+---
+
+**1. Token sourcing** — every CSS value must come from `layout-plan.json`. No raw hex, no raw px. Use Cap-UI SCSS variables (`$cap-space-*`, `$cap-g*`, `$cap-color-*`). If a token is not in the token list, look up the closest Cap-UI equivalent.
+
+**2. styles.js pattern (CRITICAL — violation causes runtime crash)**
+```js
+// ✅ CORRECT
+import { css } from 'styled-components';
+export default css`
+  .my-class { color: $cap-g01; }
+`;
+
+// ❌ WRONG — causes "Cannot create styled-component for component: [object Object]"
+const styles = (Component) => styled(Component)`...`;
+export default styles;
+```
+
+**3. className scoping (CRITICAL — violation silently kills all CSS)**
+
+`withStyles` generates `.generatedClass .yourClass { }` (child selector). The `className` prop injected by `withStyles` MUST land on a DOM element you own — never on a Cap* component alongside a custom class.
+
+```jsx
+// ✅ CORRECT — outer div carries className; component classes are children
+return (
+  <div className={className}>
+    <CapSomeContainer ... />
+  </div>
+);
+
+// ❌ WRONG — both classes on same element; child selectors never match
+return (
+  <CapSomeContainer className={`my-component ${className}`} ... />
+);
+```
+
+**4. Cap* prop verification (CRITICAL — stale prop-spec.json causes silent failures)**
+
+Before writing any `<Cap*` component:
+1. Look up the intended prop in `prop-spec.json`.
+2. **Also** grep the working codebase: `grep -r "CapXxx" <GARUDA_UI_PATH>/app/components --include="*.js" -l` → read a working example and verify prop names actually used there.
+3. If codebase and prop-spec disagree → **trust the codebase**. Update `prop-spec.json` first, then use the correct prop name.
+4. Never trust prop-spec alone for layout/positioning props (e.g. `placement` vs `position`, `show` vs `visible`, `onSelect` vs `onChange`) — these silently fail with no runtime error.
+
+**5. Named slot discipline (CRITICAL)**
+
+Cap* container components (CapSlideBox, CapModal, CapCard) provide built-in slots (`header`, `footer`, `content`). Pass ONLY the content the slot is designed for — never rebuild what the container already provides (close/back buttons, slot padding, footer row structure).
+
+Example for CapSlideBox:
+```jsx
+// ✅ CORRECT — simple title element in header slot; CapSlideBox renders its own close icon
+<CapSlideBox
+  show={show}
+  handleClose={onClose}
+  placement="right"
+  size="size-m"
+  header={<FormattedMessage {...messages.title} />}
+  content={<div className="content">...</div>}
+  footer={<div className="footer">...</div>}
+/>
+
+// ❌ WRONG — re-implementing close icon causes duplicate X; complex JSX in header may be discarded
+<CapSlideBox
+  header={
+    <div>
+      <span>Title</span>
+      <CapIcon type="close" onClick={onClose} />
+    </div>
+  }
+/>
+```
+
+**5a. CapTable Infinite Scroll (default unless HLD explicitly requires pagination)**
+
+Unless the HLD explicitly specifies pagination mode, always enable infinite scroll on CapTable. This is the platform default for data tables in garuda-ui.
+
+**⚠️ Typo in cap-ui-library:** The prop is spelled `infinteScroll` (not `infiniteScroll`). This is intentional in the library — do NOT correct it.
+
+```jsx
+// ✅ CORRECT — infinite scroll default with typo spelling
+<CapTable
+  dataSource={data}
+  columns={columns}
+  infinteScroll={true}        {/* ← intentional typo: 'infinteScroll' not 'infiniteScroll' */}
+  showLoader={isLoading}
+  pagination={pagination}
+  setPagination={onPaginationChange}
+  loadMoreData={formatMessage(messages.loadMore)}
+  scroll={{ x: 'max-content' }}
+/>
+
+// ❌ WRONG — pagination mode (only use if HLD explicitly requires it)
+<CapTable
+  dataSource={data}
+  columns={columns}
+  pagination={true}
+  // no infinteScroll prop
+/>
+```
+
+**Rules:**
+- **`infinteScroll={true}`** — required prop (with the typo spelling)
+- **`showLoader={isLoading}`** — show spinner while loading more rows
+- **`pagination={pagination}`** — state object tracking current page/limit
+- **`setPagination={onPaginationChange}`** — callback to update pagination state on scroll
+- **`loadMoreData={formatMessage(messages.loadMore)}`** — button label for loading more
+- **`scroll={{ x: 'max-content' }}`** — horizontal scroll for wide tables
+
+The four props (`pagination`, `setPagination`, `loadMoreData`, `showLoader`) are **mandatory companions** to `infinteScroll`. Without them, the table cannot fetch or render new rows.
+
+If the HLD Section 7 explicitly states "paginated UI with page numbers", use pagination mode instead (no `infinteScroll` prop, use `pagination={true}`). This is rare — default to infinite scroll.
+
+**6. Component file structure**
+
+Each new component directory gets:
+```
+<ComponentName>/
+  <ComponentName>.js     ← JSX + withStyles HOC export
+  styles.js              ← css`` template literal
+  messages.js            ← defineMessages (i18n strings)
+  index.js               ← re-export (if needed)
+```
+
+**7. Pre-emission validator** — before writing each file, verify:
+- All Cap* props exist in `prop-spec.json` (and cross-checked against codebase)
+- All tokens exist in Cap-UI variables (grep `node_modules/@capillarytech/cap-ui-library/CapStyles/variables.scss`)
+- No raw hex (`#[0-9a-fA-F]{3,6}`), no raw px values (e.g. `width: 440px`) — use tokens
+- `styles.js` exports `css\`...\`` (never a function)
+- `className` from `withStyles` is on an element you own
+
+**Checkpoint** per file:
 ```json
-{"phase":"5a","delegatedTo":"figma-to-component","screen":"BenefitsSettings","filesWritten":N,"tokensUsed":[...],"manifestPath":"...","status":"complete","ts":"<ISO8601>"}
+{"phase":"5a","file":"app/components/molecules/BenefitsTable/BenefitsTable.js","authoredBy":"hld-to-code","status":"written","ts":"<ISO8601>"}
 ```
 
 ### Phase 5b — Redux + infrastructure generation (authored by hld-to-code)
@@ -662,7 +864,7 @@ app/components/pages/<PageName>/
   reducer.js         ← hld-to-code (fromJS initial state, switch-based)
   selectors.js       ← hld-to-code (reselect makeSelect* factories)
   saga.js            ← hld-to-code (watchers + workers from HLD Section 7)
-  messages.js        ← hld-to-code (defineMessages from manifest.stringSlots + HLD)
+  messages.js        ← hld-to-code (defineMessages from HLD i18n strings + Phase 5a string inventory)
   Loadable.js        ← hld-to-code (loadable + withCustomAuthAndTranslations)
   index.js           ← hld-to-code (export default from Loadable)
 ```
@@ -752,7 +954,7 @@ export { default } from './TierComparisonTable';
 ```
 Missing named re-exports cause silent `undefined` in any file that imports from the index path.
 
-**Extended `index.js` check — covers Phase 5a outputs (mandatory):** The rule above applies to files hld-to-code authors in Phase 5b. figma-to-component may also generate organisms and molecules with named exports that Phase 5b never audits. After Phase 5a completes, for every `index.js` in `manifest.filesWritten`, grep the sibling component file:
+**Extended `index.js` check — covers Phase 5a outputs (mandatory):** After Phase 5a completes, for every `index.js` written, grep the sibling component file:
 ```bash
 # e.g. for TierComparisonTable/index.js, check TierComparisonTable/TierComparisonTable.js:
 grep -E "^export (const|function|class|\{)" <GARUDA_UI_PATH>/app/components/organisms/<Name>/<Name>.js
@@ -769,19 +971,19 @@ Every named export found must appear in the corresponding `index.js`. If it only
 {"phase":"5b","file":"app/components/pages/BenefitsSettings/reducer.js","authoredBy":"hld-to-code","status":"written","ts":"<ISO8601>"}
 ```
 
-### Phase 5c — Integration pass (stitch UI to Redux)
+### Phase 5c — Integration pass (wire UI to Redux)
 
-hld-to-code now edits the files figma-to-component wrote to wire them into the Redux infrastructure.
+hld-to-code now edits the UI files it wrote in Phase 5a to wire them into the Redux infrastructure.
 
-For each file in `manifest.filesWritten`:
+For each page/organism file written in Phase 5a:
 
 1. **Add Redux HOC composition** (only to the root page component — `<PageName>.js`):
    - Add imports: `connect` from 'react-redux', `compose` + `bindActionCreators` from 'redux', `createStructuredSelector` from 'reselect', `injectReducer` + `injectSaga` + `withStyles` + `clearDataOnUnmount` from '@capillarytech/vulcan-react-sdk/utils', `injectIntl` from 'react-intl'.
    - Import local `actions`, `reducer`, `saga`, `BENEFITS_SETTINGS_INJECT_KEY` from `./constants`, and the selector factories from `./selectors`.
-   - Emit `mapStateToProps = createStructuredSelector({...})` using the selectors matching `manifest.propsRequired[<PageName>]`.
+   - Emit `mapStateToProps = createStructuredSelector({...})` using the selectors for all data props the page component needs (derived from `selectors.js` and HLD Section 7).
    - Emit `mapDispatchToProps = (dispatch) => ({ actions: bindActionCreators(actions, dispatch) })`.
    - Add import: `withErrorBoundary` from `'utils/withErrorBoundary'` (webpack alias — NOT from `@capillarytech/vulcan-react-sdk/utils`).
-   - Replace `export default <PageName>;` (what figma-to-component emits under `--omit-redux-wiring`) with:
+   - Replace `export default <PageName>;` (the plain export from Phase 5a) with:
      ```js
      const withReducer = injectReducer({ key: BENEFITS_SETTINGS_INJECT_KEY, reducer });
      const withSaga = injectSaga({ key: BENEFITS_SETTINGS_INJECT_KEY, saga });
@@ -800,17 +1002,9 @@ For each file in `manifest.filesWritten`:
      ```
      If no match → **halt**: "clearDataOnUnmount string `'<string>'` does not match any action creator in actions.js. Found action creators: `<list>`. Which one should be used for cleanup?" Do NOT ship a mismatched string — it silently disables cleanup and leaks stale Redux state.
 
-2. **Fill callback slots** from `manifest.callbackSlots`:
-   - For each slot, cross-reference the HLD's "User Interactions → Redux Actions" table (`hld-parsed.json[screens][*].interactions`).
-   - The slot's `marker` text (e.g. "HANDLER: New custom field CTA") must match a `description` in the interactions table.
-   - Resolve the action creator from `actions.js`. Replace the `/* HANDLER: … */` marker with the action creator reference:
-     ```js
-     // Before (figma-to-component output):
-     onClick={/* HANDLER: New custom field CTA */}
-     // After (hld-to-code edit):
-     onClick={props.actions.openCreateCustomFieldModal}
-     ```
-   - If the slot has no matching interaction in the HLD, **halt and ask** the user.
+2. **Wire event handlers** from HLD "User Interactions → Redux Actions" table (`hld-parsed.json[screens][*].interactions`):
+   - For each interaction, resolve the action creator from `actions.js` and wire it to the correct event prop.
+   - If a handler's target action creator is unclear, **halt and ask** the user.
    - **`useEffect` dependency array rule (mandatory):** When filling or writing any `useEffect`, never emit `// eslint-disable-line react-hooks/exhaustive-deps` or `// eslint-disable-next-line react-hooks/exhaustive-deps`. Instead:
      - Fill the dependency array correctly with every variable referenced inside the effect.
      - If an effect must intentionally run only once on mount (e.g. initial data fetch), document it explicitly:
@@ -831,13 +1025,12 @@ For each file in `manifest.filesWritten`:
      ```
      The initial render before any data fetch should show nothing (or a skeleton), not a spinner. If INITIAL needs special handling, emit a separate condition.
 
-3. **Replace string literals with i18n**:
-   - For each entry in `manifest.stringSlots`:
-     - Ensure the `suggestedIntlKey` exists in `messages.js` (add if missing).
-     - Replace the literal with `<FormattedMessage {...messages.<key>} />` or `formatMessage(messages.<key>)` depending on JSX vs expression context.
+3. **Verify i18n completeness**:
+   - All string literals in Phase 5a files must use `<FormattedMessage {...messages.<key>} />` or `formatMessage(messages.<key>)`.
+   - Cross-check `messages.js` has an entry for every string used. Add missing entries.
 
 4. **Add PropTypes**:
-   - For each entry in `manifest.propsRequired[<Component>]`:
+   - For each prop the component receives:
      - Append a PropTypes declaration with a reasonable type inferred from the selector's return shape (`array`, `string`, `object`, `func`, etc.).
      - Append a `defaultProps` entry for optional props.
    - **`intl` prop rule (mandatory):** `intl` injected by `injectIntl` must follow this exact pattern:
@@ -849,7 +1042,7 @@ For each file in `manifest.filesWritten`:
      ```
      Never put `intlShape` or `intlShape.isRequired` in `defaultProps` — `intlShape` is a PropTypes validator shape, not a value. This is a silent wrong-type assignment that won't crash but is semantically incorrect.
 
-5. **Add `aria-label` to interactive Cap* elements** (GUIDELINES #7). figma-to-component should emit these already when the decomposition manifest tags an element as interactive; verify and patch.
+5. **Add `aria-label` to interactive Cap* elements** (GUIDELINES #7). Every interactive element (buttons, inputs, selects) must have an `aria-label`. Verify and patch any missing ones.
 
    **Empty state enforcement (mandatory):** For every list/table/grid rendered from Redux data, confirm the JSX includes all three states after the fetch:
    ```jsx
@@ -879,7 +1072,7 @@ For each file in `manifest.filesWritten`:
 
    **Step 6b — Read prop constraints for each extracted component:**
 
-   Prefer the derived `prop-table.json` written by figma-to-component Phase 2c (faster, scoped to the recipe). Fall back to `prop-spec.json` if the derived file is missing or its hash is stale.
+   Prefer the derived `prop-table.json` if available in the Figma cache directory (faster, scoped to the recipe). Fall back to `prop-spec.json` if the derived file is missing or its hash is stale.
 
    ```bash
    node -e "
@@ -897,7 +1090,7 @@ For each file in `manifest.filesWritten`:
      const currentHash = crypto.createHash('sha256').update(fs.readFileSync(specPath)).digest('hex');
      if (pt.sourceSpecHash === 'sha256:' + currentHash) {
        lookup = (name) => pt.components[name];
-       source = 'prop-table.json (figma-to-component Phase 2c)';
+       source = 'prop-table.json (cached)';
      }
    }
    if (!lookup) {
@@ -973,15 +1166,9 @@ Record each edit in `claudeOutput/build/<feature>/integration-patches.md` as a d
 
 ### Resume semantics
 
-- If `build-log.jsonl` has a `"phase":"5a","status":"complete"` line, skip Phase 5a (unless `--force`).
+- If `build-log.jsonl` has a `"phase":"5a","status":"complete"` line for a specific file, skip that file (unless `--force`).
 - If `build-log.jsonl` has a `"phase":"5b"` line per expected Redux file, skip those specific files.
-- Phase 5c is idempotent: it re-reads the manifest and re-applies edits. Re-runs are safe even without explicit skip.
-
-### Fallback: if figma-to-component fails or is unavailable
-
-If figma-to-component-agent is missing, errors, or returns an invalid manifest:
-1. **Halt and ask** the user: proceed with fallback authoring (hld-to-code writes UI directly using Fix 1-6 rules — ~85% fidelity), or abort?
-2. On fallback: use the original Phase 5 rules — the pre-emission validator, EXACT citations, accessibility, etc., all still apply.
+- Phase 5c is idempotent: it re-reads written files and re-applies edits. Re-runs are safe even without explicit skip.
 
 ---
 
@@ -989,7 +1176,7 @@ If figma-to-component-agent is missing, errors, or returns an invalid manifest:
 
 1. **`app/config/endpoints.js`** — append new endpoint constants using the existing naming convention (see the file).
 2. **`app/services/api.js`** — append service functions following the pattern of `getLocizeMessage` / `logout` (lines 74–100): `httpRequest(url, getAryaAPICallObject(METHOD))` or the IRIS equivalent, wrapped in `prepareVulcanSuccessResponseStructure`.
-3. **`app/services/<feature>.mock.js`** — export one function per ASSUMED API. The function MUST return `Promise.resolve(mockResponse)` — not a plain object — because the real `httpRequest` is async and anything calling the function with `.then()` will throw if the mock is synchronous.
+3. **`app/services/<feature>.mock.js`** — export one function per API entry (both `confirmed` and `ASSUMED`). The function MUST return `Promise.resolve(mockResponse)` — not a plain object — because the real `httpRequest` is async and anything calling the function with `.then()` will throw if the mock is synchronous.
 
    The `mockResponse` object is the exact value the saga receives and normalizes. It must include at least 2–3 realistic list items (never an empty array — an empty mock makes the UI always show the empty state and hides real rendering bugs).
 
@@ -1016,7 +1203,7 @@ If figma-to-component-agent is missing, errors, or returns an invalid manifest:
    - Field names must match what `selectors.js` reads via `.get('fieldName')` — cross-check after writing.
    - If the real API uses `prepareVulcanSuccessResponseStructure`, wrap accordingly: `Promise.resolve({ result: mockData, success: true })`.
 
-4. **Mock-swap wiring** — in `api.js`, for each ASSUMED endpoint:
+4. **Mock-swap wiring** — in `api.js`, for every endpoint in `apis[]` (both `confirmed` and `ASSUMED`):
 
 ```javascript
 import { getBenefitsCustomFieldsMock } from './benefits-settings.mock';
@@ -1073,7 +1260,7 @@ Passes only when every value is token-backed.
 
    Auto-fix: update the prop value in the generated file to match `visualProps`. Re-run Tier 1 after fix.
 
-6. **enrichedProps provenance check** (runs when `layout-plan.json` contains an `enrichedProps` section from §5.6): For each `(nodeId, propKey)` in `enrichedProps`, grep the generated JSX for the node's `// nodeId: <id>` comment and verify the prop is present. For every enriched prop found, confirm a trailing `/* enriched: <source> */` comment exists and the `<source>` matches the one persisted in `layout-plan.json`:
+6. **enrichedProps provenance check** (runs when `layout-plan.json` contains an `enrichedProps` section from Phase 4.5): For each `(nodeId, propKey)` in `enrichedProps`, grep the generated JSX for the node's `// nodeId: <id>` comment and verify the prop is present. For every enriched prop found, confirm a trailing `/* enriched: <source> */` comment exists and the `<source>` matches the one persisted in `layout-plan.json`:
 
    ```
    | Figma node | Prop | Expected source | Found in code | Status |
@@ -1082,9 +1269,19 @@ Passes only when every value is token-backed.
    | 24:2784 CapButton | prefixIcon | role+text heuristic | /* enriched: role+text heuristic */ | ✅ |
    ```
 
-   Missing or mismatched provenance is not auto-fixed — halt and ask whether to re-run Phase 5.6 or strip the `enrichedProps` entry.
+   Missing or mismatched provenance is not auto-fixed — halt and ask whether to re-run Phase 4.5 or strip the `enrichedProps` entry.
 
-Passes only when every non-trivial Figma node is present in code with the correct Cap* type, every `visualProps` variant matches the emitted prop value, and every `enrichedProps` entry either appears in code with matching provenance or has been explicitly dropped by the user.
+7. **Reviewer Override compliance check (mandatory):** Load `component-plan.json`. For every entry where `reviewerOverride` is non-empty, verify that `targetComponent === reviewerOverride`. Any mismatch indicates Phase 2 reconciliation was skipped. Emit a row:
+
+   ```
+   | Figma node | Section | Expected (override) | Found (targetComponent) | Status |
+   |---|---|---|---|---|
+   | 122:4334 | Program name Multi-Select | CapSelect | CapMultiSelect | ❌ reconciliation-skipped |
+   ```
+
+   On mismatch → **FAIL the build with detail message:** "Phase 2 override reconciliation rule violated: entry 122:4334 has `reviewerOverride='CapSelect'` but `targetComponent='CapMultiSelect'`. Per §5.5 contract, `targetComponent` must equal the override when override is non-empty. Run Phase 2 again and apply the reconciliation rule."
+
+Passes only when every non-trivial Figma node is present in code with the correct Cap* type, every `visualProps` variant matches the emitted prop value, every `enrichedProps` entry either appears in code with matching provenance or has been explicitly dropped by the user, and every reviewer override in `component-plan.json` is honoured (`targetComponent === reviewerOverride`).
 
 ### Tier 3 — Human-in-the-Loop Visual QA Loop (OPT-IN)
 
@@ -1366,6 +1563,13 @@ Load `.claude/output/GUIDELINES.md`. For every file written in Phase 5–6, audi
 | .../CustomFieldsTable.js | 7 | aria-label on interactive elements | FAIL | Added `aria-label="Create custom field"` |
 | ... | ... | ... | ... | ... |
 
+Additional audit checks for Rules 01-6 and 01-7 (run via grep on every styles.js file):
+
+| Rule | Grep check | Action on hit |
+|------|-----------|---------------|
+| 01-6 Ant Design DOM hierarchy | Non-`none` `border:` on `.ant-input-affix-wrapper`, `.ant-select-selector`, `.ant-picker-input` without outer wrapper suppression | Flag as double-border violation. Auto-fix: move border to outermost class + add `border: none` on inner. |
+| 01-7 Audit-before-override | Non-zero horizontal `padding` on styled-components passed as `header`/`content`/`footer` to `CapSlideBox` or `CapModal` | Flag as double-padding violation. Auto-fix: remove horizontal padding (slot already provides `0 48px`). For component swaps (e.g. CapDrawer → CapSlideBox), verify ALL styles in the file were re-audited against the new component's internal model. |
+
 Auto-fix deterministic violations (hex → token, inline style → styles.js, missing PropTypes append, `console.log` removal, `var` → `const/let`). For judgement-call violations (atomic-tier disagreement, HOC necessity, file-split boundaries), **halt and ask the user**.
 
 Finally run `npm run lint -- --quiet` on the generated files. If lint fails, surface the errors to the user before continuing.
@@ -1380,7 +1584,7 @@ Write `claudeOutput/build/<feature>/build-report.md` containing:
 2. **Files** — created (count + list), modified (count + list).
 3. **Components** — by tier (atoms N, molecules N, organisms N, templates N, pages N).
 4. **Redux** — slices added with inject keys.
-5. **APIs** — confirmed vs mocked count; list each with status and mock flag.
+5. **APIs** — list each with `status` (confirmed/ASSUMED) and mock flag. All entries have mocks; the status indicates the provenance of the response shape, not the presence of a mock.
 6. **EXACT citations** — list each EXACT recipe entry and where it landed in code (proves no substitution).
 7. **Screenshot audit outcome** — PASS / PASS-WITH-DEFERRED / FAIL.
 8. **Guideline compliance** — summary (X passed / Y auto-fixed / Z user-resolved).
@@ -1405,9 +1609,7 @@ Print one console line:
 | `preview-skeleton.jsx` | 2.5 | Page-level JSX skeleton — confirms Cap* tree before codegen |
 | `api-contract.json` | 3 | Resolved API contracts + mock payloads |
 | `file-plan.json` | 4 | Dry-run file tree |
-| `decomposition.json` | 5a | Decomposition passed to figma-to-component-agent (per-screen atomic-tier split) |
-| `ui-generation-manifest.json` | 5a | Contract returned by figma-to-component — filesWritten, propsRequired, callbackSlots, stringSlots |
-| `integration-patches.md` | 5c | Log of edits hld-to-code applied to figma-to-component's output |
+| `integration-patches.md` | 5c | Log of Redux wiring edits hld-to-code applied to Phase 5a UI files |
 | `build-log.jsonl` | 5 | Append-only per-component + per-phase checkpoint |
 | `screenshot-audit.md` | 7 | 3-tier design audit (token + structural + optional visual) |
 | `visual-diff/` | 7 (Tier 3 only) | Per-iteration actual/expected/diff PNGs, if `--visual-audit` |
@@ -1425,8 +1627,7 @@ Print one console line:
 - **Do not** dispatch background sub-agents for Figma work. Foreground only.
 - **Do** dispatch `Explore` sub-agents for pure read-only codebase research (finding an existing utility, locating a reference pattern).
 - **Do** call the `figma-node-mapper` skill inline (foreground) for uncached node IDs in Phase 2.
-- **Do** invoke the `figma-to-component` skill in orchestration mode (foreground) in Phase 5a for every screen's UI generation. This is the primary UI-authoring path.
-- **Do NOT** author JSX or `styles.js` files directly in Phase 5a. Only Phase 5b (Redux/infrastructure) and Phase 5c (edits to figma-to-component's output) are authored by hld-to-code itself.
+- **Do** author JSX and `styles.js` files directly in Phase 5a — hld-to-code generates all UI code itself using `layout-plan.json` tokens and HLD Component Recipe entries.
 
 ---
 
