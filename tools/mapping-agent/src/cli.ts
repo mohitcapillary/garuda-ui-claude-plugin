@@ -219,7 +219,7 @@ program
   )
   .requiredOption(
     '--library-path <path>',
-    'Path to the cap-ui-library root (e.g. node_modules/@capillarytech/cap-ui-library)',
+    'Path to the cap-ui-library root in the target garuda-ui repo (e.g. <GARUDA_UI_PATH>/node_modules/@capillarytech/cap-ui-library)',
   )
   .requiredOption(
     '--output <path>',

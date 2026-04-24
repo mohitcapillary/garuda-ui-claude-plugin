@@ -225,7 +225,7 @@ program
     .command('generate-prop-spec')
     .description('Scan a Cap* component library and generate prop-spec.json — ' +
     'detects antd spread pattern, reads antd .d.ts, extracts propTypes')
-    .requiredOption('--library-path <path>', 'Path to the cap-ui-library root (e.g. node_modules/@capillarytech/cap-ui-library)')
+    .requiredOption('--library-path <path>', 'Path to the cap-ui-library root in the target garuda-ui repo (e.g. <GARUDA_UI_PATH>/node_modules/@capillarytech/cap-ui-library)')
     .requiredOption('--output <path>', 'Output path for prop-spec.json (e.g. src/registries/prop-spec.json)')
     .option('--antd-lib-path <path>', 'Path to antd/lib (auto-detected from libraryPath if omitted)')
     .option('--only <components>', 'Comma-separated list of component names to process (e.g. CapRow,CapButton)')

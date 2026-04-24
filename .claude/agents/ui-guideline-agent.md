@@ -42,9 +42,9 @@ Store all counts in memory for Phase 4-6.
 
 ### Phase 2: Cap-UI-Library Discovery
 
-1. Read `node_modules/@capillarytech/cap-ui-library/package.json` — extract `version`.
+1. Read `<GARUDA_UI_PATH>/node_modules/@capillarytech/cap-ui-library/package.json` — extract `version`.
 
-2. Read `node_modules/@capillarytech/cap-ui-library/styled/variables.js` — extract ALL exported constants. Categorize them:
+2. Read `<GARUDA_UI_PATH>/node_modules/@capillarytech/cap-ui-library/styled/variables.js` — extract ALL exported constants. Categorize them:
 
    | Category | Pattern | Examples |
    |----------|---------|---------|
@@ -63,14 +63,14 @@ Store all counts in memory for Phase 4-6.
 
    Build a **token registry** mapping each token name to its value and category. You will use this in Phase 3 to detect hardcoded values that should use tokens.
 
-3. Read `node_modules/@capillarytech/cap-ui-library/index.js` — extract all named exports. These are the **public components**.
+3. Read `<GARUDA_UI_PATH>/node_modules/@capillarytech/cap-ui-library/index.js` — extract all named exports. These are the **public components**.
 
 4. List all component directories:
    ```
-   Glob: node_modules/@capillarytech/cap-ui-library/Cap*/
+   Glob: <GARUDA_UI_PATH>/node_modules/@capillarytech/cap-ui-library/Cap*/
    ```
 
-5. Read `node_modules/@capillarytech/cap-ui-library/assets/HOCs/ComponentWithLabelHOC.js` — note the HOC pattern.
+5. Read `<GARUDA_UI_PATH>/node_modules/@capillarytech/cap-ui-library/assets/HOCs/ComponentWithLabelHOC.js` — note the HOC pattern.
 
 6. Note: The library has **no TypeScript definitions** (no .d.ts files), **no CSS custom properties** (no --cap-* vars), and **no breakpoint tokens**.
 

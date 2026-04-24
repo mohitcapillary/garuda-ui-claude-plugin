@@ -193,7 +193,7 @@ When the root frame's `design-context.jsx` is metadata-only, the pipeline MUST d
 
 6. **`visualProps` overrides the HLD spec and recipe `props` field** for component type/variant values. It is the single source of truth for "what variant did the designer use."
 
-If `get_design_context` on a child node also returns metadata-only (rare for small nodes): read `node_modules/@capillarytech/cap-ui-library/<ComponentName>/index.js` to identify valid `type` values, then use `AskUserQuestion` to confirm which variant is correct.
+If `get_design_context` on a child node also returns metadata-only (rare for small nodes): read `<GARUDA_UI_PATH>/node_modules/@capillarytech/cap-ui-library/<ComponentName>/index.js` to identify valid `type` values, then use `AskUserQuestion` to confirm which variant is correct.
 
 ---
 
@@ -220,8 +220,8 @@ Walk every `<div>` / `<p>` in `design-context.jsx`. For each element, extract:
 
 Map every value to a Cap-UI token:
 
-- **Colours** via `tools/mapping-agent/src/registries/token-mappings.json` and `node_modules/@capillarytech/cap-ui-library/styled/variables.js`. Known mappings: `#091e42`→`CAP_G01`, `#253858`→`CAP_G02`, `#42526e`→`CAP_G03`, `#5e6c84`→`CAP_G04`, `#97a0af`→`CAP_G05`, `#b3bac5`→`CAP_G06`, `#dfe2e7`→`CAP_G07`, `#ebecf0`→`CAP_G08`, `#f4f5f7`→`CAP_G09`, `#ffffff`→`CAP_WHITE`, primary green (`#47af46`/`#42b040`) → primary-base. **There is no `CAP_G00`.**
-- **Spacing** via `CAP_SPACE_*` (4→`CAP_SPACE_04`, 8→`CAP_SPACE_08`, 12→`CAP_SPACE_12`, 16→`CAP_SPACE_16`, 20→`CAP_SPACE_20`, 24→`CAP_SPACE_24`, 28→`CAP_SPACE_28`, 32→`CAP_SPACE_32`, 48→`CAP_SPACE_48`, 72→`CAP_SPACE_72`). Never invent `CAP_SPACE_XX` names — grep `variables.js` first.
+- **Colours** via `<PLUGIN_PATH>/tools/mapping-agent/src/registries/token-mappings.json` and `<GARUDA_UI_PATH>/node_modules/@capillarytech/cap-ui-library/styled/variables.js`. Known mappings: `#091e42`→`CAP_G01`, `#253858`→`CAP_G02`, `#42526e`→`CAP_G03`, `#5e6c84`→`CAP_G04`, `#97a0af`→`CAP_G05`, `#b3bac5`→`CAP_G06`, `#dfe2e7`→`CAP_G07`, `#ebecf0`→`CAP_G08`, `#f4f5f7`→`CAP_G09`, `#ffffff`→`CAP_WHITE`, primary green (`#47af46`/`#42b040`) → primary-base. **There is no `CAP_G00`.**
+- **Spacing** via `CAP_SPACE_*` (4→`CAP_SPACE_04`, 8→`CAP_SPACE_08`, 12→`CAP_SPACE_12`, 16→`CAP_SPACE_16`, 20→`CAP_SPACE_20`, 24→`CAP_SPACE_24`, 28→`CAP_SPACE_28`, 32→`CAP_SPACE_32`, 48→`CAP_SPACE_48`, 72→`CAP_SPACE_72`). Never invent `CAP_SPACE_XX` names — grep `<GARUDA_UI_PATH>/node_modules/@capillarytech/cap-ui-library/styled/variables.js` first.
 - **Typography** via the size→type lookup in §5.3 below.
 
 **No CSS value in generated code may be a raw hex, raw px, or raw rem.** Every value must trace back to a token extracted from `design-context.jsx` and recorded in `layout-plan.json`.
@@ -801,7 +801,7 @@ Example for CapSlideBox:
 
 **5a. CapTable Infinite Scroll (default unless HLD explicitly requires pagination)**
 
-Unless the HLD explicitly specifies pagination mode, always enable infinite scroll on CapTable. This is the platform default for data tables in the target app.
+Unless the HLD explicitly specifies pagination mode, always enable infinite scroll on CapTable. This is the platform default for data tables in garuda-ui.
 
 **⚠️ Typo in cap-ui-library:** The prop is spelled `infinteScroll` (not `infiniteScroll`). This is intentional in the library — do NOT correct it.
 
@@ -852,7 +852,7 @@ Each new component directory gets:
 
 **7. Pre-emission validator** — before writing each file, verify:
 - All Cap* props exist in `prop-spec.json` (and cross-checked against codebase)
-- All tokens exist in Cap-UI variables (grep `node_modules/@capillarytech/cap-ui-library/CapStyles/variables.scss`)
+- All tokens exist in Cap-UI variables (grep `<GARUDA_UI_PATH>/node_modules/@capillarytech/cap-ui-library/CapStyles/variables.scss`)
 - No raw hex (`#[0-9a-fA-F]{3,6}`), no raw px values (e.g. `width: 440px`) — use tokens
 - `styles.js` exports `css\`...\`` (never a function)
 - `className` from `withStyles` is on an element you own
@@ -1132,7 +1132,7 @@ For each page/organism file written in Phase 5a:
    **Step 6c — For every prop used on each Cap* component in the file, validate:**
    - The prop key must appear in either `antdProps` OR `wrapperProps` for that component.
    - If a prop key is NOT in either list → **halt and use `AskUserQuestion`**: "Prop `<propKey>` is not in prop-spec for `<ComponentName>`. Valid props are: `<list>`. What should replace it?"
-   - If the component returns `NOT IN SPEC` → read its source at `node_modules/@capillarytech/cap-ui-library/<Name>/index.js` before emitting any props. Do not guess.
+   - If the component returns `NOT IN SPEC` → read its source at `<GARUDA_UI_PATH>/node_modules/@capillarytech/cap-ui-library/<Name>/index.js` before emitting any props. Do not guess.
 
    **Step 6d — Enforce caveats returned by prop-spec for every component** (dynamic — not hardcoded):
    - Apply every string in `caveats[]` as a rule. Parse the caveat text:

@@ -585,7 +585,7 @@ prop-table:
 - **caveats** — pitfalls. Every caveat must be respected in Phase 4.
 - **styledPattern** — if present, MUST use `.attrs()` pattern instead of passing props in JSX.
 - **disambiguation** — if present, override your component choice NOW before Phase 3.
-- **NOT IN SPEC** — if a component returns "NOT IN SPEC", you MUST verify its props by reading its source in `node_modules/@capillarytech/cap-ui-library/` before using it in Phase 4. Do not guess.
+- **NOT IN SPEC** — if a component returns "NOT IN SPEC", you MUST verify its props by reading its source in `<GARUDA_UI_PATH>/node_modules/@capillarytech/cap-ui-library/` before using it in Phase 4. Do not guess.
 
 **CRITICAL RULE**: After this step, **discard all prop values from the recipe's `props` field**.
 Props in Phase 4 must come exclusively from:
@@ -804,7 +804,7 @@ After user confirmation, generate the component file.
   Cap* container components (CapSlideBox, CapModal, CapCard) provide built-in behaviour for their named slots (`header`, `footer`, `content`). When populating a named slot:
   - Pass **only the content the slot is designed for** (e.g. a title string/element for `header`).
   - **Never** re-build what the container already provides: close/back buttons, slot padding, footer row structure.
-  - If unsure what a slot already renders: read `node_modules/@capillarytech/cap-ui-library/<ComponentName>/index.js` and inspect the JSX around the slot interpolation before writing content for it.
+  - If unsure what a slot already renders: read `<GARUDA_UI_PATH>/node_modules/@capillarytech/cap-ui-library/<ComponentName>/index.js` and inspect the JSX around the slot interpolation before writing content for it.
 
 - **Slide-out panels — ALWAYS use `CapSlideBox`, NEVER `CapDrawer`**: `CapDrawer` (raw Ant Design) is not integrated with the app shell layout and renders as a sliver. `CapSlideBox` is the correct component for all slide-out panels (`show`, `handleClose`, `content`/`header`/`footer`, `size="size-m"`, `placement="right"`). If a Figma node maps to a drawer/panel, emit `CapSlideBox`.
 
@@ -1243,6 +1243,6 @@ Recipe output: claudeOutput/figma-mapping-report/<nodeId>.recipe.json
 
 To regenerate prop-spec.json after cap-ui-library updates:
   node tools/mapping-agent/dist/cli.js generate-prop-spec \
-    --library-path node_modules/@capillarytech/cap-ui-library \
+    --library-path <GARUDA_UI_PATH>/node_modules/@capillarytech/cap-ui-library \
     --output tools/mapping-agent/src/registries/prop-spec.json
 ```

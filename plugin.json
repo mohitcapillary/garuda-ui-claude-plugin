@@ -1,0 +1,51 @@
+{
+  "name": "garuda-ui-plugin",
+  "version": "1.0.0-alpha",
+  "description": "Modular AI pipeline for Capillary Loyalty Frontend (garuda-ui). PRD → HLD → LLD → Code → Tests → Visual QA → PR. Design-first with a 4-file Figma cache, per-EXACT drilling, and 132 Cap UI Library specs. Each stage is its own slash command; a thin /run-pipeline wrapper composes them end-to-end.",
+  "author": "Capillary Frontend Team",
+
+  "commands": "./.claude/commands/",
+  "agents": "./.claude/agents/",
+  "skills": "./.claude/skills/",
+  "schemas": "./.claude/schemas/",
+  "templates": "./.claude/templates/",
+
+  "base": {
+    "inherited_from": "garuda-ui-claude-plugin",
+    "model": "spine-and-grafts",
+    "note": "garuda-ui-claude-plugin is preserved verbatim. Enhancements are additive: new flags on existing commands, new files alongside existing ones. No destructive edits to inherited assets."
+  },
+
+  "features": {
+    "modular_commands": "Per-stage slash commands compose into a pipeline — no monolithic orchestrator",
+    "run_pipeline_wrapper": "/run-pipeline chains all stages end-to-end with gate-halt semantics; resumable by running the failed stage directly",
+    "prd_clarity_flow": "/clarify-prd + /filter-prd — two-step PRD clarification with PM-friendly Q&A across 5 gap categories (Design, Spec Gap, Backend, Rules, Architecture)",
+    "hld_generation": "Five skills compose the HLD (prd-parser, prototype-analyser, api-contract-builder, architecture-aligner, hld-writer) with explicit [ASSUMED] markers on unconfirmed contracts",
+    "lld_generation": "/generate-lld produces 10-file organism anatomy + Redux shape + saga flow from the HLD, reducing re-derivation cost in codegen",
+    "testcase_generation": "/generate-testcases produces a P0/P1/P2 test case sheet before code is written",
+    "figma_cache_strategy": "4-file per-node cache (recipe.json + prop-spec-notes.json + metadata.xml + design-context.jsx) with Level A/B validation gates and per-EXACT child drilling when metadata-only responses are detected",
+    "hld_to_code_pipeline": "11-phase codegen with Phase 2.5 structure-preview gate and per-file resume via build-log.jsonl",
+    "build_verification": "/build-verify runs npm start, parses errors, and applies up to 3 auto-fix attempts",
+    "test_writing": "/write-tests generates reducer/saga/component tests targeting ≥85% coverage; uses redux-saga-test-plan and test-utils wrappers",
+    "test_evaluation": "/test-eval runs Jest coverage and gates on the threshold from skills/config.md",
+    "visual_qa_dual_mode": "/visual-qa supports user-driven mode (default, 5 iterations with approve/exclude/feedback controls) and --auto-fix mode (unattended, 3 iterations, Cap* tokens only)",
+    "pr_generation": "/create-pr assembles PR body from HLD + LLD + build-report + test-report + visual-qa-report and runs gh pr create",
+    "architect_self_refresh": "/architect-scan --refresh performs a diff-based re-scan of changed files; --verify does a lightweight drift check; --auto runs verify and re-scans only if drift exceeds the threshold in skills/config.md",
+    "cap_ui_library_specs": "132 component specs indexed by skills/cap-ui-library/_index.md so agents look up the one spec they need rather than loading all 132",
+    "coding_dna": "Six pillars (architecture, components, quality, state-and-api, styling, testing) as advisory reference alongside the authoritative GUIDELINES.md",
+    "fe_guardrails": "FG-01 through FG-12 guardrails evaluated inline during codegen Phase 8",
+    "schema_validation": "New post-dev agents (lld-generator, testcase-generator, build-verifier, test-writer, test-evaluator, guardrail-checker, productex-verifier, pr-writer) validate their output against JSON schemas in .claude/schemas/ and hard-halt on failure",
+    "shared_rules": "skills/shared-rules.md — single source of truth for organism anatomy, ImmutableJS patterns, saga error handling, Cap* imports, test-utils conventions",
+    "config": "skills/config.md — centralized configurable values (coverage threshold 85%, architect drift threshold 20 files, dev port, URL prefix, retry limits, chunk sizes)"
+  },
+
+  "not_included": {
+    "gix_orchestrator": "cap-garuda-plugin /gix monolithic orchestrator — replaced by modular commands + /run-pipeline",
+    "cross_repo_tracer": "deferred to v1.1 as an opt-in flag",
+    "session_bloat": "session_memory.md, approach_log.md, requirements_context.md, session_journal.md, pipeline_state.json — artifacts themselves are the audit trail",
+    "live_dashboard": "live-dashboard.html — demo-ware with no verification value",
+    "confluence_auto_publish": "replaced by explicit /publish-confluence <artifact> — no implicit publish on every phase",
+    "per_phase_mermaid": "Mermaid diagrams kept only in LLD, not on every phase",
+    "tutor_debug_knowledge_bank": "out of scope for the build pipeline"
+  }
+}

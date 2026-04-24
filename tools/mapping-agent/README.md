@@ -538,12 +538,12 @@ src/registries/
 
 ```bash
 node dist/cli.js generate-prop-spec \
-  --library-path node_modules/@capillarytech/cap-ui-library \
+  --library-path <GARUDA_UI_PATH>/node_modules/@capillarytech/cap-ui-library \
   --output src/registries/prop-spec.json \
   --verbose
 ```
 
-**Requires:** `node_modules/@capillarytech/cap-ui-library` and `node_modules/antd` must be installed.
+**Requires:** `<GARUDA_UI_PATH>/node_modules/@capillarytech/cap-ui-library` and `<GARUDA_UI_PATH>/node_modules/antd` must be installed in the target garuda-ui repo.
 
 Example entry:
 
