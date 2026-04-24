@@ -1,5 +1,5 @@
 ---
-description: Generate a structured system mapping for a product feature by analyzing documentation and the garuda-ui codebase
+description: Generate a structured system mapping for a product feature by analyzing documentation and the target app codebase
 argument-hint: <documentation-url>
 allowed-tools: Read, Glob, Grep, Bash, WebFetch, Agent, Write
 ---
@@ -14,7 +14,7 @@ Use the **product-code-mapper** agent to perform a complete system mapping.
 The agent will:
 
 1. Fetch and analyze the documentation at the provided URL
-2. Analyze the garuda-ui codebase (React components, Redux store, Sagas, APIs)
+2. Analyze the target app codebase (React components, Redux store, Sagas, APIs)
 3. Generate a structured system mapping following `.claude/skills/code-mapping/spec.md`
 4. Write the output to `.claude/output/<product-name>-system-map.md`
 

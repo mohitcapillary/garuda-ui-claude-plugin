@@ -1,5 +1,5 @@
 ---
-description: Generate a comprehensive High-Level Design document from a PRD for a new feature in the garuda-ui codebase
+description: Generate a comprehensive High-Level Design document from a PRD for a new feature in the target app codebase
 argument-hint: <prd-file-path-or-url>
 allowed-tools: Read, Glob, Grep, Bash, Write, WebFetch, Agent
 ---
@@ -15,7 +15,7 @@ The agent will:
 
 1. Parse the PRD and extract requirements, user stories, and prototype links
 2. Traverse each prototype link (Figma, InVision, or web URLs) to understand screen structure
-3. Scan the garuda-ui codebase for reusable components and existing patterns
+3. Scan the target app codebase for reusable components and existing patterns
 4. Build API contracts (confirmed from PRD or assumed and marked `[ASSUMED]`)
 5. Generate a complete 15-section HLD using `.claude/templates/hld-template.md`
 6. Validate alignment against `.claude/output/architecture.md` conventions

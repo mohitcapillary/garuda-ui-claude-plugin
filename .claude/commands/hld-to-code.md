@@ -1,10 +1,10 @@
 ---
-description: Convert an HLD into production-ready garuda-ui code — extracts pixel-perfect layout from cached design-context.jsx, runs a 2.5-phase preview gate before codegen, validates every prop/token before emission, and runs a 3-tier design audit. Honors Reviewer Override and halts on any ambiguity
+description: Convert an HLD into production-ready target app code — extracts pixel-perfect layout from cached design-context.jsx, runs a 2.5-phase preview gate before codegen, validates every prop/token before emission, and runs a 3-tier design audit. Honors Reviewer Override and halts on any ambiguity
 argument-hint: "<hld-path> [--resume] [--force] [--screen <name>] [--visual-audit] [--skip-preview-gate]"
 allowed-tools: Read, Glob, Grep, Bash, Write, Edit, Agent, Skill, AskUserQuestion, mcp__claude_ai_Figma__get_design_context, mcp__claude_ai_Figma__get_screenshot, mcp__claude_ai_Figma__get_metadata
 ---
 
-Use the **hld-to-code** skill to convert an HLD document into production-ready garuda-ui code.
+Use the **hld-to-code** skill to convert an HLD document into production-ready target app code.
 
 ## Instructions
 
@@ -80,7 +80,7 @@ Use the **hld-to-code** skill to convert an HLD document into production-ready g
 ## Layout overrides (always applied)
 
 - **Page-content width:** Ignore any `max-width` Figma sets on the outermost page/template-level content wrapper. Emit `width: 100%` instead. This applies only to the page/template container, not to nested cards, tables, or sub-sections.
-- **Default page padding:** If Figma does not specify padding on the page-content wrapper, apply the garuda-ui default page padding on **left, right, and top**. If Figma specifies padding, honor it.
+- **Default page padding:** If Figma does not specify padding on the page-content wrapper, apply the platform default page padding on **left, right, and top**. If Figma specifies padding, honor it.
 - Record the override in `layout-plan.json` under `overrides[]` so Phase 7 Tier 1/2 audits do not flag it as a token diff.
 
 ## When NOT to use

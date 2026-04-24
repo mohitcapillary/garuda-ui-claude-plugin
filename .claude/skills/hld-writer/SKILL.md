@@ -67,7 +67,7 @@ Replace template metadata placeholders:
 - **Reviewer Override is mandatory for agent overrides**: if the HLD agent writes a Note that overrides or contradicts a recipe mapping (e.g., "use custom organism instead of CapTable"), the corresponding Component Recipe row MUST have its `Reviewer Override` column populated with the replacement component name. Prose Notes alone are not consumed by downstream code generation — only the Reviewer Override column is machine-readable.
 
 #### Section 5: Directory Structure
-- **Source**: Impact analysis + garuda-ui conventions
+- **Source**: Impact analysis + target app conventions
 - Use code block with tree format showing exact file paths
 - Follow conventions:
   - Pages: `app/components/pages/{PageName}/` with full Redux co-location
@@ -154,7 +154,7 @@ Before writing the output, verify:
 - [ ] All ASCII diagrams have an accompanying `[See: Screen Name](url)` link immediately after them
 - [ ] All `[ASSUMED]` markers are present where appropriate
 - [ ] All referenced existing components were verified with Glob/Grep
-- [ ] Directory structure follows garuda-ui conventions
+- [ ] Directory structure follows target app conventions
 - [ ] Redux state uses Immutable.js conventions (`fromJS`, `get`, `getIn`)
 - [ ] Document length is between 3000-6000 words
 - [ ] No implementation-level code (no function bodies, no hook implementations)

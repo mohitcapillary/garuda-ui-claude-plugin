@@ -9,7 +9,7 @@ triggers:
 
 # Architecture Aligner Skill
 
-This skill validates a generated HLD document against the existing garuda-ui architecture documented in `.claude/output/architecture.md` and the system mapping patterns in `.claude/output/loyalty-promotions-system-map.md`. It updates the Architecture Alignment Notes section (section 14) of the HLD with findings.
+This skill validates a generated HLD document against the existing target app architecture documented in `.claude/output/architecture.md` and the system mapping patterns in `.claude/output/loyalty-promotions-system-map.md`. It updates the Architecture Alignment Notes section (section 14) of the HLD with findings.
 
 ## Input
 
@@ -28,7 +28,7 @@ A draft HLD document (output of hld-writer skill) with section 14 left as placeh
 
 ### Step 2: Convention Checklist
 
-Validate the HLD against each garuda-ui convention:
+Validate the HLD against each target app convention:
 
 #### 2a. Atomic Design Hierarchy
 - **Convention**: Components are classified as atoms, molecules, organisms, pages, or templates

@@ -2,7 +2,7 @@
 name: hld-to-code
 description: >
   Consume a single HLD markdown file and produce production-ready React + Redux-Saga
-  code in garuda-ui. Extracts pixel-perfect layout from cached Figma design-context.jsx
+  code in the target app repo. Extracts pixel-perfect layout from cached Figma design-context.jsx
   (widths, padding, gaps, typography, colour) so first-iteration output matches Figma
   ≥95%. Honors Reviewer Override column, reuses all four cached Figma artifacts,
   generates mock data at the API layer, runs a 3-tier design audit, enforces all
@@ -14,7 +14,7 @@ user_invocable: true
 
 # hld-to-code
 
-Convert an HLD document into production-ready garuda-ui code.
+Convert an HLD document into production-ready target app code.
 
 ## Usage
 

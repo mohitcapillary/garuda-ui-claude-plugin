@@ -1,6 +1,9 @@
 # Dependencies — the only thing we exclude
 tools/mapping-agent/node_modules/
 
+# Machine-specific Claude settings
+.claude/settings.local.json
+
 # OS artifacts
 .DS_Store
 *.log

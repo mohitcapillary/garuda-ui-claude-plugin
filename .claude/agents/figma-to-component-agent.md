@@ -148,6 +148,22 @@ Once validated, proceed to Phase 1.
 
 ---
 
+## Phase 0 — Resolve Paths
+
+Before any work, resolve `PLUGIN_PATH` and `GARUDA_UI_PATH`. Read `plugin-config.json` at the repo root to get `targetRepoName` and `pluginRepoName`.
+
+1. **Current repo IS the plugin repo** — If the repo root contains `plugin-config.json` or `.claude/agents/figma-to-component-agent.md`, set `PLUGIN_PATH` = repo root. Then resolve `GARUDA_UI_PATH`: read `targetRepoName` from `plugin-config.json` and look for sibling `../<targetRepoName>/`, then up to 2 parent levels.
+2. **Current repo IS the target repo** — If the repo root contains `app/components/`, `app/services/`, and `package.json`, set `GARUDA_UI_PATH` = repo root. Then resolve `PLUGIN_PATH`: read `pluginRepoName` from a sibling `plugin-config.json`, or look for sibling `../*-claude-plugin/`.
+3. **Neither matches** → **STOP** and ask the user for both repo paths.
+
+Export both as shell variables for all subsequent bash snippets:
+```bash
+export PLUGIN_PATH="/resolved/path/to/plugin-repo"
+export GARUDA_UI_PATH="/resolved/path/to/target-repo"
+```
+
+---
+
 ## Phase 1 — Understand (NO code generation)
 
 Build a complete mental model of the design before writing anything.
@@ -347,7 +363,7 @@ Extract visual values from `$DESIGN_CONTEXT_PATH` (set in Phase 1a' on cache hit
 
 ```bash
 node -e "
-const tokens = require('/Users/mohitgupta/Documents/capillary/revert/garuda-ui/tools/mapping-agent/src/registries/token-mappings.json');
+const tokens = require(process.env.PLUGIN_PATH + '/tools/mapping-agent/src/registries/token-mappings.json');
 const hexValues = process.argv.slice(1);
 hexValues.forEach(hex => {
   const match = tokens.entries.find(e => e.figmaValuePattern.toLowerCase() === hex.toLowerCase());
@@ -461,8 +477,8 @@ Before consulting `recipe[nodeId].disambiguation` or `recipe[nodeId].targetCompo
 ### 2a. Ensure mapping agent is built
 
 ```bash
-ls /Users/mohitgupta/Documents/capillary/revert/garuda-ui/tools/mapping-agent/dist/cli.js 2>/dev/null || \
-  (cd /Users/mohitgupta/Documents/capillary/revert/garuda-ui/tools/mapping-agent && npm run build)
+ls "${PLUGIN_PATH}/tools/mapping-agent/dist/cli.js" 2>/dev/null || \
+  (cd "${PLUGIN_PATH}/tools/mapping-agent" && npm run build)
 ```
 
 ### 2b. Run the mapping agent (SKIP if CACHE_HIT=true)
@@ -477,19 +493,19 @@ cat > /tmp/figma-metadata.xml << 'XMLEOF'
 <paste the get_metadata XML output here>
 XMLEOF
 
-node /Users/mohitgupta/Documents/capillary/revert/garuda-ui/tools/mapping-agent/dist/cli.js resolve-metadata \
+node "${PLUGIN_PATH}/tools/mapping-agent/dist/cli.js" resolve-metadata \
   --design-context /tmp/figma-design-context.jsx \
-  --registry /Users/mohitgupta/Documents/capillary/revert/garuda-ui/tools/mapping-agent/src/registries \
-  --output /Users/mohitgupta/Documents/capillary/revert/garuda-ui/claudeOutput/figma-mapping-report \
+  --registry "${PLUGIN_PATH}/tools/mapping-agent/src/registries" \
+  --output "${PLUGIN_PATH}/claudeOutput/figma-mapping-report" \
   < /tmp/figma-metadata.xml
 ```
 
 **With `--vision` flag** (screenshot saved in Phase 1b):
 ```bash
-node /Users/mohitgupta/Documents/capillary/revert/garuda-ui/tools/mapping-agent/dist/cli.js resolve-metadata \
+node "${PLUGIN_PATH}/tools/mapping-agent/dist/cli.js" resolve-metadata \
   --design-context /tmp/figma-design-context.jsx \
-  --registry /Users/mohitgupta/Documents/capillary/revert/garuda-ui/tools/mapping-agent/src/registries \
-  --output /Users/mohitgupta/Documents/capillary/revert/garuda-ui/claudeOutput/figma-mapping-report \
+  --registry "${PLUGIN_PATH}/tools/mapping-agent/src/registries" \
+  --output "${PLUGIN_PATH}/claudeOutput/figma-mapping-report" \
   --screenshot /tmp/figma-screenshot-<nodeId>.png \
   < /tmp/figma-metadata.xml
 ```
@@ -536,7 +552,7 @@ This prints every unique Cap* component name in the recipe (e.g. `CapRow CapTabl
 
 ```bash
 node -e "
-const spec = require(process.env.GARUDA_UI_PATH + '/tools/mapping-agent/src/registries/prop-spec.json');
+const spec = require(process.env.PLUGIN_PATH + '/tools/mapping-agent/src/registries/prop-spec.json');
 const components = process.argv.slice(1);
 components.forEach(c => {
   const e = spec[c];
@@ -584,7 +600,7 @@ PROP_TABLE_PATH="${CACHE_DIR}/prop-table.json"
 node -e "
 const fs = require('fs');
 const crypto = require('crypto');
-const specPath = process.env.GARUDA_UI_PATH + '/tools/mapping-agent/src/registries/prop-spec.json';
+const specPath = process.env.PLUGIN_PATH + '/tools/mapping-agent/src/registries/prop-spec.json';
 const spec = require(specPath);
 const components = process.argv.slice(1);
 
@@ -790,7 +806,7 @@ After user confirmation, generate the component file.
   - **Never** re-build what the container already provides: close/back buttons, slot padding, footer row structure.
   - If unsure what a slot already renders: read `node_modules/@capillarytech/cap-ui-library/<ComponentName>/index.js` and inspect the JSX around the slot interpolation before writing content for it.
 
-- **Slide-out panels — ALWAYS use `CapSlideBox`, NEVER `CapDrawer`**: `CapDrawer` (raw Ant Design) is not integrated with the garuda-ui shell layout and renders as a sliver. `CapSlideBox` is the correct component for all slide-out panels (`show`, `handleClose`, `content`/`header`/`footer`, `size="size-m"`, `placement="right"`). If a Figma node maps to a drawer/panel, emit `CapSlideBox`.
+- **Slide-out panels — ALWAYS use `CapSlideBox`, NEVER `CapDrawer`**: `CapDrawer` (raw Ant Design) is not integrated with the app shell layout and renders as a sliver. `CapSlideBox` is the correct component for all slide-out panels (`show`, `handleClose`, `content`/`header`/`footer`, `size="size-m"`, `placement="right"`). If a Figma node maps to a drawer/panel, emit `CapSlideBox`.
 
 - **Audit-before-override — GUIDELINE Rule 01-7 (HARD GATE)**: Before emitting ANY CSS property (`border`, `padding`, `box-shadow`, `background`, `height`) for a Cap* component, run the 3-step audit: (1) check what the component already provides internally for that property, (2) calculate the delta between Figma target and library default, (3) write only the delta. CapSlideBox/CapModal slot containers already apply horizontal padding (`0 48px` for size-m/l, `0 24px` for size-s) — do NOT add horizontal padding to content passed into their `header`/`content`/`footer` props. After any component swap (e.g. CapDrawer → CapSlideBox), re-run the audit — the new component's internal CSS model differs from the old one.
 
@@ -1007,7 +1023,7 @@ node -e "
 const fs = require('fs');
 const crypto = require('crypto');
 const propTablePath = process.env.CACHE_DIR + '/prop-table.json';
-const specPath = process.env.GARUDA_UI_PATH + '/tools/mapping-agent/src/registries/prop-spec.json';
+const specPath = process.env.PLUGIN_PATH + '/tools/mapping-agent/src/registries/prop-spec.json';
 const name = process.argv[1];
 
 let componentSpec = null;
@@ -1038,7 +1054,7 @@ console.log('source:', source);
 console.log('allowed:', componentSpec.allowedProps.join(', '));
 componentSpec.caveats.forEach(c => console.log('CAVEAT:', c));
 if (componentSpec.styledPattern) console.log('styledPattern:', componentSpec.styledPattern);
-" GARUDA_UI_PATH="$GARUDA_UI_PATH" CACHE_DIR="$CACHE_DIR" -- CapButton
+" PLUGIN_PATH="$PLUGIN_PATH" CACHE_DIR="$CACHE_DIR" -- CapButton
 ```
 
 Rules enforced per component:

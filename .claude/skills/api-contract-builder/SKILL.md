@@ -9,7 +9,7 @@ triggers:
 
 # API Contract Builder Skill
 
-This skill identifies all required API calls for a feature and produces structured contract definitions. When the PRD provides API specs, they are extracted as-is. When specs are missing, contracts are assumed based on requirements and existing garuda-ui API patterns.
+This skill identifies all required API calls for a feature and produces structured contract definitions. When the PRD provides API specs, they are extracted as-is. When specs are missing, contracts are assumed based on requirements and existing target app API patterns.
 
 ## Input
 
@@ -127,4 +127,4 @@ For each API contract, produce a structured definition:
 2. All assumed contracts MUST be marked with `[ASSUMED]`
 3. Payloads must use realistic field names based on the business domain
 4. Error states must cover at least: 400, 401, 403, 404, 500
-5. Follow existing garuda-ui API patterns for consistency
+5. Follow existing target app API patterns for consistency

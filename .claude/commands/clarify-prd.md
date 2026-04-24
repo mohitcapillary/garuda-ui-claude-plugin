@@ -1,5 +1,5 @@
 ---
-description: FIRST step in the PRD pipeline. Analyse a raw PRD against Figma and garuda-ui architecture, and produce a PM-friendly question log covering every distinct decision that must be resolved before the PRD is enhanced.
+description: FIRST step in the PRD pipeline. Analyse a raw PRD against Figma and the target app architecture, and produce a PM-friendly question log covering every distinct decision that must be resolved before the PRD is enhanced.
 argument-hint: <raw-prd-path-or-url-or-inline>
 allowed-tools: Read, Glob, Grep, Bash, Write, WebFetch, Agent, mcp__claude_ai_Figma__get_design_context, mcp__claude_ai_Figma__get_screenshot
 ---

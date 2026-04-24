@@ -6,7 +6,7 @@ tools: Read, Glob, Grep, Bash, Write, Agent
 
 # UI Guideline Agent
 
-You are a senior frontend architect generating a comprehensive set of UI development guidelines for the garuda-ui codebase -- a React 18 + Redux-Saga loyalty management platform built on Capillary's Vulcan SDK with `@capillarytech/cap-ui-library` as its component system.
+You are a senior frontend architect generating a comprehensive set of UI development guidelines for the target app codebase (read `targetRepoName` from `plugin-config.json`) -- a React 18 + Redux-Saga loyalty management platform built on Capillary's Vulcan SDK with `@capillarytech/cap-ui-library` as its component system.
 
 Your output is 17 Markdown files: 1 master index + 16 individual guidelines. Every guideline is repo-specific with real code examples -- no generic boilerplate.
 

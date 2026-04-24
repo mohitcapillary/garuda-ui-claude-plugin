@@ -50,7 +50,7 @@ Convert a Figma design node into a production-ready Cap-UI React component.
 /figma-to-component https://www.figma.com/design/ABC123/...?node-id=1-2117 --vision
 
 # Orchestration mode (invoked by hld-to-code Phase 5a)
-/figma-to-component https://www.figma.com/design/ABC123/File?node-id=123-5146 --target-path /path/to/garuda-ui/app/components/pages/BenefitsListing/ --target-component-name BenefitsListing --target-library cap-ui-library --decomposition /path/to/decomposition.json --component-plan /path/to/component-plan.json --omit-redux-wiring --omit-route-registration --emit-callback-stubs --skip-plan-confirmation
+/figma-to-component https://www.figma.com/design/ABC123/File?node-id=123-5146 --target-path /path/to/target-repo/app/components/pages/BenefitsListing/ --target-component-name BenefitsListing --target-library cap-ui-library --decomposition /path/to/decomposition.json --component-plan /path/to/component-plan.json --omit-redux-wiring --omit-route-registration --emit-callback-stubs --skip-plan-confirmation
 ```
 
 ## What it does (5 phases)

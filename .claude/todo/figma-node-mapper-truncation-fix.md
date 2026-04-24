@@ -36,7 +36,7 @@ This condition exists in the compiled `dist/utils/manifest-parser.js` but NOT in
 
 ## The Fix (Ready to Implement)
 
-Full implementation plan saved at: `/Users/mohitgupta/.claude/plans/twinkly-frolicking-wand.md`
+Full implementation plan was saved in a previous Claude Code session plan.
 
 ### Summary of changes
 

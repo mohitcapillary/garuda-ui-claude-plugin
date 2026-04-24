@@ -1,7 +1,7 @@
 # Garuda UI — Architecture Overview
 
 > **Generated**: 2026-04-06
-> **Scanned from**: /Users/mohitgupta/Documents/capillary/revert/garuda-ui
+> **Scanned from**: (auto-detected target repo)
 
 ---
 

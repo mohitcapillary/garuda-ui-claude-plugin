@@ -66,7 +66,7 @@ Do NOT silently use `WebFetch` partial content as if it fully captured an intera
 If no prototype links were provided:
 
 1. Derive screen structure from PRD requirements and user stories
-2. Reference similar existing features in the garuda-ui codebase:
+2. Reference similar existing features in the target app codebase:
    - Read `.claude/output/architecture.md` for existing page patterns
    - Use Glob to find similar feature pages: `app/components/pages/*/index.js`
 3. Mark ALL screen-level architecture decisions with `[ASSUMED]`

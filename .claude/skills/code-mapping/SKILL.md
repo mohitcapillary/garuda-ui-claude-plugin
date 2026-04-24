@@ -146,9 +146,9 @@ If documentation was provided, map each requirement to:
 - Data model changes
 - Risk areas
 
-## Codebase Conventions (garuda-ui)
+## Codebase Conventions (target app)
 
-These patterns are specific to the garuda-ui codebase:
+These patterns are specific to the target app codebase:
 
 - **Vulcan SDK**: `injectReducer`, `injectSaga`, `withStyles`, `clearDataOnUnmount` from `@capillarytech/vulcan-react-sdk`
 - **Immutable.js**: State uses `fromJS()`, selectors use `.get()` / `.getIn()` / `.toJS()`

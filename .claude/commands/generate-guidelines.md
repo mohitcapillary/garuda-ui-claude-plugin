@@ -1,4 +1,4 @@
-Generate UI development guidelines by scanning the garuda-ui codebase and cap-ui-library.
+Generate UI development guidelines by scanning the target app codebase and cap-ui-library.
 
 Use the `ui-guideline-agent` agent to execute all 6 phases autonomously:
 

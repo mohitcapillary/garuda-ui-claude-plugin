@@ -1,6 +1,6 @@
 ---
 name: prd-clarifier
-description: Analyse a raw PRD against its Figma designs and the existing garuda-ui architecture. Produce a tight, PM-friendly list of open questions whose answers are required before the PRD can be enhanced and turned into an HLD.
+description: Analyse a raw PRD against its Figma designs and the existing target app architecture. Produce a tight, PM-friendly list of open questions whose answers are required before the PRD can be enhanced and turned into an HLD.
 ---
 
 # PRD Clarifier Skill

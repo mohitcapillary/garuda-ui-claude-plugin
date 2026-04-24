@@ -1,6 +1,6 @@
 ---
 name: prd-clarifier-agent
-description: Runs FIRST in the PRD pipeline. Takes a raw PRD, compares it to referenced Figma designs and the existing garuda-ui architecture, and produces a PM-friendly question log that must be answered before the PRD can be enhanced and turned into an HLD.
+description: Runs FIRST in the PRD pipeline. Takes a raw PRD, compares it to referenced Figma designs and the existing target app architecture, and produces a PM-friendly question log that must be answered before the PRD can be enhanced and turned into an HLD.
 tools: Read, Glob, Grep, Bash, Write, WebFetch, mcp__claude_ai_Figma__get_design_context, mcp__claude_ai_Figma__get_screenshot
 ---
 
