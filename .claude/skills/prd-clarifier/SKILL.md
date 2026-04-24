@@ -54,19 +54,23 @@ Then:
 - Read `.claude/output/architecture.md`.
 - Read `.claude/output/loyalty-promotions-system-map.md`.
 - Skim `app/config/endpoints.js` for existing API-domain naming.
+- Skim `app/services/api.js` for existing service functions (e.g., `getUsersByIds`, `getOrgUsers`, `getPrograms`). These are reusable — when writing `If unanswered:` defaults, prefer referencing an existing `api.js` function over assuming BE must add a new field or endpoint.
 - Glob `app/components/{atoms,molecules,organisms,pages}/*/index.js` for component inventory.
 
 ### Step 2 — Lightweight Figma pass
 
 For every Figma URL in the PRD:
 1. Extract `fileKey` + `nodeId` (node-id `X-Y` → `X:Y`).
-2. `mcp__claude_ai_Figma__get_design_context` once.
-3. `mcp__claude_ai_Figma__get_screenshot` once.
-4. Persist to `claudeOutput/figma-capui-mapping/<nodeId>/` (`design-context.jsx`, `screenshot.png`) so downstream agents reuse them.
+2. Extract the **screen label** from the PRD text immediately preceding each URL (e.g., "Listing", "Create", "Deactivate modal"). If no label is present, derive one from the Figma node name.
+3. `mcp__claude_ai_Figma__get_design_context` once.
+4. `mcp__claude_ai_Figma__get_screenshot` once.
+5. Persist to `claudeOutput/figma-capui-mapping/<nodeId>/` (`design-context.jsx`, `screenshot.png`) so downstream agents reuse them.
+
+**All Figma URLs must appear in the output.** Build a list of `(screenLabel, fullFigmaUrl, nodeId)` tuples during this step. This list is used to populate the header and appendix — never collapse multiple URLs into one.
 
 Skip nodes that fail — list them in the appendix.
 
-### Step 3 — Internal gap sweep (14 triggers)
+### Step 3 — Internal gap sweep (15 triggers)
 
 Walk the PRD and the cached Figma artifacts. For each trigger below, note any finding. This is an **internal inventory** — do not emit a question per finding yet.
 
@@ -80,6 +84,7 @@ Walk the PRD and the cached Figma artifacts. For each trigger below, note any fi
 | MISSING_API_PAYLOAD | Endpoint named but no request/response shape |
 | FIGMA_FIELD_NOT_IN_BE | Field rendered in Figma UI has no matching field in the documented API request/response payload |
 | BE_FIELD_NOT_IN_FIGMA | Field present in documented BE payload has no corresponding element rendered in any Figma screen |
+| ID_NAME_RESOLUTION | Figma renders a human-readable name (person name, program name, entity label) but the BE response only returns a numeric/opaque ID for that field (e.g., `updatedBy: 7` but Figma shows "Mohit Gupta"; `programId: 5` but Figma shows "Tier program"). For every such field, the PRD must specify which API resolves the ID to a display name — or BE must add the resolved name to the response DTO. Check **every** ID field in the BE response against its Figma rendering — do not stop after finding one. |
 | MISSING_PAGINATION | Figma shows a table, list, or grid of items but the BE endpoint has no pagination/offset/cursor/page-size parameters documented |
 | MISSING_VALIDATION | Form fields without rules |
 | MISSING_ERROR_STATES | No error copy/retry/fallback |
@@ -111,7 +116,7 @@ Map internal triggers to PM-facing categories:
 |---------------|--------------------------|
 | `Design` | FIGMA_NOT_IN_PRD, PRD_NOT_IN_FIGMA, FIGMA_PRD_CONFLICT |
 | `Spec Gap` | PRD_AMBIGUITY, INTERACTION_UNCLEAR, DATA_LIFECYCLE |
-| `Backend` | MISSING_API_CONTRACT, MISSING_API_PAYLOAD, FIGMA_FIELD_NOT_IN_BE, BE_FIELD_NOT_IN_FIGMA, MISSING_PAGINATION |
+| `Backend` | MISSING_API_CONTRACT, MISSING_API_PAYLOAD, FIGMA_FIELD_NOT_IN_BE, BE_FIELD_NOT_IN_FIGMA, ID_NAME_RESOLUTION, MISSING_PAGINATION |
 | `Rules` | MISSING_VALIDATION, MISSING_ERROR_STATES, MISSING_EMPTY_STATES, MISSING_PERMISSIONS, MISSING_I18N |
 | `Architecture` | ARCH_MISALIGN |
 
@@ -144,8 +149,8 @@ Content rules:
 
 Appendix is short and mechanical:
 - Source PRD path
-- Figma nodes fetched (list of nodeIds)
-- Figma nodes that failed (if any)
+- Figma nodes fetched — list each as `**Screen Label:** full-figma-url (nodeId: X:Y)`. Include every URL from Step 2, not just node IDs.
+- Figma nodes that failed (if any) — with full URL
 - Pointer to architecture.md and the system map
 
 No research narrative. No coverage tables. No internal category counts.

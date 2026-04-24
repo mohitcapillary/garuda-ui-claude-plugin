@@ -11,7 +11,14 @@ figma-nodes: {{FIGMA_NODE_LIST}}
 > **For reviewers** — fill the `Answer:` block under each question. When every question is answered (or consciously skipped), change `status:` at the top to `resolved`. Then run `/filter-prd` on this file.
 
 **Source PRD:** {{PRD_SOURCE}}
-**Figma:** {{FIGMA_URL_OR_NA}}
+**Figma:**
+{{FIGMA_LINKS_LIST}}
+<!-- Format each link as: - **Screen Label:** full-figma-url -->
+<!-- Example:
+- **Listing:** https://www.figma.com/design/xxx?node-id=123-456&m=dev
+- **Create:** https://www.figma.com/design/xxx?node-id=789-012&m=dev
+If only one link, still use the list format. If no Figma links: "N/A"
+-->
 
 ---
 
@@ -47,7 +54,9 @@ figma-nodes: {{FIGMA_NODE_LIST}}
 ## Appendix — traceability (do not edit)
 
 - **Source PRD:** `{{PRD_SOURCE}}`
-- **Figma nodes fetched:** {{FIGMA_NODE_LIST}}
+- **Figma nodes fetched:**
+{{FIGMA_NODES_WITH_URLS}}
+<!-- Format each as: - **Screen Label:** full-figma-url (nodeId: X:Y) -->
 - **Figma artifacts cached at:** `claudeOutput/figma-capui-mapping/<nodeId>/`
 - **Architecture reference:** `.claude/output/architecture.md`
 - **System map reference:** `.claude/output/loyalty-promotions-system-map.md`
